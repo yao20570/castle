@@ -149,6 +149,8 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
+    <ClCompile Include="..\Classes\Dlg\Main\DlgMain.cpp" />
+    <ClCompile Include="..\Classes\GameState\StatePlay.cpp" />
     <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
     <ClCompile Include="..\Classes\Helper\CSVParser\CSVParser.cpp" />
     <ClCompile Include="..\Classes\Helper\Sqlite3\sqlite3.c" />
@@ -195,6 +197,8 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
+    <ClInclude Include="..\Classes\Dlg\Main\DlgMain.h" />
+    <ClInclude Include="..\Classes\GameState\StatePlay.h" />
     <ClInclude Include="..\Classes\HelloWorldScene.h" />
     <ClInclude Include="..\Classes\Helper\CSVParser\CSVParser.h" />
     <ClInclude Include="..\Classes\Helper\Sqlite3\sqlite3.h" />

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<UIProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ProjectDir>D:\git\castle\UIProject\Fight</ProjectDir>
+  <Version>1.6.0.0</Version>
+  <Resources>D:\git\castle\UIProject\Fight\Resources</Resources>
+  <Name>Fight</Name>
+  <JsonFileName>Fight.json</JsonFileName>
+  <JsonFolder>D:\git\castle\UIProject\Fight\Json</JsonFolder>
+  <JsonList>
+    <string>dlg_fight.json</string>
+  </JsonList>
+  <CanvasSize>
+    <Width>640</Width>
+    <Height>1136</Height>
+  </CanvasSize>
+  <filePath>D:\git\castle\UIProject\Fight\Fight.xml.ui</filePath>
+  <ProjectType>UIProject</ProjectType>
+  <ResRelativePath />
+  <imageFileList />
+  <imagePngList />
+  <JsonSuffix>.json</JsonSuffix>
+  <CurrentUIJson />
+</UIProject>

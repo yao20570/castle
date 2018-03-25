@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<UIProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ProjectDir>D:\git\castle\UIProject\Main</ProjectDir>
+  <Version>1.6.0.0</Version>
+  <Resources>D:\git\castle\UIProject\Main\Resources</Resources>
+  <Name>Main</Name>
+  <JsonFileName>Main.json</JsonFileName>
+  <JsonFolder>D:\git\castle\UIProject\Main\Json</JsonFolder>
+  <JsonList>
+    <string>dlg_mian.json</string>
+  </JsonList>
+  <CanvasSize>
+    <Width>640</Width>
+    <Height>1136</Height>
+  </CanvasSize>
+  <filePath>D:\git\castle\UIProject\Main\Main.xml.ui</filePath>
+  <ProjectType>UIProject</ProjectType>
+  <ResRelativePath />
+  <imageFileList />
+  <imagePngList />
+  <JsonSuffix>.json</JsonSuffix>
+  <CurrentUIJson />
+</UIProject>

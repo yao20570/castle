@@ -43,6 +43,18 @@
     <Filter Include="src\Utils">
       <UniqueIdentifier>{caee231d-5eb9-4df6-8926-071e655d9d02}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Dlg">
+      <UniqueIdentifier>{af4f8620-ba09-4920-aec3-4d756662e476}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Dlg\Main">
+      <UniqueIdentifier>{b68de711-7425-4c3b-9643-3cfc3a8f0695}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Dlg\Fight">
+      <UniqueIdentifier>{d2e1ee58-6233-430d-87e2-dd080adf4119}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\GameState">
+      <UniqueIdentifier>{9ca58b36-c01b-4f5c-862c-09c98d7a7f3d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -176,6 +188,12 @@
     </ClCompile>
     <ClCompile Include="..\Classes\Utils\DataManager.cpp">
       <Filter>src\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameState\StatePlay.cpp">
+      <Filter>src\GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Dlg\Main\DlgMain.cpp">
+      <Filter>src\Dlg\Main</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -319,6 +337,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Utils\Config.h">
       <Filter>src\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Dlg\Main\DlgMain.h">
+      <Filter>src\Dlg\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameState\StatePlay.h">
+      <Filter>src\GameState</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

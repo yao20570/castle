@@ -185,6 +185,7 @@ static const char* FONT_ARIAL           = "arial.ttf";
 static const char* OGG_BACKGROUND       = "music/background.mp3";
 static const char* OGG_BATTLEGROUND     = "music/Battleground.mp3";
 
+//
 
 // UI
 static const char* UI_LAYER_WORLDHUD        = "UI/WorldHudLayer/WorldHudLayer.ExportJson";
