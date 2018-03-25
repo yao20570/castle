@@ -1,0 +1,329 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="win32">
+      <UniqueIdentifier>{84a8ebd7-7cf0-47f6-b75e-d441df67da40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="resource">
+      <UniqueIdentifier>{715254bc-d70b-4ec5-bf29-467dd3ace079}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{bb6c862e-70e9-49d9-81b7-3829a6f50471}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Helper">
+      <UniqueIdentifier>{b91898e7-749b-40bb-be26-a6a32d0870b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Helper\Sqlite3">
+      <UniqueIdentifier>{d9524526-aa74-4992-b0f5-d1d4087ebe4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Helper\CSVParser">
+      <UniqueIdentifier>{8e1716eb-5cc5-45ba-98c3-52e545db6635}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Model">
+      <UniqueIdentifier>{a08369df-b58b-443f-9b4e-10535b5d8fbf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\UI">
+      <UniqueIdentifier>{815bfd09-ae65-4528-9ab5-7272bfa27580}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\UI\BattleScene">
+      <UniqueIdentifier>{075ea586-cdc2-4c5b-94f6-bd469d420f2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\UI\DialogScene">
+      <UniqueIdentifier>{5f529ddc-7661-4b34-9ec6-ec9f91dad9cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\UI\HelloScene">
+      <UniqueIdentifier>{cd7a8ee1-62a0-412c-8306-27fe9f840639}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\UI\HomeScene">
+      <UniqueIdentifier>{0b828fdb-f3bd-41bd-bc41-9912c718be79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\UI\WorldScene">
+      <UniqueIdentifier>{5e9bf0bf-1ba9-4957-9c10-10bdae5a4488}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Utils">
+      <UniqueIdentifier>{caee231d-5eb9-4df6-8926-071e655d9d02}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\AppDelegate.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\HelloWorldScene.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Helper\CSVParser\CSVParser.cpp">
+      <Filter>src\Helper\CSVParser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Helper\Sqlite3\sqlite3.c">
+      <Filter>src\Helper\Sqlite3</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Model\BuildingSprite.cpp">
+      <Filter>src\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Model\BuildProcess.cpp">
+      <Filter>src\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Model\BulletSprite.cpp">
+      <Filter>src\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Model\HarvestBubble.cpp">
+      <Filter>src\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Model\Hero.cpp">
+      <Filter>src\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Model\MiwuSprite.cpp">
+      <Filter>src\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Model\NewBuilding.cpp">
+      <Filter>src\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Model\Notice.cpp">
+      <Filter>src\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Model\Robot.cpp">
+      <Filter>src\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Model\Soilder.cpp">
+      <Filter>src\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Model\TownSprite.cpp">
+      <Filter>src\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Model\BaseSprite.cpp">
+      <Filter>src\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Model\Building.cpp">
+      <Filter>src\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\UI\PanZoomLayer.cpp">
+      <Filter>src\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\UI\BattleScene\AIManager.cpp">
+      <Filter>src\UI\BattleScene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\UI\BattleScene\BattleHudLayer.cpp">
+      <Filter>src\UI\BattleScene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\UI\BattleScene\BattleMapLayer.cpp">
+      <Filter>src\UI\BattleScene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\UI\BattleScene\BattleScene.cpp">
+      <Filter>src\UI\BattleScene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\UI\DialogScene\BuildingInfoDialog.cpp">
+      <Filter>src\UI\DialogScene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\UI\DialogScene\BuildingUpgradeDialog.cpp">
+      <Filter>src\UI\DialogScene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\UI\DialogScene\CampDialog.cpp">
+      <Filter>src\UI\DialogScene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\UI\DialogScene\GameOverDialog.cpp">
+      <Filter>src\UI\DialogScene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\UI\DialogScene\HeroHotelDialog.cpp">
+      <Filter>src\UI\DialogScene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\UI\DialogScene\HeroInfoDialog.cpp">
+      <Filter>src\UI\DialogScene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\UI\DialogScene\LabDialog.cpp">
+      <Filter>src\UI\DialogScene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\UI\DialogScene\NewBuildDialog.cpp">
+      <Filter>src\UI\DialogScene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\UI\DialogScene\SoilderInfoDialog.cpp">
+      <Filter>src\UI\DialogScene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\UI\DialogScene\TownDialog.cpp">
+      <Filter>src\UI\DialogScene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\UI\HelloScene\HelloScene.cpp">
+      <Filter>src\UI\HelloScene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\UI\HomeScene\HomeHudLayer.cpp">
+      <Filter>src\UI\HomeScene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\UI\HomeScene\HomeMapLayer.cpp">
+      <Filter>src\UI\HomeScene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\UI\HomeScene\HomeOptLayer.cpp">
+      <Filter>src\UI\HomeScene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\UI\HomeScene\HomeScene.cpp">
+      <Filter>src\UI\HomeScene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\UI\WorldScene\WorldHudLayer.cpp">
+      <Filter>src\UI\WorldScene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\UI\WorldScene\WorldMapLayer.cpp">
+      <Filter>src\UI\WorldScene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\UI\WorldScene\WorldScene.cpp">
+      <Filter>src\UI\WorldScene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Utils\DBManager.cpp">
+      <Filter>src\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Utils\GlobalManager.cpp">
+      <Filter>src\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Utils\DataManager.cpp">
+      <Filter>src\Utils</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="main.h">
+      <Filter>win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\AppDelegate.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\HelloWorldScene.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Helper\CSVParser\CSVParser.h">
+      <Filter>src\Helper\CSVParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Helper\Sqlite3\sqlite3.h">
+      <Filter>src\Helper\Sqlite3</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Helper\Sqlite3\sqlite3ext.h">
+      <Filter>src\Helper\Sqlite3</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Model\Building.h">
+      <Filter>src\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Model\BuildingSprite.h">
+      <Filter>src\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Model\BuildProcess.h">
+      <Filter>src\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Model\BulletSprite.h">
+      <Filter>src\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Model\HarvestBubble.h">
+      <Filter>src\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Model\Hero.h">
+      <Filter>src\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Model\MiwuSprite.h">
+      <Filter>src\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Model\NewBuilding.h">
+      <Filter>src\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Model\Notice.h">
+      <Filter>src\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Model\Robot.h">
+      <Filter>src\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Model\Soilder.h">
+      <Filter>src\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Model\TownSprite.h">
+      <Filter>src\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Model\BaseSprite.h">
+      <Filter>src\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\UI\PanZoomLayer.h">
+      <Filter>src\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\UI\BattleScene\AIManager.h">
+      <Filter>src\UI\BattleScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\UI\BattleScene\BattleHudLayer.h">
+      <Filter>src\UI\BattleScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\UI\BattleScene\BattleMapLayer.h">
+      <Filter>src\UI\BattleScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\UI\BattleScene\BattleScene.h">
+      <Filter>src\UI\BattleScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\UI\DialogScene\BuildingInfoDialog.h">
+      <Filter>src\UI\DialogScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\UI\DialogScene\BuildingUpgradeDialog.h">
+      <Filter>src\UI\DialogScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\UI\DialogScene\CampDialog.h">
+      <Filter>src\UI\DialogScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\UI\DialogScene\GameOverDialog.h">
+      <Filter>src\UI\DialogScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\UI\DialogScene\HeroHotelDialog.h">
+      <Filter>src\UI\DialogScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\UI\DialogScene\HeroInfoDialog.h">
+      <Filter>src\UI\DialogScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\UI\DialogScene\LabDialog.h">
+      <Filter>src\UI\DialogScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\UI\DialogScene\NewBuildDialog.h">
+      <Filter>src\UI\DialogScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\UI\DialogScene\SoilderInfoDialog.h">
+      <Filter>src\UI\DialogScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\UI\DialogScene\TownDialog.h">
+      <Filter>src\UI\DialogScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\UI\HelloScene\HelloScene.h">
+      <Filter>src\UI\HelloScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\UI\HomeScene\HomeHudLayer.h">
+      <Filter>src\UI\HomeScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\UI\HomeScene\HomeMapLayer.h">
+      <Filter>src\UI\HomeScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\UI\HomeScene\HomeOptLayer.h">
+      <Filter>src\UI\HomeScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\UI\HomeScene\HomeScene.h">
+      <Filter>src\UI\HomeScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\UI\WorldScene\WorldHudLayer.h">
+      <Filter>src\UI\WorldScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\UI\WorldScene\WorldMapLayer.h">
+      <Filter>src\UI\WorldScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\UI\WorldScene\WorldScene.h">
+      <Filter>src\UI\WorldScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Utils\DataManager.h">
+      <Filter>src\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Utils\DBManager.h">
+      <Filter>src\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Utils\GlobalManager.h">
+      <Filter>src\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Utils\Public.h">
+      <Filter>src\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Utils\Config.h">
+      <Filter>src\Utils</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="game.rc">
+      <Filter>resource</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
