@@ -1,5 +1,6 @@
 #include "BattleScene.h"
-
+#include "BattleHudLayer.h"
+#include "BattleMapLayer.h"
 
 Scene* BattleScene::createScene()
 {

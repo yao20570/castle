@@ -4,7 +4,6 @@
 #include "Utils/Public.h"
 #include "BaseSprite.h"
 
-
 class Building : public BaseSprite
 {
 public:

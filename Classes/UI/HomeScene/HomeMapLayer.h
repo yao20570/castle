@@ -3,6 +3,8 @@
 
 #include "Utils/Public.h"
 
+#include "UI/PanZoomLayer.h"
+
 class HomeMapLayer : public PanZoomLayer
 {
 public:

@@ -1,5 +1,6 @@
 #include "WorldScene.h"
-
+#include "WorldMapLayer.h"
+#include "WorldHudLayer.h"
 
 Scene* WorldScene::createScene()
 {

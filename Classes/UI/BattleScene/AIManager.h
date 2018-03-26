@@ -3,6 +3,11 @@
 
 #include "Utils/Public.h"
 
+class BaseSprite;
+class Soilder;
+class Building;
+class Hero;
+
 class AIManager : public Node
 {
 public:

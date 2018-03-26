@@ -1,5 +1,7 @@
 #include "GlobalManager.h"
-
+#include "UI/WorldScene/WorldScene.h"
+#include "UI/HomeScene/HomeScene.h"
+#include "UI/BattleScene/BattleScene.h"
 
 GlobalManager* GlobalManager::_g = nullptr;
 GlobalManager* GlobalManager::getInstance()

@@ -1,5 +1,6 @@
 #include "Hero.h"
-
+#include "UI/BattleScene/AIManager.h"
+#include "UI/BattleScene/BattleMapLayer.h"
 
 Hero* Hero::create(int ID, Vec2 pos)
 {
@@ -210,7 +211,7 @@ void Hero::onTouchMoved(Touch* pTouch, Event* pEvent)
 void Hero::onTouchEnded(Touch* pTouch, Event* pEvent)
 {
     if (_delta <= LIMIT_DELTA) {
-        auto layer = (BattleMapLayer*)this->getParent();
+		BattleMapLayer* layer = (BattleMapLayer*)this->getParent();
         
         auto p = layer->convertToNodeSpace(pTouch->getLocation());
         Vec2 pos = GM()->getTiledPos(p);

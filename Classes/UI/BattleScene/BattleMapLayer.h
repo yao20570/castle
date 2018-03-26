@@ -2,7 +2,7 @@
 #define __BattleMapLayer_H__
 
 #include "Utils/Public.h"
-
+#include "UI/PanZoomLayer.h"
 class BattleMapLayer : public PanZoomLayer
 {
 public:

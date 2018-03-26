@@ -1,5 +1,11 @@
 #include "BuildingSprite.h"
 
+#include "UI/HomeScene/HomeMapLayer.h"
+#include "UI/HomeScene/HomeScene.h"
+#include "UI/HomeScene/HomeHudLayer.h"
+#include "Model/HarvestBubble.h"
+#include "UI/HomeScene/HomeOptLayer.h"
+#include "Model/BuildProcess.h"
 
 BuildingSprite* BuildingSprite::create(int index)
 {

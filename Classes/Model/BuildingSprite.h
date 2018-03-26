@@ -3,7 +3,6 @@
 
 #include "Utils/Public.h"
 
-
 class BuildingSprite : public cocos2d::Sprite
 {
 public:

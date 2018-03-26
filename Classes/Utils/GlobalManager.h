@@ -5,6 +5,7 @@
 
 #define GM() GlobalManager::getInstance()
 
+class NewBuilding;
 
 class GlobalManager : public cocos2d::Ref
 {

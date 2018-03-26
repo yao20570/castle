@@ -3,7 +3,6 @@
 
 #include "Utils/Public.h"
 
-
 class HomeScene : public Scene
 {
 public:

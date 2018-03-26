@@ -1,4 +1,11 @@
-﻿#include "Building.h"
+﻿
+#include "UI/BattleScene/AIManager.h"
+#include "Building.h"
+#include "Model/BulletSprite.h"
+#include "UI/BattleScene/BattleMapLayer.h"
+
+
+
 
 
 Building* Building::create(int index, AIManager* ai)

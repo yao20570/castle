@@ -1,5 +1,8 @@
 #include "NewBuildDialog.h"
-
+#include "Model/NewBuilding.h"
+#include "Model/Notice.h"
+#include "UI/HomeScene/HomeScene.h"
+#include "UI/HomeScene/HomeMapLayer.h"
 
 NewBuildDialog* NewBuildDialog::create()
 {

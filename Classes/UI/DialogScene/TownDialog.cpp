@@ -1,5 +1,5 @@
 #include "TownDialog.h"
-
+#include "Model/TownSprite.h"
 
 TownDialog* TownDialog::create(TownSprite* town)
 {

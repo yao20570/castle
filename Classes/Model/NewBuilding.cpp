@@ -1,5 +1,5 @@
 #include "NewBuilding.h"
-
+#include "UI/HomeScene/HomeMapLayer.h"
 
 NewBuilding* NewBuilding::create(int type, int gold)
 {

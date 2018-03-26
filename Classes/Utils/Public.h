@@ -1,20 +1,6 @@
-#ifndef __Public_H__
-#define __Public_H__
+#pragma once
 
-// cocos2d
-#include "cocos2d.h"
-using namespace cocos2d;
-#include "SimpleAudioEngine.h"
-using namespace CocosDenshion;
-#include "cocostudio/CocoStudio.h"
-#include "ui/CocosGUI.h"
-using namespace cocostudio;
-using namespace cocos2d::ui;
-
-// Helper
-#include "../Helper/Sqlite3/sqlite3.h"
-#include "../Helper/CSVParser/CSVParser.h"
-using namespace CSVParser;
+#include "PublicDefault.h"
 
 
 // class
@@ -122,5 +108,3 @@ class GameOverDialog;
 #include "../UI/DialogScene/HeroHotelDialog.h"
 #include "../UI/DialogScene/GameOverDialog.h"
 
-
-#endif // __Public_H__

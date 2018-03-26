@@ -1,5 +1,6 @@
 #include "Soilder.h"
-
+#include "UI/BattleScene/AIManager.h"
+#include "Model/BulletSprite.h"
 
 Soilder* Soilder::create(int soilderID, Vec2 pos, AIManager* ai)
 {

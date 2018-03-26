@@ -1,5 +1,10 @@
 #include "BuildingUpgradeDialog.h"
-
+#include "Model/BaseSprite.h"
+#include "Model/BuildingSprite.h"
+#include "Model/Notice.h"
+#include "UI/HomeScene/HomeScene.h"
+#include "UI/HomeScene/HomeHudLayer.h"
+#include "UI/HomeScene/HomeOptLayer.h"
 
 BuildingUpgradeDialog* BuildingUpgradeDialog::create(BuildingSprite* buildingSprite)
 {

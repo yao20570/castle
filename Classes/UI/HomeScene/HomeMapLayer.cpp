@@ -1,5 +1,7 @@
 #include "HomeMapLayer.h"
-
+#include "HomeHudLayer.h"
+#include "Model/BuildingSprite.h"
+#include "Model/Robot.h"
 
 bool HomeMapLayer::init()
 {

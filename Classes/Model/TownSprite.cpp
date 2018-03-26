@@ -1,4 +1,10 @@
 #include "TownSprite.h"
+#include "UI/DialogScene/TownDialog.h"
+#include "Model/HarvestBubble.h"
+#include "UI/WorldScene/WorldScene.h"
+#include "UI/WorldScene/WorldHudLayer.h"
+#include "UI/WorldScene/WorldMapLayer.h"
+
 USING_NS_CC;
 
 

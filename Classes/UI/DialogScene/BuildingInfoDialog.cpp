@@ -1,5 +1,6 @@
 #include "BuildingInfoDialog.h"
 
+#include "Model/BuildingSprite.h"
 
 BuildingInfoDialog* BuildingInfoDialog::create(BuildingSprite* buildingSprite)
 {

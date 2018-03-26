@@ -1,5 +1,6 @@
 #include "BuildProcess.h"
 
+#include "BuildingSprite.h"
 
 BuildProcess* BuildProcess::create(BuildingSprite* buildingSprite)
 {

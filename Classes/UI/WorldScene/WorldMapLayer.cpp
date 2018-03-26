@@ -1,5 +1,6 @@
 #include "WorldMapLayer.h"
-
+#include "Model/TownSprite.h"
+#include "Model/MiwuSprite.h"
 
 WorldMapLayer::WorldMapLayer()
 {

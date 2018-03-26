@@ -1,5 +1,12 @@
 #include "BattleMapLayer.h"
-
+#include "BattleMapLayer.h"
+#include "AIManager.h"
+#include "BattleHudLayer.h"
+#include "UI/PanZoomLayer.h"
+#include "Model/Building.h"
+#include "Model/Hero.h"
+#include "Model/Notice.h"
+#include "Model/Soilder.h"
 
 bool BattleMapLayer::init()
 {

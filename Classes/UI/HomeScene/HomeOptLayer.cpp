@@ -1,5 +1,10 @@
 #include "HomeOptLayer.h"
-
+#include "Model/BuildingSprite.h"
+#include "UI/DialogScene/BuildingInfoDialog.h"
+#include "UI/DialogScene/BuildingUpgradeDialog.h"
+#include "UI/DialogScene/LabDialog.h"
+#include "UI/DialogScene/CampDialog.h"
+#include "UI/DialogScene/HeroHotelDialog.h"
 
 bool HomeOptLayer::init()
 {

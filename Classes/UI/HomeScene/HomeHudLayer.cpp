@@ -1,5 +1,5 @@
 #include "HomeHudLayer.h"
-
+#include "UI/DialogScene/NewBuildDialog.h"
 
 HomeHudLayer::HomeHudLayer()
 {

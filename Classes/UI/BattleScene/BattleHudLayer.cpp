@@ -1,5 +1,9 @@
+#include "BattleScene.h"
 #include "BattleHudLayer.h"
-
+#include "BattleMapLayer.h"
+#include "AIManager.h"
+#include "Model/Notice.h"
+#include "Model/Hero.h"
 
 bool BattleHudLayer::init()
 {

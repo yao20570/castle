@@ -2,6 +2,7 @@
 #define __WorldMapLayer_H__
 
 #include "Utils/Public.h"
+#include "UI/PanZoomLayer.h"
 
 class WorldMapLayer : public PanZoomLayer
 {

@@ -1,5 +1,8 @@
 #include "LabDialog.h"
-
+#include "UI/HomeScene/HomeScene.h"
+#include "UI/HomeScene/HomeHudLayer.h"
+#include "UI/DialogScene/SoilderInfoDialog.h"
+#include "Model/Notice.h"
 
 LabDialog::LabDialog() :
 fighter(DM()->getSoilder(SOILDER_TYPE_FIGHTER)),

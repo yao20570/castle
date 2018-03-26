@@ -1,5 +1,6 @@
 #include "HeroHotelDialog.h"
-
+#include "HeroInfoDialog.h"
+#include "Model/Notice.h"
 
 HeroHotelDialog* HeroHotelDialog::create()
 {

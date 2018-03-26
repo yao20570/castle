@@ -47,15 +47,6 @@ void DlgMain::hide()
 	this->setVisible(false);
 }
 
-void foreach(Node* node)
-{
-	CCLOG(node->getName().c_str());
-	for (const auto& child : node->getChildren())
-	{
-		foreach(child);
-	}
-}
-
 void DlgMain::load()
 {
 	auto lay_root = GUIReader::getInstance()->widgetFromJsonFile("UI/dlg_mian.json");

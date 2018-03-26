@@ -1,5 +1,13 @@
-#include "AIManager.h"
 
+
+#include "AIManager.h"
+#include "BattleMapLayer.h"
+#include "BattleHudLayer.h"
+#include "Model/BaseSprite.h"
+#include "Model/Hero.h"
+#include "Model/Soilder.h"
+#include "Model/Building.h"
+#include "UI/DialogScene/GameOverDialog.h"
 
 bool AIManager::init()
 {

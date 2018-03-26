@@ -1,5 +1,9 @@
 #include "CampDialog.h"
-
+#include "SoilderInfoDialog.h"
+#include "Model/Hero.h"
+#include "Model/Notice.h"
+#include "UI/HomeScene/HomeScene.h"
+#include "UI/HomeScene/HomeHudLayer.h"
 
 CampDialog::CampDialog() :
 fighter(DM()->getSoilder(SOILDER_TYPE_FIGHTER)),

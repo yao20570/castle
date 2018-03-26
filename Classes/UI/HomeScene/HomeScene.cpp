@@ -1,4 +1,7 @@
 #include "HomeScene.h"
+#include "HomeHudLayer.h"
+#include "HomeOptLayer.h"
+#include "HomeMapLayer.h"
 
 
 Scene* HomeScene::createScene()
