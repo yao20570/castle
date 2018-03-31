@@ -1,33 +1,22 @@
 #pragma once
 
-#include "Utils/Public.h"
+#include "Utils/PublicDefault.h"
+#include "StateBase.h"
 
 class  DlgMain;
 class  ClassFactory;
 
-class StatePlay : public cocos2d::Layer
+class StatePlay : public StateBase
 {
 public:
 	StatePlay();
 	virtual ~StatePlay();
 	CREATE_FUNC(StatePlay);
 	virtual bool init();
-	void load();
-
-	
+	virtual void load();
 
 public:
-	void show();
-	void hide();
-
-	void regDlg();
-	Node* creataeDlg(const string& dlgName);
-	void showDlg(const string& dlgName);
-	void hideDlg();
-
-private:
-	bool _is_init;
-	Node* _cur_dlg;
-	std::vector<string> _open_dlgs;
-	ClassFactory* _class_factory;
+	virtual void regDlg();
+	virtual void showDlg(const string& dlgName);
+	virtual void hideDlg(const string& dlgName);
 };

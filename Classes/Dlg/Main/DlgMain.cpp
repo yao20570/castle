@@ -5,12 +5,12 @@ using namespace cocos2d::ui;
 
 #include "DlgMain.h"
 
-
 USING_NS_CC;
 
 DlgMain::DlgMain()
-	:_is_init(false)
 {
+	_dlg_type = ENUM_DLG_TYPE::Full;
+	_dlg_name = "DlgFight";
 }
 
 DlgMain::~DlgMain()
@@ -18,13 +18,13 @@ DlgMain::~DlgMain()
 
 }
 
-bool DlgMain::init()
+bool DlgMain::init(StateBase* gameState)
 {
 	if (this->_is_init == true) {
 		return true;
 	}
 	this->_is_init = true;
-
+	this->_game_state = gameState;
 	//////////////////////////////
 	// 1. super init first
 	//if (!PanZoomLayer::init())
@@ -37,76 +37,77 @@ bool DlgMain::init()
 	return true;
 }
 
-void DlgMain::show()
-{
-	this->setVisible(true);
-}
-
-void DlgMain::hide()
-{
-	this->setVisible(false);
-}
-
 void DlgMain::load()
 {
 	auto lay_root = GUIReader::getInstance()->widgetFromJsonFile("UI/dlg_mian.json");
 	this->addChild(lay_root);
 	this->setName("dlg_mian");
 
-	//主公
+	//涓诲叕
 	auto btnLord = (Button*)Helper::seekWidgetByName(lay_root, "lay_btn_1");
 	btnLord->addTouchEventListener(CC_CALLBACK_2(DlgMain::onLord, this));
 
-	//查找
+	//鏌ユ壘
 	auto btnSearch = (Button*)Helper::seekWidgetByName(lay_root, "lay_btn_2");
 	btnSearch->addTouchEventListener(CC_CALLBACK_2(DlgMain::onSearch, this));
 
-	//战斗
+	//鎴樻枟
 	auto btnFight = (Button*)Helper::seekWidgetByName(lay_root, "lay_btn_3");
 	btnFight->addTouchEventListener(CC_CALLBACK_2(DlgMain::onFight, this));
 
-	//布阵
+	//甯冮樀
 	auto btnSetting = (Button*)Helper::seekWidgetByName(lay_root, "lay_btn_4");
 	btnSetting->addTouchEventListener(CC_CALLBACK_2(DlgMain::onSetting, this));
 
-	//关卡
+	//鍏冲崱
 	auto btnChapter = (Button*)Helper::seekWidgetByName(lay_root, "lay_btn_5");
 	btnChapter->addTouchEventListener(CC_CALLBACK_2(DlgMain::onChapter, this));
 	
 }
 
-//打开主公功能
+void DlgMain::showDlg(const string& dlgName)
+{
+	DlgBase::showDlg(dlgName);
+}
+
+void DlgMain::hideDlg(const string& dlgName)
+{
+	DlgBase::hideDlg(dlgName);
+}
+
+//鎵撳紑涓诲叕鍔熻兘
 void DlgMain::onLord(Ref* sender, Widget::TouchEventType type)
 {
 	if (type == Widget::TouchEventType::ENDED) {
-
+		CCLOG("%s","鎵撳紑涓诲叕鍔熻兘");
 	}
 }
-//打开搜索功能
+//鎵撳紑鎼滅储鍔熻兘
 void DlgMain::onSearch(Ref* sender, Widget::TouchEventType type)
 {
 	if (type == Widget::TouchEventType::ENDED) {
-		
+		CCLOG("鎵撳紑鎼滅储鍔熻兘");
 	}
 }
-//打开战斗功能
+//鎵撳紑鎴樻枟鍔熻兘
 void DlgMain::onFight(Ref* sender, Widget::TouchEventType type)
 {
 	if (type == Widget::TouchEventType::ENDED) {
-		
+		CCLOG("鎵撳紑鎴樻枟鍔熻兘");
+		showDlg("DlgFight");
 	}
 }
-//打开布阵功能
+//鎵撳紑甯冮樀鍔熻兘
 void DlgMain::onSetting(Ref* sender, Widget::TouchEventType type)
 {
 	if (type == Widget::TouchEventType::ENDED) {
-		
+		CCLOG("鎵撳紑甯冮樀鍔熻兘");
 	}
 }
-//打开关卡功能
+//鎵撳紑鍏冲崱鍔熻兘
 void DlgMain::onChapter(Ref* sender, Widget::TouchEventType type)
 {
 	if (type == Widget::TouchEventType::ENDED) {
-		
+		CCLOG("鎵撳紑鍏冲崱鍔熻兘");
 	}
 }

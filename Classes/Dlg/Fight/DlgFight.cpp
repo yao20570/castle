@@ -5,12 +5,12 @@ using namespace cocos2d::ui;
 
 #include "DlgFight.h"
 
-
 USING_NS_CC;
 
-DlgFight::DlgFight()
-	:_is_init(false)
+DlgFight::DlgFight()	
 {
+	_dlg_type = ENUM_DLG_TYPE::Full;
+	_dlg_name = "DlgFight";
 }
 
 DlgFight::~DlgFight()
@@ -18,13 +18,13 @@ DlgFight::~DlgFight()
 
 }
 
-bool DlgFight::init()
+bool DlgFight::init(StateBase* gameState)
 {
 	if (this->_is_init == true) {
 		return true;
 	}
 	this->_is_init = true;
-
+	this->_game_state = gameState;
 	//////////////////////////////
 	// 1. super init first
 	//if (!PanZoomLayer::init())
@@ -37,67 +37,20 @@ bool DlgFight::init()
 	return true;
 }
 
-void DlgFight::show()
-{
-	this->setVisible(true);
-}
-
-void DlgFight::hide()
-{
-	this->setVisible(false);
-}
-
-void foreach(Node* node)
-{
-	CCLOG(node->getName().c_str());
-	for (const auto& child : node->getChildren())
-	{
-		foreach(child);
-	}
-}
-
 void DlgFight::load()
 {
-	auto lay_root = GUIReader::getInstance()->widgetFromJsonFile("UI/Main/dlg_mian.json");
+	auto lay_root = GUIReader::getInstance()->widgetFromJsonFile("UI/DlgFight/dlg_fight.json");
 	this->addChild(lay_root);
-	this->setName("dlg_mian");
-
-	
 
 }
 
-//打开主公功能
-void DlgFight::onLord(Ref* sender, Widget::TouchEventType type)
+void DlgFight::showDlg(const string& dlgName)
 {
-	if (type == Widget::TouchEventType::ENDED) {
-
-	}
+	DlgBase::showDlg(dlgName);
 }
-//打开搜索功能
-void DlgFight::onSearch(Ref* sender, Widget::TouchEventType type)
+
+void DlgFight::hideDlg(const string& dlgName)
 {
-	if (type == Widget::TouchEventType::ENDED) {
-
-	}
+	DlgBase::hideDlg(dlgName);
 }
-//打开战斗功能
-void DlgFight::onFight(Ref* sender, Widget::TouchEventType type)
-{
-	if (type == Widget::TouchEventType::ENDED) {
 
-	}
-}
-//打开布阵功能
-void DlgFight::onSetting(Ref* sender, Widget::TouchEventType type)
-{
-	if (type == Widget::TouchEventType::ENDED) {
-
-	}
-}
-//打开关卡功能
-void DlgFight::onChapter(Ref* sender, Widget::TouchEventType type)
-{
-	if (type == Widget::TouchEventType::ENDED) {
-
-	}
-}

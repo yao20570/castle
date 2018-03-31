@@ -1,26 +1,27 @@
 #pragma once
 #include "cocos2d.h"
 
-class DlgFight : public cocos2d::Layer
+#include "../DlgBase.h"
+#include "../DlgDefine.h"
+
+class DlgFight : public DlgBase
 {
 public:
 	DlgFight();
 	virtual ~DlgFight();
-	CREATE_FUNC(DlgFight);
-	virtual bool init();
-	void load();
+	CREATE_DLG_FUNC(DlgFight);
+	virtual bool init(StateBase* gameState);
+	virtual void load();
 
 public:
-	void show();
-	void hide();
-
-	void onLord(Ref* sender, Widget::TouchEventType type);
-	void onSearch(Ref* sender, Widget::TouchEventType type);
-	void onFight(Ref* sender, Widget::TouchEventType type);
-	void onSetting(Ref* sender, Widget::TouchEventType type);
-	void onChapter(Ref* sender, Widget::TouchEventType type);
+	virtual void showDlg(const string& dlgName);
+	virtual void hideDlg(const string& dlgName);
 
 private:
-	bool _is_init;
-	DlgFight* _main_layer;
+	//void onLord(Ref* sender, Widget::TouchEventType type);
+	//void onSearch(Ref* sender, Widget::TouchEventType type);
+	//void onFight(Ref* sender, Widget::TouchEventType type);
+	//void onSetting(Ref* sender, Widget::TouchEventType type);
+	//void onChapter(Ref* sender, Widget::TouchEventType type);
 };
+

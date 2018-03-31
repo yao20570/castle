@@ -1,21 +1,32 @@
 #pragma once
 
 #include "Utils/PublicDefault.h"
+#include "GameState/StateBase.h"
+#include "Dlg/DlgEnum.h"
+#include "Dlg/DlgBase.h"
+
+class StateBase;
 
 class ClassCreatorBase
 {
 public:
 	ClassCreatorBase(){}
-    virtual Node* Create() = 0;
+//    virtual Node* Create() = 0;
+	virtual DlgBase* Create(StateBase* state) = 0;
 };
 
 template<class T>
 class ClassCreator : public ClassCreatorBase
 {
 public:
-	Node* Create()
+	//Node* Create()
+	//{
+	//	return T::create();
+	//}
+
+	DlgBase* Create(StateBase* state)
 	{
-		return T::create();
+		return T::create(state);
 	}
 };
 
@@ -35,14 +46,14 @@ public:
 		}
 	}
 	
-	Node* createClass(const string& className) {
+	DlgBase* createClass(StateBase* state, const string& className) {
 		auto it = _classes.find(className);
 		if (it == _classes.end()) {
 			assert(true, "create class faile");
 			return nullptr;
 		}
 
-		Node* node = it->second->Create();
+		DlgBase* node = it->second->Create(state);
 		return node;
 	}
 	
