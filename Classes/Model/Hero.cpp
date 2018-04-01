@@ -1,11 +1,13 @@
 #include "Hero.h"
 #include "UI/BattleScene/AIManager.h"
 #include "UI/BattleScene/BattleMapLayer.h"
+#include "Dlg/Fight/AIMgr.h"
+#include "Utils/ConfigMgr.h"
 
-Hero* Hero::create(int ID, Vec2 pos)
+Hero* Hero::create(int ID, AIMgr* ai, int camp)
 {
     Hero *pRet = new(std::nothrow) Hero();
-    if (pRet && pRet->init(ID, pos)) {
+    if (pRet && pRet->init(ID, ai, camp)) {
         pRet->autorelease();
         return pRet;
     }
@@ -16,15 +18,27 @@ Hero* Hero::create(int ID, Vec2 pos)
     }
 }
 
+Hero::Hero()
+	:_ai(nullptr)
+{
 
-bool Hero::init(int ID, Vec2 pos)
+}
+
+Hero::~Hero() 
+{
+	
+}
+
+bool Hero::init(int ID, AIMgr* ai, int camp)
 {
     if ( !BaseSprite::init() ) {
         return false;
     }
-    
+	_radius = 40;
+	_camp = camp;
+	_ai = ai;
+	_ai->addHero(this, _camp);
     _id = ID;
-    _pos = pos;
     _target = nullptr;
     _isSelect = true;
     _state = 0;
@@ -43,7 +57,7 @@ bool Hero::init(int ID, Vec2 pos)
 
 void Hero::loadData()
 {
-    ValueMap& data = DM()->getHero(_id);
+    ValueMap& data = *(CFG()->getHeroInfoById(_id));
     
     _heroID         = data["HeroID"].asInt();
     _type           = data["Type"].asInt();
@@ -63,8 +77,13 @@ void Hero::loadData()
 
 void Hero::showUI()
 {
+	int y = _camp == 1 ? -1 : 1;
+	_dir = GM()->getDir(Vec2(0, y));
     _arm = Armature::create(ANIM_NAME_ARAGORN);
     _arm->getAnimation()->play("idle" + GM()->getIntToStr(_dir));
+	_arm->setPositionY(20);
+	_arm->pause();
+
     this->addChild(_arm);
     
     _skill1 = Armature::create(ANIM_NAME_SKILL_1);
@@ -73,19 +92,17 @@ void Hero::showUI()
     _skill2->setVisible(false);
     this->addChild(_skill1);
     this->addChild(_skill2);
-    
-    auto circle = Sprite::create(IMG_CIRCLE);
-    circle->setPosition(Vec2(0, -25));
-    this->addChild(circle, -1);
-    
-    auto scaleUp = ScaleTo::create(0.3f, 1.1f);
-    auto scaleDown = ScaleTo::create(0.3f, 1.0f);
-    circle->runAction(RepeatForever::create(Sequence::create(scaleUp, scaleDown, nullptr)));
-    
-    _dir = GM()->getDir(_pos, Vec2(19, 19));
-    this->setPosition(GM()->getMapPos(_pos));
-    this->setLocalZOrder((int)_pos.x + (int)_pos.y);
-    this->setScale(0.8);
+	this->setLocalZOrder((int)_pos.x + (int)_pos.y * 10000);
+	this->setScale(0.8);
+
+	//选中框
+	auto scaleUp = ScaleTo::create(0.3f, 1.1f);
+	auto scaleDown = ScaleTo::create(0.3f, 1.0f);
+    _circle = Sprite::create(IMG_CIRCLE);
+    _circle->runAction(RepeatForever::create(Sequence::create(scaleUp, scaleDown, nullptr)));
+	_circle->setVisible(false);
+	_circle->pause();
+    this->addChild(_circle, -1);    
 }
 
 
@@ -93,7 +110,7 @@ void Hero::addHPBar()
 {
     auto bg = Sprite::create(IMG_BUILD_PRO_BK);
     _hpBar = LoadingBar::create(IMG_BUILD_PRO);
-    bg->setPosition(0, _arm->getContentSize().height/2 + 10);
+    bg->setPosition(0, _arm->getContentSize().height/2 + 30);
     _hpBar->setPosition(bg->getContentSize()/2);
     bg->addChild(_hpBar);
     this->addChild(bg, 9, "Bar");
@@ -180,10 +197,10 @@ bool Hero::isDeath()
 }
 
 
-void Hero::setSelect(bool select)
-{
-    _isSelect = select;
-}
+//void Hero::setSelect(bool select)
+//{
+//    _isSelect = select;
+//}
 
 
 void Hero::addTouch()
@@ -194,136 +211,151 @@ void Hero::addTouch()
     listener->onTouchMoved = CC_CALLBACK_2(Hero::onTouchMoved, this);
     listener->onTouchEnded = CC_CALLBACK_2(Hero::onTouchEnded, this);
     dispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+
 }
 
 bool Hero::onTouchBegan(Touch* pTouch, Event* pEvent)
 {
-    if (_isSelect == false) return false;
-    _delta = 0.0;
-    return true;
+	// 获取事件所绑定的 target, 通常是cc.Node及其子类 
+	auto target = pEvent->getCurrentTarget();
+	
+	// 获取当前触摸点相对于按钮所在的坐标	
+	auto locationInNode = target->convertToNodeSpace(pTouch->getLocation());
+	int dis = locationInNode.getDistance(Vec2(0, 0));
+	if (dis < _radius) {
+		_ai->setSelectObj(this);
+		return true;
+	}
+		
+    return false;
 }
 
 void Hero::onTouchMoved(Touch* pTouch, Event* pEvent)
 {
-    _delta += GM()->getDistance(Vec2(0, 0), pTouch->getDelta());
+//    _delta += GM()->getDistance(Vec2(0, 0), pTouch->getDelta());
 }
 
 void Hero::onTouchEnded(Touch* pTouch, Event* pEvent)
 {
-    if (_delta <= LIMIT_DELTA) {
-		BattleMapLayer* layer = (BattleMapLayer*)this->getParent();
-        
-        auto p = layer->convertToNodeSpace(pTouch->getLocation());
-        Vec2 pos = GM()->getTiledPos(p);
-        
-        // 移动
-        _target = layer->_ai->getTarget(pos);
-        
-        if (_target == nullptr) {
-            _state = STATE_RUN;
-            _targetPos = pos;
-        }
-        
-        // 锁定目标
-        else {
-            _dir = GM()->getDir(_pos, pos);
-            if (_target->isDeath() == true) {
-                _state = STATE_IDLE;
-            }
-            else {
-                _state = STATE_ATK;
-            }
-        }
-    }
+  //  if (_delta <= LIMIT_DELTA) {
+		//BattleMapLayer* layer = (BattleMapLayer*)this->getParent();
+  //      
+  //      auto p = layer->convertToNodeSpace(pTouch->getLocation());
+  //      Vec2 pos = GM()->getTiledPos(p);
+  //      
+  //      // 移动
+  //      _target = _ai->getTarget(pos);
+  //      
+  //      if (_target == nullptr) {
+  //          _state = STATE_RUN;
+  //          _targetPos = pos;
+  //      }
+  //      
+  //      // 锁定目标
+  //      else {
+  //          _dir = GM()->getDir(_pos, pos);
+  //          if (_target->isDeath() == true) {
+  //              _state = STATE_IDLE;
+  //          }
+  //          else {
+  //              _state = STATE_ATK;
+  //          }
+  //      }
+  //  }
 }
 
 
 void Hero::update(float dt)
 {
-    if (_isbroken == true) {
-        this->unscheduleAllCallbacks();
-        return;
-    }
+    //if (_isbroken == true) {
+    //    this->unscheduleAllCallbacks();
+    //    return;
+    //}
 
-    switch (_state) {
-        
-        // 悠闲
-        case STATE_IDLE: {
-            _target = nullptr;
-        }
-            break;
-        
-        // 走路
-        case STATE_RUN: {
-            _target = nullptr;
-            
-            // 到达目的地
-            if (fabs(_pos.x - _targetPos.x) <= 1e-3 && fabs(_pos.y - _targetPos.y) <= 1e-3) {
-                _state = STATE_IDLE;
-                _arm->getAnimation()->play("idle" + GM()->getIntToStr(_dir));
-            }
-            
-            // 继续移动
-            else {
-                _state = STATE_RUN;
-                
-                auto layer = (BattleMapLayer*)this->getParent();
-                auto _ai = layer->_ai;
-                
-                Vec2 pos = _ai->getNextPos(_pos, _targetPos, true);
-                _dir = GM()->getDir(pos);
-                
-                this->runAction(MoveBy::create(0.8f, GM()->getMapDelta(_dir)));
-                _arm->getAnimation()->play("run" + GM()->getIntToStr( _dir <= 7 ? _dir : 1));
-                
-                _pos += pos;
-                this->setLocalZOrder((int)_pos.x + (int)_pos.y);
-            }
-        }
-            break;
-            
-        // 攻击
-        case STATE_ATK: {
-            
-            // 失去目标，变成悠闲
-            if (_target == nullptr || _target->isDeath()) {
-                _target = nullptr;
-                _state = STATE_IDLE;
-                _arm->getAnimation()->play("idle" + GM()->getIntToStr(_dir));
-            }
-            
-            // 向目标移动、或攻击目标
-            else {
-                _state = STATE_ATK;
-                auto layer = (BattleMapLayer*)this->getParent();
-                auto _ai = layer->_ai;
-                
-                // 攻击
-                if (_ai->isWithinShootRange(_pos, _target->_pos, _shootRange)) {
-                    _dir = GM()->getDir(_pos, _target->_pos);
-                    
-                    _arm->getAnimation()->play("atk" + GM()->getIntToStr(_dir));
-                    
-                    auto delay = DelayTime::create(0.6f);
-                    auto func = CallFunc::create(CC_CALLBACK_0(Hero::atk, this, _target));
-                    this->runAction(Sequence::create(delay, func, nullptr));
-                }
-                
-                // 走路
-                else {
-                    Vec2 pos = _ai->getNextPos(_pos, _target->_pos, true);
-                    _dir = GM()->getDir(pos);
-                    
-                    this->runAction(MoveBy::create(0.8f, GM()->getMapDelta(_dir)));
-                    _arm->getAnimation()->play("run" + GM()->getIntToStr( _dir <= 7 ? _dir : 1));
-                    
-                    _pos += pos;
-                    this->setLocalZOrder((int)_pos.x + (int)_pos.y);
-                }
-            }
-        }
-        default:
-            break;
-    }
+    //switch (_state) {
+    //    
+    //    // 悠闲
+    //    case STATE_IDLE: {
+    //        _target = nullptr;
+    //    }
+    //        break;
+    //    
+    //    // 走路
+    //    case STATE_RUN: {
+    //        _target = nullptr;
+    //        
+    //        // 到达目的地
+    //        if (fabs(_pos.x - _targetPos.x) <= 1e-3 && fabs(_pos.y - _targetPos.y) <= 1e-3) {
+    //            _state = STATE_IDLE;
+    //            _arm->getAnimation()->play("idle" + GM()->getIntToStr(_dir));
+    //        }
+    //        
+    //        // 继续移动
+    //        else {
+    //            _state = STATE_RUN;
+    //                            
+    //            Vec2 pos = _ai->getNextPos(_pos, _targetPos, true);
+    //            _dir = GM()->getDir(pos);
+    //            
+    //            this->runAction(MoveBy::create(0.8f, GM()->getMapDelta(_dir)));
+    //            _arm->getAnimation()->play("run" + GM()->getIntToStr( _dir <= 7 ? _dir : 1));
+    //            
+    //            _pos += pos;
+    //            this->setLocalZOrder((int)_pos.x + (int)_pos.y);
+    //        }
+    //    }
+    //        break;
+    //        
+    //    // 攻击
+    //    case STATE_ATK: {
+    //        
+    //        // 失去目标，变成悠闲
+    //        if (_target == nullptr || _target->isDeath()) {
+    //            _target = nullptr;
+    //            _state = STATE_IDLE;
+    //            _arm->getAnimation()->play("idle" + GM()->getIntToStr(_dir));
+    //        }
+    //        
+    //        // 向目标移动、或攻击目标
+    //        else {
+    //            _state = STATE_ATK;
+    //            
+    //            // 攻击
+    //            if (_ai->isWithinShootRange(_pos, _target->_pos, _shootRange)) {
+    //                _dir = GM()->getDir(_pos, _target->_pos);
+    //                
+    //                _arm->getAnimation()->play("atk" + GM()->getIntToStr(_dir));
+    //                
+    //                auto delay = DelayTime::create(0.6f);
+    //                auto func = CallFunc::create(CC_CALLBACK_0(Hero::atk, this, _target));
+    //                this->runAction(Sequence::create(delay, func, nullptr));
+    //            }
+    //            
+    //            // 走路
+    //            else {
+    //                Vec2 pos = _ai->getNextPos(_pos, _target->_pos, true);
+    //                _dir = GM()->getDir(pos);
+    //                
+    //                this->runAction(MoveBy::create(0.8f, GM()->getMapDelta(_dir)));
+    //                _arm->getAnimation()->play("run" + GM()->getIntToStr( _dir <= 7 ? _dir : 1));
+    //                
+    //                _pos += pos;
+    //                this->setLocalZOrder((int)_pos.x + (int)_pos.y);
+    //            }
+    //        }
+    //    }
+    //    default:
+    //        break;
+    //}
 }
 
+
+void Hero::setSelect(bool b) {
+	_circle->setVisible(b);
+	if (b) {
+		_circle->resume();
+	}
+	else {
+		_circle->pause();
+	}
+}

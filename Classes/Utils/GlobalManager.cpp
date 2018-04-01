@@ -248,36 +248,34 @@ int GlobalManager::getDir(Vec2 delta)
 {
     int x = (int)delta.x;
     int y = (int)delta.y;
-    if (x == 1 && y == 1) return 0;
-    if (x == 1 && y == 0) return 1;
-    if (x == 1 && y == -1) return 2;
-    if (x == 0 && y == -1) return 3;
-    if (x == -1 && y == -1) return 4;
-    if (x == -1 && y == 0) return 5;
-    if (x == -1 && y == 1) return 6;
-    if (x == 0 && y == 1) return 7;
+    if (x == 0 && y == 1) return 0;
+    if (x == 1 && y == 1) return 1;
+    if (x == 1 && y == 0) return 2;
+    if (x == 1 && y == -1) return 3;
+    if (x == 0 && y == -1) return 4;
+    if (x == -1 && y == -1) return 5;
+    if (x == -1 && y == 0) return 6;
+    if (x == -1 && y == 1) return 7;
     return 9;
 }
 
 // 通过两点，获取方向
 int GlobalManager::getDir(Vec2 src, Vec2 des)
 {
-    Vec2 p = des - src;
+    Vec2 p = src - des;
     float ang = atan2(p.y, p.x) * 180.0 / acos(-1.0);
-    ang += 360;
-    ang -= 135;
-    while (ang > 180) ang -= 360;
-    
+	CCLOG("%f", ang);
+       
 //    printf("%f : ", ang);
     
-    if (-67.5 <= ang && ang <= -22.5)   return 7;
-    if (-22.5 <= ang && ang <= 22.5)    return 6;
-    if (22.5 <= ang && ang <= 67.5)     return 5;
-    if (67.5 <= ang && ang <= 112.5)    return 4;
-    if (112.5 <= ang && ang <= 157.5)   return 3;
-    if (-112.5 <= ang && ang <= -67.5)  return 0;
-    if (-157.5 <= ang && ang <= -112.5) return 1;
-    return 2;
+    if (-67.5 <= ang && ang <= -22.5)   return 3;
+    if (-22.5 <= ang && ang <= 22.5)    return 2;
+    if (22.5 <= ang && ang <= 67.5)     return 1;
+    if (67.5 <= ang && ang <= 112.5)    return 0;
+    if (112.5 <= ang && ang <= 157.5)   return 7;
+    if (-112.5 <= ang && ang <= -67.5)  return 4;
+    if (-157.5 <= ang && ang <= -112.5) return 5;
+    return 6;
 }
 
 

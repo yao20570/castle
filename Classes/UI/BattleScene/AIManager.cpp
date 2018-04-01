@@ -138,7 +138,7 @@ void AIManager::gameOver(int state)
     for (int i = 0; i < _soilders.size(); i++) {
         Soilder* s = _soilders.at(i);
         s->unscheduleAllCallbacks();
-        s->arm->getAnimation()->stop();
+        s->_arm->getAnimation()->stop();
         if (s->_isbroken) {
             if (s->_type == 1) c1++;
             if (s->_type == 2) c2++;

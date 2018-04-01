@@ -97,6 +97,9 @@ bool HelloWorld::init()
 	StatePlay* statePlay = StatePlay::create();
 	this->addChild(statePlay);
 
+	//Armature* _arm = Armature::create(ANIM_NAME_ARAGORN);
+	//_arm->getAnimation()->play("idle" + GM()->getIntToStr(1));
+	//this->addChild(_arm);
 
     return true;
 }

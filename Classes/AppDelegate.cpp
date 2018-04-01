@@ -106,6 +106,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     register_all_packages();
 
     // create a scene. it's an autorelease object
+	loadResources();
     auto scene = HelloWorld::createScene();
 
 	//auto scene = HelloScene::createScene();
@@ -142,11 +143,11 @@ void AppDelegate::applicationWillEnterForeground() {
 
 void AppDelegate::loadResources()
 {
-	// 创建数据库
-	DBM()->createTable();
+	//// 创建数据库
+	//DBM()->createTable();
 
-	// 加载数据到缓存
-	DM();
+	//// 加载数据到缓存
+	//DM();
 
 	// 加载搜索路径
 	FileUtils::getInstance()->addSearchPath("images");

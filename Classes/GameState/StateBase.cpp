@@ -97,10 +97,10 @@ void StateBase::showDlg(const string& dlgName)
 
 	if (_cur_dlg != nullptr) {
 		//旧窗口移除
-		//_cur_dlg->retain();
-		//_cur_dlg->autorelease();
-		//_cur_dlg->removeFromParent();
-		//_cur_dlg = nullptr;
+		_cur_dlg->retain();
+		_cur_dlg->autorelease();
+		_cur_dlg->removeFromParent();
+		_cur_dlg = nullptr;
 	}
 
 	//打开新窗口

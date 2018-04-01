@@ -78,36 +78,36 @@ void BattleMapLayer::addMap()
 void BattleMapLayer::addHero(Vec2 pos)
 {
     // 创建英雄
-    if (_ai->_hero == nullptr) {
-        ValueMap& map = DM()->getHero(1);
-        auto hero = Hero::create(map["ID"].asInt(), pos);
-        this->addChild(hero);
-        _ai->_hero = hero;
-    }
+    //if (_ai->_hero == nullptr) {
+    //    ValueMap& map = DM()->getHero(1);
+    //    auto hero = Hero::create(map["ID"].asInt(), pos);
+    //    this->addChild(hero);
+    //    _ai->_hero = hero;
+    //}
 }
 
 
 void BattleMapLayer::addSoilder(Vec2 pos)
 {
-    // 有障碍物
-    if (GM()->isCovered(pos)) {
-        auto notice = Notice::create("此处无法放置士兵");
-        this->getParent()->addChild(notice, 999);
-    }
-    
-    // 士兵不足
-    else if(_hudLayer->updateCount() == false) {
-        auto notice = Notice::create("该士兵已用完");
-        this->getParent()->addChild(notice, 999);
-    }
-    
-    // 放置士兵
-    else {
-        ValueMap& map = DM()->getSoilder(_hudLayer->_select);
-        auto s = Soilder::create(map["SoilderID"].asInt(), pos, _ai);
-        this->addChild(s);
-        _ai->_soilders.pushBack(s);
-    }
+    //// 有障碍物
+    //if (GM()->isCovered(pos)) {
+    //    auto notice = Notice::create("此处无法放置士兵");
+    //    this->getParent()->addChild(notice, 999);
+    //}
+    //
+    //// 士兵不足
+    //else if(_hudLayer->updateCount() == false) {
+    //    auto notice = Notice::create("该士兵已用完");
+    //    this->getParent()->addChild(notice, 999);
+    //}
+    //
+    //// 放置士兵
+    //else {
+    //    ValueMap& map = DM()->getSoilder(_hudLayer->_select);
+    //    auto s = Soilder::create(map["SoilderID"].asInt(), pos, _ai);
+    //    this->addChild(s);
+    //    _ai->_soilders.pushBack(s);
+    //}
 }
 
 

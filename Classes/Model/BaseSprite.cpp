@@ -15,4 +15,5 @@ void BaseSprite::run() { CCLOG("Base run"); }
 void BaseSprite::hurt(int x) { CCLOG("Base hurt"); }
 void BaseSprite::idle() { CCLOG("Base idle"); }
 bool BaseSprite::isDeath() {  CCLOG("Base isDeath"); return false; }
+void BaseSprite::setSelect(bool b) {  CCLOG("Base setSelect"); }
 

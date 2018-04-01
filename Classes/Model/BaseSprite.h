@@ -18,9 +18,11 @@ public:
     virtual void hurt(int x);
     virtual void idle();
     virtual bool isDeath();
+	virtual void setSelect(bool b);
 
 public:
     Vec2 _pos;
+	int _radius;
 };
 
 

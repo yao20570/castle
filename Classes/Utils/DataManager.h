@@ -35,6 +35,7 @@ public:
     void loadBattleInfo();          // 加载关卡信息
     
     void loadCsvData(std::string file, ValueVector& data);
+	//map<int, ValueMap>* loadCsvData(std::string file, const string& key);
     void bindingIndex(ValueVector& data, map<string, int>& index, string ID);
     void printData(ValueVector& data);
     

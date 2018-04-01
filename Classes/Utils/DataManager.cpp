@@ -423,6 +423,32 @@ void DataManager::loadCsvData(std::string file, ValueVector& data)
     }
 }
 
+// 加载CSV数据
+//static map<string, map<int, ValueMap>> tables;
+//map<int, ValueMap>* DataManager::loadCsvData(std::string file, const string& key)
+//{
+//	auto it = tables.find(file);
+//	if (it != tables.end()) {
+//		map<int, ValueMap>& table = it->second;
+//		return &table;
+//	}
+//
+//	auto ret = tables.emplace(file, map<int, ValueMap>());
+//	map<int, ValueMap>& table = ret.first->second;
+//	//map<int, ValueMap>& table = it.second;
+//	Csv csv = Csv(file.c_str());
+//	for (int i = 1; i < csv.getRowCount(); i++) {
+//		ValueMap map;
+//		for (int j = 0; j < csv[i].size(); j++) {
+//			map[csv[0][j]] = csv[i][j];
+//		}
+//		int k = map[key].asInt();
+//		table.emplace(k, map);
+//	}
+//
+//	return &table;
+//}
+
 // 绑定下标
 void DataManager::bindingIndex(ValueVector &data, map<string, int>& index, string ID)
 {

@@ -195,6 +195,21 @@
     <ClCompile Include="..\Classes\Dlg\Main\DlgMain.cpp">
       <Filter>src\Dlg\Main</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Dlg\Fight\DlgFight.cpp">
+      <Filter>src\Dlg\Fight</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Dlg\DlgBase.cpp">
+      <Filter>src\Dlg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameState\StateBase.cpp">
+      <Filter>src\GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Utils\ConfigMgr.cpp">
+      <Filter>src\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Dlg\Fight\AIMgr.cpp">
+      <Filter>src\Dlg\Fight</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -343,6 +358,39 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GameState\StatePlay.h">
       <Filter>src\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Dlg\Fight\DlgFight.h">
+      <Filter>src\Dlg\Fight</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Utils\ClassFactory.h">
+      <Filter>src\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Utils\PublicDefault.h">
+      <Filter>src\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Dlg\DlgBase.h">
+      <Filter>src\Dlg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameState\StateEnum.h">
+      <Filter>src\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Dlg\DlgEnum.h">
+      <Filter>src\Dlg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameState\StateBase.h">
+      <Filter>src\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Dlg\DlgDefine.h">
+      <Filter>src\Dlg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Utils\GlobalValue.h">
+      <Filter>src\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Utils\ConfigMgr.h">
+      <Filter>src\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Dlg\Fight\AIMgr.h">
+      <Filter>src\Dlg\Fight</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
