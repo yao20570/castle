@@ -33,13 +33,17 @@ public:
 	void update(float dt);
 	void setSelectObj(BaseSprite* obj);
 	BaseSprite* getSelectObj() { return _select_obj; }
-public:
-	set<Hero*> _heroSelf;
-	set<Hero*> _heroEnemy;
 
-	set<Soilder*> _soildersSelf;
-	set<Soilder*> _soildersEnemy;
+	void start();
+	void setObjPos(BaseSprite* obj, Vec2 pos);
+	bool isCanSet(BaseSprite* obj, Vec2& pos, Vec2& dot);
+	void setObjDead(BaseSprite* obj);
+public:
+	set<BaseSprite*> _objSelf;
+	set<BaseSprite*> _objEnemy;
+
 
 	BaseSprite* _select_obj;
+	BaseSprite* dotMap[48 * 32];
 
 };

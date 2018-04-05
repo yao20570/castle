@@ -31,26 +31,23 @@ public:
 	virtual bool onTouchBegan(Touch* pTouch, Event* pEvent);
 	virtual void onTouchMoved(Touch* pTouch, Event* pEvent);
 	virtual void onTouchEnded(Touch* pTouch, Event* pEvent);
+	void setState(int state, int _dir);
 public:
     int _soilderID;
     int _type;
     int _level;
     int _name;
 	int _camp;
-    
-    int _healthPoint;
+
     int _totalHP;
     int _damage;
     int _attackSpeed;
     int _shootRange;
     
-    bool _isbroken;
-    int _dir;
     Armature* _arm;
     LoadingBar* _hpBar;         // ÑªÌõ
     
 	AIMgr* _ai;
-    BaseSprite* _target;
 
 	Sprite* _circle;
 };

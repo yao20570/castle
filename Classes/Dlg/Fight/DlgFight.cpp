@@ -22,9 +22,12 @@ static const char* PathObjPosition	= "Config/ObjPosition.csv";
 static const char* PathHeroInfo		= "Config/HeroInfo.csv";
 static const char* PathSoilderInfo	= "Config/SoilderInfo.csv";
 
+static char* xx = new char[48 * 32];
+
 DlgFight::DlgFight()	
 	:_objPosCfg(nullptr)
 	, _map(nullptr)
+	, _select_obj(nullptr)
 {
 	_dlg_type = ENUM_DLG_TYPE::Full;
 	_dlg_name = "DlgFight";
@@ -88,9 +91,14 @@ void DlgFight::load()
 	
 	setObjPosition();
 
-	//关卡
-	auto btnChapter = (Button*)Helper::seekWidgetByName(lay_root, "lay_btn_5");
-	btnChapter->addTouchEventListener(CC_CALLBACK_2(DlgFight::onClose, this));
+	//开始
+	auto btnStart = (Layout*)Helper::seekWidgetByName(lay_root, "lay_btn_1");
+	btnStart->addTouchEventListener(CC_CALLBACK_2(DlgFight::onStart, this));
+	//关闭
+	auto btnClose = (Layout*)Helper::seekWidgetByName(lay_root, "lay_btn_5");
+	btnClose->addTouchEventListener(CC_CALLBACK_2(DlgFight::onClose, this));
+
+
 }
 
 void DlgFight::addTouch()
@@ -106,33 +114,41 @@ void DlgFight::addTouch()
 
 bool DlgFight::onTouchBegan(Touch* pTouch, Event* pEvent) 
 {
-	auto selectObj = _ai->getSelectObj();
-	if (selectObj == nullptr) {
-		return false;
+	if (_ai->getSelectObj() == nullptr) {
+		return true;
 	}
 
+	//第一次选中
+	if (_select_obj != _ai->getSelectObj()) {
+		_select_obj = _ai->getSelectObj();
+		return true;
+	}
+
+	//是否点在可布置范围
 	auto posInMap = _map->convertToNodeSpace(pTouch->getLocation());
-	int radius = selectObj->_radius;
+	int radius = _select_obj->_radius;
 	auto mapSize = _map->getContentSize();
 	Rect rect(radius / 2, radius / 2, mapSize.width - radius, mapSize.height/2 - radius);
 	if (rect.containsPoint(posInMap) == false) {
 		return false;
 	}
 	
-	for (auto it : _ai->_soildersSelf) 
+	//是否点在其它的对象上
+	bool isCan = true;
+	for (auto it : _ai->_objSelf) 
 	{
-		if (it == selectObj) {
+		if (it == _select_obj) {
 			continue;
 		}		
-		if (GM()->isPointInCircle(it->getPosition(), it->_radius + selectObj->_radius, posInMap)) {
-			return false;
-		}
-		else {
-			selectObj->setPosition(posInMap);
+		if (GM()->isPointInCircle(it->getPosition(), MAX(it->_radius , _select_obj->_radius), posInMap)) {
+			isCan = false;
+			break;
 		}
 	}
+
+	_ai->setObjPos(_select_obj, posInMap);
 	
-	return false;
+	return true;
 }
 
 void DlgFight::onTouchMoved(Touch* pTouch, Event* pEvent) {
@@ -169,19 +185,27 @@ void DlgFight::setObjPosition()
 		}
 	}
 }
-
+static int i = 0;
 void DlgFight::addHero(int heroId, Vec2 pos, int camp)
 {
-	Hero* hero = Hero::create(heroId, _ai, camp);
-	hero->setPosition(pos);
-	this->_map->addChild(hero);
+	Hero* hero = Hero::create(heroId, _ai, camp);	
+	this->_map->addChild(hero); 
+	_ai->setObjPos(hero, pos);
+	++i;
+	hero->_name = i;
+
+	auto txtName = Text::create("名称", FONT_ARIAL, 20);
+	txtName->setName("txtName");
+	txtName->setString(GM()->getIntToStr(i));
+	hero->addChild(txtName);
 }
 
 void DlgFight::addSoilder(int soilderId, Vec2 pos, int camp)
 {
-	Soilder* soilder = Soilder::create(soilderId, _ai, camp);
-	soilder->setPosition(pos);
-	this->_map->addChild(soilder);
+	//Soilder* soilder = Soilder::create(soilderId, _ai, camp);
+	//soilder->setLocalZOrder(pos.x - pos.y * 10000);
+	//this->_map->addChild(soilder);
+	//_ai->setObjPos(soilder, pos);
 }
 
 void DlgFight::showDlg(const string& dlgName)
@@ -192,6 +216,11 @@ void DlgFight::showDlg(const string& dlgName)
 void DlgFight::hideDlg(const string& dlgName)
 {
 	DlgBase::hideDlg(dlgName);
+}
+
+void DlgFight::onStart(Ref* sender, Widget::TouchEventType type)
+{
+	_ai->start();
 }
 
 void DlgFight::onClose(Ref* sender, Widget::TouchEventType type)

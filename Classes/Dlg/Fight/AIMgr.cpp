@@ -6,21 +6,29 @@
 #include "Model/Soilder.h"
 #include "Model/Building.h"
 
-AIMgr::AIMgr() 
-:_heroSelf()
-,_heroEnemy()
-,_soildersSelf()
-,_soildersEnemy()
-, _select_obj(nullptr)
+static Vec2 dir[8] = { Vec2(0, 1)
+					 , Vec2(1,1)
+					 , Vec2(1,0)
+					 , Vec2(1,-1)
+					 , Vec2(0,-1)
+					 , Vec2(-1,-1)
+					 , Vec2(-1,0)
+					 , Vec2(-1,1) };
+
+
+AIMgr::AIMgr()
+	:_objSelf()
+	, _objEnemy()
+	, _select_obj(nullptr)
 {
 	init();
 }
 AIMgr::~AIMgr() {
-
 }
 
 bool AIMgr::init()
 {
+	memset(dotMap, 0, 32 * 48 * sizeof(BaseSprite*));
 	return true;
 }
 
@@ -90,9 +98,7 @@ BaseSprite* AIMgr::getTargetFriend(Vec2 pos, int range)
 
 bool AIMgr::isWithinShootRange(cocos2d::Vec2 src, cocos2d::Vec2 des, int range)
 {
-	Vec2 p1 = GM()->getMapPos(src);
-	Vec2 p2 = GM()->getMapPos(des);
-	int dis = (int)GM()->getDistance(p1, p2);
+	int dis = src.getDistance(des);
 	return dis <= range;
 }
 
@@ -119,8 +125,8 @@ void AIMgr::addHero(Hero* hero, int type)
 {
 	switch (type)
 	{
-	case 1: _heroSelf.insert(hero);	 break;
-	case 2: _heroEnemy.insert(hero); break;
+	case 1: _objSelf.insert((BaseSprite*)hero);	 break;
+	case 2: _objEnemy.insert((BaseSprite*)hero); break;
 	}
 }
 
@@ -128,18 +134,18 @@ void AIMgr::addSoilder(Soilder* soilder, int type)
 {
 	switch (type)
 	{
-	case 1: _soildersSelf.insert(soilder);	break;
-	case 2: _soildersEnemy.insert(soilder);	break;
+	case 1: _objSelf.insert((BaseSprite*)soilder);	break;
+	case 2: _objEnemy.insert((BaseSprite*)soilder);	break;
 	}
 }
 
 void AIMgr::delHero(Hero* hero, int type)
 {
-	set<Hero*>* heros = &_heroSelf;
+	set<BaseSprite*>* heros = &_objSelf;
 	switch (type)
 	{
-	case 1:heros = &_heroSelf;	break;
-	case 2:heros = &_heroEnemy;	break;
+	case 1:heros = &_objSelf;	break;
+	case 2:heros = &_objEnemy;	break;
 	}
 	auto it = heros->find(hero);
 	if (it != heros->end()) {
@@ -149,11 +155,11 @@ void AIMgr::delHero(Hero* hero, int type)
 
 void AIMgr::delSoilder(Soilder* soilder, int type)
 {
-	set<Soilder*>* soilders = &_soildersSelf;
+	set<BaseSprite*>* soilders = &_objSelf;
 	switch (type)
 	{
-	case 1: soilders = &_soildersSelf;	break;
-	case 2: soilders = &_soildersEnemy;	break;
+	case 1: soilders = &_objSelf;	break;
+	case 2: soilders = &_objEnemy;	break;
 	}
 	auto it = soilders->find(soilder);
 	if (it != soilders->end()) {
@@ -161,7 +167,7 @@ void AIMgr::delSoilder(Soilder* soilder, int type)
 	}
 }
 
-void AIMgr::update(float dt) 
+void AIMgr::update(float dt)
 {
 
 }
@@ -177,4 +183,119 @@ void AIMgr::setSelectObj(BaseSprite* obj) {
 
 	_select_obj = obj;
 	_select_obj->setSelect(true);
+}
+
+void AIMgr::start() {
+	for (auto it : _objSelf) {
+		it->setState(STATE_RUN, it->_dir);
+	}
+	for (auto it : _objEnemy) {
+		it->setState(STATE_RUN, it->_dir);
+	}
+}
+
+void AIMgr::setObjPos(BaseSprite* obj, Vec2 pos) {
+	if (((Hero*)obj)->_name == 13) {
+		int i = 1;
+	}
+	Vec2 dot(-1, -1);
+	if (this->isCanSet(obj, pos, dot)) {
+
+		//设置位置，重置dotMap占位
+		Vec2 p = obj->getPosition();
+		obj->_prePosList.push_back(p);
+		if (obj->_prePosList.size() > 3) {
+			obj->_prePosList.pop_front();
+		}
+		obj->setPosition(pos);
+		obj->setLocalZOrder(obj->getPositionX() - obj->getPositionY() * 10000);
+		if (obj->_dotX > 0 && obj->_dotX < 32 && obj->_dotY > 0 && obj->_dotY < 48) {
+			dotMap[obj->_dotX + obj->_dotY * 32] = nullptr;
+		}		
+		obj->_dotX = dot.x;
+		obj->_dotY = dot.y;
+		dotMap[obj->_dotX + obj->_dotY * 32] = obj;
+	}
+	else {
+		float speed = sqrt((float)obj->_speed * 0.5);
+		
+		Vec2 minPos(1000000, 1000000);
+		for (auto& it : dir) {
+			Vec2 testPos(it.x * speed, it.y * speed);
+			testPos.add(obj->getPosition());
+
+			//不走回头路
+			bool isGoBack = false;
+			for (auto& p : obj->_prePosList) {
+				if ((int)p.x == (int)testPos.x && (int)p.y == (int)testPos.y) {
+					isGoBack = true;
+				}
+			}
+			if (isGoBack) {
+				continue;
+			}
+
+			//能否设置
+			if (isCanSet(obj, testPos, dot)) {
+				int testDis = testPos.getDistance(obj->_target->getPosition());
+				int mixDis = minPos.getDistance(obj->_target->getPosition());
+				if (testDis < mixDis) {
+					minPos = testPos;
+				}
+			}
+		}
+
+		//不能移动了
+		if (minPos.equals(Vec2(1000000, 1000000))) {
+			return;
+		}
+
+		//设置位置，重置dotMap占位
+		obj->_prePosList.push_back(obj->getPosition());
+		if (obj->_prePosList.size() > 3) {
+			obj->_prePosList.pop_front();
+		}
+		obj->setPosition(minPos);
+		obj->setLocalZOrder(obj->getPositionX() - obj->getPositionY() * 10000);
+		if (obj->_dotX > 0 && obj->_dotX < 32 && obj->_dotY > 0 && obj->_dotY < 48) {
+			dotMap[obj->_dotX + obj->_dotY * 32] = nullptr;
+		}
+		obj->_dotX = dot.x;
+		obj->_dotY = dot.y;
+		dotMap[obj->_dotX + obj->_dotY * 32] = obj;
+	}
+}
+
+bool AIMgr::isCanSet(BaseSprite* obj, Vec2& pos, Vec2& dot) {
+	int dotX = ceil(pos.x / 20) - 1;
+	int dotY = ceil(pos.y / 20) - 1;
+
+	for (int i = -1; i < 2; ++i) {
+		for (int j = -1; j < 2; ++j) {
+			int testX = dotX + i;
+			int testY = dotY + j;
+			if (testX < 0 || testX>32) {
+				continue;
+			}
+			if (testY < 0 || testY > 48) {
+				continue;
+			}			
+
+			BaseSprite* ptr = dotMap[testY * 32 + testX];
+			if (ptr != nullptr && ptr != obj) {
+				if (ptr->getPosition().getDistance(pos) < max(ptr->_radius, obj->_radius)) {
+					return false;
+				}
+			}
+		}
+	}
+	dot.x = dotX;
+	dot.y = dotY;
+	return true;
+}
+
+void AIMgr::setObjDead(BaseSprite* obj) {
+	dotMap[obj->_dotY * 32 + obj->_dotX] = nullptr;
+	obj->_dotX = 1000000;
+	obj->_dotY = 1000000;
 }

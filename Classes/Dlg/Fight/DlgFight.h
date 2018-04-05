@@ -34,6 +34,7 @@ private:
 	//void onSearch(Ref* sender, Widget::TouchEventType type);
 	//void onFight(Ref* sender, Widget::TouchEventType type);
 	//void onSetting(Ref* sender, Widget::TouchEventType type);
+	void onStart(Ref* sender, Widget::TouchEventType type);
 	void onClose(Ref* sender, Widget::TouchEventType type);
 	void onResetObjPos(Ref* sender, Widget::TouchEventType type);
 public:
@@ -41,5 +42,6 @@ public:
 	AIMgr* _ai;
 
 	Layout* _map;
+	BaseSprite* _select_obj;
 };
 

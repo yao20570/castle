@@ -32,7 +32,8 @@ bool Soilder::init(int soilderID, AIMgr* ai, int camp)
     if ( !BaseSprite::init() ) {
         return false;
     }
-    
+
+	_speed = 50;
     _soilderID = soilderID;
     _target = nullptr;
 	_camp = camp;
@@ -130,10 +131,9 @@ bool Soilder::onTouchBegan(Touch* pTouch, Event* pEvent)
 	int dis = locationInNode.getDistance(Vec2(0, 0));
 	if (dis < _radius) {
 		_ai->setSelectObj(this);
-		return true;
 	}
 
-	return false;
+	return true;
 }
 
 void Soilder::onTouchMoved(Touch* pTouch, Event* pEvent)
@@ -289,4 +289,8 @@ void Soilder::setSelect(bool b) {
 	else {
 		_circle->pause();
 	}
+}
+
+void Soilder::setState(int state, int _dir) {
+
 }

@@ -5,11 +5,7 @@
 #include "BaseSprite.h"
 
 
-static const int STATE_IDLE     = 0;
-static const int STATE_RUN      = 1;
-static const int STATE_ATK      = 2;
-static const int STATE_SKILL    = 3;
-static const int STATE_DEATH    = 4;
+
 
 class AIMgr;
 
@@ -30,7 +26,7 @@ public:
     //void setSelect(bool select);
 
     virtual void idle();
-    virtual void atk(BaseSprite* target);   // ¹¥»÷
+    virtual void atk(Armature* arm, MovementEventType eventType, const std::string& str);   // ¹¥»÷
     virtual void hurt(int x);           // ÊÜÉË
     virtual bool isDeath();             // ÊÇ·ñËÀÍö
     virtual void putSkill(int type);    // ÊÍ·Å¼¼ÄÜ
@@ -44,6 +40,9 @@ public:
     virtual void onTouchMoved(Touch* pTouch, Event* pEvent);
     virtual void onTouchEnded(Touch* pTouch, Event* pEvent);
     
+private:
+	void setState(int state, int dir);
+
 public:
     int _id;
     int _heroID;
@@ -52,7 +51,6 @@ public:
     int _name;
 	int _camp;
     
-    int _healthPoint;
     int _totalHP;
     int _damage;
     int _attackSpeed;
@@ -62,16 +60,12 @@ public:
     LoadingBar* _hpBar; // ÑªÌõ
     
     bool _isSelect;
-    bool _isbroken;
-    int _dir;
     Armature* _arm;
     Armature* _skill1;
     Armature* _skill2;
     
 	
-    int _state;         // ×´Ì¬
     Vec2 _targetPos;
-    BaseSprite* _target;
 	AIMgr* _ai;
     float _expReward;
 

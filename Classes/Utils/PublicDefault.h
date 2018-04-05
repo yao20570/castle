@@ -17,6 +17,7 @@ using namespace cocos2d::ui;
 #include<unordered_map>
 #include<set>
 #include<unordered_set>
+#include<math.h>
 using namespace std;
 
 // Helper

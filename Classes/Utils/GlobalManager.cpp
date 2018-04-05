@@ -40,8 +40,11 @@ float GlobalManager::getDistance(Vec2 p1, Vec2 p2)
 bool GlobalManager::isPointInCircle(Vec2 centerPoint, float radius, Vec2 p)
 {
     float dis = getDistance(centerPoint, p);
-    if (dis < radius) return true;
-    else return false;
+	CCLOG("isPointInCircle:%d, %d", (int)dis, (int)radius);
+    if (dis < radius) 
+		return true;
+    else 
+		return false;
 }
 
 
@@ -264,7 +267,6 @@ int GlobalManager::getDir(Vec2 src, Vec2 des)
 {
     Vec2 p = src - des;
     float ang = atan2(p.y, p.x) * 180.0 / acos(-1.0);
-	CCLOG("%f", ang);
        
 //    printf("%f : ", ang);
     

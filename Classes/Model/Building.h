@@ -9,7 +9,7 @@ class Building : public BaseSprite
 public:
     virtual bool init(int index, AIManager* ai);
     static Building* create(int index, AIManager* ai);
-    ~Building() { }
+	virtual ~Building() { }
     
 public:
     void loadData(int index);       // ¼ÓÔØÊı¾İ
