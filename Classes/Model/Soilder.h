@@ -20,7 +20,7 @@ public:
     void addHPBar();    // 加血条
 
     virtual void run();         // 走路
-    virtual void atk();         // 攻击
+    virtual void atk(Armature* arm, MovementEventType eventType, const std::string& str);         // 攻击
     virtual void hurt(int x);   // 受伤
     virtual bool isDeath();     // 是否死亡
     

@@ -39,7 +39,8 @@ bool DlgMain::init(StateBase* gameState)
 
 void DlgMain::load()
 {
-	auto lay_root = GUIReader::getInstance()->widgetFromJsonFile("UI/dlg_mian.json");
+	auto lay_root = GUIReader::getInstance()->widgetFromJsonFile("ui/DlgMain/dlg_mian.json");
+	CCLOG("=============>%p", lay_root);
 	this->addChild(lay_root);
 	this->setName("dlg_mian");
 

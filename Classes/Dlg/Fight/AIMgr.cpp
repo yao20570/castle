@@ -16,6 +16,30 @@ static Vec2 dir[8] = { Vec2(0, 1)
 					 , Vec2(-1,1) };
 
 
+
+
+struct AStar
+{
+	int pX;
+	int pY;
+	int x;
+	int y;
+	float dis;
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 AIMgr::AIMgr()
 	:_objSelf()
 	, _objEnemy()
@@ -169,7 +193,14 @@ void AIMgr::delSoilder(Soilder* soilder, int type)
 
 void AIMgr::update(float dt)
 {
+	for (auto it : dotMap) {
+		if (it != nullptr && it->_dotX < 32 && it->_dotY < 48) {
+			if (it->_isbroken == true) {
+				int i = 1;
 
+			}
+		}
+	}
 }
 
 void AIMgr::setSelectObj(BaseSprite* obj) {
@@ -217,6 +248,9 @@ void AIMgr::setObjPos(BaseSprite* obj, Vec2 pos) {
 		dotMap[obj->_dotX + obj->_dotY * 32] = obj;
 	}
 	else {
+		if (obj->_target == nullptr) {
+			return;
+		}
 		float speed = sqrt((float)obj->_speed * 0.5);
 		
 		Vec2 minPos(1000000, 1000000);
@@ -295,7 +329,13 @@ bool AIMgr::isCanSet(BaseSprite* obj, Vec2& pos, Vec2& dot) {
 }
 
 void AIMgr::setObjDead(BaseSprite* obj) {
+	if (obj->_dotX == 1000000 && obj->_dotY == 1000000) {
+		return;
+	}
 	dotMap[obj->_dotY * 32 + obj->_dotX] = nullptr;
 	obj->_dotX = 1000000;
 	obj->_dotY = 1000000;
 }
+
+
+

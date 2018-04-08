@@ -45,7 +45,7 @@ bool Soilder::init(int soilderID, AIMgr* ai, int camp)
     showUI();
     addHPBar();
 	addTouch();
-    schedule(schedule_selector(Soilder::update), 0.8f);
+    schedule(schedule_selector(Soilder::update));
     
     return true;
 }
@@ -95,10 +95,14 @@ void Soilder::showUI()
 	int y = _camp == 1 ? -1 : 1;
 	_dir = GM()->getDir(Vec2(0, y));
 	_arm->getAnimation()->play("run" + GM()->getIntToStr(_dir));
-	_arm->setPositionY(20);
+	_arm->setPositionY(20); 
+	_arm->pause();
+	_arm->getAnimation()->setMovementEventCallFunc(this, SEL_MovementEventCallFunc(&Soilder::atk));
     this->addChild(_arm);    
     this->setLocalZOrder((int)_pos.x + (int)_pos.y * 10000);    
     this->setScale(0.6);
+
+
 
 
 	//选中框
@@ -191,38 +195,95 @@ void Soilder::update(float dt)
         return;
     }
     
-    //if (_target == nullptr || _target->isDeath()) {
-    //    this->stopAllActions();
-    //    _target = _ai->getTargetEnemy(_pos);
-    //}
-    //if (_target == nullptr) {
-    //    _arm->getAnimation()->play("run0");
-    //    _arm->getAnimation()->stop();
-    //    return;
-    //}
-    //
-    //// 攻击
-    //if (_ai->isWithinShootRange(_pos, _target->_pos, _shootRange)) {
-    //    _dir = GM()->getDir(_pos, _target->_pos);
-    //    
-    //    _arm->getAnimation()->play("atk" + GM()->getIntToStr(_dir));
-    //    
-    //    auto delay = DelayTime::create(0.7f);
-    //    auto func = CallFunc::create(CC_CALLBACK_0(Soilder::atk, this));
-    //    this->runAction(Sequence::create(delay, func, nullptr));
-    //}
-    //
-    //// 走路
-    //else {
-    //    Vec2 pos = _ai->getNextPos(_pos, _target->_pos, false);
-    //    _dir = GM()->getDir(pos);
-    //    
-    //    this->runAction(MoveBy::create(1.0f, GM()->getMapDelta(_dir)));
-    //    _arm->getAnimation()->play("run" + GM()->getIntToStr( _dir <= 7 ? _dir : 1));
-    //    
-    //    _pos += pos;
-    //    this->setLocalZOrder((int)_pos.x + (int)_pos.y);
-    //}
+	switch (_state)
+	{
+	case STATE_IDLE:// 悠闲
+	{
+		setState(STATE_IDLE, _dir);
+		break;
+	}
+	case STATE_RUN:// 走路		
+	{
+		int minDis = 100000;
+		_target = nullptr;
+
+
+		switch (_camp)
+		{
+		case 1:
+			for (auto it : _ai->_objEnemy) {
+				if (it->isDeath()) {
+					continue;
+				}
+				int dis = (int)it->getPosition().getDistance(this->getPosition());
+				if (dis < minDis) {
+					minDis = dis;
+					_target = it;
+				}
+			}
+			break;
+		case 2:
+			for (auto it : _ai->_objSelf) {
+				if (it->isDeath()) {
+					continue;
+				}
+				int dis = (int)it->getPosition().getDistance(this->getPosition());
+				if (dis < minDis) {
+					minDis = dis;
+					_target = it;
+				}
+			}
+			break;
+		}
+
+
+		if (_target == nullptr) {
+			setState(STATE_IDLE, _dir);
+			_target = nullptr;
+		}
+		else if (_target->_isbroken ==false && _ai->isWithinShootRange(getPosition(), _target->getPosition(), _shootRange)) {
+
+			int tempDir = GM()->getDir(getPosition(), _target->getPosition());
+			setState(STATE_ATK, tempDir);
+		}
+		else {
+			int tempDir = GM()->getDir(getPosition(), _target->getPosition());
+			setState(STATE_RUN, tempDir);
+
+			Vec2 disPos = _target->getPosition() - getPosition();
+
+			Vec2 nextPos(getPositionX() + disPos.x * _speed / minDis / 60, getPositionY() + disPos.y * _speed / minDis / 60);
+
+			_ai->setObjPos(this, nextPos);
+		}
+		break;
+	}
+
+	case STATE_ATK:// 攻击
+	{
+		if (_target == nullptr || _target->isDeath()) {
+			// 失去目标，变成悠闲
+			_target = nullptr;
+
+			setState(STATE_RUN, _dir);
+		}
+
+		// 向目标移动、或攻击目标
+		else {
+			int tempDir = GM()->getDir(getPosition(), _target->getPosition());
+			// 攻击
+			if (_ai->isWithinShootRange(getPosition(), _target->getPosition(), _shootRange)) {
+				setState(STATE_ATK, tempDir);
+			}
+			// 走路
+			else {
+				setState(STATE_RUN, tempDir);
+			}
+		}
+		break;
+	}
+
+	}
 }
 
 
@@ -232,26 +293,36 @@ void Soilder::run()
 }
 
 
-void Soilder::atk()
+void Soilder::atk(Armature* arm, MovementEventType eventType, const std::string& str)
 {
-    if (_isbroken == true || _healthPoint <= 0) {
-        return;
-    }
-    if (_type == SOILDER_TYPE_BOWMAN) {
-        Vec2 src = GM()->getMapPos(_pos);
-        Vec2 des = GM()->getMapPos(_target->_pos);
-        auto bullet = BulletSprite::create(src, des, _damage, _target, IMG_BULLET_ARROW);
-        this->getParent()->addChild(bullet, 99);
-    }
-    else if(_type == SOILDER_TYPE_GUNNER) {
-        Vec2 src = GM()->getMapPos(_pos);
-        Vec2 des = GM()->getMapPos(_target->_pos);
-        auto bullet = BulletSprite::create(src, des, _damage, _target, IMG_BULLET_SHELL);
-        this->getParent()->addChild(bullet, 99);
-    }
-    else {
-        _target->hurt(_damage);
-    }
+	if (_isbroken == true || _healthPoint <= 0) {
+		return;
+	}
+
+	if (eventType == LOOP_COMPLETE)
+	{
+		int x = _arm->getAnimation()->getCurrentMovementID().find("atk");
+		if (x >= 0) {
+			if (_type == SOILDER_TYPE_BOWMAN) {
+				Vec2 src = getPosition();
+				Vec2 des = _target->getPosition();
+				auto bullet = BulletSprite::create(src, des, _damage, _target, IMG_BULLET_ARROW);
+				bullet->setScale(getScale());
+				this->getParent()->addChild(bullet, 9999999);
+			}
+			else if (_type == SOILDER_TYPE_GUNNER) {
+				Vec2 src = getPosition();
+				Vec2 des = _target->getPosition();
+				auto bullet = BulletSprite::create(src, des, _damage, _target, IMG_BULLET_SHELL);
+				bullet->setScale(getScale());
+				this->getParent()->addChild(bullet, 9999999);
+			}
+			else {
+				//_target->hurt(_damage);
+				_target->hurt(_damage);
+			}
+		}
+	}
 }
 
 
@@ -259,7 +330,9 @@ void Soilder::atk()
 void Soilder::hurt(int x)
 {
     if (_isbroken == true || _healthPoint <= 0) {
-        _isbroken = true;
+		_arm->getAnimation()->stop();
+		_ai->setObjDead(this);
+		_isbroken = true;
         return;
     }
     
@@ -267,6 +340,7 @@ void Soilder::hurt(int x)
     if (_healthPoint <= 0) {
         _isbroken = true;
         this->setVisible(false);
+		_ai->setObjDead(this);
         _arm->getAnimation()->stop();
     }
     else {
@@ -291,6 +365,32 @@ void Soilder::setSelect(bool b) {
 	}
 }
 
-void Soilder::setState(int state, int _dir) {
 
+void Soilder::setState(int state, int dir)
+{
+	if (_state == state && _dir == dir) {
+		return;
+	}
+	_state = state;
+	_dir = dir;
+
+	string dirCmd = GM()->getIntToStr(_dir);
+	string animaCmd = "run";
+	switch (_state)
+	{
+	case STATE_IDLE:
+		animaCmd = "run";
+		break;
+	case STATE_RUN:
+		animaCmd = "run";
+		break;
+	case STATE_ATK:
+		animaCmd = "atk";
+
+
+
+		break;
+	}
+
+	_arm->getAnimation()->play(animaCmd + GM()->getIntToStr(_dir));
 }

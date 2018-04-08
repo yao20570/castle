@@ -38,7 +38,8 @@ void BulletSprite::showUI()
 {
     this->setTexture(_img);
     this->setPosition(_src);
-    this->setScale(0.7);
+    //this->setScale(0.7);
+	this->setAnchorPoint(Vec2(0, 0.5));
     
     auto delta = _des - _src;
     auto ang = atan2(delta.y, delta.x) * 180 / acos(-1.0);

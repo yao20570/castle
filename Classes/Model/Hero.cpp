@@ -343,7 +343,7 @@ void Hero::update(float dt)
 			setState(STATE_IDLE, _dir);
 			_target = nullptr;
 		}
-		else if (_ai->isWithinShootRange(getPosition(), _target->getPosition(), _shootRange)) {
+		else if (_target->_isbroken == false && _ai->isWithinShootRange(getPosition(), _target->getPosition(), _shootRange)) {
 
 			int tempDir = GM()->getDir(getPosition(), _target->getPosition());
 			setState(STATE_ATK, tempDir);

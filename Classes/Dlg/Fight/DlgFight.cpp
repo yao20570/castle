@@ -54,7 +54,7 @@ bool DlgFight::init(StateBase* gameState)
 	{
 		return false;
 	}
-	schedule(schedule_selector(DlgFight::update), 0.81f);
+	schedule(schedule_selector(DlgFight::update));
 	this->load();
 	return true;
 }
@@ -191,21 +191,27 @@ void DlgFight::addHero(int heroId, Vec2 pos, int camp)
 	Hero* hero = Hero::create(heroId, _ai, camp);	
 	this->_map->addChild(hero); 
 	_ai->setObjPos(hero, pos);
-	++i;
-	hero->_name = i;
+	//++i;
+	//hero->_name = i;
 
-	auto txtName = Text::create("Ãû³Æ", FONT_ARIAL, 20);
-	txtName->setName("txtName");
-	txtName->setString(GM()->getIntToStr(i));
-	hero->addChild(txtName);
+	//auto txtName = Text::create("Ãû³Æ", FONT_ARIAL, 20);
+	//txtName->setName("txtName");
+	//txtName->setString(GM()->getIntToStr(i));
+	//hero->addChild(txtName);
 }
 
 void DlgFight::addSoilder(int soilderId, Vec2 pos, int camp)
 {
-	//Soilder* soilder = Soilder::create(soilderId, _ai, camp);
-	//soilder->setLocalZOrder(pos.x - pos.y * 10000);
-	//this->_map->addChild(soilder);
-	//_ai->setObjPos(soilder, pos);
+	Soilder* soilder = Soilder::create(soilderId, _ai, camp);
+	this->_map->addChild(soilder);
+	_ai->setObjPos(soilder, pos);
+	++i;
+	soilder->_name = i;
+
+	auto txtName = Text::create("Ãû³Æ", FONT_ARIAL, 20);
+	txtName->setName("txtName");
+	txtName->setString(GM()->getIntToStr(i));
+	soilder->addChild(txtName);
 }
 
 void DlgFight::showDlg(const string& dlgName)
