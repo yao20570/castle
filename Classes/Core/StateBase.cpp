@@ -8,7 +8,7 @@ using namespace cocos2d::ui;
 #include "StateEnum.h"
 
 #include "Utils/ClassFactory.h"
-#include "Dlg/DlgBase.h"
+#include "Core/DlgBase.h"
 
 
 USING_NS_CC;

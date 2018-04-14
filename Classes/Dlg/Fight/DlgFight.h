@@ -1,8 +1,8 @@
 #pragma once
 #include "cocos2d.h"
 
-#include "../DlgBase.h"
-#include "../DlgDefine.h"
+#include "../../Core/DlgBase.h"
+#include "../../Core/DlgDefine.h"
 
 class AIMgr;
 

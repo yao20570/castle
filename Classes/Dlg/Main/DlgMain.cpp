@@ -4,10 +4,19 @@ using namespace cocostudio;
 using namespace cocos2d::ui;
 
 #include "DlgMain.h"
+#include "Core/BaseComponent.h"
+#include "DLG/Main/PnlSetting.h"
 
 USING_NS_CC;
 
+
+
+
 DlgMain::DlgMain()
+	: _lay_mid(nullptr)
+	, _pnl_setting(nullptr)
+	, _pnls()
+	, _cur_pnl(nullptr)
 {
 	_dlg_type = ENUM_DLG_TYPE::Full;
 	_dlg_name = "DlgFight";
@@ -32,7 +41,7 @@ bool DlgMain::init(StateBase* gameState)
 	{
 		return false;
 	}
-	
+
 	this->load();
 	return true;
 }
@@ -44,26 +53,70 @@ void DlgMain::load()
 	this->addChild(lay_root);
 	this->setName("dlg_mian");
 
-	//涓诲叕
+
+	//panel容器
+	this->_lay_mid = (Layout*)Helper::seekWidgetByName(lay_root, "lay_mid");
+
+	//主公
 	auto btnLord = (Button*)Helper::seekWidgetByName(lay_root, "lay_btn_1");
 	btnLord->addTouchEventListener(CC_CALLBACK_2(DlgMain::onLord, this));
 
-	//鏌ユ壘
+	//查找
 	auto btnSearch = (Button*)Helper::seekWidgetByName(lay_root, "lay_btn_2");
 	btnSearch->addTouchEventListener(CC_CALLBACK_2(DlgMain::onSearch, this));
 
-	//鎴樻枟
+	//战斗
 	auto btnFight = (Button*)Helper::seekWidgetByName(lay_root, "lay_btn_3");
 	btnFight->addTouchEventListener(CC_CALLBACK_2(DlgMain::onFight, this));
 
-	//甯冮樀
+	//布阵
 	auto btnSetting = (Button*)Helper::seekWidgetByName(lay_root, "lay_btn_4");
 	btnSetting->addTouchEventListener(CC_CALLBACK_2(DlgMain::onSetting, this));
 
-	//鍏冲崱
+	//关卡
 	auto btnChapter = (Button*)Helper::seekWidgetByName(lay_root, "lay_btn_5");
 	btnChapter->addTouchEventListener(CC_CALLBACK_2(DlgMain::onChapter, this));
+
+}
+
+void DlgMain::showPanel(PanelType type) {
 	
+	BaseComponent* comp = this->getPanel(type);
+
+	//同一个面板，则返回
+	if (comp == this->_cur_pnl) {
+		return;
+	}
+
+	//已有显示的面板，则隐藏
+	if (this->_cur_pnl != nullptr) {
+		this->_cur_pnl->setVisible(false);
+	}
+
+	//设置当前面板并显示更新
+	this->_cur_pnl = comp;
+	this->_cur_pnl->setVisible(true);
+	this->_cur_pnl->updateUI();
+}
+
+BaseComponent* DlgMain::getPanel(PanelType type) {
+	BaseComponent* comp = nullptr;
+	auto it = this->_pnls.find(type);
+	if (it == this->_pnls.end()) {
+		switch (type)
+		{
+		case PanelType::Setting:
+			comp = PnlSetting::create();
+			_pnls[type] = comp;
+			this->_lay_mid->addChild(comp);
+			break;
+		}
+	}
+	else {
+		comp = it->second;
+	}
+
+	return comp;
 }
 
 void DlgMain::showDlg(const string& dlgName)
@@ -76,39 +129,39 @@ void DlgMain::hideDlg(const string& dlgName)
 	DlgBase::hideDlg(dlgName);
 }
 
-//鎵撳紑涓诲叕鍔熻兘
+//打开主公功能
 void DlgMain::onLord(Ref* sender, Widget::TouchEventType type)
 {
 	if (type == Widget::TouchEventType::ENDED) {
-		CCLOG("%s","鎵撳紑涓诲叕鍔熻兘");
+		CCLOG("%s", "打开主公功能");
 	}
 }
-//鎵撳紑鎼滅储鍔熻兘
+//打开搜索功能
 void DlgMain::onSearch(Ref* sender, Widget::TouchEventType type)
 {
 	if (type == Widget::TouchEventType::ENDED) {
-		CCLOG("鎵撳紑鎼滅储鍔熻兘");
+		CCLOG("打开搜索功能");
 	}
 }
-//鎵撳紑鎴樻枟鍔熻兘
+//打开战斗功能
 void DlgMain::onFight(Ref* sender, Widget::TouchEventType type)
 {
 	if (type == Widget::TouchEventType::ENDED) {
-		CCLOG("鎵撳紑鎴樻枟鍔熻兘");
+		CCLOG("打开战斗功能");
 		showDlg("DlgFight");
 	}
 }
-//鎵撳紑甯冮樀鍔熻兘
+//打开布阵功能
 void DlgMain::onSetting(Ref* sender, Widget::TouchEventType type)
 {
 	if (type == Widget::TouchEventType::ENDED) {
-		CCLOG("鎵撳紑甯冮樀鍔熻兘");
+		this->showPanel(PanelType::Setting);
 	}
 }
-//鎵撳紑鍏冲崱鍔熻兘
+//打开关卡功能
 void DlgMain::onChapter(Ref* sender, Widget::TouchEventType type)
 {
 	if (type == Widget::TouchEventType::ENDED) {
-		CCLOG("鎵撳紑鍏冲崱鍔熻兘");
+		CCLOG("打开关卡功能");
 	}
 }

@@ -1,9 +1,9 @@
 #pragma once
 
 #include "Utils/PublicDefault.h"
-#include "GameState/StateBase.h"
-#include "Dlg/DlgEnum.h"
-#include "Dlg/DlgBase.h"
+#include "../Core/StateBase.h"
+#include "../Core/DlgEnum.h"
+#include "../Core/DlgBase.h"
 
 class StateBase;
 

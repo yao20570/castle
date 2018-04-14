@@ -5,7 +5,7 @@ using namespace cocostudio;
 using namespace cocos2d::ui;
 
 #include "StatePlay.h"
-#include "StateEnum.h"
+#include "Core/StateEnum.h"
 #include "Dlg/Main/DlgMain.h"
 #include "Dlg/Fight/DlgFight.h"
 

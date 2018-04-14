@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Utils/PublicDefault.h"
-#include "GameState/StateBase.h"
+#include "StateBase.h"
 #include "DlgEnum.h"
 #include "DlgDefine.h"
 

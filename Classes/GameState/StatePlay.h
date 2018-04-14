@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Utils/PublicDefault.h"
-#include "StateBase.h"
+#include "Core/StateBase.h"
 
 class  DlgMain;
 class  ClassFactory;

@@ -19,5 +19,5 @@
   <imageFileList />
   <imagePngList />
   <JsonSuffix>.json</JsonSuffix>
-  <CurrentUIJson>dlg_fight.json</CurrentUIJson>
+  <CurrentUIJson />
 </UIProject>

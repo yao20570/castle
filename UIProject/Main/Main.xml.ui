@@ -8,6 +8,7 @@
   <JsonFolder>D:\git\castle\UIProject\Main\Json</JsonFolder>
   <JsonList>
     <string>dlg_mian.json</string>
+    <string>pnl_setting.json</string>
   </JsonList>
   <CanvasSize>
     <Width>640</Width>
@@ -19,5 +20,5 @@
   <imageFileList />
   <imagePngList />
   <JsonSuffix>.json</JsonSuffix>
-  <CurrentUIJson />
+  <CurrentUIJson>pnl_setting.json</CurrentUIJson>
 </UIProject>

@@ -55,6 +55,9 @@
     <Filter Include="src\GameState">
       <UniqueIdentifier>{9ca58b36-c01b-4f5c-862c-09c98d7a7f3d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Core">
+      <UniqueIdentifier>{555d64ae-1fef-47a2-8721-cb13fa867d32}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -198,17 +201,23 @@
     <ClCompile Include="..\Classes\Dlg\Fight\DlgFight.cpp">
       <Filter>src\Dlg\Fight</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Dlg\DlgBase.cpp">
-      <Filter>src\Dlg</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\GameState\StateBase.cpp">
-      <Filter>src\GameState</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Utils\ConfigMgr.cpp">
       <Filter>src\Utils</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Dlg\Fight\AIMgr.cpp">
       <Filter>src\Dlg\Fight</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Dlg\Main\PnlSetting.cpp">
+      <Filter>src\Dlg\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Core\BaseComponent.cpp">
+      <Filter>src\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Core\DlgBase.cpp">
+      <Filter>src\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Core\StateBase.cpp">
+      <Filter>src\Core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -368,21 +377,6 @@
     <ClInclude Include="..\Classes\Utils\PublicDefault.h">
       <Filter>src\Utils</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Dlg\DlgBase.h">
-      <Filter>src\Dlg</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\GameState\StateEnum.h">
-      <Filter>src\GameState</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Dlg\DlgEnum.h">
-      <Filter>src\Dlg</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\GameState\StateBase.h">
-      <Filter>src\GameState</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Dlg\DlgDefine.h">
-      <Filter>src\Dlg</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\Utils\GlobalValue.h">
       <Filter>src\Utils</Filter>
     </ClInclude>
@@ -391,6 +385,30 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Dlg\Fight\AIMgr.h">
       <Filter>src\Dlg\Fight</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Dlg\Main\PnlSetting.h">
+      <Filter>src\Dlg\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Core\BaseComponent.h">
+      <Filter>src\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Core\BaseComponentDef.h">
+      <Filter>src\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Core\DlgBase.h">
+      <Filter>src\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Core\DlgDefine.h">
+      <Filter>src\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Core\DlgEnum.h">
+      <Filter>src\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Core\StateBase.h">
+      <Filter>src\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Core\StateEnum.h">
+      <Filter>src\Core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
