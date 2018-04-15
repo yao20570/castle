@@ -16,10 +16,9 @@ public:
 public:
 	map<int, ValueMap>* getObjPos();
 
-	ValueMap* getHeroInfoById(int Id);
-	ValueMap* getSoilderInfoById(int Id);
-	ValueMap* getObjPos(int Id);
-
+	ValueMap* getHeroInfoById(int id);
+	ValueMap* getSoilderInfoById(int id);
+	ValueMap* getObjInfoById(int id);
 private:
 	static ConfigMgr* _g;
 	sqlite3* _pdb;

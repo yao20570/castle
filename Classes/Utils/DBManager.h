@@ -25,8 +25,15 @@ public:
     void createBuildingListInfo();
     void createSoilderListInfo();
     void createHeroListInfo();
+
+	void createMyObj();
     
     void loadCsvData(std::string file, ValueVector& data);
+public :
+	map<int, ValueMap >* getMyObj();
+	void updatMyObj(int type, int lv);
+	void insertMyObj(int type, int lv);
+
 private:
     static DBManager* _g;
     sqlite3* _pdb;

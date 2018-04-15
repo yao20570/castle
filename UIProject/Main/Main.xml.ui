@@ -9,10 +9,11 @@
   <JsonList>
     <string>dlg_mian.json</string>
     <string>pnl_setting.json</string>
+    <string>item_obj.json</string>
   </JsonList>
   <CanvasSize>
     <Width>640</Width>
-    <Height>1136</Height>
+    <Height>986</Height>
   </CanvasSize>
   <filePath>D:\git\castle\UIProject\Main\Main.xml.ui</filePath>
   <ProjectType>UIProject</ProjectType>
@@ -20,5 +21,5 @@
   <imageFileList />
   <imagePngList />
   <JsonSuffix>.json</JsonSuffix>
-  <CurrentUIJson>pnl_setting.json</CurrentUIJson>
+  <CurrentUIJson>item_obj.json</CurrentUIJson>
 </UIProject>

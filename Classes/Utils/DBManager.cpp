@@ -95,12 +95,14 @@ void DBManager::createTable()
 
     if (!FileUtils::getInstance()->isFileExist(path)) {
         CCLOG("create RingDB.db");
-        createPlayerInfo();
-        createTownStateInfo();
-        createMiwuStateInfo();
-        createBuildingListInfo();
-        createHeroListInfo();
-        createSoilderListInfo();
+        //createPlayerInfo();
+        //createTownStateInfo();
+        //createMiwuStateInfo();
+        //createBuildingListInfo();
+        //createHeroListInfo();
+        //createSoilderListInfo();
+
+		createMyObj();
     }
 }
 
@@ -242,6 +244,7 @@ void DBManager::createHeroListInfo()
 }
 
 
+
 // 加载CSV数据
 void DBManager::loadCsvData(std::string file, ValueVector& data)
 {
@@ -253,4 +256,58 @@ void DBManager::loadCsvData(std::string file, ValueVector& data)
         }
         data.push_back((Value)map);
     }
+}
+
+
+void DBManager::createMyObj()
+{
+	//ValueVector data;
+	//loadCsvData(CSV_HERO_LISTINFO, data);
+
+	string timeStamp = GM()->getIntToStr(GM()->getTimeStamp());
+	string sql = "create table MyObj(ID integer primary key, Lv)";
+	executeUpdate(sql);
+
+	//添加两条默认的士兵，分别是步兵和箭手
+	for (int i = 1; i < 3; ++i) {
+		DBM()->insertMyObj(i, 1);
+	}
+
+	//添加两个英雄
+	DBM()->insertMyObj(5, 1);
+	DBM()->insertMyObj(6, 1);
+}
+
+static map<int, ValueMap >* myObj = nullptr;
+map<int, ValueMap >* DBManager::getMyObj() {
+	if (!myObj) {
+		myObj = new map<int, ValueMap >();
+		string sql = "select * from MyObj";
+		ValueVector vv = DBM()->executeQuery(sql);
+		for (int i = 1; i < vv.size(); i++) {
+			ValueMap& row = vv.at(i).asValueMap();
+			int x = row["ID"].asInt();
+			int lv = row["Lv"].asInt();
+			(*myObj)[row["ID"].asInt()] = row;
+		}
+	}
+
+	return myObj;
+}
+
+void DBManager::updatMyObj(int type, int lv) {
+	// 更新设施位置(sqlite)
+	string sql = "update MyObj set Lv='" + Value(lv).asString()
+		+ "' where ID=" + Value(type).asString() + ";";
+	//    CCLOG("%s", sql.c_str());
+	DBM()->executeUpdate(sql);
+}
+
+void DBManager::insertMyObj(int type, int lv) {
+	// 更新设施位置(sqlite)
+	string sql = "insert into MyObj values("
+		+ Value(type).asString() + ", '"
+		+ Value(lv).asString() + "')";
+	//    CCLOG("%s", sql.c_str());
+	DBM()->executeUpdate(sql);
 }

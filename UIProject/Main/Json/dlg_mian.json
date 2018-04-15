@@ -10,7 +10,9 @@
   "designHeight": 1136,
   "designWidth": 640,
   "textures": [],
-  "texturesPng": [],
+  "texturesPng": [
+    "images/soilder/bowman/bowman_01.png"
+  ],
   "version": "1.6.0.0",
   "widgetTree": {
     "classname": "Panel",

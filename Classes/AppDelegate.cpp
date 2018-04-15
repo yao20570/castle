@@ -144,7 +144,7 @@ void AppDelegate::applicationWillEnterForeground() {
 void AppDelegate::loadResources()
 {
 	//// 创建数据库
-	//DBM()->createTable();
+	DBM()->createTable();
 
 	//// 加载数据到缓存
 	//DM();

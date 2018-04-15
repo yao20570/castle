@@ -152,11 +152,9 @@ bool DlgFight::onTouchBegan(Touch* pTouch, Event* pEvent)
 }
 
 void DlgFight::onTouchMoved(Touch* pTouch, Event* pEvent) {
-	int i = 2;
 }
 
 void DlgFight::onTouchEnded(Touch* pTouch, Event* pEvent) {
-	int i = 3;
 }
 
 void DlgFight::setObjPosition()
