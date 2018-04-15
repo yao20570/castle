@@ -1,0 +1,8 @@
+ID,ObjType,SubType,Unit,Name,Icon
+1,1,1,1,人类士兵,images/soilder/fighter/fighter_01.png
+2,1,2,1,精灵弓箭手,images/soilder/bowman/bowman_01.png
+3,1,3,1,矮人炮手,images/soilder/gunner/gunner_03.png
+4,1,4,1,兽人肉盾,images/soilder/meatshield/meatshield_04.png
+5,2,1,4,许诸,images/hero/aragorn/aragorn_001.png
+6,2,2,4,典韦,images/hero/aragorn/aragorn_001.png
+7,2,3,4,张飞,images/hero/aragorn/aragorn_001.png
