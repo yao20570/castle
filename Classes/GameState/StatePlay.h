@@ -2,6 +2,7 @@
 
 #include "Utils/PublicDefault.h"
 #include "Core/StateBase.h"
+#include <functional>
 
 class  DlgMain;
 class  ClassFactory;
@@ -19,4 +20,6 @@ public:
 	virtual void regDlg();
 	virtual void showDlg(const string& dlgName);
 	virtual void hideDlg(const string& dlgName);
+
+	
 };

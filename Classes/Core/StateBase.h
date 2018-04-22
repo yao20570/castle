@@ -4,6 +4,7 @@
 
 class ClassFactory;
 class DlgBase;
+class MessageTip;
 
 class StateBase : public cocos2d::Layer
 {
@@ -19,6 +20,9 @@ public:
 	virtual void showDlg(const string& dlgName);
 	virtual void hideDlg(const string& dlgName);
 
+	virtual void showTip(char* tip);
+	virtual void showMessage(char* message, std::function<void()> sureCallback, std::function<void()> cancelCallback);
+
 protected:
 	void addDlg(DlgBase* dlg);
 
@@ -32,4 +36,6 @@ protected:
 	vector<string> _open_dlgs;
 	ClassFactory* _class_factory;
 	vector<Layer*> _layers;
+
+	MessageTip* messageTip;
 };

@@ -19,6 +19,8 @@ public:
 	ValueMap* getHeroInfoById(int id);
 	ValueMap* getSoilderInfoById(int id);
 	ValueMap* getObjInfoById(int id);
+
+	ValueMap* getEquipInfoById(int id);
 private:
 	static ConfigMgr* _g;
 	sqlite3* _pdb;

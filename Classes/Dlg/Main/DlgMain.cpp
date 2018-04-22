@@ -4,8 +4,10 @@ using namespace cocostudio;
 using namespace cocos2d::ui;
 
 #include "DlgMain.h"
+#include "Utils/ConfigMgr.h"
 #include "Core/BaseComponent.h"
 #include "DLG/Main/PnlSetting.h"
+#include "DLG/Main/PnlPlayer.h"
 
 USING_NS_CC;
 
@@ -54,46 +56,46 @@ void DlgMain::load()
 	this->setName("dlg_mian");
 
 
-	//panelÈİÆ÷
+	//panelå®¹å™¨
 	this->_lay_mid = (Layout*)Helper::seekWidgetByName(lay_root, "lay_mid");
 
-	//Ö÷¹«
+	//ä¸»å…¬
 	auto btnLord = (Button*)Helper::seekWidgetByName(lay_root, "lay_btn_1");
 	btnLord->addTouchEventListener(CC_CALLBACK_2(DlgMain::onLord, this));
 
-	//²éÕÒ
+	//æŸ¥æ‰¾
 	auto btnSearch = (Button*)Helper::seekWidgetByName(lay_root, "lay_btn_2");
 	btnSearch->addTouchEventListener(CC_CALLBACK_2(DlgMain::onSearch, this));
 
-	//Õ½¶·
+	//æˆ˜æ–—
 	auto btnFight = (Button*)Helper::seekWidgetByName(lay_root, "lay_btn_3");
 	btnFight->addTouchEventListener(CC_CALLBACK_2(DlgMain::onFight, this));
 
-	//²¼Õó
+	//å¸ƒé˜µ
 	auto btnSetting = (Button*)Helper::seekWidgetByName(lay_root, "lay_btn_4");
 	btnSetting->addTouchEventListener(CC_CALLBACK_2(DlgMain::onSetting, this));
 
-	//¹Ø¿¨
+	//å…³å¡
 	auto btnChapter = (Button*)Helper::seekWidgetByName(lay_root, "lay_btn_5");
 	btnChapter->addTouchEventListener(CC_CALLBACK_2(DlgMain::onChapter, this));
 
 }
 
 void DlgMain::showPanel(PanelType type) {
-	
+
 	BaseComponent* comp = this->getPanel(type);
 
-	//Í¬Ò»¸öÃæ°å£¬Ôò·µ»Ø
+	//åŒä¸€ä¸ªé¢æ¿ï¼Œåˆ™è¿”å›
 	if (comp == this->_cur_pnl) {
 		return;
 	}
 
-	//ÒÑÓĞÏÔÊ¾µÄÃæ°å£¬ÔòÒş²Ø
+	//å·²æœ‰æ˜¾ç¤ºçš„é¢æ¿ï¼Œåˆ™éšè—
 	if (this->_cur_pnl != nullptr) {
 		this->_cur_pnl->setVisible(false);
 	}
 
-	//ÉèÖÃµ±Ç°Ãæ°å²¢ÏÔÊ¾¸üĞÂ
+	//è®¾ç½®å½“å‰é¢æ¿å¹¶æ˜¾ç¤ºæ›´æ–°
 	this->_cur_pnl = comp;
 	this->_cur_pnl->setVisible(true);
 	this->_cur_pnl->updateUI();
@@ -106,11 +108,14 @@ BaseComponent* DlgMain::getPanel(PanelType type) {
 		switch (type)
 		{
 		case PanelType::Setting:
-			comp = PnlSetting::create();
-			_pnls[type] = comp;
-			this->_lay_mid->addChild(comp);
+			comp = PnlSetting::create(this);
+			break;
+		case PanelType::Player:
+			comp = PnlPlayer::create(this);
 			break;
 		}
+		_pnls[type] = comp;
+		this->_lay_mid->addChild(comp);
 	}
 	else {
 		comp = it->second;
@@ -129,39 +134,56 @@ void DlgMain::hideDlg(const string& dlgName)
 	DlgBase::hideDlg(dlgName);
 }
 
-//´ò¿ªÖ÷¹«¹¦ÄÜ
+//æ‰“å¼€ä¸»å…¬åŠŸèƒ½
 void DlgMain::onLord(Ref* sender, Widget::TouchEventType type)
 {
 	if (type == Widget::TouchEventType::ENDED) {
-		CCLOG("%s", "´ò¿ªÖ÷¹«¹¦ÄÜ");
+		this->showPanel(PanelType::Player);
 	}
 }
-//´ò¿ªËÑË÷¹¦ÄÜ
+//æ‰“å¼€æœç´¢åŠŸèƒ½
 void DlgMain::onSearch(Ref* sender, Widget::TouchEventType type)
 {
 	if (type == Widget::TouchEventType::ENDED) {
-		CCLOG("´ò¿ªËÑË÷¹¦ÄÜ");
+		CCLOG("æ‰“å¼€æœç´¢åŠŸèƒ½");
+		
+		int num = rand() % 20;
+
+		ValueMap* cfgPtr = CFG()->getEquipInfoById(num);
+		ValueMap& cfg = *cfgPtr;
+
+		if (cfgPtr) {
+			char str[256] = "\0";
+			sprintf(str, "æœç´¢è·å¾—è£…å¤‡ - %s", cfg["Name"].asString().c_str());
+			this->showTip(str);
+
+			DBM()->insertMyEquip(cfg["ID"].asInt());
+		}
+		else {
+			this->showTip("æœç´¢å¤±è´¥");
+		}
+
 	}
 }
-//´ò¿ªÕ½¶·¹¦ÄÜ
+//æ‰“å¼€æˆ˜æ–—åŠŸèƒ½
 void DlgMain::onFight(Ref* sender, Widget::TouchEventType type)
 {
 	if (type == Widget::TouchEventType::ENDED) {
-		CCLOG("´ò¿ªÕ½¶·¹¦ÄÜ");
+		CCLOG("æ‰“å¼€æˆ˜æ–—åŠŸèƒ½");
 		showDlg("DlgFight");
 	}
 }
-//´ò¿ª²¼Õó¹¦ÄÜ
+//æ‰“å¼€å¸ƒé˜µåŠŸèƒ½
 void DlgMain::onSetting(Ref* sender, Widget::TouchEventType type)
 {
 	if (type == Widget::TouchEventType::ENDED) {
 		this->showPanel(PanelType::Setting);
 	}
 }
-//´ò¿ª¹Ø¿¨¹¦ÄÜ
+//æ‰“å¼€å…³å¡åŠŸèƒ½
 void DlgMain::onChapter(Ref* sender, Widget::TouchEventType type)
 {
 	if (type == Widget::TouchEventType::ENDED) {
-		CCLOG("´ò¿ª¹Ø¿¨¹¦ÄÜ");
+		CCLOG("æ‰“å¼€å…³å¡åŠŸèƒ½");
 	}
 }

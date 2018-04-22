@@ -72,7 +72,7 @@ ValueVector DBManager::executeQuery(std::string sql)
         
         // 第0行（0 ~ c-1），为字段名
         // 第1~r行（c ~ 2*c-1），第一条记录
-        for(int i = 0; i <= r; i++) {
+        for(int i = 1; i <= r; i++) {
             ValueMap map;
             for(int j = 0; j < c; j++) {
 //                CCLOG("%s", table[i * c + j]);
@@ -103,6 +103,8 @@ void DBManager::createTable()
         //createSoilderListInfo();
 
 		createMyObj();
+		createMySetting();
+		createMyEquip();
     }
 }
 
@@ -284,7 +286,7 @@ map<int, ValueMap >* DBManager::getMyObj() {
 		myObj = new map<int, ValueMap >();
 		string sql = "select * from MyObj";
 		ValueVector vv = DBM()->executeQuery(sql);
-		for (int i = 1; i < vv.size(); i++) {
+		for (int i = 0; i < vv.size(); i++) {
 			ValueMap& row = vv.at(i).asValueMap();
 			int x = row["ID"].asInt();
 			int lv = row["Lv"].asInt();
@@ -310,4 +312,82 @@ void DBManager::insertMyObj(int type, int lv) {
 		+ Value(lv).asString() + "')";
 	//    CCLOG("%s", sql.c_str());
 	DBM()->executeUpdate(sql);
+}
+
+void DBManager::createMySetting()
+{
+	string sql = "create table MySetting(ID integer primary key autoincrement, SettingIndex, ObjId, x, y)";
+	executeUpdate(sql);
+}
+
+void DBManager::saveMySetting(int settingIndex, Vector<Node*> nodes) {
+	//清空旧的设置
+	this->cleanMySetting(settingIndex);
+
+	//保存新的设置
+	string sql = "";
+	for (auto it : nodes) {
+		ValueMap& values = *((ValueMap*)(it->getUserData()));
+		sql = sql + "insert into MySetting(SettingIndex, ObjId, x, y) values('" 
+			+ Value(settingIndex).asString() + "', '"
+			+ values["ID"].asString() + "', '"
+			+ Value((int)it->getPositionX()).asString() + "', '"
+			+ Value((int)it->getPositionY()).asString() + "'"
+			+ ");";
+	}
+	executeUpdate(sql);
+}
+
+void DBManager::cleanMySetting(int settingIndex) {
+
+	string sql = "delete from MySetting where SettingIndex = '" + Value(settingIndex).asString() + "'";
+	executeUpdate(sql);
+}
+
+ValueVector DBManager::getMySetting(int settingIndex) {
+	string sql = "select * from MySetting where SettingIndex = '" + Value(settingIndex).asString() + "'";
+	return executeQuery(sql);
+}
+
+
+
+//创建装备表
+void DBManager::createMyEquip() {
+	string sql = "create table MyEquip(ID integer primary key autoincrement, EquipId, IsWear)";
+	executeUpdate(sql);
+}
+
+//获取所有的装备
+ValueVector DBManager::getMyEquips() 
+{
+	string sql = "select * from MyEquip";
+	return executeQuery(sql);
+}
+
+ValueVector DBManager::getMyEquipsById(int myEquipId)
+{
+	char sql[512] = "\0";
+	sprintf(sql, "select * from MyEquip where ID = %d", myEquipId);
+	return executeQuery(sql);
+}
+
+void DBManager::insertMyEquip(int myEquipId) 
+{
+	char sql[512] = "\0";
+	sprintf(sql, "insert into MyEquip(EquipId, IsWear) values( '%d', 'false' )", myEquipId);
+	executeUpdate(sql);
+}
+
+void DBManager::deleteMyEquip(int id)
+{
+	char sql[512] = "\0";
+	sprintf(sql, "delete MyEquip where ID = %d", id);
+	executeUpdate(sql);
+}
+
+void DBManager::updateMyEquip(int id, bool isWear)
+{
+	char sql[512] = "\0";
+	sprintf(sql, "update MyEquip set IsWear = '%s' where ID = %d", Value(isWear).asString().c_str(), id);
+	executeUpdate(sql);
 }

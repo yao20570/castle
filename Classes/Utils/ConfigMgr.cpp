@@ -2,6 +2,8 @@
 
 static const char* PathObjPosition = "Config/ObjPosition.csv";
 static const char* PathObjInfo = "Config/ObjInfo.csv";
+
+static const char* PathEquipInfo = "Config/EquipInfo.csv";
 static const char* PathHeroInfo = "Config/HeroInfo.csv";
 static const char* PathSoilderInfo = "Config/SoilderInfo.csv";
 
@@ -77,6 +79,15 @@ ValueMap* ConfigMgr::getSoilderInfoById(int id) {
 
 ValueMap* ConfigMgr::getObjInfoById(int id) {
 	map<int, ValueMap>* table = loadConfig(PathObjInfo, "ID");
+	auto it = table->find(id);
+	if (it == table->end()) {
+		return nullptr;
+	}
+	return &(it->second);
+}
+
+ValueMap* ConfigMgr::getEquipInfoById(int id) {
+	map<int, ValueMap>* table = loadConfig(PathEquipInfo, "ID");
 	auto it = table->find(id);
 	if (it == table->end()) {
 		return nullptr;

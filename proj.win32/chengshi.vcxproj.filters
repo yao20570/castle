@@ -219,6 +219,12 @@
     <ClCompile Include="..\Classes\Core\StateBase.cpp">
       <Filter>src\Core</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Dlg\Main\MessageTip.cpp">
+      <Filter>src\Dlg\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Dlg\Main\PnlPlayer.cpp">
+      <Filter>src\Dlg\Main</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -409,6 +415,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Core\StateEnum.h">
       <Filter>src\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Dlg\Main\MessageTip.h">
+      <Filter>src\Dlg\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Dlg\Main\PnlPlayer.h">
+      <Filter>src\Dlg\Main</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

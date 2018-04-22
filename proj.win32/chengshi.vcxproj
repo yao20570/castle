@@ -155,6 +155,8 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\Dlg\Fight\AIMgr.cpp" />
     <ClCompile Include="..\Classes\Dlg\Fight\DlgFight.cpp" />
     <ClCompile Include="..\Classes\Dlg\Main\DlgMain.cpp" />
+    <ClCompile Include="..\Classes\Dlg\Main\MessageTip.cpp" />
+    <ClCompile Include="..\Classes\Dlg\Main\PnlPlayer.cpp" />
     <ClCompile Include="..\Classes\Dlg\Main\PnlSetting.cpp" />
     <ClCompile Include="..\Classes\GameState\StatePlay.cpp" />
     <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
@@ -214,6 +216,8 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Dlg\Fight\AIMgr.h" />
     <ClInclude Include="..\Classes\Dlg\Fight\DlgFight.h" />
     <ClInclude Include="..\Classes\Dlg\Main\DlgMain.h" />
+    <ClInclude Include="..\Classes\Dlg\Main\MessageTip.h" />
+    <ClInclude Include="..\Classes\Dlg\Main\PnlPlayer.h" />
     <ClInclude Include="..\Classes\Dlg\Main\PnlSetting.h" />
     <ClInclude Include="..\Classes\GameState\StatePlay.h" />
     <ClInclude Include="..\Classes\HelloWorldScene.h" />

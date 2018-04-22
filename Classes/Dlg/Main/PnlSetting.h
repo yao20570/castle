@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Utils/PublicDefault.h"
+#include "cocos2d.h"
 
 #include "Core/BaseComponent.h"
 #include "Core/BaseComponentDef.h"
@@ -11,7 +11,7 @@ public:
 	PnlSetting();
 	virtual ~PnlSetting();
 	CREATE_COMPONENT_FUNC(PnlSetting);
-	virtual bool init();
+	virtual bool init(DlgBase* dlg);
 	virtual void load();
 
 public:
@@ -20,6 +20,7 @@ public:
 	void updateSettingPanel();
 
 private:
+
 	void selectSetting(int selectId);
 	void selectObj(int selectId);
 	
@@ -28,18 +29,24 @@ private:
 	bool onTouchBegan(Touch* pTouch, Event* pEvent);
 	void onTouchMoved(Touch* pTouch, Event* pEvent);
 	void onTouchEnded(Touch* pTouch, Event* pEvent);
+	void onTouchCancelled(Touch* pTouch, Event* pEvent);
 
+	void onOpenPlayerUI(Ref* sender, Widget::TouchEventType type);
 	void onSelectSetting(Ref* sender, Widget::TouchEventType type);
 	void onSaveSetting(Ref* sender, Widget::TouchEventType type);
 	void onSelectObj(Ref* sender, Widget::TouchEventType type);
+	void onSelectPnlSettingObj(Ref* sender, Widget::TouchEventType type);
+	
 private:
 	ScrollView*	sv_setting;
 	ScrollView* sv_obj;
-	Label*		txt_num;
+	Text*		txt_num;
 	Layout*		pnl_setting;
+	Layout*		pnl_player;
 	Layout*		pnl_drag;
 	Layout*		pnl_drag_container;
 	Layout*		pnls[3];
+	Layout*		pnl_save;
 	int			select_obj_id;
 	int			select_setting_id;
 	vector<int> setting_objs;

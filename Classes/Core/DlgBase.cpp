@@ -77,3 +77,11 @@ void DlgBase::hideDlg(const string& dlgName)
 {
 	_game_state->hideDlg(dlgName);
 }
+
+void DlgBase::showTip(char* tip) {
+	_game_state->showTip(tip);
+}
+
+void DlgBase::showMessage(char* message, std::function<void()>& sureCallback, std::function<void()>& cancelCallback) {
+	_game_state->showMessage(message, sureCallback, cancelCallback);
+}

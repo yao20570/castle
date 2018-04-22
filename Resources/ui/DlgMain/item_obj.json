@@ -11,7 +11,7 @@
   "designWidth": 150,
   "textures": [],
   "texturesPng": [
-    "images/soilder/bowman/bowman_01.png"
+    "GUI/image.png"
   ],
   "version": "1.6.0.0",
   "widgetTree": {
@@ -41,8 +41,8 @@
           "ignoreSize": false,
           "layoutParameter": null,
           "opacity": 255,
-          "positionPercentX": 1.14440915E-07,
-          "positionPercentY": -1.33911769E-07,
+          "positionPercentX": 0,
+          "positionPercentY": 0,
           "positionType": 0,
           "rotation": 0,
           "scaleX": 1,
@@ -101,7 +101,7 @@
           "customProperty": "",
           "flipX": false,
           "flipY": false,
-          "height": 62,
+          "height": 80,
           "ignoreSize": true,
           "layoutParameter": null,
           "opacity": 255,
@@ -118,7 +118,7 @@
           "touchAble": false,
           "useMergedTexture": false,
           "visible": true,
-          "width": 42,
+          "width": 80,
           "x": 75,
           "y": 75,
           "capInsetsHeight": 1,
@@ -127,13 +127,13 @@
           "capInsetsY": 0,
           "fileName": null,
           "fileNameData": {
-            "path": "images/soilder/bowman/bowman_01.png",
+            "path": "GUI/image.png",
             "plistFile": "",
             "resourceType": 0
           },
           "scale9Enable": false,
-          "scale9Height": 62,
-          "scale9Width": 42
+          "scale9Height": 80,
+          "scale9Width": 80
         }
       },
       {

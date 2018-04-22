@@ -9,6 +9,7 @@ using namespace cocos2d::ui;
 
 #include "Utils/ClassFactory.h"
 #include "Core/DlgBase.h"
+#include "Dlg/Main/MessageTip.h"
 
 
 USING_NS_CC;
@@ -17,10 +18,12 @@ USING_NS_CC;
 StateBase::StateBase()
 	:_is_init(false)
 	, _cur_dlg(nullptr)
+	, messageTip(nullptr)
 {
 	_open_dlgs = vector<string>();
 	_layers = vector<Layer*>();
 	_class_factory = new ClassFactory();
+
 }
 
 StateBase::~StateBase()
@@ -51,11 +54,14 @@ bool StateBase::init()
 
 void StateBase::load()
 {
-	for (int i = 1; i < ENUM_STATE_LAYER::CONUT; ++i) {
+	for (int i = 0; i < ENUM_STATE_LAYER::CONUT; ++i) {
 		Layer* lay = Layer::create();
 		addChild(lay, i);
 		_layers.push_back(lay);
 	}
+
+
+	messageTip = new MessageTip(_layers[ENUM_STATE_LAYER::SYSTEM_NOCTICE]);
 }
 
 void StateBase::regDlg()
@@ -126,4 +132,13 @@ void StateBase::hideDlg(const string& dlgName)
 		_cur_dlg = creataeDlg(lastDlgName);
 		addDlg(_cur_dlg);
 	}
+}
+
+
+void StateBase::showTip(char* tip) {
+	this->messageTip->addTip(tip);
+}
+
+void StateBase::showMessage(char* message, std::function<void()> sureCallback, std::function<void()> cancelCallback) {
+
 }

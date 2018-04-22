@@ -23,6 +23,8 @@ public:
 	virtual void showDlg(const string& dlgName);
 	virtual void hideDlg(const string& dlgName);
 
+	virtual void showTip(char* tip);
+	virtual void showMessage(char* message, std::function<void()>& sureCallback, std::function<void()>& cancelCallback);
 protected:
 	bool _is_init;
 	StateBase* _game_state;

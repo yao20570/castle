@@ -2,6 +2,7 @@
 
 #include "BaseComponent.h"
 
+#include "Core/DlgBase.h"
 
 USING_NS_CC;
 
@@ -16,8 +17,9 @@ BaseComponent::~BaseComponent()
 
 }
 
-bool BaseComponent::init()
+bool BaseComponent::init(DlgBase* dlg)
 {
+	this->hostDlg = dlg;
 	//////////////////////////////
 	// 1. super init first
 	//if (!PanZoomLayer::init())

@@ -27,12 +27,25 @@ public:
     void createHeroListInfo();
 
 	void createMyObj();
+	void createMySetting();
+	void createMyEquip();
+	
     
     void loadCsvData(std::string file, ValueVector& data);
 public :
 	map<int, ValueMap >* getMyObj();
 	void updatMyObj(int type, int lv);
 	void insertMyObj(int type, int lv);
+
+	void saveMySetting(int settingIndex, Vector<Node*> nodes);
+	void cleanMySetting(int settingIndex);
+	ValueVector getMySetting(int settingIndex);
+
+	ValueVector getMyEquips();
+	ValueVector getMyEquipsById(int myEquipId);
+	void insertMyEquip(int myEquipId);
+	void deleteMyEquip(int id);
+	void updateMyEquip(int id, bool isWear);
 
 private:
     static DBManager* _g;

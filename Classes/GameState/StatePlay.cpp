@@ -50,4 +50,3 @@ void StatePlay::hideDlg(const string& dlgName)
 {
 	StateBase::hideDlg(dlgName);
 }
-
