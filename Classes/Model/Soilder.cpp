@@ -2,6 +2,7 @@
 #include "UI/BattleScene/AIManager.h"
 #include "Model/BulletSprite.h"
 #include "Dlg/Fight/AIMgr.h"
+#include "Utils/ConfigMgr.h"
 
 Soilder* Soilder::create(int soilderID, AIMgr* ai, int camp)
 {
@@ -33,6 +34,7 @@ bool Soilder::init(int soilderID, AIMgr* ai, int camp)
         return false;
     }
 
+	_objType = 1;
 	_speed = 50;
     _soilderID = soilderID;
     _target = nullptr;
@@ -53,7 +55,7 @@ bool Soilder::init(int soilderID, AIMgr* ai, int camp)
 
 void Soilder::loadData()
 {
-    ValueMap& data = DM()->getSoilderInfo(_soilderID);
+    ValueMap& data = *CFG()->getSoilderInfoById(_soilderID);
     
     _type           = data["Type"].asInt();
     _level          = data["Level"].asInt();
@@ -320,6 +322,14 @@ void Soilder::atk(Armature* arm, MovementEventType eventType, const std::string&
 			else {
 				//_target->hurt(_damage);
 				_target->hurt(_damage);
+			}
+
+			if (_target->_objType == 3) {
+				_healthPoint = 0;
+				_arm->getAnimation()->stop();
+				_ai->setObjDead(this);
+				setVisible(false);
+				_isbroken = true;
 			}
 		}
 	}

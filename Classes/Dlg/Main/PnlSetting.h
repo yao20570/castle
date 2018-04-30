@@ -23,6 +23,8 @@ private:
 
 	void selectSetting(int selectId);
 	void selectObj(int selectId);
+
+	void isObjInSettingPnl(int id);
 	
 private:
 	void addTouch();
@@ -50,5 +52,6 @@ private:
 	int			select_obj_id;
 	int			select_setting_id;
 	vector<int> setting_objs;
+	vector<int> waiting_objs;
 	Vec2		drag_start_pos;
 };

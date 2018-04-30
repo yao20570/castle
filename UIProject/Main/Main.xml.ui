@@ -22,9 +22,7 @@
   <ProjectType>UIProject</ProjectType>
   <ResRelativePath />
   <imageFileList />
-  <imagePngList>
-    <string>GUI/image.png</string>
-  </imagePngList>
+  <imagePngList />
   <JsonSuffix>.json</JsonSuffix>
-  <CurrentUIJson>pnl_player.json</CurrentUIJson>
+  <CurrentUIJson>pnl_setting.json</CurrentUIJson>
 </UIProject>

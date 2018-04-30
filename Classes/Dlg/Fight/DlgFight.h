@@ -28,6 +28,7 @@ public:
 	void setObjPosition();
 	void addHero(int heroId, Vec2 pos, int camp);
 	void addSoilder(int soilderId, Vec2 pos, int camp);
+	void addPlayer(Vec2 pos, int camp);
 
 private:
 	//void onLord(Ref* sender, Widget::TouchEventType type);
@@ -43,5 +44,8 @@ public:
 
 	Layout* _map;
 	BaseSprite* _select_obj;
+
+	Layout* lay_result;
+	Text*	txt_result;
 };
 

@@ -35,12 +35,12 @@ bool Hero::init(int ID, AIMgr* ai, int camp)
 		return false;
 	}
 
+	_objType = 2;
 	_prePosList = list<Vec2>();
 	_isbroken = false;
 	_healthPoint = 0;
 	_dotX = -1;
 	_dotY = -1;
-
 
 	_speed = 50;
 	_radius = 40;
@@ -154,6 +154,16 @@ void Hero::atk(Armature* arm, MovementEventType eventType, const std::string& st
 		if (x >= 0) {
 			_expReward += _damage / 50.0;
 			_target->hurt(_damage);
+
+			if (_target->_objType == 3) {
+				_healthPoint = 0;
+				_arm->getAnimation()->stop();
+				_ai->setObjDead(this);
+				setVisible(false);
+				_isbroken = true;
+
+				
+			}
 		}
 	}
 
@@ -299,6 +309,14 @@ void Hero::update(float dt)
 
 	switch (_state)
 	{
+	case STATE_WIN:// 
+	{
+		int tempDir = GM()->getDir(getPosition(), _target->getPosition());
+
+		setState(STATE_IDLE, _dir);
+
+		break;
+	}
 	case STATE_IDLE:// сфоп
 	{
 		setState(STATE_IDLE, _dir);
@@ -341,7 +359,6 @@ void Hero::update(float dt)
 
 		if (_target == nullptr) {
 			setState(STATE_IDLE, _dir);
-			_target = nullptr;
 		}
 		else if (_target->_isbroken == false && _ai->isWithinShootRange(getPosition(), _target->getPosition(), _shootRange)) {
 
@@ -419,6 +436,9 @@ void Hero::setState(int state, int dir)
 		break;
 	case STATE_ATK:
 		animaCmd = "atk";
+		break;
+	case STATE_WIN:
+		animaCmd = "run";
 		break;
 	}
 

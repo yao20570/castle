@@ -225,6 +225,9 @@
     <ClCompile Include="..\Classes\Dlg\Main\PnlPlayer.cpp">
       <Filter>src\Dlg\Main</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Model\PlayerObj.cpp">
+      <Filter>src\Model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -421,6 +424,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Dlg\Main\PnlPlayer.h">
       <Filter>src\Dlg\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Model\PlayerObj.h">
+      <Filter>src\Model</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

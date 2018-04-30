@@ -29,8 +29,9 @@ bool DBManager::init()
 
 bool DBManager::open()
 {
-    string path = FileUtils::getInstance()->getWritablePath() + "/" + DB_NAME;
-    
+    string pathx = FileUtils::getInstance()->getWritablePath() + "/" + DB_NAME;
+	string path = "db/";
+	path = path + DB_NAME;
     int ret = sqlite3_open(path.c_str(), &_pdb);
     if (ret != SQLITE_OK) {
         const char* errmsg = sqlite3_errmsg(_pdb);
@@ -91,8 +92,9 @@ ValueVector DBManager::executeQuery(std::string sql)
 
 void DBManager::createTable()
 {
-    string path = FileUtils::getInstance()->getWritablePath() + "/" + DB_NAME;
-
+    //string path = FileUtils::getInstance()->getWritablePath() + "/" + DB_NAME;
+	string path = "db/";
+	path = path + DB_NAME;
     if (!FileUtils::getInstance()->isFileExist(path)) {
         CCLOG("create RingDB.db");
         //createPlayerInfo();
@@ -271,7 +273,7 @@ void DBManager::createMyObj()
 	executeUpdate(sql);
 
 	//添加两条默认的士兵，分别是步兵和箭手
-	for (int i = 1; i < 3; ++i) {
+	for (int i = 1; i < 6; ++i) {
 		DBM()->insertMyObj(i, 1);
 	}
 

@@ -172,6 +172,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\Model\MiwuSprite.cpp" />
     <ClCompile Include="..\Classes\Model\NewBuilding.cpp" />
     <ClCompile Include="..\Classes\Model\Notice.cpp" />
+    <ClCompile Include="..\Classes\Model\PlayerObj.cpp" />
     <ClCompile Include="..\Classes\Model\Robot.cpp" />
     <ClCompile Include="..\Classes\Model\Soilder.cpp" />
     <ClCompile Include="..\Classes\Model\TownSprite.cpp" />
@@ -234,6 +235,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Model\MiwuSprite.h" />
     <ClInclude Include="..\Classes\Model\NewBuilding.h" />
     <ClInclude Include="..\Classes\Model\Notice.h" />
+    <ClInclude Include="..\Classes\Model\PlayerObj.h" />
     <ClInclude Include="..\Classes\Model\Robot.h" />
     <ClInclude Include="..\Classes\Model\Soilder.h" />
     <ClInclude Include="..\Classes\Model\TownSprite.h" />

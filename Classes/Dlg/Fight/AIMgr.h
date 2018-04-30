@@ -25,6 +25,7 @@ public:
 
 	bool isWithinShootRange(Vec2 src, Vec2 des, int range);
 
+	void addObj(BaseSprite* hero, int type);
 	void addHero(Hero* hero, int type);
 	void addSoilder(Soilder* hero, int type);
 	void delHero(Hero* hero, int type);
@@ -38,10 +39,12 @@ public:
 	void setObjPos(BaseSprite* obj, Vec2 pos);
 	bool isCanSet(BaseSprite* obj, Vec2& pos, Vec2& dot);
 	void setObjDead(BaseSprite* obj);
+
+	bool isOver();
+	bool isWin();
 public:
 	set<BaseSprite*> _objSelf;
 	set<BaseSprite*> _objEnemy;
-
 
 	BaseSprite* _select_obj;
 	BaseSprite* dotMap[48 * 32];

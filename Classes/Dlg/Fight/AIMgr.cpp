@@ -4,6 +4,7 @@
 #include "Model/BaseSprite.h"
 #include "Model/Hero.h"
 #include "Model/Soilder.h"
+#include "Model/PlayerObj.h"
 #include "Model/Building.h"
 
 static Vec2 dir[8] = { Vec2(0, 1)
@@ -143,6 +144,15 @@ Vec2 AIMgr::getNextPos(Vec2 src, Vec2 des, bool isHero)
 		}
 	}
 	return pos;
+}
+
+void AIMgr::addObj(BaseSprite* obj, int type)
+{
+	switch (type)
+	{
+	case 1: _objSelf.insert(obj);	 break;
+	case 2: _objEnemy.insert(obj); break;
+	}
 }
 
 void AIMgr::addHero(Hero* hero, int type)
@@ -337,5 +347,37 @@ void AIMgr::setObjDead(BaseSprite* obj) {
 	obj->_dotY = 1000000;
 }
 
+bool AIMgr::isOver() {
+	bool over = true;
+	for (auto it : _objSelf) {
+		if (it->_objType !=3 && !it->isDeath()) {
+			return false;
+		}
+	}
+	for (auto it : _objEnemy) {
+		if (it->_objType != 3 && !it->isDeath()) {
+			return false;
+		}
+	}
+	return true;
+}
+
+bool AIMgr::isWin() {
+	bool over = true;
+	int my = 0;
+	int en = 0;
+	for (auto it : _objSelf) {
+		if (it->_objType == 3) {
+			my = ((PlayerObj*)it)->_healthPoint;
+		}
+	}
+	for (auto it : _objEnemy) {
+		if (it->_objType == 3) {
+			en = ((PlayerObj*)it)->_healthPoint;
+		}
+	}
+	
+	return my > en;
+}
 
 

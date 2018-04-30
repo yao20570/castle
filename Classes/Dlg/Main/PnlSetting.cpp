@@ -20,6 +20,7 @@ PnlSetting::PnlSetting()
 	:select_obj_id(InvalidSelectId)
 	, select_setting_id(-1)
 	, setting_objs()
+	, waiting_objs()
 	, drag_start_pos()
 {
 	memset(this->pnls, 0, 3 * sizeof(BaseSprite*));
@@ -65,7 +66,6 @@ void PnlSetting::load()
 		this->pnls[i]->addTouchEventListener(CC_CALLBACK_2(PnlSetting::onSelectSetting, this));
 		this->pnls[i]->setTag(i);
 	}
-	this->selectSetting(0);
 
 
 	this->pnl_save = (Layout*)(lay_root->getChildByName("pnl_save"));
@@ -89,19 +89,43 @@ void PnlSetting::load()
 	this->pnl_drag->setVisible(false);
 
 	this->addTouch();
+
+
+	this->selectSetting(0);
 }
 
 void PnlSetting::updateUI()
 {
-	this->updateSelectList();
 	this->updateSettingPanel();
+	this->updateSelectList();
 }
 
 void PnlSetting::updateSelectList() {
 
 	int i = 0;
 	const map<int, ValueMap>* myObjs = DBM()->getMyObj();
+
+	Vector<Node*> nodes = this->pnl_setting->getChildren();
+	
+
+	map<int, ValueMap> filterObjs;
 	for (auto& it : *myObjs) {
+		auto row = it.second;
+
+		bool isUsed = false;
+		for (auto it : nodes) {
+			ValueMap& values = *((ValueMap*)(it->getUserData()));
+			if (values["ID"].asInt() == row["ID"].asInt()) {
+				isUsed = true;
+			}
+		}
+		if (isUsed == false) {
+			filterObjs.insert(make_pair(row["ID"].asInt(), row));
+		}
+	}
+
+
+	for (auto& it : filterObjs) {
 		//数据
 		auto row = it.second;
 		auto& cfg = *(CFG()->getObjInfoById(row["ID"].asInt()));
@@ -114,10 +138,11 @@ void PnlSetting::updateSelectList() {
 			lay_root->setSwallowTouches(false);
 			lay_root->setPositionX(i * 150);
 			lay_root->setTag(i);
-			lay_root->setUserData((void*)(cfg["ID"].asInt()));
 			lay_root->addTouchEventListener(CC_CALLBACK_2(PnlSetting::onSelectObj, this));
 			this->sv_obj->addChild(lay_root);
 		}
+		lay_root->setVisible(true);
+		lay_root->setUserData((void*)(cfg["ID"].asInt()));
 
 		ImageView* img_icon = (ImageView*)Helper::seekWidgetByName(lay_root, "img_icon");
 		Text* txt_name = (Text*)Helper::seekWidgetByName(lay_root, "txt_name");
@@ -129,6 +154,11 @@ void PnlSetting::updateSelectList() {
 		txt_name->setString(cfg["Name"].asString());
 
 		++i;
+	}
+
+	Vector<Node*> svNodes = this->sv_obj->getChildren();
+	for (int i = filterObjs.size(); i < svNodes.size(); ++i) {
+		svNodes.at(i)->setVisible(false);
 	}
 
 	this->sv_obj->setInnerContainerSize(Size(i * 150, 150));
@@ -169,6 +199,10 @@ void PnlSetting::updateSettingPanel() {
 	this->txt_num->setString(v.asString() + "/20");
 }
 
+void PnlSetting::isObjInSettingPnl(int id) {
+
+}
+
 void PnlSetting::selectSetting(int selectId)
 {
 	//相同返回
@@ -185,8 +219,8 @@ void PnlSetting::selectSetting(int selectId)
 	this->select_setting_id = selectId;
 	this->pnls[this->select_setting_id]->setBackGroundColor(Color3B(80, 190, 80));
 
-	//更新设置面板
-	this->updateSettingPanel();
+	//更新UI
+	this->updateUI();
 }
 
 void PnlSetting::selectObj(int selectId)
@@ -259,10 +293,17 @@ void PnlSetting::onTouchEnded(Touch* pTouch, Event* pEvent) {
 		isCanSetting = false;
 	}
 
+	Vec2 playerPos = this->pnl_player->getPosition();
+	Size playerSize = this->pnl_player->getSize();
+	Rect plyerRect(playerPos.x - 50, playerPos.y - 50, playerSize.width, playerSize.height);
+	if (plyerRect.containsPoint(pos)) {
+		//在可放置范围
+		isCanSetting = false;
+	}
+
 	int unitNum = 0;
 
-	
-		//是否点在其他对象身上
+	//是否点在其他对象身上
 	Vector<Node*> nodes = this->pnl_setting->getChildren();
 	for (Node* it : nodes) {
 		ValueMap* cfg = (ValueMap*)it->getUserData();
@@ -271,8 +312,7 @@ void PnlSetting::onTouchEnded(Touch* pTouch, Event* pEvent) {
 		if (it->getPosition().getDistance(pos) < 40) {
 			isCanSetting = false;
 		}
-	}
-	
+	}	
 
 	if (isCanSetting) {
 		//放置
@@ -295,6 +335,8 @@ void PnlSetting::onTouchEnded(Touch* pTouch, Event* pEvent) {
 			this->pnl_setting->addChild(settingObj);
 			this->pnl_drag->setVisible(false);
 			isCanSetting = true;
+
+			this->updateSelectList();
 
 			unitNum += cfg["Unit"].asInt();
 		}
@@ -352,15 +394,15 @@ void PnlSetting::onSelectObj(Ref* sender, Widget::TouchEventType type)
 		ValueMap* selectCfg = CFG()->getObjInfoById(id);
 
 
-		Vector<Node*> nodes = this->pnl_setting->getChildren();
-		for (auto it : nodes) {
-			ValueMap* nodeCfg = (ValueMap*)it->getUserData();
-			if (nodeCfg == selectCfg && (*selectCfg)["ObjType"].asInt() == 2) {
+		//Vector<Node*> nodes = this->pnl_setting->getChildren();
+		//for (auto it : nodes) {
+		//	ValueMap* nodeCfg = (ValueMap*)it->getUserData();
+		//	if (nodeCfg == selectCfg && (*selectCfg)["ObjType"].asInt() == 2) {
 
-				//武将类型并且已放置
-				return;
-			}
-		}
+		//		//武将类型并且已放置
+		//		return;
+		//	}
+		//}
 
 		//选中列表里的武将
 		this->selectObj(id);
