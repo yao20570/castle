@@ -282,21 +282,32 @@ void DBManager::createMyObj()
 	DBM()->insertMyObj(6, 1);
 }
 
-static map<int, ValueMap >* myObj = nullptr;
+static map<int, ValueMap >* myObj = new map<int, ValueMap >();
 map<int, ValueMap >* DBManager::getMyObj() {
-	if (!myObj) {
-		myObj = new map<int, ValueMap >();
-		string sql = "select * from MyObj";
-		ValueVector vv = DBM()->executeQuery(sql);
-		for (int i = 0; i < vv.size(); i++) {
-			ValueMap& row = vv.at(i).asValueMap();
-			int x = row["ID"].asInt();
-			int lv = row["Lv"].asInt();
-			(*myObj)[row["ID"].asInt()] = row;
-		}
+	
+	myObj->clear();
+
+	string sql = "select * from MyObj";
+	ValueVector vv = DBM()->executeQuery(sql);
+
+	for (int i = 0; i < vv.size(); i++) {
+		ValueMap& row = vv.at(i).asValueMap();
+		int x = row["ID"].asInt();
+		int lv = row["Lv"].asInt();
+		(*myObj)[row["ID"].asInt()] = row;
 	}
 
 	return myObj;
+}
+
+ValueMap* DBManager::getMyObjById(int id) {
+
+	this->getMyObj();
+	auto& it = myObj->find(id);
+	if (it != myObj->end()) {
+		return &(it->second);
+	}
+	return nullptr;
 }
 
 void DBManager::updatMyObj(int type, int lv) {

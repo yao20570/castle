@@ -13,16 +13,22 @@
     <string>pnl_player.json</string>
     <string>message_box.json</string>
     <string>message_tip.json</string>
+    <string>pnl_hero.json</string>
+    <string>pnl_hero_item.json</string>
   </JsonList>
   <CanvasSize>
-    <Width>480</Width>
-    <Height>80</Height>
+    <Width>200</Width>
+    <Height>200</Height>
   </CanvasSize>
   <filePath>F:\Dev\proj\castle\UIProject\Main\Main.xml.ui</filePath>
   <ProjectType>UIProject</ProjectType>
   <ResRelativePath />
   <imageFileList />
-  <imagePngList />
+  <imagePngList>
+    <string>GUI/image.png</string>
+    <string>GUI/image.png</string>
+    <string>GUI/image.png</string>
+  </imagePngList>
   <JsonSuffix>.json</JsonSuffix>
-  <CurrentUIJson>pnl_setting.json</CurrentUIJson>
+  <CurrentUIJson>pnl_hero.json</CurrentUIJson>
 </UIProject>

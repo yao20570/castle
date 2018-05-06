@@ -1,4 +1,4 @@
-HeroID,Type,Level,HealthPoint,Damage,AttackSpeed,ShootRange,HealthPointUP,DamageUP,ExpRequire,BSkillID,ZSkillID,ZZSkillID
-1,1,1,6000,180,1,70,500,20,100,30001,30002,30003
-2,1,1,6000,180,1,70,500,20,100,30001,30002,30003
-3,1,1,6000,180,1,70,500,20,100,30001,30002,30003
+HeroID,Type,tongyu,wuli,zhili,HealthPoint,Damage,Def,AttackSpeed,Speed,ShootRange,HealthPointUP,DamageUP,DefUP,Skill1,Skill2,Skill3
+1,1,40,100,50,6000,180,50,1,40,70,500,20,10,技能1,技能2,技能3
+2,1,50,95,60,6000,180,50,1,40,70,500,20,10,技能1,技能2,技能3
+3,1,10,99,80,6000,180,50,1,40,70,500,20,10,技能1,技能2,技能3

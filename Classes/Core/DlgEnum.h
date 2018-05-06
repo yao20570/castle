@@ -8,4 +8,5 @@ enum ENUM_DLG_TYPE {
 enum PanelType {
 	Setting = 0,	//主界面->设置阵型的
 	Player = 1,	//主界面->设置阵型的
+	HeroPnl = 2,	//主界面->武将
 };

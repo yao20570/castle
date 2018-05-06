@@ -47,5 +47,7 @@ public:
 
 	Layout* lay_result;
 	Text*	txt_result;
+
+	int _round;
 };
 

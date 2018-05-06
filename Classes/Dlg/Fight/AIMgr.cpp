@@ -120,8 +120,7 @@ BaseSprite* AIMgr::getTargetFriend(Vec2 pos, int range)
 	return nullptr;
 }
 
-
-bool AIMgr::isWithinShootRange(cocos2d::Vec2 src, cocos2d::Vec2 des, int range)
+bool AIMgr::isWithinShootRange(Vec2 src, Vec2 des, int range)
 {
 	int dis = src.getDistance(des);
 	return dis <= range;
@@ -233,6 +232,11 @@ void AIMgr::start() {
 	for (auto it : _objEnemy) {
 		it->setState(STATE_RUN, it->_dir);
 	}
+}
+
+void AIMgr::close() {
+	_objSelf.clear();
+	_objEnemy.clear();
 }
 
 void AIMgr::setObjPos(BaseSprite* obj, Vec2 pos) {
@@ -378,6 +382,19 @@ bool AIMgr::isWin() {
 	}
 	
 	return my > en;
+}
+
+void AIMgr::reset() {
+	for (auto it : _objSelf) {
+		it->removeFromParent();
+	}
+	for (auto it : _objEnemy) {
+		it->removeFromParent();
+	}
+	_objSelf.clear();
+	_objEnemy.clear();
+	_select_obj = nullptr;
+	memset(dotMap, 0, 32 * 48 * sizeof(BaseSprite*));
 }
 
 

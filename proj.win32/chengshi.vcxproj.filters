@@ -228,6 +228,9 @@
     <ClCompile Include="..\Classes\Model\PlayerObj.cpp">
       <Filter>src\Model</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Dlg\Main\PnlHero.cpp">
+      <Filter>src\Dlg\Main</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -427,6 +430,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Model\PlayerObj.h">
       <Filter>src\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Dlg\Main\PnlHero.h">
+      <Filter>src\Dlg\Main</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

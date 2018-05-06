@@ -1,5 +1,5 @@
-ID,Type,Level,HealthPoint,Damage,AttackSpeed,ShootRange,LabLevelRequire,GoldRequire
-1,1,1,500,50,1,50,2,1000
-2,2,1,400,88,1,180,2,1200
-3,3,1,250,200,1,200,2,1500
-4,4,1,1000,32,1,50,2,2000
+ID,Type,Level,HealthPoint,Damage,AttackSpeed,ShootRange,Def,HealthPointUP,DamageUP,DefUP,Skill1,Skill2,Skill3
+1,1,1,500,50,1,50,20,5,6,7,坚盾,无,无
+2,2,1,400,88,1,180,10,6,7,8,火箭,无,无
+3,3,1,250,200,1,200,10,9,9,9,元素弹,无,无
+4,4,1,1000,32,1,50,15,12,12,12,强壮,无,无

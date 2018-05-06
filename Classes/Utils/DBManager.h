@@ -34,6 +34,7 @@ public:
     void loadCsvData(std::string file, ValueVector& data);
 public :
 	map<int, ValueMap >* getMyObj();
+	ValueMap* getMyObjById(int id);
 	void updatMyObj(int type, int lv);
 	void insertMyObj(int type, int lv);
 

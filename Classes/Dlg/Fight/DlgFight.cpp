@@ -29,6 +29,7 @@ DlgFight::DlgFight()
 	:_objPosCfg(nullptr)
 	, _map(nullptr)
 	, _select_obj(nullptr)
+	, _round(0)
 {
 	_dlg_type = ENUM_DLG_TYPE::Full;
 	_dlg_name = "DlgFight";
@@ -64,12 +65,21 @@ void DlgFight::update(float dt) {
 	_ai->update(dt);
 
 	if (_ai->isOver()) {
-		this->lay_result->setVisible(true);
-		if (_ai->isWin()) {
-			this->txt_result->setString("Win");
+		
+		if (_round > 1) {
+			this->lay_result->setVisible(true);
+			if (_ai->isWin()) {
+				this->txt_result->setString("Win");
+			}
+			else {
+				this->txt_result->setString("lose");
+			}
 		}
 		else {
-			this->txt_result->setString("lose");
+			++_round;
+			_ai->reset();
+			setObjPosition();
+			_ai->start();
 		}
 	}
 }
@@ -308,6 +318,7 @@ void DlgFight::showDlg(const string& dlgName)
 void DlgFight::hideDlg(const string& dlgName)
 {
 	DlgBase::hideDlg(dlgName);
+	_ai->close();
 }
 
 void DlgFight::onStart(Ref* sender, Widget::TouchEventType type)

@@ -8,6 +8,7 @@ using namespace cocos2d::ui;
 #include "Core/BaseComponent.h"
 #include "DLG/Main/PnlSetting.h"
 #include "DLG/Main/PnlPlayer.h"
+#include "DLG/Main/PnlHero.h"
 
 USING_NS_CC;
 
@@ -112,6 +113,9 @@ BaseComponent* DlgMain::getPanel(PanelType type) {
 			break;
 		case PanelType::Player:
 			comp = PnlPlayer::create(this);
+			break; 
+		case PanelType::HeroPnl:
+			comp = PnlHero::create(this);
 			break;
 		}
 		_pnls[type] = comp;
@@ -138,7 +142,7 @@ void DlgMain::hideDlg(const string& dlgName)
 void DlgMain::onLord(Ref* sender, Widget::TouchEventType type)
 {
 	if (type == Widget::TouchEventType::ENDED) {
-		this->showPanel(PanelType::Player);
+		this->showPanel(PanelType::HeroPnl);
 	}
 }
 //打开搜索功能

@@ -36,12 +36,14 @@ public:
 	BaseSprite* getSelectObj() { return _select_obj; }
 
 	void start();
+	void close();
 	void setObjPos(BaseSprite* obj, Vec2 pos);
 	bool isCanSet(BaseSprite* obj, Vec2& pos, Vec2& dot);
 	void setObjDead(BaseSprite* obj);
 
 	bool isOver();
 	bool isWin();
+	void reset();
 public:
 	set<BaseSprite*> _objSelf;
 	set<BaseSprite*> _objEnemy;
