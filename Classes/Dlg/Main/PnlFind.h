@@ -29,9 +29,11 @@ public:
 	void setGoldItemInfo(int index, int goldNum);
 	void setDiamondItemInfo(int index, int diamondNum);
 
+
 public:
 	virtual void updateUI();
-	
+	void updateGetPanel(int id);
+	void onClose(Ref* sender, Widget::TouchEventType type);
 	void onGoldFind(Ref* sender, Widget::TouchEventType type);
 	void onDiamondFind(Ref* sender, Widget::TouchEventType type);
 private:
@@ -44,6 +46,10 @@ private:
 	Layout*			pnl_gold_find;
 	Layout*			pnl_diamond_find;
 
+	Layout*			pnl_get;
 	int				findCount = 0;
+
+	ImageView*		img_half;
+	Text*			txt_name;
 	
 };

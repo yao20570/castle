@@ -12,18 +12,21 @@ USING_NS_CC;
 void setTextColor(Text* text, int quality) {
 	switch (quality) {
 	case 1:
-		text->setTextColor(Color4B(00, 128, 00, 255));
+		text->setTextColor(Color4B(255, 255, 255, 255));
 		break;
 	case 2:
-		text->setTextColor(Color4B(0, 0, 255, 255));
+		text->setTextColor(Color4B(00, 128, 00, 255));
 		break;
 	case 3:
-		text->setTextColor(Color4B(128, 0, 128, 255));
+		text->setTextColor(Color4B(0, 0, 255, 255));
 		break;
 	case 4:
-		text->setTextColor(Color4B(255, 0, 165, 255));
+		text->setTextColor(Color4B(128, 0, 128, 255));
 		break;
 	case 5:
+		text->setTextColor(Color4B(255, 165, 0, 255));
+		break;
+	case 6:
 		text->setTextColor(Color4B(255, 0, 0, 255));
 		break;
 	}
@@ -65,6 +68,13 @@ void PnlFind::load()
 	this->addChild(lay_root);
 
 	this->pnl_reward_container = (Layout*)Helper::seekWidgetByName(lay_root, "pnl_reward_container");
+	this->pnl_get = (Layout*)Helper::seekWidgetByName(lay_root, "pnl_get");
+	this->pnl_get->setVisible(false);
+	Layout* pnl_btn_ok = (Layout*)Helper::seekWidgetByName(this->pnl_get, "pnl_btn_ok");
+	pnl_btn_ok->addTouchEventListener(CC_CALLBACK_2(PnlFind::onClose, this));
+
+	this->img_half = (ImageView*)Helper::seekWidgetByName(this->pnl_get, "img_half");
+	this->txt_name = (Text*)Helper::seekWidgetByName(this->pnl_get, "txt_name");
 
 	this->pnl_gold_find = (Layout*)Helper::seekWidgetByName(lay_root, "pnl_gold_find");
 	this->pnl_gold_find->addTouchEventListener(CC_CALLBACK_2(PnlFind::onGoldFind, this));
@@ -87,9 +97,24 @@ void PnlFind::setVisible(bool b) {
 
 }
 
+void PnlFind::onClose(Ref* sender, Widget::TouchEventType type) {
+	this->pnl_get->setVisible(false);
+}
+
 void PnlFind::updateUI()
 {
 
+}
+
+void PnlFind::updateGetPanel(int id) {
+	char str[128] = "\0";
+	ValueMap& myObj = *(DBM()->getMyObjById(id));
+	
+	//基本信息
+	ValueMap& objBaseCfg = *(CFG()->getObjInfoById(id));
+	this->img_half->loadTexture(objBaseCfg["Icon"].asString());
+	this->txt_name->setString(objBaseCfg["Name"].asString());	
+	setTextColor(this->txt_name, objBaseCfg["Quality"].asInt());
 }
 
 void PnlFind::onGoldFind(Ref* sender, Widget::TouchEventType type) {
@@ -125,19 +150,6 @@ void PnlFind::onGoldFind(Ref* sender, Widget::TouchEventType type) {
 	}
 	break;
 	case 1: 
-	{
-		//兵
-		map<int, ValueMap>* table = CFG()->loadConfig("Config/ObjInfo.csv", "ID");
-		int num = rand() % table->size() + 1;
-
-		ValueMap* cfgPtr = CFG()->getObjInfoById(num);
-		ValueMap& cfg = *cfgPtr;
-		if (cfgPtr) {
-			DBM()->insertMyObj(cfg["ID"].asInt(), 1);
-			this->setSoilderItemInfo(this->findCount, cfgPtr);
-		}
-	}
-	break;
 	case 2:
 	{
 		//武将
@@ -149,28 +161,34 @@ void PnlFind::onGoldFind(Ref* sender, Widget::TouchEventType type) {
 
 			ValueMap* cfgPtr = CFG()->getObjInfoById(num);
 			ValueMap& cfg = *cfgPtr;
-			if (cfg["Quality"].asInt() == 5) {
+			if (cfg["Quality"].asInt() >5) {
 				continue;
 			}
 
 			if (cfgPtr) {
 				DBM()->insertMyObj(cfg["ID"].asInt(), 1);
 				this->setHeroItemInfo(this->findCount, cfgPtr);
+				if (cfg["ObjType"].asInt() == 2) {
+					this->pnl_get->setVisible(true);
+					this->updateGetPanel(cfg["ID"].asInt());
+				}
+				break;
 			}
 		}
+
 	}
 	break;
 	case 3:
 	{
 		//金币
-		int num = rand() % 4000;
+		int num = rand() % 400;
 		setGoldItemInfo(this->findCount, num);
 	}
 	break;
 	case 4:
 	{
 		//钻石
-		int num = rand() % 1000;
+		int num = rand() % 100;
 		setDiamondItemInfo(this->findCount, num);
 	}
 	break;
@@ -229,54 +247,48 @@ void PnlFind::onDiamondFind(Ref* sender, Widget::TouchEventType type) {
 	}
 	break;
 	case 1:
-	{
-		//兵
-		map<int, ValueMap>* table = CFG()->loadConfig("Config/ObjInfo.csv", "ID");
-		int num = rand() % table->size() + 1;
-
-		ValueMap* cfgPtr = CFG()->getObjInfoById(num);
-		ValueMap& cfg = *cfgPtr;
-		if (cfgPtr) {
-			DBM()->insertMyObj(cfg["ID"].asInt(), 1);
-			this->setSoilderItemInfo(this->findCount, cfgPtr);
-		}
-	}
-	break;
 	case 2:
 	{
 		//武将
 		map<int, ValueMap>* table = CFG()->loadConfig("Config/ObjInfo.csv", "ID");
-		int num = rand() % table->size() + 1;
 
-		ValueMap* cfgPtr = CFG()->getObjInfoById(num);
-		ValueMap& cfg = *cfgPtr;
 		
-		if (cfgPtr) {
-			DBM()->insertMyObj(cfg["ID"].asInt(), 1);
-			this->setHeroItemInfo(this->findCount, cfgPtr);
-		}		
+			int num = rand() % table->size() + 1;
+
+			ValueMap* cfgPtr = CFG()->getObjInfoById(num);
+			ValueMap& cfg = *cfgPtr;
+			
+
+			if (cfgPtr) {
+				DBM()->insertMyObj(cfg["ID"].asInt(), 1);
+				this->setHeroItemInfo(this->findCount, cfgPtr);
+				if (cfg["ObjType"].asInt() == 2) {
+					this->pnl_get->setVisible(true);
+					this->updateGetPanel(cfg["ID"].asInt());
+				}
+				break;
+			}
+		
+
 	}
 	break;
 	case 3:
 	{
 		//金币
-		int num = rand() % 400;
+		int num = rand() % 4000;
 		setGoldItemInfo(this->findCount, num);
 	}
 	break;
 	case 4:
 	{
 		//钻石
-		int num = rand() % 100;
+		int num = rand() % 1010;
 		setDiamondItemInfo(this->findCount, num);
 	}
 	break;
 	default:
 		break;
 	}
-
-
-
 }
 
 void PnlFind::setEquipItemInfo(int index, ValueMap* equipCfg) {
