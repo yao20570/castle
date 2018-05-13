@@ -9,6 +9,7 @@ using namespace cocos2d::ui;
 #include "DLG/Main/PnlSetting.h"
 #include "DLG/Main/PnlPlayer.h"
 #include "DLG/Main/PnlHero.h"
+#include "DLG/Main/PnlFind.h"
 
 USING_NS_CC;
 
@@ -117,6 +118,12 @@ BaseComponent* DlgMain::getPanel(PanelType type) {
 		case PanelType::HeroPnl:
 			comp = PnlHero::create(this);
 			break;
+		case PanelType::Find:
+			comp = PnlFind::create(this);
+			break;
+		case PanelType::Chater:
+			//comp = PnlHero::create(this);
+			break;
 		}
 		_pnls[type] = comp;
 		this->_lay_mid->addChild(comp);
@@ -151,21 +158,24 @@ void DlgMain::onSearch(Ref* sender, Widget::TouchEventType type)
 	if (type == Widget::TouchEventType::ENDED) {
 		CCLOG("打开搜索功能");
 		
-		int num = rand() % 20;
+		
+		this->showPanel(PanelType::Find);
 
-		ValueMap* cfgPtr = CFG()->getEquipInfoById(num);
-		ValueMap& cfg = *cfgPtr;
+		//int num = rand() % 20;
 
-		if (cfgPtr) {
-			char str[256] = "\0";
-			sprintf(str, "搜索获得装备 - %s", cfg["Name"].asString().c_str());
-			this->showTip(str);
+		//ValueMap* cfgPtr = CFG()->getEquipInfoById(num);
+		//ValueMap& cfg = *cfgPtr;
 
-			DBM()->insertMyEquip(cfg["ID"].asInt());
-		}
-		else {
-			this->showTip("搜索失败");
-		}
+		//if (cfgPtr) {
+		//	char str[256] = "\0";
+		//	sprintf(str, "搜索获得装备 - %s", cfg["Name"].asString().c_str());
+		//	this->showTip(str);
+
+		//	DBM()->insertMyEquip(cfg["ID"].asInt());
+		//}
+		//else {
+		//	this->showTip("搜索失败");
+		//}
 
 	}
 }

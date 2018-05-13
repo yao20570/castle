@@ -15,20 +15,18 @@
     <string>message_tip.json</string>
     <string>pnl_hero.json</string>
     <string>pnl_hero_item.json</string>
+    <string>pnl_find.json</string>
+    <string>pnl_find_item.json</string>
   </JsonList>
   <CanvasSize>
-    <Width>200</Width>
-    <Height>200</Height>
+    <Width>150</Width>
+    <Height>180</Height>
   </CanvasSize>
   <filePath>F:\Dev\proj\castle\UIProject\Main\Main.xml.ui</filePath>
   <ProjectType>UIProject</ProjectType>
   <ResRelativePath />
   <imageFileList />
-  <imagePngList>
-    <string>GUI/image.png</string>
-    <string>GUI/image.png</string>
-    <string>GUI/image.png</string>
-  </imagePngList>
+  <imagePngList />
   <JsonSuffix>.json</JsonSuffix>
-  <CurrentUIJson>pnl_hero.json</CurrentUIJson>
+  <CurrentUIJson />
 </UIProject>

@@ -260,7 +260,7 @@ void PnlHero::onOk(Ref* sender, Widget::TouchEventType type) {
 
 	ValueMap& myObj = *(DBM()->getMyObjById(this->obj_id));
 	DBM()->updatMyObj(this->obj_id, myObj["Lv"].asInt() + 1);
-	this->updateUpgradePanel(this->obj_id, true);
+	this->updateUpgradePanel(this->obj_id, false);
 }
 
 void PnlHero::onCancel(Ref* sender, Widget::TouchEventType type) {

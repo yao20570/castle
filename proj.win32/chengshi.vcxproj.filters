@@ -231,6 +231,9 @@
     <ClCompile Include="..\Classes\Dlg\Main\PnlHero.cpp">
       <Filter>src\Dlg\Main</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Dlg\Main\PnlFind.cpp">
+      <Filter>src\Dlg\Main</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -432,6 +435,9 @@
       <Filter>src\Model</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Dlg\Main\PnlHero.h">
+      <Filter>src\Dlg\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Dlg\Main\PnlFind.h">
       <Filter>src\Dlg\Main</Filter>
     </ClInclude>
   </ItemGroup>
