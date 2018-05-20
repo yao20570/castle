@@ -29,7 +29,7 @@ bool DBManager::init()
 
 bool DBManager::open()
 {
-    string pathx = FileUtils::getInstance()->getWritablePath() + "/" + DB_NAME;
+    //string path = FileUtils::getInstance()->getWritablePath() + "/" + DB_NAME;
 	string path = "db/";
 	path = path + DB_NAME;
     int ret = sqlite3_open(path.c_str(), &_pdb);
@@ -107,6 +107,7 @@ void DBManager::createTable()
 		createMyObj();
 		createMySetting();
 		createMyEquip();
+		createMyMission();
     }
 }
 
@@ -370,6 +371,16 @@ void DBManager::createMyEquip() {
 	executeUpdate(sql);
 }
 
+//创建关卡表
+void DBManager::createMyMission() {
+	string sql = "create table MyMission(ID integer primary key MissionMain, MissionSub)";
+	executeUpdate(sql);
+
+	sql = "insert into MyMission(MissionMain, MissionSub) values( '0', '0' )";
+	executeUpdate(sql);
+}
+
+
 //获取所有的装备
 ValueVector DBManager::getMyEquips() 
 {
@@ -402,5 +413,19 @@ void DBManager::updateMyEquip(int id, bool isWear)
 {
 	char sql[512] = "\0";
 	sprintf(sql, "update MyEquip set IsWear = '%s' where ID = %d", Value(isWear).asString().c_str(), id);
+	executeUpdate(sql);
+}
+
+ValueVector DBManager::getMyMission()
+{
+	char sql[512] = "\0";
+	sprintf(sql, "select * from MyMission where ID = 1 ");
+	return executeQuery(sql);
+}
+
+void DBManager::updateMyMission(int MissionMain, int MissionSub) 
+{
+	char sql[512] = "\0";
+	sprintf(sql, "update MyMission set MissionMain = '%d', MissionSub = '%d' where ID = 1", MissionMain, MissionSub);
 	executeUpdate(sql);
 }

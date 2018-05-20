@@ -6,6 +6,9 @@ static const char* PathObjInfo = "Config/ObjInfo.csv";
 static const char* PathEquipInfo = "Config/EquipInfo.csv";
 static const char* PathHeroInfo = "Config/HeroInfo.csv";
 static const char* PathSoilderInfo = "Config/SoilderInfo.csv";
+static const char* PathMissionMain = "Config/MissionMain.csv";
+static const char* PathMissionSub = "Config/MissionSub.csv";
+static const char* PathMissionObj = "Config/MissionObj.csv";
 
 ConfigMgr* ConfigMgr::_g = nullptr;
 ConfigMgr* ConfigMgr::getInstance()
@@ -88,6 +91,33 @@ ValueMap* ConfigMgr::getObjInfoById(int id) {
 
 ValueMap* ConfigMgr::getEquipInfoById(int id) {
 	map<int, ValueMap>* table = loadConfig(PathEquipInfo, "ID");
+	auto it = table->find(id);
+	if (it == table->end()) {
+		return nullptr;
+	}
+	return &(it->second);
+}
+
+ValueMap* ConfigMgr::getMissionMainById(int id) {
+	map<int, ValueMap>* table = loadConfig(PathMissionMain, "ID");
+	auto it = table->find(id);
+	if (it == table->end()) {
+		return nullptr;
+	}
+	return &(it->second);
+}
+
+ValueMap* ConfigMgr::getMissionSumById(int id) {
+	map<int, ValueMap>* table = loadConfig(PathMissionSub, "ID");
+	auto it = table->find(id);
+	if (it == table->end()) {
+		return nullptr;
+	}
+	return &(it->second);
+}
+
+ValueMap* ConfigMgr::getMissionObjById(int id) {
+	map<int, ValueMap>* table = loadConfig(PathMissionObj, "ID");
 	auto it = table->find(id);
 	if (it == table->end()) {
 		return nullptr;

@@ -8,6 +8,7 @@ using namespace cocos2d::ui;
 #include "Core/StateEnum.h"
 #include "Dlg/Main/DlgMain.h"
 #include "Dlg/Fight/DlgFight.h"
+#include "Dlg/Fight/DlgMission.h"
 
 #include "Utils/ClassFactory.h"
 
@@ -39,6 +40,7 @@ void StatePlay::regDlg()
 {
 	_class_factory->regClass("DlgMain", new ClassCreator<DlgMain>());
 	_class_factory->regClass("DlgFight", new ClassCreator<DlgFight>());
+	_class_factory->regClass("DlgMission", new ClassCreator<DlgMission>());
 }
 
 void StatePlay::showDlg(const string& dlgName)

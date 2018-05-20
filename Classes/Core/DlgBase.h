@@ -20,7 +20,7 @@ public:
 	string getDlgName();
 
 public:
-	virtual void showDlg(const string& dlgName);
+	virtual DlgBase* showDlg(const string& dlgName);
 	virtual void hideDlg(const string& dlgName);
 
 	virtual void showTip(char* tip);

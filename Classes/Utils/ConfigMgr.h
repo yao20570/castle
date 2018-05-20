@@ -21,6 +21,10 @@ public:
 	ValueMap* getObjInfoById(int id);
 
 	ValueMap* getEquipInfoById(int id);
+
+	ValueMap* getMissionMainById(int id);
+	ValueMap* getMissionSumById(int id);
+	ValueMap* getMissionObjById(int id);
 private:
 	static ConfigMgr* _g;
 	sqlite3* _pdb;

@@ -29,6 +29,7 @@ public:
 	void createMyObj();
 	void createMySetting();
 	void createMyEquip();
+	void createMyMission();
 	
     
     void loadCsvData(std::string file, ValueVector& data);
@@ -48,6 +49,8 @@ public :
 	void deleteMyEquip(int id);
 	void updateMyEquip(int id, bool isWear);
 
+	ValueVector getMyMission();
+	void updateMyMission(int MissionMain, int MissionSub);
 private:
     static DBManager* _g;
     sqlite3* _pdb;

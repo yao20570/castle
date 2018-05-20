@@ -91,13 +91,13 @@ void StateBase::addDlg(DlgBase* dlg) {
 	}
 }
 
-void StateBase::showDlg(const string& dlgName)
+DlgBase* StateBase::showDlg(const string& dlgName)
 {
 	if (!_open_dlgs.empty()) {
 		const string& lastDlgName = _open_dlgs.back();
 		if (lastDlgName == dlgName) {
 			//重复打开同一个窗口，则返回
-			return;
+			return _cur_dlg;
 		}
 	}
 
@@ -113,6 +113,8 @@ void StateBase::showDlg(const string& dlgName)
 	_open_dlgs.push_back(dlgName);
 	_cur_dlg = creataeDlg(dlgName);
 	addDlg(_cur_dlg);
+
+	return _cur_dlg;
 }
 
 void StateBase::hideDlg(const string& dlgName)

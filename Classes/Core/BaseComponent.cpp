@@ -32,6 +32,16 @@ bool BaseComponent::init(DlgBase* dlg)
 	return true;
 }
 
+DlgBase* BaseComponent::showDlg(const string& dlgName)
+{
+	return this->hostDlg->showDlg(dlgName);
+}
+
+void BaseComponent::hideDlg(const string& dlgName)
+{
+	this->hostDlg->hideDlg(dlgName);
+}
+
 void BaseComponent::load()
 {
 }
@@ -39,4 +49,11 @@ void BaseComponent::load()
 void BaseComponent::updateUI()
 {
 	
+}
+
+void BaseComponent::showTip(char* tip) {
+	this->hostDlg->showTip(tip);
+}
+void BaseComponent::showMessage(char* message, std::function<void()>& sureCallback, std::function<void()>& cancelCallback) {
+	this->hostDlg->showMessage(message, sureCallback, cancelCallback);
 }

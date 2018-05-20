@@ -154,9 +154,11 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\Core\StateBase.cpp" />
     <ClCompile Include="..\Classes\Dlg\Fight\AIMgr.cpp" />
     <ClCompile Include="..\Classes\Dlg\Fight\DlgFight.cpp" />
+    <ClCompile Include="..\Classes\Dlg\Fight\DlgMission.cpp" />
     <ClCompile Include="..\Classes\Dlg\Main\DlgMain.cpp" />
     <ClCompile Include="..\Classes\Dlg\Main\MessageTip.cpp" />
     <ClCompile Include="..\Classes\Dlg\Main\PnlFind.cpp" />
+    <ClCompile Include="..\Classes\Dlg\Main\PnlGuanKa.cpp" />
     <ClCompile Include="..\Classes\Dlg\Main\PnlHero.cpp" />
     <ClCompile Include="..\Classes\Dlg\Main\PnlPlayer.cpp" />
     <ClCompile Include="..\Classes\Dlg\Main\PnlSetting.cpp" />
@@ -218,9 +220,11 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Core\StateEnum.h" />
     <ClInclude Include="..\Classes\Dlg\Fight\AIMgr.h" />
     <ClInclude Include="..\Classes\Dlg\Fight\DlgFight.h" />
+    <ClInclude Include="..\Classes\Dlg\Fight\DlgMission.h" />
     <ClInclude Include="..\Classes\Dlg\Main\DlgMain.h" />
     <ClInclude Include="..\Classes\Dlg\Main\MessageTip.h" />
     <ClInclude Include="..\Classes\Dlg\Main\PnlFind.h" />
+    <ClInclude Include="..\Classes\Dlg\Main\PnlGuanKa.h" />
     <ClInclude Include="..\Classes\Dlg\Main\PnlHero.h" />
     <ClInclude Include="..\Classes\Dlg\Main\PnlPlayer.h" />
     <ClInclude Include="..\Classes\Dlg\Main\PnlSetting.h" />

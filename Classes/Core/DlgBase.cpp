@@ -68,9 +68,9 @@ void DlgBase::load()
 {
 }
 
-void DlgBase::showDlg(const string& dlgName)
+DlgBase* DlgBase::showDlg(const string& dlgName)
 {
-	_game_state->showDlg(dlgName);
+	return _game_state->showDlg(dlgName);
 }
 
 void DlgBase::hideDlg(const string& dlgName)

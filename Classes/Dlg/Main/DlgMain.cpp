@@ -10,6 +10,7 @@ using namespace cocos2d::ui;
 #include "DLG/Main/PnlPlayer.h"
 #include "DLG/Main/PnlHero.h"
 #include "DLG/Main/PnlFind.h"
+#include "DLG/Main/PnlGuanKa.h"
 
 USING_NS_CC;
 
@@ -122,7 +123,7 @@ BaseComponent* DlgMain::getPanel(PanelType type) {
 			comp = PnlFind::create(this);
 			break;
 		case PanelType::Chater:
-			//comp = PnlHero::create(this);
+			comp = PnlGuanKa::create(this);
 			break;
 		}
 		_pnls[type] = comp;
@@ -135,9 +136,9 @@ BaseComponent* DlgMain::getPanel(PanelType type) {
 	return comp;
 }
 
-void DlgMain::showDlg(const string& dlgName)
+DlgBase* DlgMain::showDlg(const string& dlgName)
 {
-	DlgBase::showDlg(dlgName);
+	return DlgBase::showDlg(dlgName);
 }
 
 void DlgMain::hideDlg(const string& dlgName)
@@ -198,6 +199,6 @@ void DlgMain::onSetting(Ref* sender, Widget::TouchEventType type)
 void DlgMain::onChapter(Ref* sender, Widget::TouchEventType type)
 {
 	if (type == Widget::TouchEventType::ENDED) {
-		CCLOG("打开关卡功能");
+		this->showPanel(PanelType::Chater);
 	}
 }

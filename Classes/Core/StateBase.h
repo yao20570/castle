@@ -17,7 +17,7 @@ public:
 
 public:
 	virtual void regDlg();
-	virtual void showDlg(const string& dlgName);
+	DlgBase* showDlg(const string& dlgName);
 	virtual void hideDlg(const string& dlgName);
 
 	virtual void showTip(char* tip);

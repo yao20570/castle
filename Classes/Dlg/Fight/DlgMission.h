@@ -1,4 +1,5 @@
 #pragma once
+#pragma once
 #include "cocos2d.h"
 
 #include "../../Core/DlgBase.h"
@@ -6,12 +7,12 @@
 
 class AIMgr;
 
-class DlgFight : public DlgBase
+class DlgMission : public DlgBase
 {
 public:
-	DlgFight();
-	virtual ~DlgFight();
-	CREATE_DLG_FUNC(DlgFight);
+	DlgMission();
+	virtual ~DlgMission();
+	CREATE_DLG_FUNC(DlgMission);
 	virtual bool init(StateBase* gameState);
 	virtual void load();
 	void update(float dt);
@@ -25,7 +26,7 @@ public:
 	virtual void hideDlg(const string& dlgName);
 
 public:
-	void setObjPosition();
+	void setObjPosition(int missionSubId, int tempKey);
 	void addHero(int heroId, Vec2 pos, int camp);
 	void addSoilder(int soilderId, Vec2 pos, int camp);
 	void addPlayer(Vec2 pos, int camp);
@@ -48,6 +49,8 @@ public:
 	Layout* lay_result;
 	Text*	txt_result;
 
+	int _missionSubId;
+	int _tempKey;
 	int _round;
 };
 

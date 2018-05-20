@@ -18,7 +18,7 @@ public:
 	BaseComponent* getPanel(PanelType type);
 	void showPanel(PanelType type);
 public:
-	virtual void showDlg(const string& dlgName);
+	virtual DlgBase* showDlg(const string& dlgName);
 	virtual void hideDlg(const string& dlgName);
 	
 private:

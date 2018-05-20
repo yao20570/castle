@@ -4,7 +4,7 @@ using namespace cocostudio;
 using namespace cocos2d::ui;
 
 
-#include "DlgFight.h"
+#include "DlgMission.h"
 #include "AIMgr.h"
 #include "Utils/DataManager.h"
 #include "Utils/DBManager.h"
@@ -13,34 +13,36 @@ using namespace cocos2d::ui;
 #include "Model/Hero.h"
 #include "Model/Soilder.h"
 #include "Model/PlayerObj.h"
+#include "Dlg/Main/DlgMain.h"
 
 USING_NS_CC;
 
 
 //static const char* PathChaterCfg = "Config/Chater.csv";
 //static const char* PathFormatChaterObjCfg = "Config/Chater/%s.csv";
-static const char* PathObjPosition	= "Config/ObjPosition.csv";
-static const char* PathHeroInfo		= "Config/HeroInfo.csv";
-static const char* PathSoilderInfo	= "Config/SoilderInfo.csv";
+static const char* PathObjPosition = "Config/ObjPosition.csv";
+static const char* PathHeroInfo = "Config/HeroInfo.csv";
+static const char* PathSoilderInfo = "Config/SoilderInfo.csv";
 
 static char* xx = new char[48 * 32];
 
-DlgFight::DlgFight()	
+DlgMission::DlgMission()
 	:_objPosCfg(nullptr)
 	, _map(nullptr)
 	, _select_obj(nullptr)
-	, _round(0)
+	, _round(1)
+	, _missionSubId(0)
 {
 	_dlg_type = ENUM_DLG_TYPE::Full;
-	_dlg_name = "DlgFight";
+	_dlg_name = "DlgMission";
 }
 
-DlgFight::~DlgFight()
+DlgMission::~DlgMission()
 {
 	CC_SAFE_DELETE(this->_ai);
 }
 
-bool DlgFight::init(StateBase* gameState)
+bool DlgMission::init(StateBase* gameState)
 {
 	if (this->_is_init == true) {
 		return true;
@@ -56,42 +58,63 @@ bool DlgFight::init(StateBase* gameState)
 	{
 		return false;
 	}
-	schedule(schedule_selector(DlgFight::update));
+	schedule(schedule_selector(DlgMission::update));
 	this->load();
 	return true;
 }
 
-void DlgFight::update(float dt) {
+void DlgMission::update(float dt) {
 	_ai->update(dt);
 
 	if (_ai->isOver()) {
-		
-		if (_round > 1) {
+
+		//if (_round >= 0) {
 			this->lay_result->setVisible(true);
 			if (_ai->isWin()) {
 				this->txt_result->setString("Win");
+
+				ValueMap myMission = DBM()->getMyMission()[0].asValueMap();
+				int missionMain = myMission["MissionMain"].asInt();
+				int missionSub = myMission["MissionSub"].asInt();
+				int tempKey = missionMain * 10 + missionSub;
+				if (tempKey == this->_tempKey) {
+
+					missionSub++;
+					if (missionSub > 3) {
+						missionMain++;
+						missionSub = 1;
+					}
+					
+					DBM()->updateMyMission(missionMain, missionSub);
+
+
+				}
+				
+
+				DlgBase* dlgMain = showDlg("DlgMain");
+				((DlgMain*)dlgMain)->showPanel(PanelType::Chater);
 			}
 			else {
 				this->txt_result->setString("lose");
 			}
-		}
-		else {
-			++_round;
-			_ai->reset();
-			setObjPosition();
-			_ai->start();
-		}
+		//}
+		//else {
+		//	++_round;
+		//	_ai->reset();
+		//	setObjPosition(this->_missionSubId);
+		//	_ai->start();
+		//}
 	}
 }
 
-void DlgFight::load()
+void DlgMission::load()
 {
 	auto lay_root = GUIReader::getInstance()->widgetFromJsonFile("UI/DlgFight/dlg_fight.json");
 	this->addChild(lay_root);
 
 
 	_map = (Layout*)lay_root->getChildByName("lay_fight");
-	
+
 	////获取所有剧情
 	//map<int, ValueMap>* chaterCfg = DM()->loadCsvData(PathChaterCfg, "ID");
 
@@ -109,15 +132,15 @@ void DlgFight::load()
 	//char strPathOjbCfg[100];
 	//sprintf(strPathOjbCfg, PathFormatChaterObjCfg, pCurChater["DetailKey"].asString());
 	//map<int, ValueMap>* objPosCfg = DM()->loadCsvData(PathObjPosition, "ID");
-	
-	setObjPosition();
+
+	//setObjPosition();
 
 	//开始
 	auto btnStart = (Layout*)Helper::seekWidgetByName(lay_root, "lay_btn_1");
-	btnStart->addTouchEventListener(CC_CALLBACK_2(DlgFight::onStart, this));
+	btnStart->addTouchEventListener(CC_CALLBACK_2(DlgMission::onStart, this));
 	//关闭
 	auto btnClose = (Layout*)Helper::seekWidgetByName(lay_root, "lay_btn_5");
-	btnClose->addTouchEventListener(CC_CALLBACK_2(DlgFight::onClose, this));
+	btnClose->addTouchEventListener(CC_CALLBACK_2(DlgMission::onClose, this));
 	//关闭
 	this->lay_result = (Layout*)Helper::seekWidgetByName(lay_root, "lay_result");
 	this->txt_result = (Text*)Helper::seekWidgetByName(lay_root, "txt_result");
@@ -126,17 +149,17 @@ void DlgFight::load()
 
 }
 
-void DlgFight::addTouch()
+void DlgMission::addTouch()
 {
 	auto dispatcher = this->getEventDispatcher();
 	auto listener = EventListenerTouchOneByOne::create();
-	listener->onTouchBegan = CC_CALLBACK_2(DlgFight::onTouchBegan, this);
-	listener->onTouchMoved = CC_CALLBACK_2(DlgFight::onTouchMoved, this);
-	listener->onTouchEnded = CC_CALLBACK_2(DlgFight::onTouchEnded, this);
+	listener->onTouchBegan = CC_CALLBACK_2(DlgMission::onTouchBegan, this);
+	listener->onTouchMoved = CC_CALLBACK_2(DlgMission::onTouchMoved, this);
+	listener->onTouchEnded = CC_CALLBACK_2(DlgMission::onTouchEnded, this);
 	dispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 }
 
-bool DlgFight::onTouchBegan(Touch* pTouch, Event* pEvent) 
+bool DlgMission::onTouchBegan(Touch* pTouch, Event* pEvent)
 {
 	if (_ai->getSelectObj() == nullptr) {
 		return true;
@@ -152,39 +175,43 @@ bool DlgFight::onTouchBegan(Touch* pTouch, Event* pEvent)
 	auto posInMap = _map->convertToNodeSpace(pTouch->getLocation());
 	int radius = _select_obj->_radius;
 	auto mapSize = _map->getContentSize();
-	Rect rect(radius / 2, radius / 2, mapSize.width - radius, mapSize.height/2 - radius);
+	Rect rect(radius / 2, radius / 2, mapSize.width - radius, mapSize.height / 2 - radius);
 	if (rect.containsPoint(posInMap) == false) {
 		return false;
 	}
-	
+
 	//是否点在其它的对象上
 	bool isCan = true;
-	for (auto it : _ai->_objSelf) 
+	for (auto it : _ai->_objSelf)
 	{
 		if (it == _select_obj) {
 			continue;
-		}		
-		if (GM()->isPointInCircle(it->getPosition(), MAX(it->_radius , _select_obj->_radius), posInMap)) {
+		}
+		if (GM()->isPointInCircle(it->getPosition(), MAX(it->_radius, _select_obj->_radius), posInMap)) {
 			isCan = false;
 			break;
 		}
 	}
 
 	_ai->setObjPos(_select_obj, posInMap);
-	
+
 	return true;
 }
 
-void DlgFight::onTouchMoved(Touch* pTouch, Event* pEvent) {
+void DlgMission::onTouchMoved(Touch* pTouch, Event* pEvent) {
 }
 
-void DlgFight::onTouchEnded(Touch* pTouch, Event* pEvent) {
+void DlgMission::onTouchEnded(Touch* pTouch, Event* pEvent) {
 }
 
-void DlgFight::setObjPosition()
+void DlgMission::setObjPosition(int missionSubId, int tempKey)
 {
+	this->_missionSubId = missionSubId;
+	this->_tempKey = tempKey;
+
 	ValueVector datas = DBM()->getMySetting(0);
 	{
+		//自己
 		int camp = 1;
 		for (Value& it : datas) {
 			ValueMap& row = it.asValueMap();
@@ -209,7 +236,7 @@ void DlgFight::setObjPosition()
 				break;
 			case 3:
 				//建筑/障碍等
-				
+
 				break;
 			}
 		}
@@ -218,11 +245,24 @@ void DlgFight::setObjPosition()
 	}
 
 	{
+		//敌人
 		int camp = 2;
-		for (Value& it : datas) {
-			ValueMap& row = it.asValueMap();
+
+
+
+		map<int, ValueMap>& missionObjs = *(CFG()->loadConfig("Config/MissionObj.csv", "ID"));
+
+
+
+		for (auto& it : missionObjs) {
+			ValueMap& row = it.second;
+
+			if (row["MissionSubId"].asInt() != missionSubId) {
+				continue;
+			}
+
 			int x = row["x"].asInt();
-			int y = 960 - row["y"].asInt();
+			int y = row["y"].asInt();
 
 			Vec2 pos(x, y);
 			int objId = row["ObjId"].asInt();
@@ -247,42 +287,16 @@ void DlgFight::setObjPosition()
 		addPlayer(Vec2(320, 940), camp);
 	}
 
-
-	//_objPosCfg = CFG()->getObjPos();
-	//for (int camp = 1; i < 3; ++i) {
-	//	for (auto it : *_objPosCfg) {
-	//		ValueMap& row = it.second;
-	//		Vec2 pos(row["PositionX"].asInt(), row["PositionY"].asInt());
-	//		int objId = row["ObjectId"].asInt();
-
-	//		int objType = row["ObjectType"].asInt();
-	//		switch (objType)
-	//		{
-	//		case 1:
-	//			//武将			
-	//			addHero(objId, pos, camp);
-	//			break;
-	//		case 2:
-	//			//士兵
-	//			addSoilder(objId, pos, camp);
-	//			break;
-	//		case 3:
-	//			//建筑/障碍等
-	//			break;
-	//		}
-	//	}
-	//}
-	
 }
 
 
 
 
 static int i = 0;
-void DlgFight::addHero(int heroId, Vec2 pos, int camp)
+void DlgMission::addHero(int heroId, Vec2 pos, int camp)
 {
-	Hero* hero = Hero::create(heroId, _ai, camp);	
-	this->_map->addChild(hero); 
+	Hero* hero = Hero::create(heroId, _ai, camp);
+	this->_map->addChild(hero);
 	_ai->setObjPos(hero, pos);
 	//++i;
 	//hero->_name = i;
@@ -293,7 +307,7 @@ void DlgFight::addHero(int heroId, Vec2 pos, int camp)
 	//hero->addChild(txtName);
 }
 
-void DlgFight::addSoilder(int soilderId, Vec2 pos, int camp)
+void DlgMission::addSoilder(int soilderId, Vec2 pos, int camp)
 {
 	Soilder* soilder = Soilder::create(soilderId, _ai, camp);
 	this->_map->addChild(soilder);
@@ -307,35 +321,35 @@ void DlgFight::addSoilder(int soilderId, Vec2 pos, int camp)
 	soilder->addChild(txtName);
 }
 
-void DlgFight::addPlayer(Vec2 pos, int camp)
+void DlgMission::addPlayer(Vec2 pos, int camp)
 {
 	PlayerObj* player = PlayerObj::create(1, _ai, camp);
 	this->_map->addChild(player);
 	_ai->setObjPos(player, pos);
 }
 
-DlgBase* DlgFight::showDlg(const string& dlgName)
+DlgBase* DlgMission::showDlg(const string& dlgName)
 {
 	return DlgBase::showDlg(dlgName);
 }
 
-void DlgFight::hideDlg(const string& dlgName)
+void DlgMission::hideDlg(const string& dlgName)
 {
 	DlgBase::hideDlg(dlgName);
 	_ai->close();
 }
 
-void DlgFight::onStart(Ref* sender, Widget::TouchEventType type)
+void DlgMission::onStart(Ref* sender, Widget::TouchEventType type)
 {
 	_ai->start();
 }
 
-void DlgFight::onClose(Ref* sender, Widget::TouchEventType type)
+void DlgMission::onClose(Ref* sender, Widget::TouchEventType type)
 {
 	hideDlg(this->getDlgName());
 }
 
-void DlgFight::onResetObjPos(Ref* sender, Widget::TouchEventType type)
+void DlgMission::onResetObjPos(Ref* sender, Widget::TouchEventType type)
 {
 	//
 	int i = 1;

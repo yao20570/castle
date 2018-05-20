@@ -234,6 +234,12 @@
     <ClCompile Include="..\Classes\Dlg\Main\PnlFind.cpp">
       <Filter>src\Dlg\Main</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Dlg\Main\PnlGuanKa.cpp">
+      <Filter>src\Dlg\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Dlg\Fight\DlgMission.cpp">
+      <Filter>src\Dlg\Fight</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -439,6 +445,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Dlg\Main\PnlFind.h">
       <Filter>src\Dlg\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Dlg\Main\PnlGuanKa.h">
+      <Filter>src\Dlg\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Dlg\Fight\DlgMission.h">
+      <Filter>src\Dlg\Fight</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -9,4 +9,7 @@ ID,ObjType,SubType,Quality,Unit,Name,Icon
 8,2,4,4,3,关羽,images/hero/aragorn/aragorn_001.png
 9,2,5,5,3,赵云,images/hero/aragorn/aragorn_001.png
 10,2,6,6,3,诸葛亮,images/hero/aragorn/aragorn_001.png
+11,2,7,6,3,袁术,images/hero/aragorn/aragorn_001.png
+12,2,8,6,3,袁绍,images/hero/aragorn/aragorn_001.png
+13,2,9,6,3,曹操,images/hero/aragorn/aragorn_001.png
 
