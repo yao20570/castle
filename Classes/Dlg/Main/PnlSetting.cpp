@@ -212,13 +212,16 @@ void PnlSetting::selectSetting(int selectId)
 
 	//将旧的隐藏
 	if (this->select_setting_id != -1) {
-		this->pnls[this->select_setting_id]->setBackGroundColor(Color3B(150, 200, 255));
+
+		Text* lab = (Text*)Helper::seekWidgetByName(this->pnls[this->select_setting_id], "Lab");
+
+		lab->setTextColor(Color4B(255, 255, 255, 255));
 	}
 
 	//显示新的
 	this->select_setting_id = selectId;
-	this->pnls[this->select_setting_id]->setBackGroundColor(Color3B(80, 190, 80));
-
+	Text* lab = (Text*)Helper::seekWidgetByName(this->pnls[this->select_setting_id], "Lab");
+	lab->setTextColor(Color4B(255, 0, 0, 255));
 	//更新UI
 	this->updateUI();
 }

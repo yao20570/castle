@@ -39,7 +39,7 @@ PnlFind::PnlFind()
 	, pnl_diamond_find(nullptr)
 	, findCount(0)
 {
-	memset(pnl_items, 0, 9 * sizeof(Layout*));
+	memset(pnl_items, 0, 25 * sizeof(Layout*));
 }
 
 PnlFind::~PnlFind()
@@ -82,7 +82,7 @@ void PnlFind::load()
 	this->pnl_diamond_find = (Layout*)Helper::seekWidgetByName(lay_root, "pnl_diamond_find");
 	this->pnl_diamond_find->addTouchEventListener(CC_CALLBACK_2(PnlFind::onDiamondFind, this));
 
-	for (int i = 1; i < 10; ++i) {
+	for (int i = 1; i < 26; ++i) {
 		sprintf(str, "pnl_item_%d", i);
 		this->pnl_items[i] = (Layout*)Helper::seekWidgetByName(this->pnl_reward_container, str);
 		this->pnl_items[i]->setVisible(false);
@@ -122,9 +122,9 @@ void PnlFind::onGoldFind(Ref* sender, Widget::TouchEventType type) {
 		return;
 	}
 
-	if (this->findCount == 9) {
+	if (this->findCount == 25) {
 		this->findCount = 0;
-		for (int i = 1; i < 10; ++i) {
+		for (int i = 1; i < 26; ++i) {
 			this->pnl_items[i]->setVisible(false);
 		}
 	}
@@ -219,9 +219,9 @@ void PnlFind::onDiamondFind(Ref* sender, Widget::TouchEventType type) {
 		return;
 	}
 
-	if (this->findCount == 9) {
+	if (this->findCount == 25) {
 		this->findCount = 0;
-		for (int i = 1; i < 10; ++i) {
+		for (int i = 1; i < 26; ++i) {
 			this->pnl_items[i]->setVisible(false);
 		}
 	}
@@ -310,7 +310,7 @@ void PnlFind::setSoilderItemInfo(int index, ValueMap* equipCfg) {
 	ImageView* img_icon = (ImageView*)Helper::seekWidgetByName(this->pnl_items[index], "img_icon");
 	Text* txt_name = (Text*)Helper::seekWidgetByName(this->pnl_items[index], "txt_name");
 
-	img_icon->loadTexture(cfg["Head"].asString());
+	img_icon->loadTexture(cfg["Item"].asString());
 	txt_name->setString(cfg["Name"].asString());
 	setTextColor(txt_name, cfg["Quality"].asInt());
 }
@@ -322,7 +322,7 @@ void PnlFind::setHeroItemInfo(int index, ValueMap* equipCfg) {
 	ImageView* img_icon = (ImageView*)Helper::seekWidgetByName(this->pnl_items[index], "img_icon");
 	Text* txt_name = (Text*)Helper::seekWidgetByName(this->pnl_items[index], "txt_name");
 
-	img_icon->loadTexture(cfg["Head"].asString());
+	img_icon->loadTexture(cfg["Item"].asString());
 	txt_name->setString(cfg["Name"].asString());
 	setTextColor(txt_name, cfg["Quality"].asInt());
 }

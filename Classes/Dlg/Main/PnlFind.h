@@ -41,7 +41,7 @@ private:
 private:
 
 	Layout*			pnl_reward_container;
-	Layout*			pnl_items[9];
+	Layout*			pnl_items[25];
 
 	Layout*			pnl_gold_find;
 	Layout*			pnl_diamond_find;

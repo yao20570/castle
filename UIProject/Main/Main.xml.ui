@@ -29,7 +29,24 @@
   <ProjectType>UIProject</ProjectType>
   <ResRelativePath />
   <imageFileList />
-  <imagePngList />
+  <imagePngList>
+    <string>ui/main.png</string>
+    <string>ui/main3.png</string>
+    <string>GUI/image.png</string>
+    <string>ui/main1.png</string>
+    <string>hero_caocao.png</string>
+    <string>GUI/image.png</string>
+    <string>ui/btn_sure.png</string>
+    <string>ui/btn_upgrade.png</string>
+    <string>ui/btn_cancel.png</string>
+    <string>GUI/image.png</string>
+    <string>ui/main2.png</string>
+    <string>GUI/image.png</string>
+    <string>ui/btn_sure.png</string>
+    <string>GUI/image.png</string>
+    <string>ui/main5.png</string>
+    <string>ui/fight_start.png</string>
+  </imagePngList>
   <JsonSuffix>.json</JsonSuffix>
-  <CurrentUIJson>pnl_fight.json</CurrentUIJson>
+  <CurrentUIJson>pnl_setting.json</CurrentUIJson>
 </UIProject>
