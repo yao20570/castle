@@ -49,6 +49,6 @@ public:
 	set<BaseSprite*> _objEnemy;
 
 	BaseSprite* _select_obj;
-	BaseSprite* dotMap[48 * 32];
+	BaseSprite* dotMap[56 * 32];
 
 };

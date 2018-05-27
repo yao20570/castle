@@ -287,7 +287,7 @@ void PnlSetting::onTouchEnded(Touch* pTouch, Event* pEvent) {
 
 
 	Vec2 pos = this->pnl_setting->convertToNodeSpace(pTouch->getLocation());
-	Rect rect(40, 40, 560, 400);
+	Rect rect(40, 40, 560, 520);
 	if (!rect.containsPoint(pos)) {
 		//在可放置范围
 		isCanSetting = false;
@@ -319,29 +319,38 @@ void PnlSetting::onTouchEnded(Touch* pTouch, Event* pEvent) {
 		ValueMap* row = CFG()->getObjInfoById(this->select_obj_id);
 		if (row) {
 			ValueMap& cfg = *row;
-			Layout* settingObj = (Layout*)GUIReader::getInstance()->widgetFromJsonFile("ui/DlgMain/item_obj.json");
-			settingObj->setSwallowTouches(false);
-			settingObj->setAnchorPoint(Vec2(0.5, 0.5));
-			settingObj->setPosition(pos);
-			settingObj->setLocalZOrder(100000000 - pos.y * 10000 + pos.x);
-			settingObj->setTag(cfg["ID"].asInt());
-			settingObj->setUserData(row);
-			settingObj->addTouchEventListener(CC_CALLBACK_2(PnlSetting::onSelectPnlSettingObj, this));
-			((Layout*)settingObj->getChildByName("pnl_select"))->setVisible(false);
-			((ImageView*)settingObj->getChildByName("img_icon"))->loadTexture(cfg["Head"].asString());
-			((Text*)settingObj->getChildByName("txt_name"))->setString(cfg["Name"].asString());
+			int temp = unitNum + cfg["Unit"].asInt();
+			if (temp < 20) {
+				
+				Layout* settingObj = (Layout*)GUIReader::getInstance()->widgetFromJsonFile("ui/DlgMain/item_obj.json");
+				settingObj->setSwallowTouches(false);
+				settingObj->setAnchorPoint(Vec2(0.5, 0.5));
+				settingObj->setPosition(pos);
+				settingObj->setLocalZOrder(100000000 - pos.y * 10000 + pos.x);
+				settingObj->setTag(cfg["ID"].asInt());
+				settingObj->setUserData(row);
+				settingObj->addTouchEventListener(CC_CALLBACK_2(PnlSetting::onSelectPnlSettingObj, this));
+				((Layout*)settingObj->getChildByName("pnl_select"))->setVisible(false);
+				((ImageView*)settingObj->getChildByName("img_icon"))->loadTexture(cfg["Head"].asString());
+				((Text*)settingObj->getChildByName("txt_name"))->setString(cfg["Name"].asString());
 
 
-			this->pnl_setting->addChild(settingObj);
-			this->pnl_drag->setVisible(false);
-			isCanSetting = true;
+				this->pnl_setting->addChild(settingObj);
+				this->pnl_drag->setVisible(false);
+				isCanSetting = true;
 
-			this->updateSelectList();
+				this->updateSelectList();
 
-			unitNum += cfg["Unit"].asInt();
+				unitNum += cfg["Unit"].asInt();
+			}
+			else {
+				isCanSetting = false;
+			}
 		}
 	}
-	else
+	
+
+	if (isCanSetting == false)
 	{
 		//不在放置范围内
 		this->pnl_drag->setVisible(false);

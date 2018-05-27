@@ -23,7 +23,11 @@ static const char* PathObjPosition	= "Config/ObjPosition.csv";
 static const char* PathHeroInfo		= "Config/HeroInfo.csv";
 static const char* PathSoilderInfo	= "Config/SoilderInfo.csv";
 
-static char* xx = new char[48 * 32];
+#define MaxReadyCD 10 
+
+static int state = 1;//1:å‡†å¤‡ï¼Œ2ï¼šæˆ˜æ–—ï¼Œ3:ç­‰å¾…ç»“æŸ
+static int DlgFight_delay_close = 90;
+static float ReadyCD = MaxReadyCD;
 
 DlgFight::DlgFight()	
 	:_objPosCfg(nullptr)
@@ -33,6 +37,8 @@ DlgFight::DlgFight()
 {
 	_dlg_type = ENUM_DLG_TYPE::Full;
 	_dlg_name = "DlgFight";
+	state = 1;
+	ReadyCD = MaxReadyCD;
 }
 
 DlgFight::~DlgFight()
@@ -60,13 +66,43 @@ bool DlgFight::init(StateBase* gameState)
 	this->load();
 	return true;
 }
-
-static int DlgFight_delay_close = 90;
 void DlgFight::update(float dt) {
 	_ai->update(dt);
 
-	if (_ai->isOver(1)) {
-		
+	switch (state)
+	{
+	case 1:
+	{
+		this->lay_result->setVisible(true);
+		if (_ai->isWin(1)) {
+			this->txt_result->setString(Value((int)ReadyCD).asString());
+		}
+		else {
+			this->txt_result->setString(Value((int)ReadyCD).asString());
+		}
+
+		if (ReadyCD < 0) {
+			ReadyCD = MaxReadyCD;
+			state = 2;
+			_ai->start();
+		}
+		else {
+			ReadyCD -= dt;
+		}
+	}
+		break;
+	case 2:
+	{
+		this->lay_result->setVisible(false);
+		if (_ai->isOver(1)) {
+
+			DlgFight_delay_close = 90;
+			state = 3;
+		}
+	}
+		break;
+	case 3:
+	{
 		if (_round > 1) {
 			this->lay_result->setVisible(true);
 			if (_ai->isWin(1)) {
@@ -75,22 +111,28 @@ void DlgFight::update(float dt) {
 			else {
 				this->txt_result->setString("lose");
 			}
+		}
 
-			--DlgFight_delay_close;
-			if (DlgFight_delay_close == 0) {
+		--DlgFight_delay_close;
+		if (DlgFight_delay_close == 0) {
+
+			if (_round > 1) {
 				hideDlg(this->getDlgName());
 			}
-		}
-		else {
-			++_round;
-			_ai->reset();
-			setObjPosition();
-			_ai->start();
+			else {
+
+				++_round;
+				_ai->reset();
+				setObjPosition();
+				//_ai->start();
+				state = 1;
+			}			
 		}
 	}
-	else {
-		DlgFight_delay_close = 90;
+		break;			
 	}
+
+	
 }
 
 void DlgFight::load()
@@ -101,40 +143,34 @@ void DlgFight::load()
 
 	_map = (Layout*)lay_root->getChildByName("lay_fight");
 	
-	////»ñÈ¡ËùÓĞ¾çÇé
+	////è·å–æ‰€æœ‰å‰§æƒ…
 	//map<int, ValueMap>* chaterCfg = DM()->loadCsvData(PathChaterCfg, "ID");
 
-	////µ±Ç°¾çÇé
+	////å½“å‰å‰§æƒ…
 	//auto it = chaterCfg->find(CUR_CHATER_ID);
 	//if (it == chaterCfg->end()) {
-	//	//Ã»ÓĞ¾çÇéÔò¹Ø±Õ
+	//	//æ²¡æœ‰å‰§æƒ…åˆ™å…³é—­
 	//	hideDlg(_dlg_name);
-	//	assert(false, "ÕÒ²»µ½¾çÇéÅäÖÃ");
+	//	assert(false, "æ‰¾ä¸åˆ°å‰§æƒ…é…ç½®");
 	//	return;
 	//}
 	//ValueMap pCurChater = it->second;
 
-	////¾çÇé¶ÔÓ¦Î»ÖÃµÄÅäÖÃÎÄ¼ş
+	////å‰§æƒ…å¯¹åº”ä½ç½®çš„é…ç½®æ–‡ä»¶
 	//char strPathOjbCfg[100];
 	//sprintf(strPathOjbCfg, PathFormatChaterObjCfg, pCurChater["DetailKey"].asString());
 	//map<int, ValueMap>* objPosCfg = DM()->loadCsvData(PathObjPosition, "ID");
 	
 	setObjPosition();
 
-	//¿ªÊ¼
-	this->pnl_start = (Layout*)Helper::seekWidgetByName(lay_root, "pnl_start");
 
-	//¿ªÊ¼Ãæ°å
-	auto lay_start = (Layout*)Helper::seekWidgetByName(lay_root, "lay_start");
-	lay_start->addTouchEventListener(CC_CALLBACK_2(DlgFight::onStart, this));
-
-	//¿ªÊ¼
+	//å¼€å§‹
 	auto btnStart = (Layout*)Helper::seekWidgetByName(lay_root, "lay_btn_1");
 	btnStart->addTouchEventListener(CC_CALLBACK_2(DlgFight::onStart, this));
-	//¹Ø±Õ
+	//å…³é—­
 	auto btnClose = (Layout*)Helper::seekWidgetByName(lay_root, "lay_btn_5");
 	btnClose->addTouchEventListener(CC_CALLBACK_2(DlgFight::onClose, this));
-	//¹Ø±Õ
+	//å…³é—­
 	this->lay_result = (Layout*)Helper::seekWidgetByName(lay_root, "lay_result");
 	this->txt_result = (Text*)Helper::seekWidgetByName(lay_root, "txt_result");
 
@@ -158,13 +194,13 @@ bool DlgFight::onTouchBegan(Touch* pTouch, Event* pEvent)
 		return true;
 	}
 
-	//µÚÒ»´ÎÑ¡ÖĞ
+	//ç¬¬ä¸€æ¬¡é€‰ä¸­
 	if (_select_obj != _ai->getSelectObj()) {
 		_select_obj = _ai->getSelectObj();
 		return true;
 	}
 
-	//ÊÇ·ñµãÔÚ¿É²¼ÖÃ·¶Î§
+	//æ˜¯å¦ç‚¹åœ¨å¯å¸ƒç½®èŒƒå›´
 	auto posInMap = _map->convertToNodeSpace(pTouch->getLocation());
 	int radius = _select_obj->_radius;
 	auto mapSize = _map->getContentSize();
@@ -173,7 +209,7 @@ bool DlgFight::onTouchBegan(Touch* pTouch, Event* pEvent)
 		return false;
 	}
 	
-	//ÊÇ·ñµãÔÚÆäËüµÄ¶ÔÏóÉÏ
+	//æ˜¯å¦ç‚¹åœ¨å…¶å®ƒçš„å¯¹è±¡ä¸Š
 	bool isCan = true;
 	for (auto it : _ai->_objSelf) 
 	{
@@ -216,15 +252,15 @@ void DlgFight::setObjPosition()
 			switch (objType)
 			{
 			case 2:
-				//Îä½«			
+				//æ­¦å°†			
 				addHero(subType, pos, camp);
 				break;
 			case 1:
-				//Ê¿±ø
+				//å£«å…µ
 				addSoilder(subType, pos, camp);
 				break;
 			case 3:
-				//½¨Öş/ÕÏ°­µÈ
+				//å»ºç­‘/éšœç¢ç­‰
 				
 				break;
 			}
@@ -238,7 +274,7 @@ void DlgFight::setObjPosition()
 		for (Value& it : datas) {
 			ValueMap& row = it.asValueMap();
 			int x = row["x"].asInt();
-			int y = 960 - row["y"].asInt();
+			int y = 1080 - row["y"].asInt();
 
 			Vec2 pos(x, y);
 			int objId = row["ObjId"].asInt();
@@ -249,18 +285,18 @@ void DlgFight::setObjPosition()
 			switch (objType)
 			{
 			case 2:
-				//Îä½«			
+				//æ­¦å°†			
 				addHero(subType, pos, camp);
 				break;
 			case 1:
-				//Ê¿±ø
+				//å£«å…µ
 				addSoilder(subType, pos, camp);
 				break;
 			case 3:
 				break;
 			}
 		}
-		addPlayer(Vec2(320, 940), camp);
+		addPlayer(Vec2(320, 1080), camp);
 	}
 
 
@@ -275,15 +311,15 @@ void DlgFight::setObjPosition()
 	//		switch (objType)
 	//		{
 	//		case 1:
-	//			//Îä½«			
+	//			//æ­¦å°†			
 	//			addHero(objId, pos, camp);
 	//			break;
 	//		case 2:
-	//			//Ê¿±ø
+	//			//å£«å…µ
 	//			addSoilder(objId, pos, camp);
 	//			break;
 	//		case 3:
-	//			//½¨Öş/ÕÏ°­µÈ
+	//			//å»ºç­‘/éšœç¢ç­‰
 	//			break;
 	//		}
 	//	}
@@ -303,7 +339,7 @@ void DlgFight::addHero(int heroId, Vec2 pos, int camp)
 	//++i;
 	//hero->_name = i;
 
-	//auto txtName = Text::create("Ãû³Æ", FONT_ARIAL, 20);
+	//auto txtName = Text::create("åç§°", FONT_ARIAL, 20);
 	//txtName->setName("txtName");
 	//txtName->setString(GM()->getIntToStr(i));
 	//hero->addChild(txtName);
@@ -317,7 +353,7 @@ void DlgFight::addSoilder(int soilderId, Vec2 pos, int camp)
 	++i;
 	soilder->_name = i;
 
-	auto txtName = Text::create("Ãû³Æ", FONT_ARIAL, 20);
+	auto txtName = Text::create("åç§°", FONT_ARIAL, 20);
 	txtName->setName("txtName");
 	txtName->setString(GM()->getIntToStr(i));
 	soilder->addChild(txtName);
@@ -344,7 +380,6 @@ void DlgFight::hideDlg(const string& dlgName)
 void DlgFight::onStart(Ref* sender, Widget::TouchEventType type)
 {
 
-	this->pnl_start->setVisible(false);
 	_ai->start();
 }
 

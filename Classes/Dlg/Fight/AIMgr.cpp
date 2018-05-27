@@ -53,7 +53,7 @@ AIMgr::~AIMgr() {
 
 bool AIMgr::init()
 {
-	memset(dotMap, 0, 32 * 48 * sizeof(BaseSprite*));
+	memset(dotMap, 0, 32 * 56 * sizeof(BaseSprite*));
 	return true;
 }
 
@@ -203,7 +203,7 @@ void AIMgr::delSoilder(Soilder* soilder, int type)
 void AIMgr::update(float dt)
 {
 	for (auto it : dotMap) {
-		if (it != nullptr && it->_dotX < 32 && it->_dotY < 48) {
+		if (it != nullptr && it->_dotX < 32 && it->_dotY < 56) {
 			if (it->_isbroken == true) {
 				int i = 1;
 
@@ -254,7 +254,7 @@ void AIMgr::setObjPos(BaseSprite* obj, Vec2 pos) {
 		}
 		obj->setPosition(pos);
 		obj->setLocalZOrder(obj->getPositionX() - obj->getPositionY() * 10000);
-		if (obj->_dotX > 0 && obj->_dotX < 32 && obj->_dotY > 0 && obj->_dotY < 48) {
+		if (obj->_dotX > 0 && obj->_dotX < 32 && obj->_dotY > 0 && obj->_dotY < 56) {
 			dotMap[obj->_dotX + obj->_dotY * 32] = nullptr;
 		}		
 		obj->_dotX = dot.x;
@@ -305,7 +305,7 @@ void AIMgr::setObjPos(BaseSprite* obj, Vec2 pos) {
 		}
 		obj->setPosition(minPos);
 		obj->setLocalZOrder(obj->getPositionX() - obj->getPositionY() * 10000);
-		if (obj->_dotX > 0 && obj->_dotX < 32 && obj->_dotY > 0 && obj->_dotY < 48) {
+		if (obj->_dotX > 0 && obj->_dotX < 32 && obj->_dotY > 0 && obj->_dotY < 56) {
 			dotMap[obj->_dotX + obj->_dotY * 32] = nullptr;
 		}
 		obj->_dotX = dot.x;
@@ -325,7 +325,7 @@ bool AIMgr::isCanSet(BaseSprite* obj, Vec2& pos, Vec2& dot) {
 			if (testX < 0 || testX>32) {
 				continue;
 			}
-			if (testY < 0 || testY > 48) {
+			if (testY < 0 || testY > 56) {
 				continue;
 			}			
 
@@ -424,7 +424,7 @@ void AIMgr::reset() {
 	_objSelf.clear();
 	_objEnemy.clear();
 	_select_obj = nullptr;
-	memset(dotMap, 0, 32 * 48 * sizeof(BaseSprite*));
+	memset(dotMap, 0, 32 * 56 * sizeof(BaseSprite*));
 }
 
 

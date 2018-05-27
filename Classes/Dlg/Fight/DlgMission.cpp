@@ -24,7 +24,6 @@ static const char* PathObjPosition = "Config/ObjPosition.csv";
 static const char* PathHeroInfo = "Config/HeroInfo.csv";
 static const char* PathSoilderInfo = "Config/SoilderInfo.csv";
 
-static char* xx = new char[48 * 32];
 
 DlgMission::DlgMission()
 	:_objPosCfg(nullptr)

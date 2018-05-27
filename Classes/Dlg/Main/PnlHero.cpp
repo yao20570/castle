@@ -89,7 +89,7 @@ void PnlHero::updateUI()
 void PnlHero::updateSvHero() {
 	map<int, ValueMap >& myObj = *(DBM()->getMyObj());
 	int i = 0;
-	int rowCount = ceil(myObj.size() / 3);
+	int rowCount = ceil((float)myObj.size() / 3);
 	Size svInnerSize(574, (254 + 6) * rowCount + 6);
 	this->sv_hero->setInnerContainerSize(svInnerSize);
 	svInnerSize = this->sv_hero->getInnerContainerSize();
