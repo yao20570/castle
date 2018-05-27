@@ -11,9 +11,21 @@
   "designWidth": 480,
   "textures": [],
   "texturesPng": [
+    "ui/main.png",
+    "ui/main3_bg.png",
+    "ui/main3.png",
+    "GUI/image.png",
+    "ui/main1.png",
+    "hero_caocao.png",
+    "GUI/image.png",
+    "ui/btn_sure.png",
+    "ui/btn_upgrade.png",
+    "ui/btn_cancel.png",
+    "GUI/image.png",
+    "ui/main2.png",
     "GUI/image.png",
     "GUI/image.png",
-    "GUI/image.png"
+    "ui/main5.png"
   ],
   "version": "1.6.0.0",
   "widgetTree": {

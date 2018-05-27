@@ -160,4 +160,8 @@ void AppDelegate::loadResources()
 	ArmatureDataManager::getInstance()->addArmatureFileInfo(ANIM_HERO_ARAGORN);
 	ArmatureDataManager::getInstance()->addArmatureFileInfo(ANIM_SKILL_1);
 	ArmatureDataManager::getInstance()->addArmatureFileInfo(ANIM_SKILL_2);
+
+	ArmatureDataManager::getInstance()->addArmatureFileInfo(ANIM_HERO_LVBU);
+
+
 }

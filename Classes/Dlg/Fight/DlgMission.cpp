@@ -60,39 +60,47 @@ bool DlgMission::init(StateBase* gameState)
 	}
 	schedule(schedule_selector(DlgMission::update));
 	this->load();
+	
 	return true;
 }
-
+static int DlgMission_resule_delay = 60;
 void DlgMission::update(float dt) {
 	_ai->update(dt);
-
-	if (_ai->isOver()) {
+	
+	if (_ai->isOver(2)) {
 
 		//if (_round >= 0) {
 			this->lay_result->setVisible(true);
-			if (_ai->isWin()) {
-				this->txt_result->setString("Win");
+			if (_ai->isWin(2)) {
 
-				ValueMap myMission = DBM()->getMyMission()[0].asValueMap();
-				int missionMain = myMission["MissionMain"].asInt();
-				int missionSub = myMission["MissionSub"].asInt();
-				int tempKey = missionMain * 10 + missionSub;
-				if (tempKey == this->_tempKey) {
+				if (DlgMission_resule_delay == 60) {
+					this->txt_result->setString("Win");
 
-					missionSub++;
-					if (missionSub > 3) {
-						missionMain++;
-						missionSub = 1;
+					ValueMap myMission = DBM()->getMyMission()[0].asValueMap();
+					int missionMain = myMission["MissionMain"].asInt();
+					int missionSub = myMission["MissionSub"].asInt();
+					int tempKey = missionMain * 10 + missionSub;
+					if (tempKey == this->_tempKey) {
+
+						missionSub++;
+						if (missionSub > 3) {
+							missionMain++;
+							missionSub = 1;
+						}
+
+						DBM()->updateMyMission(missionMain, missionSub);
+
+
 					}
-					
-					DBM()->updateMyMission(missionMain, missionSub);
-
-
+				}
+				--DlgMission_resule_delay;
+				
+				if (DlgMission_resule_delay == 0) {
+					DlgBase* dlgMain = showDlg("DlgMain");
+					((DlgMain*)dlgMain)->showPanel(PanelType::Chater);
 				}
 				
-
-				DlgBase* dlgMain = showDlg("DlgMain");
-				((DlgMain*)dlgMain)->showPanel(PanelType::Chater);
+				
 			}
 			else {
 				this->txt_result->setString("lose");
@@ -105,11 +113,14 @@ void DlgMission::update(float dt) {
 		//	_ai->start();
 		//}
 	}
+	else {
+		DlgMission_resule_delay = 60;
+	}
 }
 
 void DlgMission::load()
 {
-	auto lay_root = GUIReader::getInstance()->widgetFromJsonFile("UI/DlgFight/dlg_fight.json");
+	auto lay_root = GUIReader::getInstance()->widgetFromJsonFile("UI/DlgFight/dlg_battle.json");
 	this->addChild(lay_root);
 
 
@@ -241,7 +252,7 @@ void DlgMission::setObjPosition(int missionSubId, int tempKey)
 			}
 		}
 
-		addPlayer(Vec2(320, 40), camp);
+		//addPlayer(Vec2(320, 40), camp);
 	}
 
 	{
@@ -284,7 +295,7 @@ void DlgMission::setObjPosition(int missionSubId, int tempKey)
 				break;
 			}
 		}
-		addPlayer(Vec2(320, 940), camp);
+		//addPlayer(Vec2(320, 940), camp);
 	}
 
 }

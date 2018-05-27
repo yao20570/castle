@@ -61,18 +61,24 @@ bool DlgFight::init(StateBase* gameState)
 	return true;
 }
 
+static int DlgFight_delay_close = 90;
 void DlgFight::update(float dt) {
 	_ai->update(dt);
 
-	if (_ai->isOver()) {
+	if (_ai->isOver(1)) {
 		
 		if (_round > 1) {
 			this->lay_result->setVisible(true);
-			if (_ai->isWin()) {
+			if (_ai->isWin(1)) {
 				this->txt_result->setString("Win");
 			}
 			else {
 				this->txt_result->setString("lose");
+			}
+
+			--DlgFight_delay_close;
+			if (DlgFight_delay_close == 0) {
+				hideDlg(this->getDlgName());
 			}
 		}
 		else {
@@ -81,6 +87,9 @@ void DlgFight::update(float dt) {
 			setObjPosition();
 			_ai->start();
 		}
+	}
+	else {
+		DlgFight_delay_close = 90;
 	}
 }
 
@@ -111,6 +120,13 @@ void DlgFight::load()
 	//map<int, ValueMap>* objPosCfg = DM()->loadCsvData(PathObjPosition, "ID");
 	
 	setObjPosition();
+
+	//开始
+	this->pnl_start = (Layout*)Helper::seekWidgetByName(lay_root, "pnl_start");
+
+	//开始面板
+	auto lay_start = (Layout*)Helper::seekWidgetByName(lay_root, "lay_start");
+	lay_start->addTouchEventListener(CC_CALLBACK_2(DlgFight::onStart, this));
 
 	//开始
 	auto btnStart = (Layout*)Helper::seekWidgetByName(lay_root, "lay_btn_1");
@@ -327,6 +343,8 @@ void DlgFight::hideDlg(const string& dlgName)
 
 void DlgFight::onStart(Ref* sender, Widget::TouchEventType type)
 {
+
+	this->pnl_start->setVisible(false);
 	_ai->start();
 }
 

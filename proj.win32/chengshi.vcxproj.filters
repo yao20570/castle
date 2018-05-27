@@ -240,6 +240,9 @@
     <ClCompile Include="..\Classes\Dlg\Fight\DlgMission.cpp">
       <Filter>src\Dlg\Fight</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Dlg\Main\PnlFight.cpp">
+      <Filter>src\Dlg\Main</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -451,6 +454,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Dlg\Fight\DlgMission.h">
       <Filter>src\Dlg\Fight</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Dlg\Main\PnlFight.h">
+      <Filter>src\Dlg\Main</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

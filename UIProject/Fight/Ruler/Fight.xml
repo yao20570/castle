@@ -4,4 +4,12 @@
     <Project>dlg_fight</Project>
     <GuidesList />
   </GuidesProject>
+  <GuidesProject>
+    <Project>dlg_battle</Project>
+    <GuidesList />
+  </GuidesProject>
+  <GuidesProject>
+    <Project>Fight_3</Project>
+    <GuidesList />
+  </GuidesProject>
 </ArrayOfGuidesProject>

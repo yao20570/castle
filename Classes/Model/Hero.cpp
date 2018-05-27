@@ -89,7 +89,7 @@ void Hero::showUI()
 {
 	int y = _camp == 1 ? -1 : 1;
 	_dir = GM()->getDir(Vec2(0, y));
-	_arm = Armature::create(ANIM_NAME_ARAGORN);
+	_arm = Armature::create(ANIM_NAME_LVBU);
 	_arm->getAnimation()->play("idle" + GM()->getIntToStr(_dir));
 	_arm->setPositionY(20);
 	_arm->pause();

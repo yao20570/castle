@@ -45,6 +45,7 @@ public:
 	Layout* _map;
 	BaseSprite* _select_obj;
 
+	Layout* pnl_start;
 	Layout* lay_result;
 	Text*	txt_result;
 

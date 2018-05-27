@@ -51,7 +51,7 @@ void PnlSetting::load()
 	//this->setName("pnl_setting");
 
 	//人口单位
-	this->txt_num = (Text*)(lay_root->getChildByName("txt_num"));
+	this->txt_num = (Text*)(Helper::seekWidgetByName(lay_root, "txt_num"));
 	//设置面板
 	this->pnl_setting = (Layout*)Helper::seekWidgetByName(lay_root, "pnl_setting");
 	//主公
@@ -68,7 +68,7 @@ void PnlSetting::load()
 	}
 
 
-	this->pnl_save = (Layout*)(lay_root->getChildByName("pnl_save"));
+	this->pnl_save = (Layout*)(Helper::seekWidgetByName(lay_root, "pnl_save"));
 	this->pnl_save->addTouchEventListener(CC_CALLBACK_2(PnlSetting::onSaveSetting, this));
 
 	
@@ -150,7 +150,7 @@ void PnlSetting::updateSelectList() {
 
 		pnl_select->setVisible(false);
 
-		img_icon->loadTexture(cfg["Icon"].asString());
+		img_icon->loadTexture(cfg["Head"].asString());
 		txt_name->setString(cfg["Name"].asString());
 
 		++i;
@@ -189,7 +189,7 @@ void PnlSetting::updateSettingPanel() {
 		settingObj->setUserData(cfgPtr);
 		settingObj->addTouchEventListener(CC_CALLBACK_2(PnlSetting::onSelectPnlSettingObj, this));
 		((Layout*)settingObj->getChildByName("pnl_select"))->setVisible(false);
-		((ImageView*)settingObj->getChildByName("img_icon"))->loadTexture(cfg["Icon"].asString());
+		((ImageView*)settingObj->getChildByName("img_icon"))->loadTexture(cfg["Head"].asString());
 		((Text*)settingObj->getChildByName("txt_name"))->setString(cfg["Name"].asString());
 		this->pnl_setting->addChild(settingObj);
 
@@ -328,7 +328,7 @@ void PnlSetting::onTouchEnded(Touch* pTouch, Event* pEvent) {
 			settingObj->setUserData(row);
 			settingObj->addTouchEventListener(CC_CALLBACK_2(PnlSetting::onSelectPnlSettingObj, this));
 			((Layout*)settingObj->getChildByName("pnl_select"))->setVisible(false);
-			((ImageView*)settingObj->getChildByName("img_icon"))->loadTexture(cfg["Icon"].asString());
+			((ImageView*)settingObj->getChildByName("img_icon"))->loadTexture(cfg["Head"].asString());
 			((Text*)settingObj->getChildByName("txt_name"))->setString(cfg["Name"].asString());
 
 
@@ -351,6 +351,7 @@ void PnlSetting::onTouchEnded(Touch* pTouch, Event* pEvent) {
 		//	this->pnl_drag->setVisible(false);
 		//}), NULL
 		//));
+		this->updateSelectList();
 	}
 	Value v(unitNum);
 	this->txt_num->setString(v.asString() + "/20");
@@ -408,7 +409,7 @@ void PnlSetting::onSelectObj(Ref* sender, Widget::TouchEventType type)
 		this->selectObj(id);
 		ImageView* img_icon = (ImageView*)this->pnl_drag->getChildByName("img_icon");
 		Text* txt_name = (Text*)this->pnl_drag->getChildByName("txt_name");
-		img_icon->loadTexture((*selectCfg)["Icon"].asString());
+		img_icon->loadTexture((*selectCfg)["Head"].asString());
 		txt_name->setString((*selectCfg)["Name"].asString());
 		break;
 	}
@@ -436,7 +437,7 @@ void PnlSetting::onSelectPnlSettingObj(Ref* sender, Widget::TouchEventType type)
 			auto& cfg = *(CFG()->getObjInfoById(this->select_obj_id));
 			ImageView* img_icon = (ImageView*)this->pnl_drag->getChildByName("img_icon");
 			Text* txt_name = (Text*)this->pnl_drag->getChildByName("txt_name");
-			img_icon->loadTexture(cfg["Icon"].asString());
+			img_icon->loadTexture(cfg["Head"].asString());
 			txt_name->setString(cfg["Name"].asString());
 			this->pnl_drag->setVisible(true);
 

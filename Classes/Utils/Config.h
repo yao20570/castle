@@ -167,8 +167,10 @@ static const char* ANIM_NAME_GUNNER          = "Anim_Gunner";
 static const char* ANIM_NAME_MEATSHIELD      = "Anim_MeatShield";
 // 英雄动画
 static const char* ANIM_HERO_ARAGORN    = "animation/Anim_Hero_Aragorn/Anim_Hero_Aragorn.ExportJson";
+static const char* ANIM_HERO_LVBU		= "animation/Anim_Hero_LvBu/Anim_Hero_LvBu.ExportJson";
 // 英雄动画名称
 static const char* ANIM_NAME_ARAGORN    = "Anim_Hero_Aragorn";
+static const char* ANIM_NAME_LVBU		= "Anim_Hero_LvBu";
 // 技能动画
 static const char* ANIM_SKILL_1         = "animation/Effect0/Effect.ExportJson";
 static const char* ANIM_SKILL_2         = "animation/Effort1/Effort1.ExportJson";

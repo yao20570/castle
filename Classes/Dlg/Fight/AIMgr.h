@@ -41,8 +41,8 @@ public:
 	bool isCanSet(BaseSprite* obj, Vec2& pos, Vec2& dot);
 	void setObjDead(BaseSprite* obj);
 
-	bool isOver();
-	bool isWin();
+	bool isOver(int type);
+	bool isWin(int type);
 	void reset();
 public:
 	set<BaseSprite*> _objSelf;

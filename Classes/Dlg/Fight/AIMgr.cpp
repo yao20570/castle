@@ -351,37 +351,67 @@ void AIMgr::setObjDead(BaseSprite* obj) {
 	obj->_dotY = 1000000;
 }
 
-bool AIMgr::isOver() {
-	bool over = true;
-	for (auto it : _objSelf) {
-		if (it->_objType !=3 && !it->isDeath()) {
-			return false;
+bool AIMgr::isOver(int type) {
+	switch (type) {
+	case 1: {
+		bool over = true;
+		for (auto it : _objSelf) {
+			if (it->_objType != 3 && !it->isDeath()) {
+				return false;
+			}
 		}
-	}
-	for (auto it : _objEnemy) {
-		if (it->_objType != 3 && !it->isDeath()) {
-			return false;
+		for (auto it : _objEnemy) {
+			if (it->_objType != 3 && !it->isDeath()) {
+				return false;
+			}
 		}
+		return true;
 	}
-	return true;
+	case 2: {
+		bool isSelfDeadAll = true;
+		for (auto it : _objSelf) {
+			if (it->_objType != 3 && !it->isDeath()) {
+				isSelfDeadAll = false;
+			}
+		}
+		bool isEnemyDeadAll = true;
+		for (auto it : _objEnemy) {
+			if (it->_objType != 3 && !it->isDeath()) {
+				isEnemyDeadAll = false;
+			}
+		}
+		return isSelfDeadAll || isEnemyDeadAll;
+	}
+	}
+
 }
 
-bool AIMgr::isWin() {
-	bool over = true;
-	int my = 0;
-	int en = 0;
-	for (auto it : _objSelf) {
-		if (it->_objType == 3) {
-			my = ((PlayerObj*)it)->_healthPoint;
+bool AIMgr::isWin(int type) {
+
+	switch (type) {
+	case 1: {
+
+		int my = 0;
+		int en = 0;
+		for (auto it : _objSelf) {
+			if (it->_objType == 3) {
+				my = ((PlayerObj*)it)->_healthPoint;
+			}
 		}
-	}
-	for (auto it : _objEnemy) {
-		if (it->_objType == 3) {
-			en = ((PlayerObj*)it)->_healthPoint;
+		for (auto it : _objEnemy) {
+			if (it->_objType == 3) {
+				en = ((PlayerObj*)it)->_healthPoint;
+			}
 		}
+
+		return my > en;
 	}
-	
-	return my > en;
+	case 2: {
+		return this->isOver(2);
+	}
+	}
+
+	return true;
 }
 
 void AIMgr::reset() {

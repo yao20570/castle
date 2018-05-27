@@ -56,6 +56,7 @@ void PnlHero::load()
 	this->sv_hero = (ScrollView*)Helper::seekWidgetByName(lay_root, "sv_hero");
 
 
+	this->img_skin = (ImageView*)Helper::seekWidgetByName(lay_root, "img_skin");
 
 
 	this->img_half = (ImageView*)Helper::seekWidgetByName(lay_root, "img_half");
@@ -89,7 +90,7 @@ void PnlHero::updateSvHero() {
 	map<int, ValueMap >& myObj = *(DBM()->getMyObj());
 	int i = 0;
 	int rowCount = ceil(myObj.size() / 3);
-	Size svInnerSize(640, (200 + 10) * rowCount + 10);
+	Size svInnerSize(574, (254 + 6) * rowCount + 6);
 	this->sv_hero->setInnerContainerSize(svInnerSize);
 	svInnerSize = this->sv_hero->getInnerContainerSize();
 
@@ -105,8 +106,8 @@ void PnlHero::updateSvHero() {
 			lay_root = (Layout*)GUIReader::getInstance()->widgetFromJsonFile("ui/DlgMain/pnl_hero_item.json");
 			lay_root->setSwallowTouches(false);
 			lay_root->setAnchorPoint(Vec2(0, 1));
-			lay_root->setPositionX(10 + 210 * (i % 3));
-			lay_root->setPositionY(svInnerSize.height - 10 - (i / 3) * 210);
+			lay_root->setPositionX(7 + 189 * (i % 3));
+			lay_root->setPositionY(svInnerSize.height - 6 - (i / 3) * 254);
 			lay_root->setTag(i);
 			lay_root->setUserData((void*)(row["ID"].asInt()));
 			lay_root->addTouchEventListener(CC_CALLBACK_2(PnlHero::onOpenUpgradePanel, this));
@@ -139,6 +140,9 @@ void PnlHero::updateUpgradePanel(int id, bool isNext) {
 	//基本信息
 	ValueMap& objBaseCfg = *(CFG()->getObjInfoById(id));
 	this->img_half->loadTexture(objBaseCfg["Icon"].asString());
+
+	this->img_skin->loadTexture(objBaseCfg["UI"].asString());
+
 	this->txt_name->setString(objBaseCfg["Name"].asString());
 	this->txt_level->setString(string("Lv.") + myObj["Lv"].asString());
 
@@ -155,9 +159,9 @@ void PnlHero::updateUpgradePanel(int id, bool isNext) {
 	else {
 		//武将
 		objAttrCfgPtr = (CFG()->getHeroInfoById(objBaseCfg["SubType"].asInt()));
-		this->lab_attr_1->setVisible(true);
-		this->lab_attr_2->setVisible(true);
-		this->lab_attr_3->setVisible(true);
+		//this->lab_attr_1->setVisible(true);
+		//this->lab_attr_2->setVisible(true);
+		//this->lab_attr_3->setVisible(true);
 
 
 		sprintf(str, "统御:%d", (*objAttrCfgPtr)["tongyu"].asInt());

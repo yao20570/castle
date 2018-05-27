@@ -6,6 +6,7 @@
 #include "Utils/ConfigMgr.h"
 #include "Dlg/Main/DlgMain.h"
 #include "Dlg/Fight/DlgMission.h"
+#include "Dlg/Fight/AIMgr.h"
 
 USING_NS_CC;
 
@@ -57,7 +58,7 @@ void PnlGuanKa::load()
 
 	
 
-	this->sv_guanka->setInnerContainerSize(Size(svSize.width, 300 * mapMain.size()));
+	this->sv_guanka->setInnerContainerSize(Size(svSize.width, 270 * mapMain.size()));
 	Size innerSize = this->sv_guanka->getInnerContainerSize();
 	for (auto& it : mapMain) {
 		auto item_root = GUIReader::getInstance()->widgetFromJsonFile("ui/DlgMain/pnl_guanka_item.json");
@@ -144,8 +145,10 @@ void PnlGuanKa::onSelectMissionSub(Ref* sender, Widget::TouchEventType type) {
 		bool isEnabled = (pnl->getTag() <= temp);
 		if (isEnabled == true) {
 			this->lay_select->setScale(1);
+			this->lay_select->setVisible(false);
 			this->lay_select = pnl;
 			this->lay_select->setScale(1.2);
+			this->lay_select->setVisible(true);
 		}
 		else{
 			//this->showTip("剧情还没激活");
@@ -176,6 +179,7 @@ void PnlGuanKa::onStart(Ref* sender, Widget::TouchEventType type) {
 		int tempKey = pnl->getTag();
 		DlgMission* dlg = (DlgMission*)this->showDlg("DlgMission");
 		dlg->setObjPosition(missionSubId, tempKey);
+		dlg->_ai->start();
 		break;
 	}
 	case cocos2d::ui::Widget::TouchEventType::CANCELED:

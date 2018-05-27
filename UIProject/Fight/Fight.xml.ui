@@ -8,6 +8,7 @@
   <JsonFolder>F:\Dev\proj\castle\UIProject\Fight\Json</JsonFolder>
   <JsonList>
     <string>dlg_fight.json</string>
+    <string>dlg_battle.json</string>
   </JsonList>
   <CanvasSize>
     <Width>640</Width>
@@ -19,5 +20,5 @@
   <imageFileList />
   <imagePngList />
   <JsonSuffix>.json</JsonSuffix>
-  <CurrentUIJson>dlg_fight.json</CurrentUIJson>
+  <CurrentUIJson>dlg_battle.json</CurrentUIJson>
 </UIProject>

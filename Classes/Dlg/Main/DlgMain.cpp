@@ -11,6 +11,7 @@ using namespace cocos2d::ui;
 #include "DLG/Main/PnlHero.h"
 #include "DLG/Main/PnlFind.h"
 #include "DLG/Main/PnlGuanKa.h"
+#include "DLG/Main/PnlFight.h"
 
 USING_NS_CC;
 
@@ -125,6 +126,9 @@ BaseComponent* DlgMain::getPanel(PanelType type) {
 		case PanelType::Chater:
 			comp = PnlGuanKa::create(this);
 			break;
+		case PanelType::Fight:
+			comp = PnlFight::create(this);
+			break;
 		}
 		_pnls[type] = comp;
 		this->_lay_mid->addChild(comp);
@@ -185,7 +189,8 @@ void DlgMain::onFight(Ref* sender, Widget::TouchEventType type)
 {
 	if (type == Widget::TouchEventType::ENDED) {
 		CCLOG("打开战斗功能");
-		showDlg("DlgFight");
+		//showDlg("DlgFight");
+		this->showPanel(PanelType::Fight);
 	}
 }
 //打开布阵功能

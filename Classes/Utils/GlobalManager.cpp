@@ -269,15 +269,14 @@ int GlobalManager::getDir(Vec2 src, Vec2 des)
     float ang = atan2(p.y, p.x) * 180.0 / acos(-1.0);
        
 //    printf("%f : ", ang);
-    
-    if (-67.5 <= ang && ang <= -22.5)   return 3;
-    if (-22.5 <= ang && ang <= 22.5)    return 2;
-    if (22.5 <= ang && ang <= 67.5)     return 1;
     if (67.5 <= ang && ang <= 112.5)    return 0;
-    if (112.5 <= ang && ang <= 157.5)   return 7;
-    if (-112.5 <= ang && ang <= -67.5)  return 4;
-    if (-157.5 <= ang && ang <= -112.5) return 5;
-    return 6;
+    if (-67.5 <= ang && ang <= -22.5)   return 5;
+    if (-22.5 <= ang && ang <= 22.5)    return 6;
+    if (22.5 <= ang && ang <= 67.5)     return 7; 
+    if (-112.5 <= ang && ang <= -67.5)  return 4;   
+    if (112.5 <= ang && ang <= 157.5)   return 1;
+    if (-157.5 <= ang && ang <= -112.5) return 3;
+    return 2;
 }
 
 

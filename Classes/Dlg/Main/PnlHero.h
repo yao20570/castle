@@ -34,7 +34,7 @@ private:
 	Layout*			pnl_btn_cancel;
 
 	int		obj_id;
-
+	ImageView* img_skin;
 	ImageView* img_half;
 	Text*	txt_level;
 	Text*	txt_name;
