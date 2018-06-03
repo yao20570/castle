@@ -5,12 +5,14 @@
 
 #include "Utils/ConfigMgr.h"
 #include "Dlg/Main/DlgMain.h"
+#include "Utils/UIUtils.h"
 
 USING_NS_CC;
 
 
 
 PnlHero::PnlHero()
+	:select_item(nullptr)
 {
 
 }
@@ -90,7 +92,7 @@ void PnlHero::updateSvHero() {
 	map<int, ValueMap >& myObj = *(DBM()->getMyObj());
 	int i = 0;
 	int rowCount = ceil((float)myObj.size() / 3);
-	Size svInnerSize(574, (254 + 6) * rowCount + 6);
+	Size svInnerSize(574, (300 + 6) * rowCount + 6);
 	this->sv_hero->setInnerContainerSize(svInnerSize);
 	svInnerSize = this->sv_hero->getInnerContainerSize();
 
@@ -107,11 +109,16 @@ void PnlHero::updateSvHero() {
 			lay_root->setSwallowTouches(false);
 			lay_root->setAnchorPoint(Vec2(0, 1));
 			lay_root->setPositionX(7 + 189 * (i % 3));
-			lay_root->setPositionY(svInnerSize.height - 6 - (i / 3) * 254);
+			lay_root->setLocalZOrder(100000 - i);
+			lay_root->setPositionY(svInnerSize.height - 6 - (i / 3) * 300);
 			lay_root->setTag(i);
 			lay_root->setUserData((void*)(row["ID"].asInt()));
-			lay_root->addTouchEventListener(CC_CALLBACK_2(PnlHero::onOpenUpgradePanel, this));
+			lay_root->addTouchEventListener(CC_CALLBACK_2(PnlHero::onExtendItem, this));
 			this->sv_hero->addChild(lay_root);
+
+			Button* btn_info = (Button*)Helper::seekWidgetByName(lay_root, "btn_info");
+			btn_info->addTouchEventListener(CC_CALLBACK_2(PnlHero::onOpenUpgradePanel, this));
+			btn_info->setVisible(false);
 		}
 
 		ImageView* img_icon = (ImageView*)Helper::seekWidgetByName(lay_root, "img_icon");
@@ -119,9 +126,14 @@ void PnlHero::updateSvHero() {
 
 		Text* txt_lv = (Text*)Helper::seekWidgetByName(lay_root, "txt_lv");
 
+		
+
 		img_icon->loadTexture(cfg["Icon"].asString());
 		txt_name->setString(cfg["Name"].asString());
+		setTextColor(txt_name, cfg["Quality"].asInt());
+
 		txt_lv->setString(string("Lv.") + row["Lv"].asString());
+		setTextColor(txt_lv, cfg["Quality"].asInt());
 		++i;
 	}
 
@@ -216,6 +228,33 @@ void PnlHero::updateUpgradePanel(int id, bool isNext) {
 
 }
 
+void PnlHero::onExtendItem(Ref* sender, Widget::TouchEventType type) {
+	if (type != Widget::TouchEventType::ENDED) {
+		return;
+	}
+
+	if (this->select_item) {
+		Button* btn_info = (Button*)Helper::seekWidgetByName(this->select_item, "btn_info");
+		btn_info->setVisible(false);
+
+		Text* txt_name = (Text*)Helper::seekWidgetByName(this->select_item, "txt_name");
+		Text* txt_lv = (Text*)Helper::seekWidgetByName(this->select_item, "txt_lv");
+		txt_name->setVisible(true);
+		txt_lv->setVisible(true);
+	}
+
+	Button* btn_info = (Button*)Helper::seekWidgetByName((Widget*)sender, "btn_info");
+	btn_info->setVisible(true);
+
+	Text* txt_name = (Text*)Helper::seekWidgetByName((Widget*)sender, "txt_name");
+	Text* txt_lv = (Text*)Helper::seekWidgetByName((Widget*)sender, "txt_lv");
+	txt_name->setVisible(false);
+	txt_lv->setVisible(false);
+
+
+	this->obj_id = (int)((Layout*)sender)->getUserData();
+	this->select_item = (Layout*)sender;
+}
 
 void PnlHero::onOpenUpgradePanel(Ref* sender, Widget::TouchEventType type) {
 
@@ -224,8 +263,13 @@ void PnlHero::onOpenUpgradePanel(Ref* sender, Widget::TouchEventType type) {
 	}
 	
 	this->pnl_upgrade->setVisible(true);
+	((Button*)sender)->setVisible(false);
 
-	this->obj_id = (int)((Layout*)sender)->getUserData();
+	Text* txt_name = (Text*)Helper::seekWidgetByName((Layout*)((Button*)sender)->getParent(), "txt_name");
+	Text* txt_lv = (Text*)Helper::seekWidgetByName((Layout*)((Button*)sender)->getParent(), "txt_lv");
+	txt_name->setVisible(true);
+	txt_lv->setVisible(true);
+
 	this->updateUpgradePanel(this->obj_id, false);
 }
 
@@ -263,6 +307,13 @@ void PnlHero::onOk(Ref* sender, Widget::TouchEventType type) {
 	this->pnl_btn_cancel->setVisible(false);
 
 	ValueMap& myObj = *(DBM()->getMyObjById(this->obj_id));
+	ValueMap& objCfg = *(CFG()->getObjInfoById(this->obj_id));
+	int curLv = myObj["Lv"].asInt();
+	int maxLv = objCfg["MaxLv"].asInt();
+	if (curLv >= maxLv) {
+		this->showTip("已经达到升级上限");
+		return;
+	}
 	DBM()->updatMyObj(this->obj_id, myObj["Lv"].asInt() + 1);
 	this->updateUpgradePanel(this->obj_id, false);
 }

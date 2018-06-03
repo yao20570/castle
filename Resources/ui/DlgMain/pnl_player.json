@@ -12,6 +12,7 @@
   "textures": [],
   "texturesPng": [
     "ui/main.png",
+    "ui/select_frame.png",
     "ui/main3.png",
     "GUI/image.png"
   ],

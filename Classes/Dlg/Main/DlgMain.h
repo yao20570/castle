@@ -22,6 +22,9 @@ public:
 	virtual void hideDlg(const string& dlgName);
 	
 private:
+	void setSelectFrame(int index);
+
+private:
 	void onLord(Ref* sender, Widget::TouchEventType type);
 	void onSearch(Ref* sender, Widget::TouchEventType type);
 	void onFight(Ref* sender, Widget::TouchEventType type);
@@ -32,4 +35,6 @@ public:
 	Layout* _pnl_setting;
 	map<int, BaseComponent*> _pnls;
 	BaseComponent*	_cur_pnl;
+	ImageView* _select_frame[5];
+	ImageView* _cur_select_frame;
 };

@@ -234,6 +234,18 @@ void AIMgr::start() {
 	}
 }
 
+void AIMgr::hideEnemy() {	
+	for (auto it : _objEnemy) {
+		it->setVisible(false);
+	}
+}
+
+void AIMgr::showEnemy() {
+	for (auto it : _objEnemy) {
+		it->setVisible(true);
+	}
+}
+
 void AIMgr::close() {
 	_objSelf.clear();
 	_objEnemy.clear();

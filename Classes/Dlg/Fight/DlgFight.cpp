@@ -23,7 +23,7 @@ static const char* PathObjPosition	= "Config/ObjPosition.csv";
 static const char* PathHeroInfo		= "Config/HeroInfo.csv";
 static const char* PathSoilderInfo	= "Config/SoilderInfo.csv";
 
-#define MaxReadyCD 10 
+#define MaxReadyCD 30 
 
 static int state = 1;//1:准备，2：战斗，3:等待结束
 static int DlgFight_delay_close = 90;
@@ -73,7 +73,9 @@ void DlgFight::update(float dt) {
 	{
 	case 1:
 	{
+		//准备阶段
 		this->lay_result->setVisible(true);
+		_ai->hideEnemy();
 		if (_ai->isWin(1)) {
 			this->txt_result->setString(Value((int)ReadyCD).asString());
 		}
@@ -85,6 +87,7 @@ void DlgFight::update(float dt) {
 			ReadyCD = MaxReadyCD;
 			state = 2;
 			_ai->start();
+			_ai->showEnemy();
 		}
 		else {
 			ReadyCD -= dt;
@@ -93,6 +96,7 @@ void DlgFight::update(float dt) {
 		break;
 	case 2:
 	{
+		
 		this->lay_result->setVisible(false);
 		if (_ai->isOver(1)) {
 

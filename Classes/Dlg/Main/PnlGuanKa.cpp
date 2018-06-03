@@ -78,23 +78,22 @@ void PnlGuanKa::load()
 			if (subData["mianId"].asInt() == mainId) {
 				int index = subData["sort"].asInt();
 				char str[128] = "\0";
-				sprintf(str, "lab_mission_sub%d", index);
-				Text* lab_mission_sub = (Text*)Helper::seekWidgetByName(item_root, str);
-				lab_mission_sub->setString(subData["title"].asString());
-
 				sprintf(str, "pnl_mission_sub%d", index);
 				Layout* pnl_mission_sub = (Layout*)Helper::seekWidgetByName(item_root, str);
 				pnl_mission_sub->addTouchEventListener(CC_CALLBACK_2(PnlGuanKa::onSelectMissionSub, this));
-				
+
+				Text* lab_mission_sub = (Text*)Helper::seekWidgetByName(pnl_mission_sub, "lab_mission_sub");
+				lab_mission_sub->setString(subData["title"].asString());
+								
 				int tag = mainId * 10 + index;
 				pnl_mission_sub->setTag(tag);
 				pnl_mission_sub->setUserData((void*)subData["ID"].asInt());
 
 				if (tag == temp) {
-					pnl_mission_sub->setScale(1.2);
+					//pnl_mission_sub->setScale(1.2);
+					lab_mission_sub->setTextColor(Color4B(255, 0, 0, 255));
 					this->lay_select = pnl_mission_sub;
 				}
-
 
 
 				this->layouts.push_back(pnl_mission_sub);
@@ -144,11 +143,14 @@ void PnlGuanKa::onSelectMissionSub(Ref* sender, Widget::TouchEventType type) {
 
 		bool isEnabled = (pnl->getTag() <= temp);
 		if (isEnabled == true) {
-			this->lay_select->setScale(1);
-			this->lay_select->setVisible(false);
+
+			Text* lab_mission_sub = (Text*)Helper::seekWidgetByName(this->lay_select, "lab_mission_sub");
+			lab_mission_sub->setTextColor(Color4B(255, 255, 255, 255));
+
 			this->lay_select = pnl;
-			this->lay_select->setScale(1.2);
-			this->lay_select->setVisible(true);
+			
+			lab_mission_sub = (Text*)Helper::seekWidgetByName(this->lay_select, "lab_mission_sub");
+			lab_mission_sub->setTextColor(Color4B(255, 0, 0, 255));
 		}
 		else{
 			//this->showTip("剧情还没激活");

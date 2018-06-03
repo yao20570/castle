@@ -1,5 +1,6 @@
 
 #include "Utils/PublicDefault.h"
+#include "Utils/UIUtils.h"
 #include "PnlSetting.h"
 
 
@@ -145,13 +146,38 @@ void PnlSetting::updateSelectList() {
 		lay_root->setUserData((void*)(cfg["ID"].asInt()));
 
 		ImageView* img_icon = (ImageView*)Helper::seekWidgetByName(lay_root, "img_icon");
-		Text* txt_name = (Text*)Helper::seekWidgetByName(lay_root, "txt_name");
-		Layout* pnl_select = (Layout*)Helper::seekWidgetByName(lay_root, "pnl_select");
+		//img_icon->loadTexture(cfg["Head"].asString());
+		img_icon->setVisible(false);
 
+		//
+		Layout* pnl_select = (Layout*)Helper::seekWidgetByName(lay_root, "pnl_select");
 		pnl_select->setVisible(false);
 
-		img_icon->loadTexture(cfg["Head"].asString());
+
+		//名称
+		Text* txt_name = (Text*)Helper::seekWidgetByName(lay_root, "txt_name");
 		txt_name->setString(cfg["Name"].asString());
+		setTextColor(txt_name, cfg["Quality"].asInt());
+
+		//动画
+		string animaName = cfg["Anima"].asString();
+		auto arm = lay_root->getChildByTag(999);
+		if (!arm || arm->getName() != animaName) {
+			if (arm) {
+				arm->removeFromParent();
+			}
+
+			char str[128] = { 0 };
+			sprintf(str, "animation/%s/%s.ExportJson", animaName.c_str(), animaName.c_str());
+			ArmatureDataManager::getInstance()->addArmatureFileInfo(str);
+			Armature* _arm = Armature::create(animaName);
+			_arm->getAnimation()->play("idle0");
+			_arm->setPosition(img_icon->getPosition());
+			_arm->setTag(999);
+			lay_root->addChild(_arm);
+		}
+		
+		
 
 		++i;
 	}
@@ -323,7 +349,7 @@ void PnlSetting::onTouchEnded(Touch* pTouch, Event* pEvent) {
 		if (row) {
 			ValueMap& cfg = *row;
 			int temp = unitNum + cfg["Unit"].asInt();
-			if (temp < 20) {
+			if (temp <= 20) {
 				
 				Layout* settingObj = (Layout*)GUIReader::getInstance()->widgetFromJsonFile("ui/DlgMain/item_obj.json");
 				settingObj->setSwallowTouches(false);

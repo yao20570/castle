@@ -83,6 +83,19 @@ void DlgMain::load()
 	auto btnChapter = (Button*)Helper::seekWidgetByName(lay_root, "lay_btn_5");
 	btnChapter->addTouchEventListener(CC_CALLBACK_2(DlgMain::onChapter, this));
 
+	for (int i = 1; i < 6; ++i) {
+		char str[128] = {0};
+		sprintf(str, "Image_select_%d", i);
+		_select_frame[i] = (ImageView*)Helper::seekWidgetByName(lay_root, str);
+	}
+	this->setSelectFrame(1);
+}
+
+void DlgMain::setSelectFrame(int index) {
+	for (int i = 1; i < 6; ++i) {
+		_select_frame[i]->setVisible(false);
+	}
+	_select_frame[index]->setVisible(true);
 }
 
 void DlgMain::showPanel(PanelType type) {
@@ -155,6 +168,7 @@ void DlgMain::onLord(Ref* sender, Widget::TouchEventType type)
 {
 	if (type == Widget::TouchEventType::ENDED) {
 		this->showPanel(PanelType::HeroPnl);
+		this->setSelectFrame(1);
 	}
 }
 //打开搜索功能
@@ -165,7 +179,7 @@ void DlgMain::onSearch(Ref* sender, Widget::TouchEventType type)
 		
 		
 		this->showPanel(PanelType::Find);
-
+		this->setSelectFrame(2);
 		//int num = rand() % 20;
 
 		//ValueMap* cfgPtr = CFG()->getEquipInfoById(num);
@@ -191,6 +205,7 @@ void DlgMain::onFight(Ref* sender, Widget::TouchEventType type)
 		CCLOG("打开战斗功能");
 		//showDlg("DlgFight");
 		this->showPanel(PanelType::Fight);
+		this->setSelectFrame(3);
 	}
 }
 //打开布阵功能
@@ -198,6 +213,7 @@ void DlgMain::onSetting(Ref* sender, Widget::TouchEventType type)
 {
 	if (type == Widget::TouchEventType::ENDED) {
 		this->showPanel(PanelType::Setting);
+		this->setSelectFrame(4);
 	}
 }
 //打开关卡功能
@@ -205,5 +221,6 @@ void DlgMain::onChapter(Ref* sender, Widget::TouchEventType type)
 {
 	if (type == Widget::TouchEventType::ENDED) {
 		this->showPanel(PanelType::Chater);
+		this->setSelectFrame(5);
 	}
 }

@@ -89,6 +89,17 @@ ValueMap* ConfigMgr::getObjInfoById(int id) {
 	return &(it->second);
 }
 
+ValueMap* ConfigMgr::getObjInfoByType(int mainType, int subType) {
+	map<int, ValueMap>* table = loadConfig(PathObjInfo, "ID");
+	for (auto& it : *table) {
+		ValueMap& obj = it.second;
+		if (obj["ObjType"].asInt() == mainType && obj["SubType"].asInt() == subType) {
+			return &obj;
+		}
+	}
+	return nullptr;
+}
+
 ValueMap* ConfigMgr::getEquipInfoById(int id) {
 	map<int, ValueMap>* table = loadConfig(PathEquipInfo, "ID");
 	auto it = table->find(id);

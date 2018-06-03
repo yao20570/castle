@@ -19,6 +19,7 @@ public:
 	ValueMap* getHeroInfoById(int id);
 	ValueMap* getSoilderInfoById(int id);
 	ValueMap* getObjInfoById(int id);
+	ValueMap* getObjInfoByType(int mainType, int subType);
 
 	ValueMap* getEquipInfoById(int id);
 

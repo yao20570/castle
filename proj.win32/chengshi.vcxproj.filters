@@ -458,6 +458,9 @@
     <ClInclude Include="..\Classes\Dlg\Main\PnlFight.h">
       <Filter>src\Dlg\Main</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\Utils\UIUtils.h">
+      <Filter>src\Utils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">

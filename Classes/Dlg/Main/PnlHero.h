@@ -18,6 +18,7 @@ public:
 	void updateUpgradePanel(int id, bool isNext);
 
 
+	void onExtendItem(Ref* sender, Widget::TouchEventType type);
 	void onOpenUpgradePanel(Ref* sender, Widget::TouchEventType type);
 	void onCloseUpgradePanel(Ref* sender, Widget::TouchEventType type);
 	void onUpgrade(Ref* sender, Widget::TouchEventType type);
@@ -34,6 +35,8 @@ private:
 	Layout*			pnl_btn_cancel;
 
 	int		obj_id;
+	Layout* select_item;
+
 	ImageView* img_skin;
 	ImageView* img_half;
 	Text*	txt_level;

@@ -281,6 +281,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Utils\PublicDefault.h" />
     <ClInclude Include="..\Classes\Utils\GlobalManager.h" />
     <ClInclude Include="..\Classes\Utils\Public.h" />
+    <ClInclude Include="..\Classes\Utils\UIUtils.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>
   <ItemGroup>

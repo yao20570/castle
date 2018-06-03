@@ -79,7 +79,7 @@ void Hero::loadData()
 	_damage = data["Damage"].asInt();
 	_attackSpeed = data["AttackSpeed"].asInt();
 	_shootRange = data["ShootRange"].asInt();
-
+	
 	_isbroken = false;
 	_expReward = 0;
 }
@@ -87,9 +87,15 @@ void Hero::loadData()
 
 void Hero::showUI()
 {
+	ValueMap& objInfo = *(CFG()->getObjInfoByType(2, _heroID));
+	string animaName = objInfo["Anima"].asString();
+	char str[128] = {0};
+	sprintf(str, "animation/%s/%s.ExportJson", animaName.c_str(), animaName.c_str());
+	ArmatureDataManager::getInstance()->addArmatureFileInfo(str);
+
 	int y = _camp == 1 ? -1 : 1;
 	_dir = GM()->getDir(Vec2(0, y));
-	_arm = Armature::create(ANIM_NAME_LVBU);
+	_arm = Armature::create(animaName);
 	_arm->getAnimation()->play("idle" + GM()->getIntToStr(_dir));
 	_arm->setPositionY(20);
 	_arm->pause();

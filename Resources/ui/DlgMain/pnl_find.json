@@ -12,6 +12,7 @@
   "textures": [],
   "texturesPng": [
     "ui/main.png",
+    "ui/select_frame.png",
     "ui/main3.png",
     "GUI/image.png",
     "ui/main1.png",
@@ -21,6 +22,7 @@
     "ui/btn_upgrade.png",
     "ui/btn_cancel.png",
     "GUI/image.png",
+    "ui/btn_info.png",
     "ui/main2.png",
     "GUI/image.png",
     "ui/btn_sure.png"
