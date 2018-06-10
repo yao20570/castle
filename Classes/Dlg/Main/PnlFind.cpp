@@ -89,10 +89,41 @@ void PnlFind::updateGetPanel(int id) {
 	
 	//基本信息
 	ValueMap& objBaseCfg = *(CFG()->getObjInfoById(id));
-	this->img_half->loadTexture(objBaseCfg["Icon"].asString());
-	this->txt_name->setString(objBaseCfg["Name"].asString());	
+	this->txt_name->setString(objBaseCfg["Name"].asString());
 	setTextColor(this->txt_name, objBaseCfg["Quality"].asInt());
+
+	//this->img_half->loadTexture(objBaseCfg["Icon"].asString());
+	this->img_half->setVisible(false);
+	auto lay_root = this->img_half->getParent();
+	//动画
+	string animaName = objBaseCfg["Anima"].asString();
+	auto arm = lay_root->getChildByTag(999);
+	if (!arm || arm->getName() != animaName) {
+		if (arm) {
+			arm->removeFromParent();
+		}
+
+		Armature* _arm = Armature::create(animaName);
+		_arm->getAnimation()->play("atk0");
+		_arm->setPosition(this->img_half->getPosition());
+		_arm->setTag(999);
+		_arm->setScale(2);
+		_arm->getAnimation()->setMovementEventCallFunc(this, SEL_MovementEventCallFunc(&PnlFind::atk));
+		lay_root->addChild(_arm);
+	}
 }
+
+void PnlFind::atk(Armature* arm, MovementEventType eventType, const std::string& str) {
+
+	if (eventType == LOOP_COMPLETE) {
+		
+		int x = arm->getAnimation()->getCurrentMovementID().find("atk");
+		if (x >= 0) {
+			arm->getAnimation()->play("idle0");
+		}
+	}
+}
+
 
 void PnlFind::onGoldFind(Ref* sender, Widget::TouchEventType type) {
 	if (type != Widget::TouchEventType::ENDED) {
@@ -113,6 +144,8 @@ void PnlFind::onGoldFind(Ref* sender, Widget::TouchEventType type) {
 	switch (num)
 	{
 	case 0:
+	case 1:
+	case 2:
 	{
 		//装备
 		map<int, ValueMap>* table = CFG()->loadConfig("Config/EquipInfo.csv", "ID");
@@ -126,8 +159,7 @@ void PnlFind::onGoldFind(Ref* sender, Widget::TouchEventType type) {
 		}
 	}
 	break;
-	case 1: 
-	case 2:
+	case 3:
 	{
 		//武将
 		map<int, ValueMap>* table = CFG()->loadConfig("Config/ObjInfo.csv", "ID");
@@ -155,14 +187,18 @@ void PnlFind::onGoldFind(Ref* sender, Widget::TouchEventType type) {
 
 	}
 	break;
-	case 3:
+	case 4:
+	case 5:
+	case 6:
+	case 7:
 	{
 		//金币
 		int num = rand() % 200 + 1;
 		setGoldItemInfo(this->findCount, num);
 	}
 	break;
-	case 4:
+	case 8:
+	case 9:
 	{
 		//钻石
 		int num = rand() % 20 + 1;
@@ -173,22 +209,7 @@ void PnlFind::onGoldFind(Ref* sender, Widget::TouchEventType type) {
 		break;
 	}
 
-	//int num = rand() % 20;
-	//int num = rand() % 20;
 
-	//ValueMap* cfgPtr = CFG()->getEquipInfoById(num);
-	//ValueMap& cfg = *cfgPtr;
-
-	//if (cfgPtr) {
-	//	char str[256] = "\0";
-	//	sprintf(str, "搜索获得装备 - %s", cfg["Name"].asString().c_str());
-	//	this->showTip(str);
-
-	//	DBM()->insertMyEquip(cfg["ID"].asInt());
-	//}
-	//else {
-	//	this->showTip("搜索失败");
-	//}
 }
 
 void PnlFind::onDiamondFind(Ref* sender, Widget::TouchEventType type) {
@@ -205,11 +226,13 @@ void PnlFind::onDiamondFind(Ref* sender, Widget::TouchEventType type) {
 
 	++this->findCount;
 
-	int num = rand() % 5;
+	int num = rand() % 10;
 	CCLOG("random num : %d", num);
 	switch (num)
 	{
 	case 0:
+	case 1:
+	case 2:
 	{
 		//装备
 		map<int, ValueMap>* table = CFG()->loadConfig("Config/EquipInfo.csv", "ID");
@@ -223,8 +246,10 @@ void PnlFind::onDiamondFind(Ref* sender, Widget::TouchEventType type) {
 		}
 	}
 	break;
-	case 1:
-	case 2:
+	case 3:
+	case 4:
+	case 5:
+	case 6:
 	{
 		//武将
 		map<int, ValueMap>* table = CFG()->loadConfig("Config/ObjInfo.csv", "ID");
@@ -249,14 +274,15 @@ void PnlFind::onDiamondFind(Ref* sender, Widget::TouchEventType type) {
 
 	}
 	break;
-	case 3:
+	case 7:
 	{
 		//金币
 		int num = rand() % 200 + 1;
 		setGoldItemInfo(this->findCount, num);
 	}
 	break;
-	case 4:
+	case 8:
+	case 9:
 	{
 		//钻石
 		int num = rand() % 20 + 1; 

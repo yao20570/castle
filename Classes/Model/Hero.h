@@ -28,6 +28,7 @@ public:
     virtual void idle();
     virtual void atk(Armature* arm, MovementEventType eventType, const std::string& str);   // 攻击
     virtual void hurt(int x);           // 受伤
+	virtual void death();           // 死亡
     virtual bool isDeath();             // 是否死亡
     virtual void putSkill(int type);    // 释放技能
     virtual void finishSkill(Armature* arm, int state); // 技能结束

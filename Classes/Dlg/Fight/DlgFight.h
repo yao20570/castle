@@ -35,6 +35,7 @@ private:
 	//void onSearch(Ref* sender, Widget::TouchEventType type);
 	//void onFight(Ref* sender, Widget::TouchEventType type);
 	//void onSetting(Ref* sender, Widget::TouchEventType type);
+	void onNextRound(Ref* sender, Widget::TouchEventType type);
 	void onStart(Ref* sender, Widget::TouchEventType type);
 	void onClose(Ref* sender, Widget::TouchEventType type);
 	void onResetObjPos(Ref* sender, Widget::TouchEventType type);
@@ -45,9 +46,12 @@ public:
 	Layout* _map;
 	BaseSprite* _select_obj;
 
-	Layout* lay_result;
-	Text*	txt_result;
-
+	Layout*		lay_result;
+	Text*		txt_result;
+	Text*		txt_num;
+	Button*		btn_start;
+	ImageView*	img_lose;
+	ImageView*	img_win;
 	int _round;
 };
 

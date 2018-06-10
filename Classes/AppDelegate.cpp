@@ -153,15 +153,37 @@ void AppDelegate::loadResources()
 	FileUtils::getInstance()->addSearchPath("images");
 
 	// ¼ÓÔØ¶¯»­
-	ArmatureDataManager::getInstance()->addArmatureFileInfo(ANIM_FIGHTER);
-	ArmatureDataManager::getInstance()->addArmatureFileInfo(ANIM_BOWMAN);
-	ArmatureDataManager::getInstance()->addArmatureFileInfo(ANIM_GUNNER);
-	ArmatureDataManager::getInstance()->addArmatureFileInfo(ANIM_MEATSHIELD);
-	ArmatureDataManager::getInstance()->addArmatureFileInfo(ANIM_HERO_ARAGORN);
-	ArmatureDataManager::getInstance()->addArmatureFileInfo(ANIM_SKILL_1);
-	ArmatureDataManager::getInstance()->addArmatureFileInfo(ANIM_SKILL_2);
+	//ArmatureDataManager::getInstance()->addArmatureFileInfo(ANIM_FIGHTER);
+	//ArmatureDataManager::getInstance()->addArmatureFileInfo(ANIM_BOWMAN);
+	//ArmatureDataManager::getInstance()->addArmatureFileInfo(ANIM_GUNNER);
+	//ArmatureDataManager::getInstance()->addArmatureFileInfo(ANIM_MEATSHIELD);
+	//ArmatureDataManager::getInstance()->addArmatureFileInfo(ANIM_HERO_ARAGORN);
+	//ArmatureDataManager::getInstance()->addArmatureFileInfo(ANIM_SKILL_1);
+	//ArmatureDataManager::getInstance()->addArmatureFileInfo(ANIM_SKILL_2);
 
-	ArmatureDataManager::getInstance()->addArmatureFileInfo(ANIM_HERO_LVBU);
+	//ArmatureDataManager::getInstance()->addArmatureFileInfo(ANIM_HERO_LVBU);
+
+	ArmatureDataManager::getInstance()->addArmatureFileInfo("animation/skill/effect1/NewAnimation.ExportJson");
+
+	ArmatureDataManager::getInstance()->addArmatureFileInfo("animation/soilder/Anim_Bowman.ExportJson");
+	ArmatureDataManager::getInstance()->addArmatureFileInfo("animation/soilder/Anim_Fighter.ExportJson");
+	ArmatureDataManager::getInstance()->addArmatureFileInfo("animation/soilder/Anim_Qibing.ExportJson");
+	ArmatureDataManager::getInstance()->addArmatureFileInfo("animation/soilder/Anim_MeatShield.ExportJson");
+	ArmatureDataManager::getInstance()->addArmatureFileInfo("animation/soilder/Anim_Hero_Fashi.ExportJson");
 
 
+	ArmatureDataManager::getInstance()->addArmatureFileInfo("animation/hero/Anim_Hero_Caocao.ExportJson");
+	ArmatureDataManager::getInstance()->addArmatureFileInfo("animation/hero/Anim_Hero_Daqiao.ExportJson");
+	ArmatureDataManager::getInstance()->addArmatureFileInfo("animation/hero/Anim_Hero_Ganning.ExportJson");
+	ArmatureDataManager::getInstance()->addArmatureFileInfo("animation/hero/Anim_Hero_Guanyu.ExportJson");
+	ArmatureDataManager::getInstance()->addArmatureFileInfo("animation/hero/Anim_Hero_Liubei.ExportJson");
+	ArmatureDataManager::getInstance()->addArmatureFileInfo("animation/hero/Anim_Hero_Luxun.ExportJson");
+	ArmatureDataManager::getInstance()->addArmatureFileInfo("animation/hero/Anim_Hero_LvBu.ExportJson");
+	ArmatureDataManager::getInstance()->addArmatureFileInfo("animation/hero/Anim_Hero_Machao.ExportJson");
+	ArmatureDataManager::getInstance()->addArmatureFileInfo("animation/hero/Anim_Hero_Simayi.ExportJson");
+	ArmatureDataManager::getInstance()->addArmatureFileInfo("animation/hero/Anim_Hero_Sunshangxiang.ExportJson");
+	ArmatureDataManager::getInstance()->addArmatureFileInfo("animation/hero/Anim_Hero_Xiahoudun.ExportJson");
+	ArmatureDataManager::getInstance()->addArmatureFileInfo("animation/hero/Anim_Hero_Zhangliao.ExportJson");
+	ArmatureDataManager::getInstance()->addArmatureFileInfo("animation/hero/Anim_Hero_Zhenji.ExportJson");
+	ArmatureDataManager::getInstance()->addArmatureFileInfo("animation/hero/Anim_Hero_Zhouyu.ExportJson");
 }

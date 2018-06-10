@@ -4,6 +4,7 @@
 
 
 #include "Utils/ConfigMgr.h"
+#include "Utils/UIUtils.h"
 #include "Dlg/Main/DlgMain.h"
 
 USING_NS_CC;
@@ -89,8 +90,30 @@ void PnlFight::updateSettingPanel() {
 		settingObj->setTag(objId);
 		settingObj->setUserData(cfgPtr);
 		((Layout*)settingObj->getChildByName("pnl_select"))->setVisible(false);
-		((ImageView*)settingObj->getChildByName("img_icon"))->loadTexture(cfg["Head"].asString());
-		((Text*)settingObj->getChildByName("txt_name"))->setString(cfg["Name"].asString());
+
+		ImageView* img_icon = (ImageView*)settingObj->getChildByName("img_icon");
+		img_icon->loadTexture(cfg["Head"].asString());
+		img_icon->setVisible(false);
+
+		Text* txt_name = (Text*)settingObj->getChildByName("txt_name");
+		txt_name->setString(cfg["Name"].asString());
+		setTextColor(txt_name, cfg["Quality"].asInt());
+
+		string animaName = cfg["Anima"].asString();
+		char str[128] = { 0 };
+		sprintf(str, "animation/%s/%s.ExportJson", animaName.c_str(), animaName.c_str());
+		ArmatureDataManager::getInstance()->addArmatureFileInfo(str);
+		int _dir = GM()->getDir(Vec2(0, -1));
+		Armature* _arm = Armature::create(animaName);
+		_arm->getAnimation()->play("idle" + GM()->getIntToStr(_dir));
+		_arm->setPosition(img_icon->getPosition());
+		settingObj->addChild(_arm);
+
+
+
 		this->pnl_setting->addChild(settingObj);
+
+
+		
 	}
 }

@@ -73,7 +73,7 @@ void Hero::loadData()
 	_type = data["Type"].asInt();
 	_level = data["Level"].asInt();
 	_name = data["Name"].asInt();
-
+	_shootType = data["Shoot"].asInt();
 	_healthPoint = data["HealthPoint"].asInt();
 	_totalHP = _healthPoint;
 	_damage = data["Damage"].asInt();
@@ -89,9 +89,9 @@ void Hero::showUI()
 {
 	ValueMap& objInfo = *(CFG()->getObjInfoByType(2, _heroID));
 	string animaName = objInfo["Anima"].asString();
-	char str[128] = {0};
-	sprintf(str, "animation/%s/%s.ExportJson", animaName.c_str(), animaName.c_str());
-	ArmatureDataManager::getInstance()->addArmatureFileInfo(str);
+	//char str[128] = {0};
+	//sprintf(str, "animation/%s/%s.ExportJson", animaName.c_str(), animaName.c_str());
+	//ArmatureDataManager::getInstance()->addArmatureFileInfo(str);
 
 	int y = _camp == 1 ? -1 : 1;
 	_dir = GM()->getDir(Vec2(0, y));
@@ -103,12 +103,12 @@ void Hero::showUI()
 
 	this->addChild(_arm);
 
-	_skill1 = Armature::create(ANIM_NAME_SKILL_1);
-	_skill2 = Armature::create(ANIM_NAME_SKILL_2);
-	_skill1->setVisible(false);
-	_skill2->setVisible(false);
-	this->addChild(_skill1);
-	this->addChild(_skill2);
+	//_skill1 = Armature::create(ANIM_NAME_SKILL_1);
+	//_skill2 = Armature::create(ANIM_NAME_SKILL_2);
+	//_skill1->setVisible(false);
+	//_skill2->setVisible(false);
+	//this->addChild(_skill1);
+	//this->addChild(_skill2);
 	this->setLocalZOrder((int)_pos.x + (int)_pos.y * 10000);
 	this->setScale(0.8);
 	
@@ -158,18 +158,48 @@ void Hero::atk(Armature* arm, MovementEventType eventType, const std::string& st
 		}
 		int x = arm->getAnimation()->getCurrentMovementID().find("atk");
 		if (x >= 0) {
-			_expReward += _damage / 50.0;
-			_target->hurt(_damage);
+
+			if (_shootType == 2) {
+				Vec2 src = getPosition();
+				Vec2 des = _target->getPosition();
+				auto bullet = BulletSprite::create(src, des, _damage, _target, IMG_BULLET_ARROW, 2);
+				bullet->setScale(getScale());
+				this->getParent()->addChild(bullet, 9999999);
+			}
+			else if (_shootType == 3) {
+				Vec2 src = getPosition();
+				Vec2 des = _target->getPosition();
+				auto bullet = BulletSprite::create(src, des, _damage, _target, IMG_BULLET_SHELL, 2);
+				bullet->setScale(getScale());
+				this->getParent()->addChild(bullet, 9999999);
+			}
+			else {
+				//_target->hurt(_damage);
+				if (_target->_objType == 3) {
+					_target->hurt(2);
+				}
+				else {
+					_target->hurt(_damage);
+				}
+				
+			}
 
 			if (_target->_objType == 3) {
+				//攻击完主公后消失
 				_healthPoint = 0;
-				_arm->getAnimation()->stop();
+				//_arm->getAnimation()->stop();
 				_ai->setObjDead(this);
-				setVisible(false);
+				//setVisible(false);
 				_isbroken = true;
 
 				
 			}
+			return;
+		}
+		x = arm->getAnimation()->getCurrentMovementID().find("dead");
+		if (x >= 0) {
+			setVisible(false);
+			_arm->getAnimation()->stop();
 		}
 	}
 
@@ -181,7 +211,7 @@ void Hero::atk(Armature* arm, MovementEventType eventType, const std::string& st
 void Hero::hurt(int x)
 {
 	if (_isbroken == true || _healthPoint <= 0) {
-		_arm->getAnimation()->stop();
+		//_arm->getAnimation()->stop();
 		_ai->setObjDead(this);
 		_isbroken = true;
 		return;
@@ -190,15 +220,21 @@ void Hero::hurt(int x)
 	_healthPoint -= x;
 	if (_healthPoint <= 0) {
 		_isbroken = true;
-		this->setVisible(false);
+		//this->setVisible(false);
 		_ai->setObjDead(this);
-		_arm->getAnimation()->stop();
+		setState(STATE_DEATH, _dir);
+		//_arm->getAnimation()->stop();
 	}
 	else {
 		_hpBar->setPercent(100.0 * _healthPoint / _totalHP);
 	}
 }
 
+void Hero::death()
+{
+	//this->setVisible(false);
+	//_arm->getAnimation()->stop();
+}
 
 // 技能结束
 void Hero::finishSkill(Armature* arm, int state)
@@ -445,6 +481,9 @@ void Hero::setState(int state, int dir)
 		break;
 	case STATE_WIN:
 		animaCmd = "run";
+		break;
+	case STATE_DEATH:
+		animaCmd = "dead";
 		break;
 	}
 

@@ -113,30 +113,30 @@ void Building::atk()
 {
     if(_isBroken == true) return;
     
-    if(BUILDING_TYPE_ArrowTower == _type) {
-        // 单体
-        Vec2 src = GM()->getMapPos(_pos);
-        Vec2 des = GM()->getMapPos(_target->_pos);
-        
-        auto bullet = BulletSprite::create(src, des, _damage, _target, IMG_BULLET_ARROW);
-        this->getParent()->addChild(bullet, 99);
-    }
-    else if (BUILDING_TYPE_Laser == _type) {
-        // 单体
-        Vec2 src = GM()->getMapPos(_pos);
-        Vec2 des = GM()->getMapPos(_target->_pos);
-        
-        auto bullet = BulletSprite::create(src, des, _damage, _target, IMG_BULLET_LASER);
-        this->getParent()->addChild(bullet, 99);
-    }
-    else if(BUILDING_TYPE_Cannon == _type) {
-        // 单体
-        Vec2 src = GM()->getMapPos(_pos);
-        Vec2 des = GM()->getMapPos(_target->_pos);
-        
-        auto bullet = BulletSprite::create(src, des, _damage, _target, IMG_BULLET_FIRE);
-        this->getParent()->addChild(bullet, 99);
-    }
+    //if(BUILDING_TYPE_ArrowTower == _type) {
+    //    // 单体
+    //    Vec2 src = GM()->getMapPos(_pos);
+    //    Vec2 des = GM()->getMapPos(_target->_pos);
+    //    
+    //    auto bullet = BulletSprite::create(src, des, _damage, _target, IMG_BULLET_ARROW);
+    //    this->getParent()->addChild(bullet, 99);
+    //}
+    //else if (BUILDING_TYPE_Laser == _type) {
+    //    // 单体
+    //    Vec2 src = GM()->getMapPos(_pos);
+    //    Vec2 des = GM()->getMapPos(_target->_pos);
+    //    
+    //    auto bullet = BulletSprite::create(src, des, _damage, _target, IMG_BULLET_LASER);
+    //    this->getParent()->addChild(bullet, 99);
+    //}
+    //else if(BUILDING_TYPE_Cannon == _type) {
+    //    // 单体
+    //    Vec2 src = GM()->getMapPos(_pos);
+    //    Vec2 des = GM()->getMapPos(_target->_pos);
+    //    
+    //    auto bullet = BulletSprite::create(src, des, _damage, _target, IMG_BULLET_FIRE);
+    //    this->getParent()->addChild(bullet, 99);
+    //}
 }
 
 

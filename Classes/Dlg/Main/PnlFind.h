@@ -29,7 +29,7 @@ public:
 	void setGoldItemInfo(int index, int goldNum);
 	void setDiamondItemInfo(int index, int diamondNum);
 
-
+	void atk(Armature* arm, MovementEventType eventType, const std::string& str);
 public:
 	virtual void updateUI();
 	void updateGetPanel(int id);

@@ -54,6 +54,9 @@ bool DlgMain::init(StateBase* gameState)
 
 void DlgMain::load()
 {
+	SimpleAudioEngine::getInstance()->stopBackgroundMusic();
+	SimpleAudioEngine::getInstance()->playBackgroundMusic(OGG_BACKGROUND, true);
+
 	auto lay_root = GUIReader::getInstance()->widgetFromJsonFile("ui/DlgMain/dlg_mian.json");
 	CCLOG("=============>%p", lay_root);
 	this->addChild(lay_root);
@@ -88,6 +91,9 @@ void DlgMain::load()
 		sprintf(str, "Image_select_%d", i);
 		_select_frame[i] = (ImageView*)Helper::seekWidgetByName(lay_root, str);
 	}
+	this->setSelectFrame(1);
+
+	this->showPanel(PanelType::HeroPnl);
 	this->setSelectFrame(1);
 }
 

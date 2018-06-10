@@ -24,10 +24,15 @@ static const char* PathHeroInfo		= "Config/HeroInfo.csv";
 static const char* PathSoilderInfo	= "Config/SoilderInfo.csv";
 
 #define MaxReadyCD 30 
+#define MaxReadyCD2 3 
 
 static int state = 1;//1:准备，2：战斗，3:等待结束
 static int DlgFight_delay_close = 90;
 static float ReadyCD = MaxReadyCD;
+static float ReadyCD2 = MaxReadyCD2;
+
+static int MYWIN = 0;
+static int MYLOSE = 0;
 
 DlgFight::DlgFight()	
 	:_objPosCfg(nullptr)
@@ -39,6 +44,9 @@ DlgFight::DlgFight()
 	_dlg_name = "DlgFight";
 	state = 1;
 	ReadyCD = MaxReadyCD;
+	ReadyCD2 = MaxReadyCD2;
+	MYWIN = 0;
+	MYLOSE = 0;
 }
 
 DlgFight::~DlgFight()
@@ -75,19 +83,27 @@ void DlgFight::update(float dt) {
 	{
 		//准备阶段
 		this->lay_result->setVisible(true);
+		this->btn_start->setVisible(true);
+		this->img_win->setVisible(false);
+		this->img_lose->setVisible(false);
+		this->txt_result->setVisible(false);
 		_ai->hideEnemy();
 		if (_ai->isWin(1)) {
-			this->txt_result->setString(Value((int)ReadyCD).asString());
+			this->txt_num->setFontSize(50);
+			this->txt_num->setTextColor(Color4B(0, 255, 0, 255));
+			this->txt_num->setString(Value((int)ReadyCD).asString());	
 		}
 		else {
-			this->txt_result->setString(Value((int)ReadyCD).asString());
+			this->txt_num->setFontSize(50);
+			this->txt_num->setTextColor(Color4B(0, 255, 0, 255));
+			this->txt_num->setString(Value((int)ReadyCD).asString());
 		}
 
 		if (ReadyCD < 0) {
 			ReadyCD = MaxReadyCD;
-			state = 2;
-			_ai->start();
+			ReadyCD2 = MaxReadyCD2;
 			_ai->showEnemy();
+			state = 2;
 		}
 		else {
 			ReadyCD -= dt;
@@ -96,44 +112,60 @@ void DlgFight::update(float dt) {
 		break;
 	case 2:
 	{
-		
-		this->lay_result->setVisible(false);
-		if (_ai->isOver(1)) {
-
-			DlgFight_delay_close = 90;
+		this->btn_start->setVisible(false);
+		if (ReadyCD2 < 0) {
+			_ai->start();
 			state = 3;
 		}
+		else {
+			ReadyCD2 -= dt;
+		}
+
+		this->txt_num->setFontSize(100);
+		this->txt_num->setTextColor(Color4B(255, 0, 0, 255));
+		this->txt_num->setString(Value((int)(ReadyCD2 + 1)).asString());
 	}
 		break;
 	case 3:
-	{
-		if (_round > 1) {
-			this->lay_result->setVisible(true);
+	{		
+		this->lay_result->setVisible(false);
+		if (_ai->isOver(1)) {
+			DlgFight_delay_close = 90;
+			state = 4;
+
 			if (_ai->isWin(1)) {
-				this->txt_result->setString("Win");
+				++MYWIN;
 			}
-			else {
-				this->txt_result->setString("lose");
+			else {				
+				++MYLOSE;
 			}
-		}
 
-		--DlgFight_delay_close;
-		if (DlgFight_delay_close == 0) {
-
-			if (_round > 1) {
-				hideDlg(this->getDlgName());
-			}
-			else {
-
-				++_round;
-				_ai->reset();
-				setObjPosition();
-				//_ai->start();
-				state = 1;
-			}			
 		}
 	}
-		break;			
+		break;
+	case 4:
+	{		
+		this->lay_result->setVisible(true);
+		bool isWin = _ai->isWin(1);
+		this->img_win->setVisible(isWin);
+		this->img_lose->setVisible(!isWin);
+
+		char str[50] = {0};
+		sprintf(str, "%d - %d", MYWIN, MYLOSE);
+		this->txt_result->setString(str);
+		this->txt_result->setVisible(true);
+	}
+		break;
+	case 5:
+	{	
+			++_round;
+			_ai->reset();
+			setObjPosition();
+			//_ai->start();
+			state = 1;
+		
+	}
+	break;
 	}
 
 	
@@ -167,18 +199,28 @@ void DlgFight::load()
 	
 	setObjPosition();
 
+	this->img_lose= (ImageView*)Helper::seekWidgetByName(lay_root, "img_lose");
+	this->img_win = (ImageView*)Helper::seekWidgetByName(lay_root, "img_win");
+	this->img_lose->setVisible(false);
+	this->img_win->setVisible(false);
 
 	//开始
-	auto btnStart = (Layout*)Helper::seekWidgetByName(lay_root, "lay_btn_1");
-	btnStart->addTouchEventListener(CC_CALLBACK_2(DlgFight::onStart, this));
-	//关闭
-	auto btnClose = (Layout*)Helper::seekWidgetByName(lay_root, "lay_btn_5");
-	btnClose->addTouchEventListener(CC_CALLBACK_2(DlgFight::onClose, this));
+	this->btn_start = (Button*)Helper::seekWidgetByName(lay_root, "btn_start");
+	this->btn_start->addTouchEventListener(CC_CALLBACK_2(DlgFight::onStart, this));
+	
+	////开始
+	//auto btnStart = (Layout*)Helper::seekWidgetByName(lay_root, "lay_btn_1");
+	//btnStart->addTouchEventListener(CC_CALLBACK_2(DlgFight::onStart, this));
+	////关闭
+	//auto btnClose = (Layout*)Helper::seekWidgetByName(lay_root, "lay_btn_5");
+	//btnClose->addTouchEventListener(CC_CALLBACK_2(DlgFight::onClose, this));
 	//关闭
 	this->lay_result = (Layout*)Helper::seekWidgetByName(lay_root, "lay_result");
-	this->txt_result = (Text*)Helper::seekWidgetByName(lay_root, "txt_result");
-
 	this->lay_result->setVisible(false);
+	this->lay_result->addTouchEventListener(CC_CALLBACK_2(DlgFight::onNextRound, this));
+
+	this->txt_num = (Text*)Helper::seekWidgetByName(lay_root, "txt_num");
+	this->txt_result = (Text*)Helper::seekWidgetByName(lay_root, "txt_result");
 
 }
 
@@ -300,7 +342,7 @@ void DlgFight::setObjPosition()
 				break;
 			}
 		}
-		addPlayer(Vec2(320, 1080), camp);
+		addPlayer(Vec2(320, 980), camp);
 	}
 
 
@@ -383,8 +425,20 @@ void DlgFight::hideDlg(const string& dlgName)
 
 void DlgFight::onStart(Ref* sender, Widget::TouchEventType type)
 {
+	ReadyCD = MaxReadyCD;
+	ReadyCD2 = MaxReadyCD2;
+	_ai->showEnemy();
+	state = 2;
+}
 
-	_ai->start();
+void DlgFight::onNextRound(Ref* sender, Widget::TouchEventType type)
+{
+	if (_round > 1) {
+		hideDlg(this->getDlgName());
+	}
+	else {
+		state = 5;
+	}
 }
 
 void DlgFight::onClose(Ref* sender, Widget::TouchEventType type)

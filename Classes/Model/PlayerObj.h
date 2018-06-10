@@ -37,6 +37,7 @@ public:
 	AIMgr* _ai;
 
 	Text* _txt_hp;
+	int _heroAtkTime;
 };
 
 #endif // __PlayerObj_H__

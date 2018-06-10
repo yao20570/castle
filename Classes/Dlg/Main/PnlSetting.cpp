@@ -215,8 +215,29 @@ void PnlSetting::updateSettingPanel() {
 		settingObj->setUserData(cfgPtr);
 		settingObj->addTouchEventListener(CC_CALLBACK_2(PnlSetting::onSelectPnlSettingObj, this));
 		((Layout*)settingObj->getChildByName("pnl_select"))->setVisible(false);
-		((ImageView*)settingObj->getChildByName("img_icon"))->loadTexture(cfg["Head"].asString());
-		((Text*)settingObj->getChildByName("txt_name"))->setString(cfg["Name"].asString());
+		//((ImageView*)settingObj->getChildByName("img_icon"))->loadTexture(cfg["Head"].asString());
+		ImageView* img_icon = (ImageView*)settingObj->getChildByName("img_icon");
+		img_icon->setVisible(false);
+
+		Text* txt_name = (Text*)settingObj->getChildByName("txt_name");
+		txt_name->setString(cfg["Name"].asString());
+		setTextColor(txt_name, cfg["Quality"].asInt());
+		//动画
+		string animaName = cfg["Anima"].asString();
+		auto arm = settingObj->getChildByTag(999);
+		if (!arm || arm->getName() != animaName) {
+			if (arm) {
+				arm->removeFromParent();
+			}
+
+			char str[128] = { 0 };
+			Armature* _arm = Armature::create(animaName);
+			_arm->getAnimation()->play("idle4");
+			_arm->setPosition(img_icon->getPosition());
+			_arm->setTag(999);
+			settingObj->addChild(_arm);
+		}
+
 		this->pnl_setting->addChild(settingObj);
 
 		unitNum += cfg["Unit"].asInt();
@@ -360,8 +381,29 @@ void PnlSetting::onTouchEnded(Touch* pTouch, Event* pEvent) {
 				settingObj->setUserData(row);
 				settingObj->addTouchEventListener(CC_CALLBACK_2(PnlSetting::onSelectPnlSettingObj, this));
 				((Layout*)settingObj->getChildByName("pnl_select"))->setVisible(false);
-				((ImageView*)settingObj->getChildByName("img_icon"))->loadTexture(cfg["Head"].asString());
-				((Text*)settingObj->getChildByName("txt_name"))->setString(cfg["Name"].asString());
+				//((ImageView*)settingObj->getChildByName("img_icon"))->loadTexture(cfg["Head"].asString());
+				ImageView* img_icon = (ImageView*)settingObj->getChildByName("img_icon");
+				img_icon->setVisible(false);
+
+				Text* txt_name = (Text*)settingObj->getChildByName("txt_name");
+				txt_name->setString(cfg["Name"].asString());
+				setTextColor(txt_name, cfg["Quality"].asInt());
+
+				//动画
+				string animaName = cfg["Anima"].asString();
+				auto arm = settingObj->getChildByTag(999);
+				if (!arm || arm->getName() != animaName) {
+					if (arm) {
+						arm->removeFromParent();
+					}
+
+					char str[128] = { 0 };
+					Armature* _arm = Armature::create(animaName);
+					_arm->getAnimation()->play("idle4");
+					_arm->setPosition(img_icon->getPosition());
+					_arm->setTag(999);
+					settingObj->addChild(_arm);
+				}
 
 
 				this->pnl_setting->addChild(settingObj);
@@ -432,23 +474,33 @@ void PnlSetting::onSelectObj(Ref* sender, Widget::TouchEventType type)
 		int id = (int)((Layout*)sender)->getUserData();
 		ValueMap* selectCfg = CFG()->getObjInfoById(id);
 
-
-		//Vector<Node*> nodes = this->pnl_setting->getChildren();
-		//for (auto it : nodes) {
-		//	ValueMap* nodeCfg = (ValueMap*)it->getUserData();
-		//	if (nodeCfg == selectCfg && (*selectCfg)["ObjType"].asInt() == 2) {
-
-		//		//武将类型并且已放置
-		//		return;
-		//	}
-		//}
-
 		//选中列表里的武将
 		this->selectObj(id);
 		ImageView* img_icon = (ImageView*)this->pnl_drag->getChildByName("img_icon");
+		//img_icon->loadTexture((*selectCfg)["Head"].asString());
+		img_icon->setVisible(false);
+
 		Text* txt_name = (Text*)this->pnl_drag->getChildByName("txt_name");
-		img_icon->loadTexture((*selectCfg)["Head"].asString());
 		txt_name->setString((*selectCfg)["Name"].asString());
+		setTextColor(txt_name, (*selectCfg)["Quality"].asInt());
+
+		//动画
+		string animaName = (*selectCfg)["Anima"].asString();
+		auto arm = this->pnl_drag->getChildByTag(999);
+		if (!arm || arm->getName() != animaName) {
+			if (arm) {
+				arm->removeFromParent();
+			}
+
+			char str[128] = { 0 };
+			Armature* _arm = Armature::create(animaName);
+			_arm->getAnimation()->play("idle4");
+			_arm->setPosition(img_icon->getPosition());
+			_arm->setTag(999);
+			this->pnl_drag->addChild(_arm);
+		}
+
+
 		break;
 	}
 	case cocos2d::ui::Widget::TouchEventType::MOVED:
@@ -474,10 +526,30 @@ void PnlSetting::onSelectPnlSettingObj(Ref* sender, Widget::TouchEventType type)
 
 			auto& cfg = *(CFG()->getObjInfoById(this->select_obj_id));
 			ImageView* img_icon = (ImageView*)this->pnl_drag->getChildByName("img_icon");
+			//img_icon->loadTexture(cfg["Head"].asString());
+			img_icon->setVisible(false);
+
 			Text* txt_name = (Text*)this->pnl_drag->getChildByName("txt_name");
-			img_icon->loadTexture(cfg["Head"].asString());
 			txt_name->setString(cfg["Name"].asString());
+			setTextColor(txt_name, cfg["Quality"].asInt());
 			this->pnl_drag->setVisible(true);
+
+			//动画
+			string animaName = cfg["Anima"].asString();
+			auto arm = this->pnl_drag->getChildByTag(999);
+			if (!arm || arm->getName() != animaName) {
+				if (arm) {
+					arm->removeFromParent();
+				}
+
+				char str[128] = { 0 };
+				Armature* _arm = Armature::create(animaName);
+				_arm->getAnimation()->play("idle4");
+				_arm->setPosition(img_icon->getPosition());
+				_arm->setTag(999);
+				this->pnl_drag->addChild(_arm);
+			}
+
 
 			((Layout*)sender)->retain();
 			((Layout*)sender)->autorelease();

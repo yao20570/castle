@@ -25,6 +25,8 @@ public:
     virtual void atk();
     virtual void run();
     virtual void hurt(int x);
+
+	virtual void death();
     virtual void idle();
     virtual bool isDeath();
 	virtual void setSelect(bool b);
@@ -38,12 +40,14 @@ public:
 	int _dir;
 	string _cur_anima_key;
 	bool _isbroken;
+	int _shootType;
 	int _healthPoint;
 	int _dotX; 
 	int _dotY;
 	int _speed;
 	BaseSprite* _target;
 
+	string _animaName;
 };
 
 

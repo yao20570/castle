@@ -60,43 +60,48 @@ void Soilder::loadData()
     _type           = data["Type"].asInt();
     _level          = data["Level"].asInt();
     _name           = data["Name"].asInt();
-    
+
+	_shootType		= data["Shoot"].asInt();
     _healthPoint    = data["HealthPoint"].asInt();
     _totalHP        = _healthPoint;
     _damage         = data["Damage"].asInt();
     _attackSpeed    = data["AttackSpeed"].asInt();
     _shootRange     = data["ShootRange"].asInt();
-    
     _isbroken       = false;
 }
 
 
 void Soilder::showUI()
 {
-    switch (_type) {
-        case SOILDER_TYPE_FIGHTER: {
-            _arm = Armature::create(ANIM_NAME_FIGHTER);
-        }
-            break;
-        case SOILDER_TYPE_BOWMAN: {
-            _arm = Armature::create(ANIM_NAME_BOWMAN);
-        }
-            break;
-        case SOILDER_TYPE_GUNNER: {
-            _arm = Armature::create(ANIM_NAME_GUNNER);
-        }
-            break;
-        case SOILDER_TYPE_MEAT: {
-            _arm = Armature::create(ANIM_NAME_MEATSHIELD);
-        }
-            break;
-        default:
-            break;
-    }
+	ValueMap& objInfo = *(CFG()->getObjInfoByType(1, _soilderID));
+	_animaName = objInfo["Anima"].asString();
+	_arm = Armature::create(_animaName);
+	
+
+    //switch (_type) {
+    //    case SOILDER_TYPE_FIGHTER: {
+    //        _arm = Armature::create(ANIM_NAME_FIGHTER);
+    //    }
+    //        break;
+    //    case SOILDER_TYPE_BOWMAN: {
+    //        _arm = Armature::create(ANIM_NAME_BOWMAN);
+    //    }
+    //        break;
+    //    case SOILDER_TYPE_GUNNER: {
+    //        _arm = Armature::create(ANIM_NAME_GUNNER);
+    //    }
+    //        break;
+    //    case SOILDER_TYPE_MEAT: {
+    //        _arm = Armature::create(ANIM_NAME_MEATSHIELD);
+    //    }
+    //        break;
+    //    default:
+    //        break;
+    //}
 
 	int y = _camp == 1 ? -1 : 1;
 	_dir = GM()->getDir(Vec2(0, y));
-	_arm->getAnimation()->play("run" + GM()->getIntToStr(_dir));
+	_arm->getAnimation()->play("idle" + GM()->getIntToStr(_dir));
 	_arm->setPositionY(20); 
 	_arm->pause();
 	_arm->getAnimation()->setMovementEventCallFunc(this, SEL_MovementEventCallFunc(&Soilder::atk));
@@ -297,40 +302,46 @@ void Soilder::run()
 
 void Soilder::atk(Armature* arm, MovementEventType eventType, const std::string& str)
 {
-	if (_isbroken == true || _healthPoint <= 0) {
-		return;
-	}
-
 	if (eventType == LOOP_COMPLETE)
 	{
 		int x = _arm->getAnimation()->getCurrentMovementID().find("atk");
 		if (x >= 0) {
-			if (_type == SOILDER_TYPE_BOWMAN) {
+			if (_shootType == 2) {
 				Vec2 src = getPosition();
 				Vec2 des = _target->getPosition();
-				auto bullet = BulletSprite::create(src, des, _damage, _target, IMG_BULLET_ARROW);
+				auto bullet = BulletSprite::create(src, des, _damage, _target, IMG_BULLET_ARROW, 1);
 				bullet->setScale(getScale());
 				this->getParent()->addChild(bullet, 9999999);
 			}
-			else if (_type == SOILDER_TYPE_GUNNER) {
+			else if (_shootType == 3) {
 				Vec2 src = getPosition();
 				Vec2 des = _target->getPosition();
-				auto bullet = BulletSprite::create(src, des, _damage, _target, IMG_BULLET_SHELL);
+				auto bullet = BulletSprite::create(src, des, _damage, _target, IMG_BULLET_SHELL, 1);
 				bullet->setScale(getScale());
 				this->getParent()->addChild(bullet, 9999999);
 			}
 			else {
-				//_target->hurt(_damage);
-				_target->hurt(_damage);
+				if (_target->_objType == 3) {
+					_target->hurt(1);
+				}
+				else {
+					_target->hurt(_damage);
+				}
 			}
 
 			if (_target->_objType == 3) {
 				_healthPoint = 0;
-				_arm->getAnimation()->stop();
+				//_arm->getAnimation()->stop();
 				_ai->setObjDead(this);
 				setVisible(false);
 				_isbroken = true;
 			}
+			return;
+		}
+		x = arm->getAnimation()->getCurrentMovementID().find("dead");
+		if (x >= 0) {
+			setVisible(false);
+			_arm->getAnimation()->stop();
 		}
 	}
 }
@@ -340,7 +351,7 @@ void Soilder::atk(Armature* arm, MovementEventType eventType, const std::string&
 void Soilder::hurt(int x)
 {
     if (_isbroken == true || _healthPoint <= 0) {
-		_arm->getAnimation()->stop();
+		//_arm->getAnimation()->stop();
 		_ai->setObjDead(this);
 		_isbroken = true;
         return;
@@ -349,9 +360,10 @@ void Soilder::hurt(int x)
     _healthPoint -= x;
     if (_healthPoint <= 0) {
         _isbroken = true;
-        this->setVisible(false);
+        //this->setVisible(false);
 		_ai->setObjDead(this);
-        _arm->getAnimation()->stop();
+		setState(STATE_DEATH, _dir);
+        //_arm->getAnimation()->stop();
     }
     else {
         _hpBar->setPercent(100.0 * _healthPoint / _totalHP);
@@ -381,7 +393,7 @@ void Soilder::setState(int state, int dir)
 	if (_state == state && _dir == dir) {
 		return;
 	}
-	_state = state;
+	_state = state; 
 	_dir = dir;
 
 	string dirCmd = GM()->getIntToStr(_dir);
@@ -396,9 +408,9 @@ void Soilder::setState(int state, int dir)
 		break;
 	case STATE_ATK:
 		animaCmd = "atk";
-
-
-
+		break;
+	case STATE_DEATH:
+		animaCmd = "dead";
 		break;
 	}
 

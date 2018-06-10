@@ -37,10 +37,10 @@ bool PlayerObj::init(int ID, AIMgr* ai, int camp)
 	_objType = 3;
 	_prePosList = list<Vec2>();
 	_isbroken = false;
-	_healthPoint = 60;
+	_healthPoint = 100;
 	_dotX = -1;
 	_dotY = -1;
-
+	_heroAtkTime = 0;
 
 
 	_camp = camp; 
@@ -65,17 +65,19 @@ void PlayerObj::loadData()
 
 void PlayerObj::showUI()
 {
-	//int y = _camp == 1 ? -1 : 1;
-	//_dir = GM()->getDir(Vec2(0, y));
-	//_arm = Armature::create(ANIM_NAME_ARAGORN);
-	//_arm->getAnimation()->play("idle" + GM()->getIntToStr(_dir));
-	//_arm->setPositionY(20);
-	//_arm->pause();
-	//_arm->getAnimation()->setMovementEventCallFunc(this, SEL_MovementEventCallFunc(&PlayerObj::atk));
+	char str[128] = { 0 };
+	sprintf(str, "animation/Anim_Hero_Caocao/Anim_Hero_Caocao.ExportJson");
+	ArmatureDataManager::getInstance()->addArmatureFileInfo(str);
 
-	//this->addChild(_arm);
+	int y = _camp == 1 ? -1 : 1;
+	_dir = GM()->getDir(Vec2(0, y));
+	_arm = Armature::create("Anim_Hero_Caocao");
+	_arm->getAnimation()->play("idle" + GM()->getIntToStr(_dir));
 
-	char str[50] = "\0";
+	_arm->setPositionY(0);
+
+	this->addChild(_arm);
+
 	sprintf(str, "%d", _healthPoint);
 	_txt_hp = Text::create(str, FONT_ARIAL, 16);
 	this->addChild(_txt_hp);
@@ -101,7 +103,12 @@ void PlayerObj::hurt(int x)
 		return;
 	}
 
-	_healthPoint -= 1;
+	int damage = 5;
+	if (x == 2) {
+		damage = 15 + 5 * _heroAtkTime;
+		_heroAtkTime++;
+	}
+	_healthPoint -= damage;
 	if (_healthPoint <= 0) {
 		_isbroken = true;
 		this->setVisible(false);

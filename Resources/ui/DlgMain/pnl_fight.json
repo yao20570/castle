@@ -25,7 +25,7 @@
     "ui/btn_info.png",
     "ui/main2.png",
     "GUI/image.png",
-    "ui/btn_sure.png",
+    "ui/recrit.png",
     "GUI/image.png",
     "ui/main5.png",
     "ui/fight_start.png"
@@ -181,7 +181,7 @@
           "capInsetsX": 0,
           "capInsetsY": 0,
           "clipAble": false,
-          "colorType": 0,
+          "colorType": 1,
           "layoutType": 0,
           "vectorX": 0,
           "vectorY": -0.5

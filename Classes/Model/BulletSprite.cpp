@@ -1,10 +1,10 @@
 #include "BulletSprite.h"
 
 
-BulletSprite* BulletSprite::create(Vec2 src, Vec2 des, int damage, BaseSprite* target, string img)
+BulletSprite* BulletSprite::create(Vec2 src, Vec2 des, int damage, BaseSprite* target, string img, int srcType)
 {
     BulletSprite *pRet = new(std::nothrow) BulletSprite();
-    if (pRet && pRet->init(src, des, damage, target, img)) {
+    if (pRet && pRet->init(src, des, damage, target, img, srcType)) {
         pRet->autorelease();
         return pRet;
     }
@@ -16,12 +16,13 @@ BulletSprite* BulletSprite::create(Vec2 src, Vec2 des, int damage, BaseSprite* t
 }
 
 
-bool BulletSprite::init(Vec2 src, Vec2 des, int damage, BaseSprite* target, string img)
+bool BulletSprite::init(Vec2 src, Vec2 des, int damage, BaseSprite* target, string img, int srcType)
 {
     if ( !Sprite::init() ) {
         return false;
     }
     
+	_srcType = srcType;
     _src = src;
     _des = des;
     _damage = damage;
@@ -54,7 +55,12 @@ void BulletSprite::showUI()
 
 void BulletSprite::atk()
 {
-    _target->hurt(_damage);
+	if (_target->_objType == 3) {
+		_target->hurt(_srcType);
+	}
+	else {
+		_target->hurt(_damage);
+	}
     this->removeFromParent();
 }
 
