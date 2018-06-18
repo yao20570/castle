@@ -18,13 +18,7 @@
   <ProjectType>UIProject</ProjectType>
   <ResRelativePath />
   <imageFileList />
-  <imagePngList>
-    <string>ui/battle_bg.png</string>
-    <string>GUI/button.png</string>
-    <string>ui/win.png</string>
-    <string>ui/lose.png</string>
-    <string>ui/battle_bg.png</string>
-  </imagePngList>
+  <imagePngList />
   <JsonSuffix>.json</JsonSuffix>
-  <CurrentUIJson>dlg_fight.json</CurrentUIJson>
+  <CurrentUIJson />
 </UIProject>

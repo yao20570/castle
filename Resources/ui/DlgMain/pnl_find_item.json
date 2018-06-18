@@ -26,6 +26,7 @@
     "ui/main2.png",
     "GUI/image.png",
     "ui/recrit.png",
+    "ui/btn_sure.png",
     "GUI/image.png"
   ],
   "version": "1.6.0.0",
@@ -196,7 +197,7 @@
           "capInsetsX": 0,
           "capInsetsY": 0,
           "clipAble": false,
-          "colorType": 1,
+          "colorType": 0,
           "layoutType": 0,
           "vectorX": 0,
           "vectorY": -0.5

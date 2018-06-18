@@ -20,6 +20,7 @@ public:
     BaseSprite* _target;
     string _img;
 	int _srcType;
+	int effectDir;
 };
 
 #endif // __BulletSprite_H__

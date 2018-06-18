@@ -15,6 +15,7 @@
     "GUI/button.png",
     "ui/win.png",
     "ui/lose.png",
+    "ui/zhanbushu.png",
     "ui/battle_bg.png"
   ],
   "version": "1.6.0.0",

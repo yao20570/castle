@@ -21,6 +21,7 @@ public:
 public:
 	void loadData();    // 加载数据
 	void showUI();      // 显示UI
+	void addHPBar();    // 加血条
 	
 	virtual void hurt(int x);           // 受伤
 	virtual bool isDeath();
@@ -37,6 +38,7 @@ public:
 	AIMgr* _ai;
 
 	Text* _txt_hp;
+	LoadingBar* _hpBar; // 血条
 	int _heroAtkTime;
 };
 

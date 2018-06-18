@@ -240,6 +240,15 @@ void AIMgr::hideEnemy() {
 	}
 }
 
+void AIMgr::showName(bool b) {
+	for (auto it : _objSelf) {
+		it->showName(b);
+	}
+	for (auto it : _objEnemy) {
+		it->showName(b);
+	}
+}
+
 void AIMgr::showEnemy() {
 	for (auto it : _objEnemy) {
 		it->setVisible(true);
@@ -252,9 +261,7 @@ void AIMgr::close() {
 }
 
 void AIMgr::setObjPos(BaseSprite* obj, Vec2 pos) {
-	if (((Hero*)obj)->_name == 13) {
-		int i = 1;
-	}
+	
 	Vec2 dot(-1, -1);
 	if (this->isCanSet(obj, pos, dot)) {
 

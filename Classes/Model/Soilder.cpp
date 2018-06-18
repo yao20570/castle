@@ -33,7 +33,7 @@ bool Soilder::init(int soilderID, AIMgr* ai, int camp)
     if ( !BaseSprite::init() ) {
         return false;
     }
-
+	this->txtName = nullptr;
 	_objType = 1;
 	_speed = 50;
     _soilderID = soilderID;
@@ -107,9 +107,11 @@ void Soilder::showUI()
 	_arm->getAnimation()->setMovementEventCallFunc(this, SEL_MovementEventCallFunc(&Soilder::atk));
     this->addChild(_arm);    
     this->setLocalZOrder((int)_pos.x + (int)_pos.y * 10000);    
-    this->setScale(0.6);
 
-
+	_skill1 = Armature::create("NewAnimation");
+	_skill1->getAnimation()->pause();
+	_skill1->setPositionY(60);
+	this->addChild(_skill1);
 
 
 	//选中框
@@ -307,18 +309,20 @@ void Soilder::atk(Armature* arm, MovementEventType eventType, const std::string&
 		int x = _arm->getAnimation()->getCurrentMovementID().find("atk");
 		if (x >= 0) {
 			if (_shootType == 2) {
-				Vec2 src = getPosition();
-				Vec2 des = _target->getPosition();
+				Vec2 src = getPosition() + Vec2(0, 60);
+				Vec2 des = _target->getPosition() + Vec2(0, 60);
 				auto bullet = BulletSprite::create(src, des, _damage, _target, IMG_BULLET_ARROW, 1);
 				bullet->setScale(getScale());
 				this->getParent()->addChild(bullet, 9999999);
+				SimpleAudioEngine::getInstance()->playEffect("music/far_gongjian_effect.mp3", false);
 			}
 			else if (_shootType == 3) {
-				Vec2 src = getPosition();
-				Vec2 des = _target->getPosition();
-				auto bullet = BulletSprite::create(src, des, _damage, _target, IMG_BULLET_SHELL, 1);
+				Vec2 src = getPosition() + Vec2(0, 60);
+				Vec2 des = _target->getPosition() + Vec2(0, 60);
+				auto bullet = BulletSprite::create(src, des, _damage, _target, "images/bullet/fashu.png", 2);
 				bullet->setScale(getScale());
 				this->getParent()->addChild(bullet, 9999999);
+				SimpleAudioEngine::getInstance()->playEffect("music/far_fashu_effect.mp3", false);
 			}
 			else {
 				if (_target->_objType == 3) {
@@ -327,11 +331,12 @@ void Soilder::atk(Armature* arm, MovementEventType eventType, const std::string&
 				else {
 					_target->hurt(_damage);
 				}
+				SimpleAudioEngine::getInstance()->playEffect("music/near_atk_effect.mp3", false);
 			}
 
 			if (_target->_objType == 3) {
 				_healthPoint = 0;
-				//_arm->getAnimation()->stop();
+				_arm->getAnimation()->stop();
 				_ai->setObjDead(this);
 				setVisible(false);
 				_isbroken = true;
@@ -370,6 +375,10 @@ void Soilder::hurt(int x)
     }
 }
 
+void Soilder::hurtEffect(int x) {
+	_skill1->getAnimation()->play("idle" + GM()->getIntToStr(x), -1, 0);
+}
+
 
 // 是否死亡
 bool Soilder::isDeath()
@@ -387,6 +396,16 @@ void Soilder::setSelect(bool b) {
 	}
 }
 
+void Soilder::setObjName(string name) {
+
+	if (this->txtName == nullptr) {
+		this->txtName = Text::create("名称", FONT_ARIAL, 20);
+		txtName->setName("txtName");
+		this->addChild(txtName);
+	}
+	_objname = name;
+	txtName->setString(name);
+}
 
 void Soilder::setState(int state, int dir)
 {
@@ -401,7 +420,7 @@ void Soilder::setState(int state, int dir)
 	switch (_state)
 	{
 	case STATE_IDLE:
-		animaCmd = "run";
+		animaCmd = "idle";
 		break;
 	case STATE_RUN:
 		animaCmd = "run";

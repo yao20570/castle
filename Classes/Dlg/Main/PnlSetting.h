@@ -49,6 +49,9 @@ private:
 	Layout*		pnl_drag_container;
 	Layout*		pnls[3];
 	Layout*		pnl_save;
+	Layout*		pnl_obj_select;
+
+	int			select_fight_id;
 	int			select_obj_id;
 	int			select_setting_id;
 	vector<int> setting_objs;

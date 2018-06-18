@@ -20,35 +20,17 @@
     <string>pnl_guanka.json</string>
     <string>pnl_guanka_item.json</string>
     <string>pnl_fight.json</string>
+    <string>item_obj2.json</string>
   </JsonList>
   <CanvasSize>
-    <Width>640</Width>
-    <Height>986</Height>
+    <Width>150</Width>
+    <Height>150</Height>
   </CanvasSize>
   <filePath>F:\Dev\proj\castle\UIProject\Main\Main.xml.ui</filePath>
   <ProjectType>UIProject</ProjectType>
   <ResRelativePath />
   <imageFileList />
-  <imagePngList>
-    <string>ui/main.png</string>
-    <string>ui/select_frame.png</string>
-    <string>ui/main3.png</string>
-    <string>GUI/image.png</string>
-    <string>ui/main1.png</string>
-    <string>hero_caocao.png</string>
-    <string>GUI/image.png</string>
-    <string>ui/btn_sure.png</string>
-    <string>ui/btn_upgrade.png</string>
-    <string>ui/btn_cancel.png</string>
-    <string>GUI/image.png</string>
-    <string>ui/btn_info.png</string>
-    <string>ui/main2.png</string>
-    <string>GUI/image.png</string>
-    <string>ui/recrit.png</string>
-    <string>GUI/image.png</string>
-    <string>ui/main5.png</string>
-    <string>ui/fight_start.png</string>
-  </imagePngList>
+  <imagePngList />
   <JsonSuffix>.json</JsonSuffix>
   <CurrentUIJson>pnl_find.json</CurrentUIJson>
 </UIProject>

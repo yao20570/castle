@@ -35,6 +35,7 @@ bool Hero::init(int ID, AIMgr* ai, int camp)
 		return false;
 	}
 
+	this->txtName = nullptr;
 	_objType = 2;
 	_prePosList = list<Vec2>();
 	_isbroken = false;
@@ -103,16 +104,17 @@ void Hero::showUI()
 
 	this->addChild(_arm);
 
-	//_skill1 = Armature::create(ANIM_NAME_SKILL_1);
-	//_skill2 = Armature::create(ANIM_NAME_SKILL_2);
-	//_skill1->setVisible(false);
-	//_skill2->setVisible(false);
-	//this->addChild(_skill1);
-	//this->addChild(_skill2);
+	_skill1 = Armature::create("NewAnimation");
+	_skill1->getAnimation()->pause();
+	_skill1->setPositionY(60);
+	this->addChild(_skill1);
+
+
+
 	this->setLocalZOrder((int)_pos.x + (int)_pos.y * 10000);
 	this->setScale(0.8);
 	
-	
+
 
 	//选中框
 	auto scaleUp = ScaleTo::create(0.3f, 1.1f);
@@ -153,25 +155,27 @@ void Hero::atk(Armature* arm, MovementEventType eventType, const std::string& st
 		{
 			return;
 		}
-		if (_target->_isbroken == true || _target->_healthPoint <= 0) {
-			return;
-		}
+		//if (_target->_isbroken == true || _target->_healthPoint <= 0) {
+		//	return;
+		//}
 		int x = arm->getAnimation()->getCurrentMovementID().find("atk");
 		if (x >= 0) {
 
 			if (_shootType == 2) {
-				Vec2 src = getPosition();
-				Vec2 des = _target->getPosition();
+				Vec2 src = getPosition() + Vec2(0, 60);
+				Vec2 des = _target->getPosition() + Vec2(0, 60);
 				auto bullet = BulletSprite::create(src, des, _damage, _target, IMG_BULLET_ARROW, 2);
 				bullet->setScale(getScale());
 				this->getParent()->addChild(bullet, 9999999);
+				SimpleAudioEngine::getInstance()->playEffect("music/far_gongjian_effect.mp3", false);
 			}
 			else if (_shootType == 3) {
-				Vec2 src = getPosition();
-				Vec2 des = _target->getPosition();
-				auto bullet = BulletSprite::create(src, des, _damage, _target, IMG_BULLET_SHELL, 2);
+				Vec2 src = getPosition() + Vec2(0, 60);
+				Vec2 des = _target->getPosition() + Vec2(0, 60);
+				auto bullet = BulletSprite::create(src, des, _damage, _target, "images/bullet/fashu.png", 2);
 				bullet->setScale(getScale());
 				this->getParent()->addChild(bullet, 9999999);
+				SimpleAudioEngine::getInstance()->playEffect("music/far_fashu_effect.mp3", false);
 			}
 			else {
 				//_target->hurt(_damage);
@@ -181,15 +185,16 @@ void Hero::atk(Armature* arm, MovementEventType eventType, const std::string& st
 				else {
 					_target->hurt(_damage);
 				}
-				
+
+				SimpleAudioEngine::getInstance()->playEffect("music/near_atk_effect.mp3", false);
 			}
 
 			if (_target->_objType == 3) {
 				//攻击完主公后消失
 				_healthPoint = 0;
-				//_arm->getAnimation()->stop();
+				_arm->getAnimation()->stop();
 				_ai->setObjDead(this);
-				//setVisible(false);
+				setVisible(false);
 				_isbroken = true;
 
 				
@@ -230,6 +235,10 @@ void Hero::hurt(int x)
 	}
 }
 
+void Hero::hurtEffect(int x) {
+	_skill1->getAnimation()->play("idle" + GM()->getIntToStr(x), -1, 0);
+}
+
 void Hero::death()
 {
 	//this->setVisible(false);
@@ -267,19 +276,11 @@ void Hero::putSkill(int type)
 	}
 }
 
-
 // 是否死亡
 bool Hero::isDeath()
 {
 	return _isbroken;
 }
-
-
-//void Hero::setSelect(bool select)
-//{
-//    _isSelect = select;
-//}
-
 
 void Hero::addTouch()
 {
@@ -456,6 +457,18 @@ void Hero::setSelect(bool b) {
 	else {
 		_circle->pause();
 	}
+}
+
+
+void Hero::setObjName(string name) {
+
+	if (this->txtName == nullptr) {
+		this->txtName = Text::create("名称", FONT_ARIAL, 20);
+		txtName->setName("txtName");
+		this->addChild(txtName);	
+	}
+	_objname = name;
+	txtName->setString(name);
 }
 
 void Hero::setState(int state, int dir)

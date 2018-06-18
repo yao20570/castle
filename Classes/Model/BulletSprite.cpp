@@ -28,7 +28,8 @@ bool BulletSprite::init(Vec2 src, Vec2 des, int damage, BaseSprite* target, stri
     _damage = damage;
     _target = target;
     _img = img;
-    
+
+	this->effectDir = GM()->getDir(src, des);
     showUI();
     
     return true;
@@ -37,11 +38,13 @@ bool BulletSprite::init(Vec2 src, Vec2 des, int damage, BaseSprite* target, stri
 
 void BulletSprite::showUI()
 {
-    this->setTexture(_img);
+	this->setTexture(_img);	
     this->setPosition(_src);
-    //this->setScale(0.7);
-	this->setAnchorPoint(Vec2(0, 0.5));
-    
+       
+
+	//this->setAnchorPoint(Vec2(0, 0.5));
+	
+
     auto delta = _des - _src;
     auto ang = atan2(delta.y, delta.x) * 180 / acos(-1.0);
     ang = 360 - ang;
@@ -60,6 +63,9 @@ void BulletSprite::atk()
 	}
 	else {
 		_target->hurt(_damage);
+		if (IMG_BULLET_SHELL == _img) {
+			_target->hurtEffect(this->effectDir);
+		}
 	}
     this->removeFromParent();
 }

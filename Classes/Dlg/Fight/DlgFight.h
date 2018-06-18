@@ -26,8 +26,8 @@ public:
 
 public:
 	void setObjPosition();
-	void addHero(int heroId, Vec2 pos, int camp);
-	void addSoilder(int soilderId, Vec2 pos, int camp);
+	void addHero(Vec2 pos, int camp, ValueMap* objInfo);
+	void addSoilder(Vec2 pos, int camp, ValueMap*objInfo);
 	void addPlayer(Vec2 pos, int camp);
 
 private:
@@ -52,6 +52,8 @@ public:
 	Button*		btn_start;
 	ImageView*	img_lose;
 	ImageView*	img_win;
+	ImageView*	img_tip;
+	ImageView*	lay_line;
 	int _round;
 };
 

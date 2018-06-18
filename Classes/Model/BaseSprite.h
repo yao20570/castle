@@ -25,12 +25,14 @@ public:
     virtual void atk();
     virtual void run();
     virtual void hurt(int x);
-
+	virtual void hurtEffect(int x);
 	virtual void death();
     virtual void idle();
     virtual bool isDeath();
 	virtual void setSelect(bool b);
 	virtual void setState(int state, int dir);
+	virtual void showName(bool b);
+	virtual void setObjName(string name);
 public:
 	int _objType;
 	list<Vec2> _prePosList;
@@ -48,6 +50,8 @@ public:
 	BaseSprite* _target;
 
 	string _animaName;
+	string _objname;
+	Text* txtName;
 };
 
 

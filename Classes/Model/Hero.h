@@ -28,6 +28,7 @@ public:
     virtual void idle();
     virtual void atk(Armature* arm, MovementEventType eventType, const std::string& str);   // 攻击
     virtual void hurt(int x);           // 受伤
+	virtual void hurtEffect(int x);
 	virtual void death();           // 死亡
     virtual bool isDeath();             // 是否死亡
     virtual void putSkill(int type);    // 释放技能
@@ -35,6 +36,7 @@ public:
     
     void update(float dt);
 	virtual void setSelect(bool b);
+	virtual void setObjName(string name);
 
     void addTouch();
     virtual bool onTouchBegan(Touch* pTouch, Event* pEvent);
@@ -49,7 +51,6 @@ public:
     int _heroID;
     int _type;
     int _level;
-    int _name;
 	int _camp;
     
     int _totalHP;

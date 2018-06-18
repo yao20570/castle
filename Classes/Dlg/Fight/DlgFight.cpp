@@ -10,6 +10,7 @@ using namespace cocos2d::ui;
 #include "Utils/DBManager.h"
 #include "Utils/GlobalValue.h"
 #include "Utils/ConfigMgr.h"
+#include "Utils/UIUtils.h"
 #include "Model/Hero.h"
 #include "Model/Soilder.h"
 #include "Model/PlayerObj.h"
@@ -84,6 +85,9 @@ void DlgFight::update(float dt) {
 		//准备阶段
 		this->lay_result->setVisible(true);
 		this->btn_start->setVisible(true);
+		this->img_tip->setVisible(true);
+		this->lay_line->setVisible(true);
+
 		this->img_win->setVisible(false);
 		this->img_lose->setVisible(false);
 		this->txt_result->setVisible(false);
@@ -113,7 +117,10 @@ void DlgFight::update(float dt) {
 	case 2:
 	{
 		this->btn_start->setVisible(false);
+		this->img_tip->setVisible(false);
+		this->lay_line->setVisible(false);
 		if (ReadyCD2 < 0) {
+			_ai->showName(false);
 			_ai->start();
 			state = 3;
 		}
@@ -173,6 +180,9 @@ void DlgFight::update(float dt) {
 
 void DlgFight::load()
 {
+	SimpleAudioEngine::getInstance()->stopBackgroundMusic();
+	SimpleAudioEngine::getInstance()->playBackgroundMusic(OGG_BATTLEGROUND, true);
+
 	auto lay_root = GUIReader::getInstance()->widgetFromJsonFile("UI/DlgFight/dlg_fight.json");
 	this->addChild(lay_root);
 
@@ -205,8 +215,11 @@ void DlgFight::load()
 	this->img_win->setVisible(false);
 
 	//开始
+	this->img_tip = (ImageView*)Helper::seekWidgetByName(lay_root, "img_tip");
+	this->lay_line = (ImageView*)Helper::seekWidgetByName(lay_root, "lay_line");
 	this->btn_start = (Button*)Helper::seekWidgetByName(lay_root, "btn_start");
 	this->btn_start->addTouchEventListener(CC_CALLBACK_2(DlgFight::onStart, this));
+	this->btn_start->setScale(1.5);
 	
 	////开始
 	//auto btnStart = (Layout*)Helper::seekWidgetByName(lay_root, "lay_btn_1");
@@ -217,6 +230,7 @@ void DlgFight::load()
 	//关闭
 	this->lay_result = (Layout*)Helper::seekWidgetByName(lay_root, "lay_result");
 	this->lay_result->setVisible(false);
+	this->lay_result->setSwallowTouches(false);
 	this->lay_result->addTouchEventListener(CC_CALLBACK_2(DlgFight::onNextRound, this));
 
 	this->txt_num = (Text*)Helper::seekWidgetByName(lay_root, "txt_num");
@@ -236,6 +250,10 @@ void DlgFight::addTouch()
 
 bool DlgFight::onTouchBegan(Touch* pTouch, Event* pEvent) 
 {
+	if (state != 1) {
+		return true;
+	}
+
 	if (_ai->getSelectObj() == nullptr) {
 		return true;
 	}
@@ -294,16 +312,17 @@ void DlgFight::setObjPosition()
 
 			ValueMap* objInfo = CFG()->getObjInfoById(objId);
 			int objType = (*objInfo)["ObjType"].asInt();
-			int subType = (*objInfo)["SubType"].asInt();
+			//int subType = (*objInfo)["SubType"].asInt();
+			//string name = (*objInfo)["Name"].asString();
 			switch (objType)
 			{
 			case 2:
 				//武将			
-				addHero(subType, pos, camp);
+				addHero(pos, camp, objInfo);
 				break;
 			case 1:
 				//士兵
-				addSoilder(subType, pos, camp);
+				addSoilder(pos, camp, objInfo);
 				break;
 			case 3:
 				//建筑/障碍等
@@ -327,59 +346,43 @@ void DlgFight::setObjPosition()
 
 			ValueMap* objInfo = CFG()->getObjInfoById(objId);
 			int objType = (*objInfo)["ObjType"].asInt();
-			int subType = (*objInfo)["SubType"].asInt();
+			//int subType = (*objInfo)["SubType"].asInt();
+			//string name = (*objInfo)["Name"].asString();
+
+			string name = (*objInfo)["Name"].asString();
 			switch (objType)
 			{
 			case 2:
 				//武将			
-				addHero(subType, pos, camp);
+				addHero(pos, camp, objInfo);
 				break;
 			case 1:
 				//士兵
-				addSoilder(subType, pos, camp);
+				addSoilder(pos, camp, objInfo);
 				break;
 			case 3:
 				break;
 			}
 		}
-		addPlayer(Vec2(320, 980), camp);
+		addPlayer(Vec2(320, 920), camp);
 	}
 
-
-	//_objPosCfg = CFG()->getObjPos();
-	//for (int camp = 1; i < 3; ++i) {
-	//	for (auto it : *_objPosCfg) {
-	//		ValueMap& row = it.second;
-	//		Vec2 pos(row["PositionX"].asInt(), row["PositionY"].asInt());
-	//		int objId = row["ObjectId"].asInt();
-
-	//		int objType = row["ObjectType"].asInt();
-	//		switch (objType)
-	//		{
-	//		case 1:
-	//			//武将			
-	//			addHero(objId, pos, camp);
-	//			break;
-	//		case 2:
-	//			//士兵
-	//			addSoilder(objId, pos, camp);
-	//			break;
-	//		case 3:
-	//			//建筑/障碍等
-	//			break;
-	//		}
-	//	}
-	//}
-	
 }
 
 
 
 
 static int i = 0;
-void DlgFight::addHero(int heroId, Vec2 pos, int camp)
+void DlgFight::addHero(Vec2 pos, int camp, ValueMap* objInfo)
 {
-	Hero* hero = Hero::create(heroId, _ai, camp);	
+	int objType = (*objInfo)["ObjType"].asInt();
+	int subType = (*objInfo)["SubType"].asInt();
+	string name = (*objInfo)["Name"].asString();
+	int quality = (*objInfo)["Quality"].asInt();
+
+	Hero* hero = Hero::create(subType, _ai, camp);
+	hero->setObjName(name);
+	setTextColor(hero->txtName, quality);
 	this->_map->addChild(hero); 
 	_ai->setObjPos(hero, pos);
 	//++i;
@@ -391,18 +394,25 @@ void DlgFight::addHero(int heroId, Vec2 pos, int camp)
 	//hero->addChild(txtName);
 }
 
-void DlgFight::addSoilder(int soilderId, Vec2 pos, int camp)
+void DlgFight::addSoilder(Vec2 pos, int camp, ValueMap* objInfo)
 {
-	Soilder* soilder = Soilder::create(soilderId, _ai, camp);
+	int objType = (*objInfo)["ObjType"].asInt();
+	int subType = (*objInfo)["SubType"].asInt();
+	string name = (*objInfo)["Name"].asString();
+	int quality = (*objInfo)["Quality"].asInt();
+
+	Soilder* soilder = Soilder::create(subType, _ai, camp);
+	soilder->setObjName(name);
+	setTextColor(soilder->txtName, quality);
 	this->_map->addChild(soilder);
 	_ai->setObjPos(soilder, pos);
-	++i;
-	soilder->_name = i;
+	//++i;
+	//soilder->_name = i;
 
-	auto txtName = Text::create("名称", FONT_ARIAL, 20);
-	txtName->setName("txtName");
-	txtName->setString(GM()->getIntToStr(i));
-	soilder->addChild(txtName);
+	//auto txtName = Text::create("名称", FONT_ARIAL, 20);
+	//txtName->setName("txtName");
+	//txtName->setString(GM()->getIntToStr(i));
+	//soilder->addChild(txtName);
 }
 
 void DlgFight::addPlayer(Vec2 pos, int camp)
@@ -425,6 +435,10 @@ void DlgFight::hideDlg(const string& dlgName)
 
 void DlgFight::onStart(Ref* sender, Widget::TouchEventType type)
 {
+	if (type != Widget::TouchEventType::ENDED) {
+		return;
+	}
+
 	ReadyCD = MaxReadyCD;
 	ReadyCD2 = MaxReadyCD2;
 	_ai->showEnemy();
@@ -433,7 +447,15 @@ void DlgFight::onStart(Ref* sender, Widget::TouchEventType type)
 
 void DlgFight::onNextRound(Ref* sender, Widget::TouchEventType type)
 {
-	if (_round > 1) {
+	if (type != Widget::TouchEventType::ENDED) {
+		return;
+	}
+
+	if (state != 4) {
+		return;
+	}
+
+	if (_round > 1 || MYWIN == 2 || MYLOSE == 2) {
 		hideDlg(this->getDlgName());
 	}
 	else {
@@ -443,11 +465,19 @@ void DlgFight::onNextRound(Ref* sender, Widget::TouchEventType type)
 
 void DlgFight::onClose(Ref* sender, Widget::TouchEventType type)
 {
+	if (type != Widget::TouchEventType::ENDED) {
+		return;
+	}
+
 	hideDlg(this->getDlgName());
 }
 
 void DlgFight::onResetObjPos(Ref* sender, Widget::TouchEventType type)
 {
+	if (type != Widget::TouchEventType::ENDED) {
+		return;
+	}
+
 	//
 	int i = 1;
 }

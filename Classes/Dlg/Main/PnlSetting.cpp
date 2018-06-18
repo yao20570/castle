@@ -23,6 +23,7 @@ PnlSetting::PnlSetting()
 	, setting_objs()
 	, waiting_objs()
 	, drag_start_pos()
+	, pnl_obj_select(nullptr)
 {
 	memset(this->pnls, 0, 3 * sizeof(BaseSprite*));
 }
@@ -59,6 +60,18 @@ void PnlSetting::load()
 	this->pnl_player = (Layout*)Helper::seekWidgetByName(lay_root, "pnl_player");
 	this->pnl_player->addTouchEventListener(CC_CALLBACK_2(PnlSetting::onOpenPlayerUI, this));
 
+	char str[128] = { 0 };
+	
+	int _dir = GM()->getDir(Vec2(0, -1));
+	Armature* _arm = Armature::create("Anim_Hero_Liubei");	
+	_arm->getAnimation()->play("idle" + GM()->getIntToStr(_dir));
+
+	_arm->setPositionX(this->pnl_player->getContentSize().width/2);
+	_arm->setPositionY(0);
+
+	this->pnl_player->addChild(_arm);
+
+
 	//阵型标签
 	for (int i = 0; i < 3; ++i) {
 		char str[50] = "\0";
@@ -81,10 +94,9 @@ void PnlSetting::load()
 
 
 	//拖动容器
-	this->pnl_drag = (Layout*)GUIReader::getInstance()->widgetFromJsonFile("ui/DlgMain/item_obj.json");
+	this->pnl_drag = (Layout*)GUIReader::getInstance()->widgetFromJsonFile("ui/DlgMain/item_obj2.json");
 	this->pnl_drag->setSwallowTouches(false);
 	this->pnl_drag->setAnchorPoint(Vec2(0.5, 0.5));
-	this->pnl_drag->getChildByName("pnl_select")->setVisible(false);
 	this->pnl_drag_container = (Layout*)Helper::seekWidgetByName(lay_root, "pnl_drag");
 	this->pnl_drag_container->addChild(this->pnl_drag);
 	this->pnl_drag->setVisible(false);
@@ -205,7 +217,7 @@ void PnlSetting::updateSettingPanel() {
 		auto cfgPtr = CFG()->getObjInfoById(objId);
 		auto& cfg = *cfgPtr;
 
-		Layout* settingObj = (Layout*)GUIReader::getInstance()->widgetFromJsonFile("ui/DlgMain/item_obj.json");
+		Layout* settingObj = (Layout*)GUIReader::getInstance()->widgetFromJsonFile("ui/DlgMain/item_obj2.json");
 		settingObj->setSwallowTouches(false);
 		settingObj->setAnchorPoint(Vec2(0.5, 0.5));
 		settingObj->setPositionX(x);
@@ -214,7 +226,7 @@ void PnlSetting::updateSettingPanel() {
 		settingObj->setTag(objId);
 		settingObj->setUserData(cfgPtr);
 		settingObj->addTouchEventListener(CC_CALLBACK_2(PnlSetting::onSelectPnlSettingObj, this));
-		((Layout*)settingObj->getChildByName("pnl_select"))->setVisible(false);
+		((Layout*)settingObj->getChildByName("pnl_select"))->setVisible(select_fight_id == objId);
 		//((ImageView*)settingObj->getChildByName("img_icon"))->loadTexture(cfg["Head"].asString());
 		ImageView* img_icon = (ImageView*)settingObj->getChildByName("img_icon");
 		img_icon->setVisible(false);
@@ -275,20 +287,6 @@ void PnlSetting::selectSetting(int selectId)
 
 void PnlSetting::selectObj(int selectId)
 {
-	////将旧的隐藏
-	//if (this->select_obj_id != InvalidSelectId) {
-	//	Layout* selectItem = (Layout*)this->sv_obj->getChildByTag(this->select_obj_id);
-	//	Layout* selectUI = (Layout*)selectItem->getChildByName("pnl_select");
-	//	selectUI->setVisible(false);
-	//}
-
-	////显示新的
-	//this->select_obj_id = selectId;
-	//if (selectId != InvalidSelectId) {
-	//	Layout* selectItem = (Layout*)this->sv_obj->getChildByTag(this->select_obj_id);
-	//	Layout* selectUI = (Layout*)selectItem->getChildByName("pnl_select");
-	//	selectUI->setVisible(true);
-	//}
 	this->select_obj_id = selectId;
 	Vector<Node*>& items = this->sv_obj->getChildren();
 	for (auto it : items) {
@@ -372,7 +370,7 @@ void PnlSetting::onTouchEnded(Touch* pTouch, Event* pEvent) {
 			int temp = unitNum + cfg["Unit"].asInt();
 			if (temp <= 20) {
 				
-				Layout* settingObj = (Layout*)GUIReader::getInstance()->widgetFromJsonFile("ui/DlgMain/item_obj.json");
+				Layout* settingObj = (Layout*)GUIReader::getInstance()->widgetFromJsonFile("ui/DlgMain/item_obj2.json");
 				settingObj->setSwallowTouches(false);
 				settingObj->setAnchorPoint(Vec2(0.5, 0.5));
 				settingObj->setPosition(pos);
@@ -380,7 +378,15 @@ void PnlSetting::onTouchEnded(Touch* pTouch, Event* pEvent) {
 				settingObj->setTag(cfg["ID"].asInt());
 				settingObj->setUserData(row);
 				settingObj->addTouchEventListener(CC_CALLBACK_2(PnlSetting::onSelectPnlSettingObj, this));
-				((Layout*)settingObj->getChildByName("pnl_select"))->setVisible(false);
+				((Layout*)settingObj->getChildByName("pnl_select"))->setVisible(true);
+
+
+				
+				this->pnl_obj_select = settingObj;
+				Layout* pnl_select = (Layout*)this->pnl_obj_select->getChildByName("pnl_select");
+				pnl_select->setVisible(true);
+
+
 				//((ImageView*)settingObj->getChildByName("img_icon"))->loadTexture(cfg["Head"].asString());
 				ImageView* img_icon = (ImageView*)settingObj->getChildByName("img_icon");
 				img_icon->setVisible(false);
@@ -524,6 +530,8 @@ void PnlSetting::onSelectPnlSettingObj(Ref* sender, Widget::TouchEventType type)
 		if (this->select_obj_id == InvalidSelectId) {
 			this->selectObj(((Layout*)sender)->getTag());
 
+
+
 			auto& cfg = *(CFG()->getObjInfoById(this->select_obj_id));
 			ImageView* img_icon = (ImageView*)this->pnl_drag->getChildByName("img_icon");
 			//img_icon->loadTexture(cfg["Head"].asString());
@@ -550,7 +558,11 @@ void PnlSetting::onSelectPnlSettingObj(Ref* sender, Widget::TouchEventType type)
 				this->pnl_drag->addChild(_arm);
 			}
 
-
+			if (this->pnl_obj_select != nullptr) {
+				Layout* pnl_select = (Layout*)this->pnl_obj_select->getChildByName("pnl_select");
+				pnl_select->setVisible(false);
+			}
+			this->pnl_obj_select = nullptr;
 			((Layout*)sender)->retain();
 			((Layout*)sender)->autorelease();
 			((Layout*)sender)->removeFromParent();

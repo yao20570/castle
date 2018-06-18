@@ -39,6 +39,9 @@ public:
 	void close();
 	void hideEnemy();
 	void showEnemy();
+
+	void showName(bool b);
+
 	void setObjPos(BaseSprite* obj, Vec2 pos);
 	bool isCanSet(BaseSprite* obj, Vec2& pos, Vec2& dot);
 	void setObjDead(BaseSprite* obj);

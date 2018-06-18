@@ -107,7 +107,7 @@ void PnlFind::updateGetPanel(int id) {
 		_arm->getAnimation()->play("atk0");
 		_arm->setPosition(this->img_half->getPosition());
 		_arm->setTag(999);
-		_arm->setScale(2);
+		_arm->setScale(2.4);
 		_arm->getAnimation()->setMovementEventCallFunc(this, SEL_MovementEventCallFunc(&PnlFind::atk));
 		lay_root->addChild(_arm);
 	}

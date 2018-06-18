@@ -22,10 +22,12 @@ public:
     virtual void run();         // 走路
     virtual void atk(Armature* arm, MovementEventType eventType, const std::string& str);         // 攻击
     virtual void hurt(int x);   // 受伤
+	virtual void hurtEffect(int x);
     virtual bool isDeath();     // 是否死亡
     
     void update(float dt);
 	virtual void setSelect(bool b);
+	virtual void setObjName(string name);
     
 	void addTouch();
 	virtual bool onTouchBegan(Touch* pTouch, Event* pEvent);
@@ -49,7 +51,9 @@ public:
     
 	AIMgr* _ai;
 
+	Armature* _skill1;
 	Sprite* _circle;
+
 };
 
 #endif // __Soilder_H__
