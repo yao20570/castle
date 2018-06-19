@@ -300,7 +300,7 @@ bool Hero::onTouchBegan(Touch* pTouch, Event* pEvent)
 
 	// 获取当前触摸点相对于按钮所在的坐标	
 	auto locationInNode = target->convertToNodeSpace(pTouch->getLocation());
-	int dis = locationInNode.getDistance(Vec2(0, 0));
+	int dis = locationInNode.getDistance(Vec2(0, 60));
 	if (dis < _radius) {
 		_ai->setSelectObj(this);
 	}

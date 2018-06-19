@@ -449,7 +449,7 @@ void PnlSetting::onTouchCancelled(Touch* pTouch, Event* pEvent) {
 }
 
 void PnlSetting::onOpenPlayerUI(Ref* sender, Widget::TouchEventType type) {
-	((DlgMain*)this->hostDlg)->showPanel(PanelType::Player);
+	//((DlgMain*)this->hostDlg)->showPanel(PanelType::Player);
 }
 
 void PnlSetting::onSelectSetting(Ref* sender, Widget::TouchEventType type)

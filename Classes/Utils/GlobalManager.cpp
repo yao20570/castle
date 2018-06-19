@@ -73,8 +73,8 @@ bool GlobalManager::isPointInRect(Vec2 centerPoint, Size size, Vec2 p)
 {
     float leftX = centerPoint.x - size.width/2;
     float rightX = centerPoint.x + size.width/2;
-    float upY = centerPoint.y + size.width/2;
-    float downY = centerPoint.y - size.width/2;
+    float upY = centerPoint.y + size.height/2;
+	float downY = centerPoint.y - size.height / 2;
     if (p.x > leftX && p.x < rightX && p.y > downY && p.y < upY) return true;
     else return false;
 }

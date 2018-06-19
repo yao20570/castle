@@ -51,5 +51,9 @@ private:
 
 	ImageView*		img_half;
 	Text*			txt_name;
+	Text*			txt_tip1;
+	Text*			txt_tip2;
+	Text*			txt_tip3;
+	Text*			txt_tip4;
 	
 };
