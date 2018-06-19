@@ -7,3 +7,5 @@
 /proj.win32/.vs
 /Resources/*.log
 /UIProject/Main/*.log
+Backup
+*.log

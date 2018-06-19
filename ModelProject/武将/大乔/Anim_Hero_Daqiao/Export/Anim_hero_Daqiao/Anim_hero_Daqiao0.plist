@@ -2290,9 +2290,9 @@
 			<key>format</key>
 			<integer>0</integer>
 			<key>textureFileName</key>
-			<string>Anim_hero_Daqiao0.png</string>
+			<string>Anim_Hero_Daqiao0.png</string>
 			<key>realTextureFileName</key>
-			<string>Anim_hero_Daqiao0.png</string>
+			<string>Anim_Hero_Daqiao0.png</string>
 			<key>size</key>
 			<string>{4096,4096}</string>
 		</dict>

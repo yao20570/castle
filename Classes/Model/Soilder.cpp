@@ -308,6 +308,14 @@ void Soilder::atk(Armature* arm, MovementEventType eventType, const std::string&
 	{
 		int x = _arm->getAnimation()->getCurrentMovementID().find("atk");
 		if (x >= 0) {
+			if (_target == nullptr)
+			{
+				return;
+			}
+			if (_target->_isbroken == true || _target->_healthPoint <= 0) {
+				return;
+			}
+
 			if (_shootType == 2) {
 				Vec2 src = getPosition() + Vec2(0, 60);
 				Vec2 des = _target->getPosition() + Vec2(0, 60);

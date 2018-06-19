@@ -7,13 +7,13 @@
 			<key>怪物_李傕0000_View010134.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
 				<integer>0</integer>
 				<key>y</key>
@@ -26,15 +26,15 @@
 			<key>怪物_李傕0000_View010133.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>268</integer>
+				<integer>237</integer>
 				<key>y</key>
 				<integer>0</integer>
 				<key>offsetX</key>
@@ -45,15 +45,15 @@
 			<key>怪物_李傕0000_View010132.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>536</integer>
+				<integer>474</integer>
 				<key>y</key>
 				<integer>0</integer>
 				<key>offsetX</key>
@@ -64,15 +64,15 @@
 			<key>怪物_李傕0000_View010131.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>804</integer>
+				<integer>711</integer>
 				<key>y</key>
 				<integer>0</integer>
 				<key>offsetX</key>
@@ -83,15 +83,15 @@
 			<key>怪物_李傕0000_View010130.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>1072</integer>
+				<integer>948</integer>
 				<key>y</key>
 				<integer>0</integer>
 				<key>offsetX</key>
@@ -102,15 +102,15 @@
 			<key>怪物_李傕0000_View010129.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>1340</integer>
+				<integer>1185</integer>
 				<key>y</key>
 				<integer>0</integer>
 				<key>offsetX</key>
@@ -121,15 +121,15 @@
 			<key>怪物_李傕0000_View010128.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>1608</integer>
+				<integer>1422</integer>
 				<key>y</key>
 				<integer>0</integer>
 				<key>offsetX</key>
@@ -140,15 +140,15 @@
 			<key>怪物_李傕0000_View010127.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>1876</integer>
+				<integer>1659</integer>
 				<key>y</key>
 				<integer>0</integer>
 				<key>offsetX</key>
@@ -159,15 +159,15 @@
 			<key>怪物_李傕0000_View010126.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>2144</integer>
+				<integer>1896</integer>
 				<key>y</key>
 				<integer>0</integer>
 				<key>offsetX</key>
@@ -178,15 +178,15 @@
 			<key>怪物_李傕0000_View010125.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>2412</integer>
+				<integer>2133</integer>
 				<key>y</key>
 				<integer>0</integer>
 				<key>offsetX</key>
@@ -197,15 +197,15 @@
 			<key>怪物_李傕0000_View010124.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>2680</integer>
+				<integer>2370</integer>
 				<key>y</key>
 				<integer>0</integer>
 				<key>offsetX</key>
@@ -216,15 +216,15 @@
 			<key>怪物_李傕0000_View010123.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>2948</integer>
+				<integer>2607</integer>
 				<key>y</key>
 				<integer>0</integer>
 				<key>offsetX</key>
@@ -235,15 +235,15 @@
 			<key>怪物_李傕0000_View010122.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>3216</integer>
+				<integer>2844</integer>
 				<key>y</key>
 				<integer>0</integer>
 				<key>offsetX</key>
@@ -254,15 +254,15 @@
 			<key>怪物_李傕0000_View010121.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>3484</integer>
+				<integer>3081</integer>
 				<key>y</key>
 				<integer>0</integer>
 				<key>offsetX</key>
@@ -273,15 +273,15 @@
 			<key>怪物_李傕0000_View010120.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>3752</integer>
+				<integer>3318</integer>
 				<key>y</key>
 				<integer>0</integer>
 				<key>offsetX</key>
@@ -292,17 +292,17 @@
 			<key>怪物_李傕0000_View010119.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>0</integer>
+				<integer>3555</integer>
 				<key>y</key>
-				<integer>268</integer>
+				<integer>0</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -311,17 +311,17 @@
 			<key>怪物_李傕0000_View010118.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>268</integer>
+				<integer>3792</integer>
 				<key>y</key>
-				<integer>268</integer>
+				<integer>0</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -330,17 +330,17 @@
 			<key>怪物_李傕0000_View010117.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>536</integer>
+				<integer>0</integer>
 				<key>y</key>
-				<integer>268</integer>
+				<integer>237</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -349,17 +349,17 @@
 			<key>怪物_李傕0000_View010116.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>804</integer>
+				<integer>237</integer>
 				<key>y</key>
-				<integer>268</integer>
+				<integer>237</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -368,17 +368,17 @@
 			<key>怪物_李傕0000_View010115.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>1072</integer>
+				<integer>474</integer>
 				<key>y</key>
-				<integer>268</integer>
+				<integer>237</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -387,17 +387,17 @@
 			<key>怪物_李傕0000_View010099.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>1340</integer>
+				<integer>711</integer>
 				<key>y</key>
-				<integer>268</integer>
+				<integer>237</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -406,17 +406,17 @@
 			<key>怪物_李傕0000_View010098.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>1608</integer>
+				<integer>948</integer>
 				<key>y</key>
-				<integer>268</integer>
+				<integer>237</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -425,17 +425,17 @@
 			<key>怪物_李傕0000_View010097.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>1876</integer>
+				<integer>1185</integer>
 				<key>y</key>
-				<integer>268</integer>
+				<integer>237</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -444,17 +444,17 @@
 			<key>怪物_李傕0000_View010096.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>2144</integer>
+				<integer>1422</integer>
 				<key>y</key>
-				<integer>268</integer>
+				<integer>237</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -463,17 +463,17 @@
 			<key>怪物_李傕0000_View010095.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>2412</integer>
+				<integer>1659</integer>
 				<key>y</key>
-				<integer>268</integer>
+				<integer>237</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -482,17 +482,17 @@
 			<key>怪物_李傕0000_View010094.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>2680</integer>
+				<integer>1896</integer>
 				<key>y</key>
-				<integer>268</integer>
+				<integer>237</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -501,17 +501,17 @@
 			<key>怪物_李傕0000_View010093.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>2948</integer>
+				<integer>2133</integer>
 				<key>y</key>
-				<integer>268</integer>
+				<integer>237</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -520,17 +520,17 @@
 			<key>怪物_李傕0000_View010092.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>3216</integer>
+				<integer>2370</integer>
 				<key>y</key>
-				<integer>268</integer>
+				<integer>237</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -539,17 +539,17 @@
 			<key>怪物_李傕0000_View010091.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>3484</integer>
+				<integer>2607</integer>
 				<key>y</key>
-				<integer>268</integer>
+				<integer>237</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -558,17 +558,17 @@
 			<key>怪物_李傕0000_View010090.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>3752</integer>
+				<integer>2844</integer>
 				<key>y</key>
-				<integer>268</integer>
+				<integer>237</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -577,17 +577,17 @@
 			<key>怪物_李傕0000_View010089.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>0</integer>
+				<integer>3081</integer>
 				<key>y</key>
-				<integer>536</integer>
+				<integer>237</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -596,17 +596,17 @@
 			<key>怪物_李傕0000_View010088.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>268</integer>
+				<integer>3318</integer>
 				<key>y</key>
-				<integer>536</integer>
+				<integer>237</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -615,17 +615,17 @@
 			<key>怪物_李傕0000_View010087.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>536</integer>
+				<integer>3555</integer>
 				<key>y</key>
-				<integer>536</integer>
+				<integer>237</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -634,17 +634,17 @@
 			<key>怪物_李傕0000_View010086.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>804</integer>
+				<integer>3792</integer>
 				<key>y</key>
-				<integer>536</integer>
+				<integer>237</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -653,17 +653,17 @@
 			<key>怪物_李傕0000_View010085.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>1072</integer>
+				<integer>0</integer>
 				<key>y</key>
-				<integer>536</integer>
+				<integer>474</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -672,17 +672,17 @@
 			<key>怪物_李傕0000_View010084.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>1340</integer>
+				<integer>237</integer>
 				<key>y</key>
-				<integer>536</integer>
+				<integer>474</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -691,17 +691,17 @@
 			<key>怪物_李傕0000_View010083.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>1608</integer>
+				<integer>474</integer>
 				<key>y</key>
-				<integer>536</integer>
+				<integer>474</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -710,17 +710,17 @@
 			<key>怪物_李傕0000_View010082.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>1876</integer>
+				<integer>711</integer>
 				<key>y</key>
-				<integer>536</integer>
+				<integer>474</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -729,17 +729,17 @@
 			<key>怪物_李傕0000_View010081.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>2144</integer>
+				<integer>948</integer>
 				<key>y</key>
-				<integer>536</integer>
+				<integer>474</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -748,17 +748,17 @@
 			<key>怪物_李傕0000_View010080.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>2412</integer>
+				<integer>1185</integer>
 				<key>y</key>
-				<integer>536</integer>
+				<integer>474</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -767,17 +767,17 @@
 			<key>怪物_李傕0000_View010079.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>2680</integer>
+				<integer>1422</integer>
 				<key>y</key>
-				<integer>536</integer>
+				<integer>474</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -786,17 +786,17 @@
 			<key>怪物_李傕0000_View010078.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>2948</integer>
+				<integer>1659</integer>
 				<key>y</key>
-				<integer>536</integer>
+				<integer>474</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -805,17 +805,17 @@
 			<key>怪物_李傕0000_View010077.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>3216</integer>
+				<integer>1896</integer>
 				<key>y</key>
-				<integer>536</integer>
+				<integer>474</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -824,17 +824,17 @@
 			<key>怪物_李傕0000_View010076.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>3484</integer>
+				<integer>2133</integer>
 				<key>y</key>
-				<integer>536</integer>
+				<integer>474</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -843,17 +843,17 @@
 			<key>怪物_李傕0000_View010075.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>3752</integer>
+				<integer>2370</integer>
 				<key>y</key>
-				<integer>536</integer>
+				<integer>474</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -862,17 +862,17 @@
 			<key>怪物_李傕0000_View010074.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>0</integer>
+				<integer>2607</integer>
 				<key>y</key>
-				<integer>804</integer>
+				<integer>474</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -881,17 +881,17 @@
 			<key>怪物_李傕0000_View010073.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>268</integer>
+				<integer>2844</integer>
 				<key>y</key>
-				<integer>804</integer>
+				<integer>474</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -900,17 +900,17 @@
 			<key>怪物_李傕0000_View010072.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>536</integer>
+				<integer>3081</integer>
 				<key>y</key>
-				<integer>804</integer>
+				<integer>474</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -919,17 +919,17 @@
 			<key>怪物_李傕0000_View010071.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>804</integer>
+				<integer>3318</integer>
 				<key>y</key>
-				<integer>804</integer>
+				<integer>474</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -938,17 +938,17 @@
 			<key>怪物_李傕0000_View010070.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>1072</integer>
+				<integer>3555</integer>
 				<key>y</key>
-				<integer>804</integer>
+				<integer>474</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -957,17 +957,17 @@
 			<key>怪物_李傕0000_View010069.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>1340</integer>
+				<integer>3792</integer>
 				<key>y</key>
-				<integer>804</integer>
+				<integer>474</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -976,17 +976,17 @@
 			<key>怪物_李傕0000_View010068.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>1608</integer>
+				<integer>0</integer>
 				<key>y</key>
-				<integer>804</integer>
+				<integer>711</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -995,17 +995,17 @@
 			<key>怪物_李傕0000_View010067.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>1876</integer>
+				<integer>237</integer>
 				<key>y</key>
-				<integer>804</integer>
+				<integer>711</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -1014,17 +1014,17 @@
 			<key>怪物_李傕0000_View010066.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>2144</integer>
+				<integer>474</integer>
 				<key>y</key>
-				<integer>804</integer>
+				<integer>711</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -1033,17 +1033,17 @@
 			<key>怪物_李傕0000_View010065.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>2412</integer>
+				<integer>711</integer>
 				<key>y</key>
-				<integer>804</integer>
+				<integer>711</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -1052,17 +1052,17 @@
 			<key>怪物_李傕0000_View010064.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>2680</integer>
+				<integer>948</integer>
 				<key>y</key>
-				<integer>804</integer>
+				<integer>711</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -1071,17 +1071,17 @@
 			<key>怪物_李傕0000_View010063.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>2948</integer>
+				<integer>1185</integer>
 				<key>y</key>
-				<integer>804</integer>
+				<integer>711</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -1090,17 +1090,17 @@
 			<key>怪物_李傕0000_View010062.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>3216</integer>
+				<integer>1422</integer>
 				<key>y</key>
-				<integer>804</integer>
+				<integer>711</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -1109,17 +1109,17 @@
 			<key>怪物_李傕0000_View010061.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>3484</integer>
+				<integer>1659</integer>
 				<key>y</key>
-				<integer>804</integer>
+				<integer>711</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -1128,17 +1128,17 @@
 			<key>怪物_李傕0000_View010060.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>3752</integer>
+				<integer>1896</integer>
 				<key>y</key>
-				<integer>804</integer>
+				<integer>711</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -1147,17 +1147,17 @@
 			<key>怪物_李傕0000_View010059.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>0</integer>
+				<integer>2133</integer>
 				<key>y</key>
-				<integer>1072</integer>
+				<integer>711</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -1166,17 +1166,17 @@
 			<key>怪物_李傕0000_View010058.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>268</integer>
+				<integer>2370</integer>
 				<key>y</key>
-				<integer>1072</integer>
+				<integer>711</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -1185,17 +1185,17 @@
 			<key>怪物_李傕0000_View010057.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>536</integer>
+				<integer>2607</integer>
 				<key>y</key>
-				<integer>1072</integer>
+				<integer>711</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -1204,17 +1204,17 @@
 			<key>怪物_李傕0000_View010056.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>804</integer>
+				<integer>2844</integer>
 				<key>y</key>
-				<integer>1072</integer>
+				<integer>711</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -1223,17 +1223,17 @@
 			<key>怪物_李傕0000_View010055.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>1072</integer>
+				<integer>3081</integer>
 				<key>y</key>
-				<integer>1072</integer>
+				<integer>711</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -1242,17 +1242,17 @@
 			<key>怪物_李傕0000_View010054.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>1340</integer>
+				<integer>3318</integer>
 				<key>y</key>
-				<integer>1072</integer>
+				<integer>711</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -1261,17 +1261,17 @@
 			<key>怪物_李傕0000_View010053.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>1608</integer>
+				<integer>3555</integer>
 				<key>y</key>
-				<integer>1072</integer>
+				<integer>711</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -1280,17 +1280,17 @@
 			<key>怪物_李傕0000_View010052.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>1876</integer>
+				<integer>3792</integer>
 				<key>y</key>
-				<integer>1072</integer>
+				<integer>711</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -1299,17 +1299,17 @@
 			<key>怪物_李傕0000_View010051.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>2144</integer>
+				<integer>0</integer>
 				<key>y</key>
-				<integer>1072</integer>
+				<integer>948</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -1318,17 +1318,17 @@
 			<key>怪物_李傕0000_View010050.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>2412</integer>
+				<integer>237</integer>
 				<key>y</key>
-				<integer>1072</integer>
+				<integer>948</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -1337,17 +1337,17 @@
 			<key>怪物_李傕0000_View010049.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>2680</integer>
+				<integer>474</integer>
 				<key>y</key>
-				<integer>1072</integer>
+				<integer>948</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -1356,17 +1356,17 @@
 			<key>怪物_李傕0000_View010048.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>2948</integer>
+				<integer>711</integer>
 				<key>y</key>
-				<integer>1072</integer>
+				<integer>948</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -1375,17 +1375,17 @@
 			<key>怪物_李傕0000_View010047.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>3216</integer>
+				<integer>948</integer>
 				<key>y</key>
-				<integer>1072</integer>
+				<integer>948</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -1394,17 +1394,17 @@
 			<key>怪物_李傕0000_View010046.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>3484</integer>
+				<integer>1185</integer>
 				<key>y</key>
-				<integer>1072</integer>
+				<integer>948</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -1413,17 +1413,17 @@
 			<key>怪物_李傕0000_View010045.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>3752</integer>
+				<integer>1422</integer>
 				<key>y</key>
-				<integer>1072</integer>
+				<integer>948</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -1432,17 +1432,17 @@
 			<key>怪物_李傕0000_View010044.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>0</integer>
+				<integer>1659</integer>
 				<key>y</key>
-				<integer>1340</integer>
+				<integer>948</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -1451,17 +1451,17 @@
 			<key>怪物_李傕0000_View010043.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>268</integer>
+				<integer>1896</integer>
 				<key>y</key>
-				<integer>1340</integer>
+				<integer>948</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -1470,17 +1470,17 @@
 			<key>怪物_李傕0000_View010042.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>536</integer>
+				<integer>2133</integer>
 				<key>y</key>
-				<integer>1340</integer>
+				<integer>948</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -1489,17 +1489,17 @@
 			<key>怪物_李傕0000_View010041.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>804</integer>
+				<integer>2370</integer>
 				<key>y</key>
-				<integer>1340</integer>
+				<integer>948</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -1508,17 +1508,17 @@
 			<key>怪物_李傕0000_View010040.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>1072</integer>
+				<integer>2607</integer>
 				<key>y</key>
-				<integer>1340</integer>
+				<integer>948</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -1527,17 +1527,17 @@
 			<key>怪物_李傕0000_View010039.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>1340</integer>
+				<integer>2844</integer>
 				<key>y</key>
-				<integer>1340</integer>
+				<integer>948</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -1546,17 +1546,17 @@
 			<key>怪物_李傕0000_View010038.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>1608</integer>
+				<integer>3081</integer>
 				<key>y</key>
-				<integer>1340</integer>
+				<integer>948</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -1565,17 +1565,17 @@
 			<key>怪物_李傕0000_View010037.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>1876</integer>
+				<integer>3318</integer>
 				<key>y</key>
-				<integer>1340</integer>
+				<integer>948</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -1584,17 +1584,17 @@
 			<key>怪物_李傕0000_View010036.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>2144</integer>
+				<integer>3555</integer>
 				<key>y</key>
-				<integer>1340</integer>
+				<integer>948</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -1603,17 +1603,17 @@
 			<key>怪物_李傕0000_View010035.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>2412</integer>
+				<integer>3792</integer>
 				<key>y</key>
-				<integer>1340</integer>
+				<integer>948</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -1622,17 +1622,17 @@
 			<key>怪物_李傕0000_View010034.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>2680</integer>
+				<integer>0</integer>
 				<key>y</key>
-				<integer>1340</integer>
+				<integer>1185</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -1641,17 +1641,17 @@
 			<key>怪物_李傕0000_View010033.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>2948</integer>
+				<integer>237</integer>
 				<key>y</key>
-				<integer>1340</integer>
+				<integer>1185</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -1660,17 +1660,17 @@
 			<key>怪物_李傕0000_View010032.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>3216</integer>
+				<integer>474</integer>
 				<key>y</key>
-				<integer>1340</integer>
+				<integer>1185</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -1679,17 +1679,17 @@
 			<key>怪物_李傕0000_View010031.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>3484</integer>
+				<integer>711</integer>
 				<key>y</key>
-				<integer>1340</integer>
+				<integer>1185</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -1698,17 +1698,17 @@
 			<key>怪物_李傕0000_View010030.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>3752</integer>
+				<integer>948</integer>
 				<key>y</key>
-				<integer>1340</integer>
+				<integer>1185</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -1717,17 +1717,17 @@
 			<key>怪物_李傕0000_View010029.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>0</integer>
+				<integer>1185</integer>
 				<key>y</key>
-				<integer>1608</integer>
+				<integer>1185</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -1736,17 +1736,17 @@
 			<key>怪物_李傕0000_View010028.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>268</integer>
+				<integer>1422</integer>
 				<key>y</key>
-				<integer>1608</integer>
+				<integer>1185</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -1755,17 +1755,17 @@
 			<key>怪物_李傕0000_View010027.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>536</integer>
+				<integer>1659</integer>
 				<key>y</key>
-				<integer>1608</integer>
+				<integer>1185</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -1774,17 +1774,17 @@
 			<key>怪物_李傕0000_View010026.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>804</integer>
+				<integer>1896</integer>
 				<key>y</key>
-				<integer>1608</integer>
+				<integer>1185</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -1793,17 +1793,17 @@
 			<key>怪物_李傕0000_View010025.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>1072</integer>
+				<integer>2133</integer>
 				<key>y</key>
-				<integer>1608</integer>
+				<integer>1185</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -1812,17 +1812,17 @@
 			<key>怪物_李傕0000_View010024.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>1340</integer>
+				<integer>2370</integer>
 				<key>y</key>
-				<integer>1608</integer>
+				<integer>1185</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -1831,17 +1831,17 @@
 			<key>怪物_李傕0000_View010023.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>1608</integer>
+				<integer>2607</integer>
 				<key>y</key>
-				<integer>1608</integer>
+				<integer>1185</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -1850,17 +1850,17 @@
 			<key>怪物_李傕0000_View010022.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>1876</integer>
+				<integer>2844</integer>
 				<key>y</key>
-				<integer>1608</integer>
+				<integer>1185</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -1869,17 +1869,17 @@
 			<key>怪物_李傕0000_View010021.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>2144</integer>
+				<integer>3081</integer>
 				<key>y</key>
-				<integer>1608</integer>
+				<integer>1185</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -1888,17 +1888,17 @@
 			<key>怪物_李傕0000_View010020.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>2412</integer>
+				<integer>3318</integer>
 				<key>y</key>
-				<integer>1608</integer>
+				<integer>1185</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -1907,17 +1907,17 @@
 			<key>怪物_李傕0000_View010019.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>2680</integer>
+				<integer>3555</integer>
 				<key>y</key>
-				<integer>1608</integer>
+				<integer>1185</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -1926,17 +1926,17 @@
 			<key>怪物_李傕0000_View010018.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>2948</integer>
+				<integer>3792</integer>
 				<key>y</key>
-				<integer>1608</integer>
+				<integer>1185</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -1945,17 +1945,17 @@
 			<key>怪物_李傕0000_View010017.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>3216</integer>
+				<integer>0</integer>
 				<key>y</key>
-				<integer>1608</integer>
+				<integer>1422</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -1964,17 +1964,17 @@
 			<key>怪物_李傕0000_View010016.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>3484</integer>
+				<integer>237</integer>
 				<key>y</key>
-				<integer>1608</integer>
+				<integer>1422</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -1983,17 +1983,17 @@
 			<key>怪物_李傕0000_View010015.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>3752</integer>
+				<integer>474</integer>
 				<key>y</key>
-				<integer>1608</integer>
+				<integer>1422</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -2002,17 +2002,17 @@
 			<key>怪物_李傕0000_View010014.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>0</integer>
+				<integer>711</integer>
 				<key>y</key>
-				<integer>1876</integer>
+				<integer>1422</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -2021,17 +2021,17 @@
 			<key>怪物_李傕0000_View010013.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>268</integer>
+				<integer>948</integer>
 				<key>y</key>
-				<integer>1876</integer>
+				<integer>1422</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -2040,17 +2040,17 @@
 			<key>怪物_李傕0000_View010012.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>536</integer>
+				<integer>1185</integer>
 				<key>y</key>
-				<integer>1876</integer>
+				<integer>1422</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -2059,17 +2059,17 @@
 			<key>怪物_李傕0000_View010011.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>804</integer>
+				<integer>1422</integer>
 				<key>y</key>
-				<integer>1876</integer>
+				<integer>1422</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -2078,17 +2078,17 @@
 			<key>怪物_李傕0000_View010010.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>1072</integer>
+				<integer>1659</integer>
 				<key>y</key>
-				<integer>1876</integer>
+				<integer>1422</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -2097,17 +2097,17 @@
 			<key>怪物_李傕0000_View010009.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>1340</integer>
+				<integer>1896</integer>
 				<key>y</key>
-				<integer>1876</integer>
+				<integer>1422</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -2116,17 +2116,17 @@
 			<key>怪物_李傕0000_View010008.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>1608</integer>
+				<integer>2133</integer>
 				<key>y</key>
-				<integer>1876</integer>
+				<integer>1422</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -2135,17 +2135,17 @@
 			<key>怪物_李傕0000_View010007.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>1876</integer>
+				<integer>2370</integer>
 				<key>y</key>
-				<integer>1876</integer>
+				<integer>1422</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -2154,17 +2154,17 @@
 			<key>怪物_李傕0000_View010006.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>2144</integer>
+				<integer>2607</integer>
 				<key>y</key>
-				<integer>1876</integer>
+				<integer>1422</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -2173,17 +2173,17 @@
 			<key>怪物_李傕0000_View010005.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>2412</integer>
+				<integer>2844</integer>
 				<key>y</key>
-				<integer>1876</integer>
+				<integer>1422</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -2192,17 +2192,17 @@
 			<key>怪物_李傕0000_View010004.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>2680</integer>
+				<integer>3081</integer>
 				<key>y</key>
-				<integer>1876</integer>
+				<integer>1422</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -2211,17 +2211,17 @@
 			<key>怪物_李傕0000_View010003.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>2948</integer>
+				<integer>3318</integer>
 				<key>y</key>
-				<integer>1876</integer>
+				<integer>1422</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -2230,17 +2230,17 @@
 			<key>怪物_李傕0000_View010002.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>3216</integer>
+				<integer>3555</integer>
 				<key>y</key>
-				<integer>1876</integer>
+				<integer>1422</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -2249,17 +2249,17 @@
 			<key>怪物_李傕0000_View010001.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>3484</integer>
+				<integer>3792</integer>
 				<key>y</key>
-				<integer>1876</integer>
+				<integer>1422</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -2268,17 +2268,17 @@
 			<key>怪物_李傕0000_View010000.png</key>
 			<dict>
 				<key>width</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>height</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalWidth</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>originalHeight</key>
-				<integer>266</integer>
+				<integer>235</integer>
 				<key>x</key>
-				<integer>3752</integer>
+				<integer>0</integer>
 				<key>y</key>
-				<integer>1876</integer>
+				<integer>1659</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>

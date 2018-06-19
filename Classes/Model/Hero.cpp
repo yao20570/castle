@@ -151,15 +151,16 @@ void Hero::idle()
 void Hero::atk(Armature* arm, MovementEventType eventType, const std::string& str)
 {
 	if (eventType == LOOP_COMPLETE) {
-		if (_target == nullptr)
-		{
-			return;
-		}
-		//if (_target->_isbroken == true || _target->_healthPoint <= 0) {
-		//	return;
-		//}
+		
 		int x = arm->getAnimation()->getCurrentMovementID().find("atk");
 		if (x >= 0) {
+			if (_target == nullptr)
+			{
+				return;
+			}
+			if (_target->_isbroken == true || _target->_healthPoint <= 0) {
+				return;
+			}
 
 			if (_shootType == 2) {
 				Vec2 src = getPosition() + Vec2(0, 60);
