@@ -36,7 +36,7 @@ bool Soilder::init(int soilderID, AIMgr* ai, int camp)
 	this->txtName = nullptr;
 	_objType = 1;
 	_speed = 50;
-    _soilderID = soilderID;
+	_id = soilderID;
     _target = nullptr;
 	_camp = camp;
     _ai = ai;
@@ -55,7 +55,7 @@ bool Soilder::init(int soilderID, AIMgr* ai, int camp)
 
 void Soilder::loadData()
 {
-    ValueMap& data = *CFG()->getSoilderInfoById(_soilderID);
+	ValueMap& data = *CFG()->getSoilderInfoById(_id);
     
     _type           = data["Type"].asInt();
     _level          = data["Level"].asInt();
@@ -73,7 +73,7 @@ void Soilder::loadData()
 
 void Soilder::showUI()
 {
-	ValueMap& objInfo = *(CFG()->getObjInfoByType(1, _soilderID));
+	ValueMap& objInfo = *(CFG()->getObjInfoByType(1, _id));
 	_animaName = objInfo["Anima"].asString();
 	_arm = Armature::create(_animaName);
 	
@@ -185,9 +185,15 @@ void Soilder::onTouchEnded(Touch* pTouch, Event* pEvent)
 
 void Soilder::addHPBar()
 {
-    auto bg = Sprite::create(IMG_BUILD_PRO_BK);
-    _hpBar = LoadingBar::create(IMG_BUILD_PRO);
-    bg->setPosition(0, _arm->getContentSize().height/2 + 30);
+	auto bg = Sprite::create(IMG_BUILD_PRO_BK);	
+	if (_camp == 1){
+		_hpBar = LoadingBar::create(IMG_BUILD_PRO);
+	}
+	else{
+		_hpBar = LoadingBar::create(IMG_BUILD_PRO_ENEMY);
+	}
+
+	bg->setPosition(0, _arm->getContentSize().height / 2 - 20);
     _hpBar->setPosition(bg->getContentSize()/2);
     bg->addChild(_hpBar);
     this->addChild(bg, 9, "Bar");
@@ -319,7 +325,7 @@ void Soilder::atk(Armature* arm, MovementEventType eventType, const std::string&
 			if (_shootType == 2) {
 				Vec2 src = getPosition() + Vec2(0, 60);
 				Vec2 des = _target->getPosition() + Vec2(0, 60);
-				auto bullet = BulletSprite::create(src, des, _damage, _target, IMG_BULLET_ARROW, 1);
+				auto bullet = BulletSprite::create(src, des, _damage, this, _target, IMG_BULLET_ARROW, 1);
 				bullet->setScale(getScale());
 				this->getParent()->addChild(bullet, 9999999);
 				SimpleAudioEngine::getInstance()->playEffect("music/far_gongjian_effect.mp3", false);
@@ -327,17 +333,17 @@ void Soilder::atk(Armature* arm, MovementEventType eventType, const std::string&
 			else if (_shootType == 3) {
 				Vec2 src = getPosition() + Vec2(0, 60);
 				Vec2 des = _target->getPosition() + Vec2(0, 60);
-				auto bullet = BulletSprite::create(src, des, _damage, _target, "images/bullet/fashu.png", 2);
+				auto bullet = BulletSprite::create(src, des, _damage, this, _target, "images/bullet/fashu.png", 2);
 				bullet->setScale(getScale());
 				this->getParent()->addChild(bullet, 9999999);
 				SimpleAudioEngine::getInstance()->playEffect("music/far_fashu_effect.mp3", false);
 			}
 			else {
 				if (_target->_objType == 3) {
-					_target->hurt(1);
+					_target->hurt(1, this);
 				}
 				else {
-					_target->hurt(_damage);
+					_target->hurt(_damage, this);
 				}
 				SimpleAudioEngine::getInstance()->playEffect("music/near_atk_effect.mp3", false);
 			}
@@ -361,7 +367,7 @@ void Soilder::atk(Armature* arm, MovementEventType eventType, const std::string&
 
 
 //  ‹…À
-void Soilder::hurt(int x)
+void Soilder::hurt(int x, BaseSprite* atk)
 {
     if (_isbroken == true || _healthPoint <= 0) {
 		//_arm->getAnimation()->stop();

@@ -15,7 +15,8 @@
     "GUI/button.png",
     "ui/win.png",
     "ui/lose.png",
-    "ui/zhanbushu.png"
+    "ui/zhanbushu.png",
+    "ui/line.png"
   ],
   "version": "1.6.0.0",
   "widgetTree": {
@@ -1065,7 +1066,7 @@
               "layoutParameter": null,
               "opacity": 255,
               "positionPercentX": 0.5,
-              "positionPercentY": 0.7703272,
+              "positionPercentY": 0.7702465,
               "positionType": 0,
               "rotation": 0,
               "scaleX": 1,
@@ -1136,7 +1137,11 @@
               "y": 560,
               "adaptScreen": false,
               "backGroundImage": null,
-              "backGroundImageData": null,
+              "backGroundImageData": {
+                "path": "ui/line.png",
+                "plistFile": "",
+                "resourceType": 0
+              },
               "backGroundScale9Enable": false,
               "bgColorB": 0,
               "bgColorG": 0,
@@ -1153,7 +1158,7 @@
               "capInsetsX": 0,
               "capInsetsY": 0,
               "clipAble": false,
-              "colorType": 1,
+              "colorType": 0,
               "layoutType": 0,
               "vectorX": 0,
               "vectorY": -0.5

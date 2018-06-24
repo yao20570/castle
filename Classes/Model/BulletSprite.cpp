@@ -1,10 +1,10 @@
 #include "BulletSprite.h"
 
 
-BulletSprite* BulletSprite::create(Vec2 src, Vec2 des, int damage, BaseSprite* target, string img, int srcType)
+BulletSprite* BulletSprite::create(Vec2 src, Vec2 des, int damage, BaseSprite* atk, BaseSprite* target, string img, int srcType)
 {
     BulletSprite *pRet = new(std::nothrow) BulletSprite();
-    if (pRet && pRet->init(src, des, damage, target, img, srcType)) {
+	if (pRet && pRet->init(src, des, damage, atk, target, img, srcType)) {
         pRet->autorelease();
         return pRet;
     }
@@ -16,7 +16,7 @@ BulletSprite* BulletSprite::create(Vec2 src, Vec2 des, int damage, BaseSprite* t
 }
 
 
-bool BulletSprite::init(Vec2 src, Vec2 des, int damage, BaseSprite* target, string img, int srcType)
+bool BulletSprite::init(Vec2 src, Vec2 des, int damage, BaseSprite* atk, BaseSprite* target, string img, int srcType)
 {
     if ( !Sprite::init() ) {
         return false;
@@ -26,6 +26,7 @@ bool BulletSprite::init(Vec2 src, Vec2 des, int damage, BaseSprite* target, stri
     _src = src;
     _des = des;
     _damage = damage;
+	_atk = atk;
     _target = target;
     _img = img;
 
@@ -59,10 +60,10 @@ void BulletSprite::showUI()
 void BulletSprite::atk()
 {
 	if (_target->_objType == 3) {
-		_target->hurt(_srcType);
+		_target->hurt(_srcType, this->_atk);
 	}
 	else {
-		_target->hurt(_damage);
+		_target->hurt(_damage, this->_atk);
 		if (IMG_BULLET_SHELL == _img) {
 			_target->hurtEffect(this->effectDir);
 		}

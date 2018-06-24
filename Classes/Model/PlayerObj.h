@@ -23,7 +23,7 @@ public:
 	void showUI();      // 显示UI
 	void addHPBar();    // 加血条
 	
-	virtual void hurt(int x);           // 受伤
+	virtual void hurt(int x, BaseSprite* atk );           // 受伤
 	virtual bool isDeath();
 	void update(float dt);
 private:

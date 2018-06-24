@@ -92,8 +92,13 @@ void PlayerObj::showUI()
 void PlayerObj::addHPBar()
 {
 	auto bg = Sprite::create(IMG_BUILD_PRO_BK);
-	_hpBar = LoadingBar::create(IMG_BUILD_PRO);
-	bg->setPosition(0, _arm->getContentSize().height / 2 + 30);
+	if (_camp == 1){
+		_hpBar = LoadingBar::create(IMG_BUILD_PRO);
+	}
+	else{
+		_hpBar = LoadingBar::create(IMG_BUILD_PRO_ENEMY);
+	}
+	bg->setPosition(0, _arm->getContentSize().height / 2 - 20);
 	_hpBar->setPosition(bg->getContentSize() / 2);
 	bg->addChild(_hpBar);
 	this->addChild(bg, 9, "Bar");
@@ -120,7 +125,7 @@ bool PlayerObj::isDeath()
 }
 
 //  ‹…À
-void PlayerObj::hurt(int x)
+void PlayerObj::hurt(int x, BaseSprite* atk)
 {
 	if (_isbroken == true || _healthPoint <= 0) {
 		//_arm->getAnimation()->stop();
@@ -129,11 +134,30 @@ void PlayerObj::hurt(int x)
 		return;
 	}
 
+	Text* txtHurt = Text::create();
+	txtHurt->setFontSize(30);
+	txtHurt->setPosition(Vec2(40, _arm->getContentSize().height / 2 - 20));
+	this->addChild(txtHurt);
+
 	int damage = 5;
-	if (x == 2) {
+	if (atk->_objType == 2) {
 		damage = 10 + 5 * _heroAtkTime;
 		_heroAtkTime++;
+		txtHurt->setTextColor(Color4B(255, 0, 0, 255));
 	}
+	else{
+		txtHurt->setTextColor(Color4B(255, 255, 255, 255));
+	}
+
+	txtHurt->setString(Value(damage).asString());
+
+	Vec2 r = Vec2(cocos2d::random(30, 30), cocos2d::random(30, 30));
+	auto mt = MoveTo::create(0.2, Vec2(10, 10) + txtHurt->getPosition() + r);
+	auto dt = DelayTime::create(0.5);
+	auto rs = RemoveSelf::create(true);
+	auto seq = Sequence::create(mt, dt, rs, nullptr);
+	txtHurt->runAction(seq);
+
 	_healthPoint -= damage;
 	if (_healthPoint <= 0) {
 		_isbroken = true;

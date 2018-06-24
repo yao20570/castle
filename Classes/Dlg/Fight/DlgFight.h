@@ -55,5 +55,7 @@ public:
 	ImageView*	img_tip;
 	ImageView*	lay_line;
 	int _round;
+
+	ValueVector _setting_data;
 };
 

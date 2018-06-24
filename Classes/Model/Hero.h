@@ -27,7 +27,7 @@ public:
 
     virtual void idle();
     virtual void atk(Armature* arm, MovementEventType eventType, const std::string& str);   // ¹¥»÷
-    virtual void hurt(int x);           // ÊÜÉË
+	virtual void hurt(int x, BaseSprite* atk);           // ÊÜÉË
 	virtual void hurtEffect(int x);
 	virtual void death();           // ËÀÍö
     virtual bool isDeath();             // ÊÇ·ñËÀÍö
@@ -47,7 +47,6 @@ private:
 	void setState(int state, int dir);
 
 public:
-    int _id;
     int _heroID;
     int _type;
     int _level;

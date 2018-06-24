@@ -7,8 +7,8 @@
 class BulletSprite : public cocos2d::Sprite
 {
 public:
-    virtual bool init(Vec2 src, Vec2 des, int damage, BaseSprite* target, string img, int srcType);
-    static BulletSprite* create(Vec2 src, Vec2 des, int damage, BaseSprite* target, string img, int srcType);
+	virtual bool init(Vec2 src, Vec2 des, int damage, BaseSprite* atk, BaseSprite* target, string img, int srcType);
+	static BulletSprite* create(Vec2 src, Vec2 des, int damage, BaseSprite* atk, BaseSprite* target, string img, int srcType);
 
 public:
     void showUI();
@@ -17,7 +17,8 @@ public:
     Vec2 _src;
     Vec2 _des;
     int _damage;
-    BaseSprite* _target;
+	BaseSprite* _target;
+	BaseSprite* _atk;
     string _img;
 	int _srcType;
 	int effectDir;

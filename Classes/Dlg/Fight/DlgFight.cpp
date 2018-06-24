@@ -26,9 +26,11 @@ static const char* PathSoilderInfo	= "Config/SoilderInfo.csv";
 
 #define MaxReadyCD 30 
 #define MaxReadyCD2 3 
+#define MaxTotalTime 3 
 
 static int state = 1;//1:准备，2：战斗，3:等待结束
 static int DlgFight_delay_close = 90;
+static float TotalTime = MaxTotalTime;
 static float ReadyCD = MaxReadyCD;
 static float ReadyCD2 = MaxReadyCD2;
 
@@ -46,6 +48,7 @@ DlgFight::DlgFight()
 	state = 1;
 	ReadyCD = MaxReadyCD;
 	ReadyCD2 = MaxReadyCD2;
+	TotalTime = MaxTotalTime;
 	MYWIN = 0;
 	MYLOSE = 0;
 }
@@ -138,19 +141,30 @@ void DlgFight::update(float dt) {
 		this->lay_result->setVisible(false);
 		if (_ai->isOver(1)) {
 			DlgFight_delay_close = 90;
+			TotalTime = MaxTotalTime;
 			state = 4;
-
-			if (_ai->isWin(1)) {
-				++MYWIN;
-			}
-			else {				
-				++MYLOSE;
-			}
-
 		}
 	}
 		break;
 	case 4:
+	{		
+		//虽然武将都死了，战斗结束，但远程攻击还没到达，导致主公的血计算不正确
+		//所以需要这个状态，延迟几秒再算主公的血
+		if (TotalTime < 0){
+			state = 5;
+			if (_ai->isWin(1)) {
+				++MYWIN;
+			}
+			else {
+				++MYLOSE;
+			}
+		}
+		else{
+			TotalTime -= dt;
+		}
+	}
+		break;
+	case 5:
 	{		
 		this->lay_result->setVisible(true);
 		bool isWin = _ai->isWin(1);
@@ -163,7 +177,7 @@ void DlgFight::update(float dt) {
 		this->txt_result->setVisible(true);
 	}
 		break;
-	case 5:
+	case 6:
 	{	
 			++_round;
 			_ai->reset();
@@ -206,7 +220,8 @@ void DlgFight::load()
 	//char strPathOjbCfg[100];
 	//sprintf(strPathOjbCfg, PathFormatChaterObjCfg, pCurChater["DetailKey"].asString());
 	//map<int, ValueMap>* objPosCfg = DM()->loadCsvData(PathObjPosition, "ID");
-	
+
+	this->_setting_data = DBM()->getMySetting(0);
 	setObjPosition();
 
 	this->img_lose= (ImageView*)Helper::seekWidgetByName(lay_root, "img_lose");
@@ -235,6 +250,7 @@ void DlgFight::load()
 
 	this->txt_num = (Text*)Helper::seekWidgetByName(lay_root, "txt_num");
 	this->txt_result = (Text*)Helper::seekWidgetByName(lay_root, "txt_result");
+
 
 }
 
@@ -288,6 +304,18 @@ bool DlgFight::onTouchBegan(Touch* pTouch, Event* pEvent)
 
 	_ai->setObjPos(_select_obj, posInMap);
 	
+	ValueVector& datas = this->_setting_data;
+	for (Value& it : datas) {
+		ValueMap& row = it.asValueMap();
+		int objId = row["ObjId"].asInt();
+		ValueMap* objInfo = CFG()->getObjInfoById(objId);
+		if (_select_obj->_objType == (*objInfo)["ObjType"].asInt() 
+			&& _select_obj->_id == (*objInfo)["SubType"].asInt()){
+			row["x"] = Value(posInMap.x);
+			row["y"] = Value(posInMap.y);
+		}
+	}
+
 	return true;
 }
 
@@ -299,7 +327,7 @@ void DlgFight::onTouchEnded(Touch* pTouch, Event* pEvent) {
 
 void DlgFight::setObjPosition()
 {
-	ValueVector datas = DBM()->getMySetting(0);
+	ValueVector& datas = this->_setting_data;
 	{
 		int camp = 1;
 		for (Value& it : datas) {
@@ -451,7 +479,7 @@ void DlgFight::onNextRound(Ref* sender, Widget::TouchEventType type)
 		return;
 	}
 
-	if (state != 4) {
+	if (state != 5) {
 		return;
 	}
 
@@ -459,7 +487,7 @@ void DlgFight::onNextRound(Ref* sender, Widget::TouchEventType type)
 		hideDlg(this->getDlgName());
 	}
 	else {
-		state = 5;
+		state = 6;
 	}
 }
 

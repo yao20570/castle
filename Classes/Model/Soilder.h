@@ -21,7 +21,7 @@ public:
 
     virtual void run();         // 走路
     virtual void atk(Armature* arm, MovementEventType eventType, const std::string& str);         // 攻击
-    virtual void hurt(int x);   // 受伤
+	virtual void hurt(int x, BaseSprite* atk);   // 受伤
 	virtual void hurtEffect(int x);
     virtual bool isDeath();     // 是否死亡
     
@@ -35,7 +35,6 @@ public:
 	virtual void onTouchEnded(Touch* pTouch, Event* pEvent);
 	void setState(int state, int _dir);
 public:
-    int _soilderID;
     int _type;
     int _level;
     int _name;

@@ -130,8 +130,14 @@ void Hero::showUI()
 void Hero::addHPBar()
 {
 	auto bg = Sprite::create(IMG_BUILD_PRO_BK);
-	_hpBar = LoadingBar::create(IMG_BUILD_PRO);
-	bg->setPosition(0, _arm->getContentSize().height / 2 + 30);
+	if (_camp == 1){
+		_hpBar = LoadingBar::create(IMG_BUILD_PRO);
+	}
+	else{
+		_hpBar = LoadingBar::create(IMG_BUILD_PRO_ENEMY);
+	}
+	
+	bg->setPosition(0, _arm->getContentSize().height / 2 - 20);
 	_hpBar->setPosition(bg->getContentSize() / 2);
 	bg->addChild(_hpBar);
 	this->addChild(bg, 9, "Bar");
@@ -165,7 +171,7 @@ void Hero::atk(Armature* arm, MovementEventType eventType, const std::string& st
 			if (_shootType == 2) {
 				Vec2 src = getPosition() + Vec2(0, 60);
 				Vec2 des = _target->getPosition() + Vec2(0, 60);
-				auto bullet = BulletSprite::create(src, des, _damage, _target, IMG_BULLET_ARROW, 2);
+				auto bullet = BulletSprite::create(src, des, _damage, this, _target, IMG_BULLET_ARROW, 2);
 				bullet->setScale(getScale());
 				this->getParent()->addChild(bullet, 9999999);
 				SimpleAudioEngine::getInstance()->playEffect("music/far_gongjian_effect.mp3", false);
@@ -173,18 +179,17 @@ void Hero::atk(Armature* arm, MovementEventType eventType, const std::string& st
 			else if (_shootType == 3) {
 				Vec2 src = getPosition() + Vec2(0, 60);
 				Vec2 des = _target->getPosition() + Vec2(0, 60);
-				auto bullet = BulletSprite::create(src, des, _damage, _target, "images/bullet/fashu.png", 2);
+				auto bullet = BulletSprite::create(src, des, _damage, this, _target, "images/bullet/fashu.png", 2);
 				bullet->setScale(getScale());
 				this->getParent()->addChild(bullet, 9999999);
 				SimpleAudioEngine::getInstance()->playEffect("music/far_fashu_effect.mp3", false);
 			}
 			else {
-				//_target->hurt(_damage);
 				if (_target->_objType == 3) {
-					_target->hurt(2);
+					_target->hurt(2, this);
 				}
 				else {
-					_target->hurt(_damage);
+					_target->hurt(_damage, this);
 				}
 
 				SimpleAudioEngine::getInstance()->playEffect("music/near_atk_effect.mp3", false);
@@ -214,7 +219,7 @@ void Hero::atk(Armature* arm, MovementEventType eventType, const std::string& st
 
 
 //  ‹…À
-void Hero::hurt(int x)
+void Hero::hurt(int x, BaseSprite* atk)
 {
 	if (_isbroken == true || _healthPoint <= 0) {
 		//_arm->getAnimation()->stop();

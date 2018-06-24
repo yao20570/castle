@@ -24,7 +24,7 @@ public:
 public:
     virtual void atk();
     virtual void run();
-    virtual void hurt(int x);
+	virtual void hurt(int x, BaseSprite* atk);
 	virtual void hurtEffect(int x);
 	virtual void death();
     virtual void idle();
@@ -35,6 +35,7 @@ public:
 	virtual void setObjName(string name);
 public:
 	int _objType;
+	int _id;
 	list<Vec2> _prePosList;
     Vec2 _pos;
 	int _radius;

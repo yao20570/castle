@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <UIProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <ProjectDir>F:\Dev\proj\castle\UIProject\Main</ProjectDir>
+  <ProjectDir>F:\mytest\castle\UIProject\Main</ProjectDir>
   <Version>1.6.0.0</Version>
-  <Resources>F:\Dev\proj\castle\UIProject\Main\Resources</Resources>
+  <Resources>F:\mytest\castle\UIProject\Main\Resources</Resources>
   <Name>Main</Name>
   <JsonFileName>Main.json</JsonFileName>
-  <JsonFolder>F:\Dev\proj\castle\UIProject\Main\Json</JsonFolder>
+  <JsonFolder>F:\mytest\castle\UIProject\Main\Json</JsonFolder>
   <JsonList>
     <string>dlg_mian.json</string>
     <string>pnl_setting.json</string>
@@ -26,11 +26,11 @@
     <Width>150</Width>
     <Height>150</Height>
   </CanvasSize>
-  <filePath>F:\Dev\proj\castle\UIProject\Main\Main.xml.ui</filePath>
+  <filePath>F:\mytest\castle\UIProject\Main\Main.xml.ui</filePath>
   <ProjectType>UIProject</ProjectType>
   <ResRelativePath />
   <imageFileList />
   <imagePngList />
   <JsonSuffix>.json</JsonSuffix>
-  <CurrentUIJson>pnl_find.json</CurrentUIJson>
+  <CurrentUIJson>pnl_fight.json</CurrentUIJson>
 </UIProject>

@@ -10,14 +10,7 @@
   "designHeight": 1136,
   "designWidth": 640,
   "textures": [],
-  "texturesPng": [
-    "ui/battle_bg.png",
-    "GUI/button.png",
-    "ui/win.png",
-    "ui/lose.png",
-    "ui/zhanbushu.png",
-    "ui/battle_bg.png"
-  ],
+  "texturesPng": [],
   "version": "1.6.0.0",
   "widgetTree": {
     "classname": "Panel",
@@ -865,7 +858,7 @@
               "fontType": 0,
               "normal": null,
               "normalData": {
-                "path": "F:\\Dev\\tools2\\Cocos Studio\\EditorDefaultRes\\GUI/button.png",
+                "path": "C:\\Program Files (x86)\\Cocos Studio\\EditorDefaultRes\\GUI/button.png",
                 "plistFile": "",
                 "resourceType": 2
               },
@@ -1066,7 +1059,7 @@
               "layoutParameter": null,
               "opacity": 255,
               "positionPercentX": 0.5,
-              "positionPercentY": 0.7703272,
+              "positionPercentY": 0.7702465,
               "positionType": 0,
               "rotation": 0,
               "scaleX": 1,
@@ -1137,7 +1130,11 @@
               "y": 560,
               "adaptScreen": false,
               "backGroundImage": null,
-              "backGroundImageData": null,
+              "backGroundImageData": {
+                "path": "ui/line.png",
+                "plistFile": "",
+                "resourceType": 0
+              },
               "backGroundScale9Enable": false,
               "bgColorB": 0,
               "bgColorG": 0,
@@ -1154,7 +1151,7 @@
               "capInsetsX": 0,
               "capInsetsY": 0,
               "clipAble": false,
-              "colorType": 1,
+              "colorType": 0,
               "layoutType": 0,
               "vectorX": 0,
               "vectorY": -0.5

@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <UIProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <ProjectDir>F:\Dev\proj\castle\UIProject\Fight</ProjectDir>
+  <ProjectDir>F:\mytest\castle\UIProject\Fight</ProjectDir>
   <Version>1.6.0.0</Version>
-  <Resources>F:\Dev\proj\castle\UIProject\Fight\Resources</Resources>
+  <Resources>F:\mytest\castle\UIProject\Fight\Resources</Resources>
   <Name>Fight</Name>
   <JsonFileName>Fight.json</JsonFileName>
-  <JsonFolder>F:\Dev\proj\castle\UIProject\Fight\Json</JsonFolder>
+  <JsonFolder>F:\mytest\castle\UIProject\Fight\Json</JsonFolder>
   <JsonList>
     <string>dlg_fight.json</string>
     <string>dlg_battle.json</string>
@@ -14,11 +14,11 @@
     <Width>640</Width>
     <Height>1136</Height>
   </CanvasSize>
-  <filePath>F:\Dev\proj\castle\UIProject\Fight\Fight.xml.ui</filePath>
+  <filePath>F:\mytest\castle\UIProject\Fight\Fight.xml.ui</filePath>
   <ProjectType>UIProject</ProjectType>
   <ResRelativePath />
   <imageFileList />
   <imagePngList />
   <JsonSuffix>.json</JsonSuffix>
-  <CurrentUIJson />
+  <CurrentUIJson>dlg_fight.json</CurrentUIJson>
 </UIProject>
