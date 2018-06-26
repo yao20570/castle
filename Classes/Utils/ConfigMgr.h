@@ -14,6 +14,8 @@ public:
 	map<int, ValueMap>* loadConfig(std::string file, const string& key);
 
 public:
+	string getWord(int id);
+
 	map<int, ValueMap>* getObjPos();
 
 	ValueMap* getHeroInfoById(int id);

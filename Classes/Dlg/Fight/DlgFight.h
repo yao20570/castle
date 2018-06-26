@@ -46,6 +46,10 @@ public:
 	Layout* _map;
 	BaseSprite* _select_obj;
 
+	
+	Layout*		lay_wait;
+	Text*		lab_round;
+
 	Layout*		lay_result;
 	Text*		txt_result;
 	Text*		txt_num;

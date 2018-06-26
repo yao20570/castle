@@ -1,5 +1,7 @@
 #include "ConfigMgr.h"
 
+static const char* PathWord = "Config/Word.csv";
+
 static const char* PathObjPosition = "Config/ObjPosition.csv";
 static const char* PathObjInfo = "Config/ObjInfo.csv";
 
@@ -56,6 +58,15 @@ map<int, ValueMap>* ConfigMgr::loadConfig(std::string file, const string& key)
 	}
 
 	return &table;
+}
+
+string ConfigMgr::getWord(int id) {
+	map<int, ValueMap>* table = loadConfig(PathWord, "ID");
+	auto it = table->find(id);
+	if (it == table->end()) {
+		return "";
+	}
+	return it->second["Word"].asString();
 }
 
 map<int, ValueMap>* ConfigMgr::getObjPos() {

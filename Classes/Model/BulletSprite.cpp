@@ -64,7 +64,7 @@ void BulletSprite::atk()
 	}
 	else {
 		_target->hurt(_damage, this->_atk);
-		if (IMG_BULLET_SHELL == _img) {
+		if ("images/bullet/fashu.png" == _img) {
 			_target->hurtEffect(this->effectDir);
 		}
 	}
