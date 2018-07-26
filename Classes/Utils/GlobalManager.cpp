@@ -1,7 +1,4 @@
 #include "GlobalManager.h"
-#include "UI/WorldScene/WorldScene.h"
-#include "UI/HomeScene/HomeScene.h"
-#include "UI/BattleScene/BattleScene.h"
 
 GlobalManager* GlobalManager::_g = nullptr;
 GlobalManager* GlobalManager::getInstance()
@@ -87,6 +84,13 @@ int GlobalManager::getTimeStamp()
     return tm.tv_sec;
 }
 
+// 获取时间戳
+INT64 GlobalManager::getMTimeStamp()
+{
+    timeval tv;
+    gettimeofday(&tv, NULL);
+    return ((INT64)tv.tv_sec) * 1000 + ((INT64)tv.tv_usec) / 1000; 
+}
 
 // int转string
 string GlobalManager::getIntToStr(int value)
@@ -214,7 +218,7 @@ ValueVector GlobalManager::getNextSpace(Vec2 pos)
         
         ValueMap map;
         map["x"] = xx; map["y"] = yy; map["dir"] = i;
-        vv.push_back((Value)map);
+        vv.push_back((cocos2d::Value)map);
     }
     return vv;
 }
@@ -403,43 +407,3 @@ int GlobalManager::getManhadun(Vec2 p1, Vec2 p2)
     if (y < 0) y = -y;
     return x + y;
 }
-
-
-//--------------------------------------------------------------------------------
-// 场景切换
-//--------------------------------------------------------------------------------
-
-// 进入战略地图
-void GlobalManager::enterWorldScene()
-{
-    auto scene = WorldScene::createScene();
-    auto tt = TransitionFade::create(0.5f, scene);
-    Director::getInstance()->replaceScene(tt);
-}
-
-
-// 进入玩家城池
-void GlobalManager::enterHomeScene()
-{
-    auto scene = HomeScene::createScene();
-    auto tt = TransitionFade::create(0.5f, scene);
-    Director::getInstance()->replaceScene(tt);
-}
-
-
-// 进入关卡城池
-void GlobalManager::enterChapterScene(int townID, int type)
-{
-    _townID = townID;
-    if (type == CHAPTER_TYPE_SEEK) {
-        auto scene = BattleScene::createScene();
-        auto tt = TransitionFade::create(0.5f, scene);
-        Director::getInstance()->replaceScene(tt);
-    }
-    else if(type == CHAPTER_TYPE_FIGHT) {
-        auto scene = BattleScene::createScene();
-        auto tt = TransitionFade::create(0.5f, scene);
-        Director::getInstance()->replaceScene(tt);
-    }
-}
-

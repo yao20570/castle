@@ -30,7 +30,6 @@ static const char* PathSoilderInfo	= "Config/SoilderInfo.csv";
 #define MaxTotalTime 3 
 #define MaxResultCD 2
 
-static int state = 0;//0:等待，1:准备，2：战斗，3:等待结束，4，5，6
 static int DlgFight_delay_close = 90;
 static float TotalTime = MaxTotalTime;
 static float WaitCD = MaxWaitCD;
@@ -49,7 +48,7 @@ DlgFight::DlgFight()
 {
 	_dlg_type = ENUM_DLG_TYPE::Full;
 	_dlg_name = "DlgFight";
-	state = 0;
+	_state = 0;
 	WaitCD = MaxWaitCD;
 	ReadyCD = MaxReadyCD;
 	ReadyCD2 = MaxReadyCD2;
@@ -80,158 +79,161 @@ bool DlgFight::init(StateBase* gameState)
 	{
 		return false;
 	}
-	schedule(schedule_selector(DlgFight::update));
 	this->load();
+	schedule(schedule_selector(DlgFight::update));
 	return true;
 }
+
 void DlgFight::update(float dt) {
 	_ai->update(dt);
 
-	switch (state)
+	switch (_state)
 	{
-	case 0:
-	{
-		//等待阶段
-		this->lay_wait->setVisible(true);
-		this->lay_result->setVisible(false);
-		_ai->hideEnemy();
-		
-		if (WaitCD < 0){
-			WaitCD = MaxWaitCD;
-			state = 1;
-		}
-		else{
-			WaitCD -= dt;
+		case 0:
+		{
+			//等待阶段
+			this->lay_wait->setVisible(true);
+			this->lay_result->setVisible(false);
+			_ai->hideEnemy();
 
-			char str[128] = {0};
-			sprintf(str, CFG()->getWord(1).c_str(), _round + 1);
-			this->lab_round->setString(str);
-		}
-	}
-		break;
-	case 1:
-	{
-		//准备阶段
-		this->lay_wait->setVisible(false);
-		this->lay_result->setVisible(true);
-		this->btn_start->setVisible(true);
-		this->img_tip->setVisible(true);
-		this->lay_line->setVisible(true);
-
-		this->img_win->setVisible(false);
-		this->img_lose->setVisible(false);
-		this->txt_result->setVisible(false);
-		_ai->hideEnemy();
-		if (_ai->isWin(1)) {
-			this->txt_num->setFontSize(50);
-			this->txt_num->setTextColor(Color4B(0, 255, 0, 255));
-			this->txt_num->setString(Value((int)ReadyCD).asString());	
-		}
-		else {
-			this->txt_num->setFontSize(50);
-			this->txt_num->setTextColor(Color4B(0, 255, 0, 255));
-			this->txt_num->setString(Value((int)ReadyCD).asString());
-		}
-
-		if (ReadyCD < 0) {
-			ReadyCD = MaxReadyCD;
-			ReadyCD2 = MaxReadyCD2;
-			_ai->showEnemy();
-			state = 2;
-		}
-		else {
-			ReadyCD -= dt;
-		}
-	}
-		break;
-	case 2:
-	{
-		this->btn_start->setVisible(false);
-		this->img_tip->setVisible(false);
-		this->lay_line->setVisible(false);
-		if (ReadyCD2 < 0) {
-			_ai->showName(false);
-			_ai->start();
-			state = 3;
-		}
-		else {
-			ReadyCD2 -= dt;
-		}
-		this->txt_num->setVisible(true);
-		this->txt_num->setFontSize(100);
-		this->txt_num->setTextColor(Color4B(255, 0, 0, 255));
-		this->txt_num->setString(Value((int)(ReadyCD2 + 1)).asString());
-	}
-		break;
-	case 3:
-	{		
-		this->lay_result->setVisible(false);
-		if (_ai->isOver(1)) {
-			DlgFight_delay_close = 90;
-			TotalTime = MaxTotalTime;
-			state = 4;
-		}
-	}
-		break;
-	case 4:
-	{		
-		//虽然武将都死了，战斗结束，但远程攻击还没到达，导致主公的血计算不正确
-		//所以需要这个状态，延迟几秒再算主公的血
-		if (TotalTime < 0){
-			state = 5;
-			if (_ai->isWin(1)) {
-				++MYWIN;
-			}
-			else {
-				++MYLOSE;
-			}
-		}
-		else{
-			TotalTime -= dt;
-		}
-	}
-		break;
-	case 5:
-	{		
-		this->lay_result->setVisible(true);
-		this->txt_num->setVisible(false);
-		char str[50] = {0};
-		sprintf(str, "%d - %d", MYWIN, MYLOSE);
-		this->txt_result->setString(str);
-		this->txt_result->setVisible(true);
-
-		if (MYWIN >= 2 || MYLOSE >= 2){
-
-			if (ResultCD < 0){
-				ResultCD = MaxResultCD;
-				state = 7;
+			if (WaitCD < 0){
+				WaitCD = MaxWaitCD;
+				_state = 1;
 			}
 			else{
-				ResultCD -= dt;
-			}			
+				WaitCD -= dt;
+
+				char str[128] = { 0 };
+				sprintf(str, CFG()->getWord(1).c_str(), _round + 1);
+				this->lab_round->setString(str);
+			}
 		}
-	}
-		break;
-	case 6:
-	{	
-		++_round;
-		_ai->reset();
-		setObjPosition();
-		//_ai->start();
-		state = 0;
-	}
-		break;
-	case 7:
-	{
-		this->txt_result->setVisible(false);
-		bool isWin = MYWIN > MYLOSE;
-		this->img_win->setVisible(isWin);
-		this->img_lose->setVisible(!isWin);
-	}
-		break;
+			break;
+		case 1:
+		{
+			//准备阶段
+			this->lay_wait->setVisible(false);
+			this->lay_result->setVisible(true);
+			this->btn_start->setVisible(true);
+			this->img_tip->setVisible(true);
+			this->lay_line->setVisible(true);
+
+			this->img_win->setVisible(false);
+			this->img_lose->setVisible(false);
+			this->txt_result->setVisible(false);
+			_ai->hideEnemy();
+			if (_ai->isWin(1)) {
+				this->txt_num->setFontSize(50);
+				this->txt_num->setTextColor(Color4B(0, 255, 0, 255));
+				this->txt_num->setString(cocos2d::Value((int)ReadyCD).asString());
+			}
+			else {
+				this->txt_num->setFontSize(50);
+				this->txt_num->setTextColor(Color4B(0, 255, 0, 255));
+				this->txt_num->setString(cocos2d::Value((int)ReadyCD).asString());
+			}
+
+			if (ReadyCD < 0) {
+				ReadyCD = MaxReadyCD;
+				ReadyCD2 = MaxReadyCD2;
+				_ai->showEnemy();
+				_state = 2;
+			}
+			else {
+				ReadyCD -= dt;
+			}
+		}
+			break;
+		case 2:
+		{
+			this->btn_start->setVisible(false);
+			this->img_tip->setVisible(false);
+			this->lay_line->setVisible(false);
+			if (ReadyCD2 < 0) {
+				_ai->showName(false);
+				_ai->start();
+				_state = 3;
+
+				this->triggerSkill(SkillTriggerType::RoundStart, Vec2(0,0));
+			}
+			else {
+				ReadyCD2 -= dt;
+			}
+			this->txt_num->setVisible(true);
+			this->txt_num->setFontSize(100);
+			this->txt_num->setTextColor(Color4B(255, 0, 0, 255));
+			this->txt_num->setString(cocos2d::Value((int)(ReadyCD2 + 1)).asString());
+		}
+			break;
+		case 3:
+		{
+			this->lay_result->setVisible(false);
+			if (_ai->isOver(1)) {
+				DlgFight_delay_close = 90;
+				TotalTime = MaxTotalTime;
+				_state = 4;
+			}
+		}
+			break;
+		case 4:
+		{
+			//虽然武将都死了，战斗结束，但远程攻击还没到达，导致主公的血计算不正确
+			//所以需要这个状态，延迟几秒再算主公的血
+			if (TotalTime < 0){
+				_state = 5;
+				if (_ai->isWin(1)) {
+					++MYWIN;
+				}
+				else {
+					++MYLOSE;
+				}
+			}
+			else{
+				TotalTime -= dt;
+			}
+		}
+			break;
+		case 5:
+		{
+			this->lay_result->setVisible(true);
+			this->txt_num->setVisible(false);
+			char str[50] = { 0 };
+			sprintf(str, "%d - %d", MYWIN, MYLOSE);
+			this->txt_result->setString(str);
+			this->txt_result->setVisible(true);
+
+			if (MYWIN >= 2 || MYLOSE >= 2){
+
+				if (ResultCD < 0){
+					ResultCD = MaxResultCD;
+					_state = 7;
+				}
+				else{
+					ResultCD -= dt;
+				}
+			}
+		}
+			break;
+		case 6:
+		{
+			++_round;
+			_ai->reset();
+			setObjPosition();
+			//_ai->start();
+			_state = 0;
+		}
+			break;
+		case 7:
+		{
+			this->txt_result->setVisible(false);
+			bool isWin = MYWIN > MYLOSE;
+			this->img_win->setVisible(isWin);
+			this->img_lose->setVisible(!isWin);
+		}
+			break;
 	}
 
-	
+	this->updateObjAttrLayer();
 }
 
 void DlgFight::load()
@@ -297,7 +299,16 @@ void DlgFight::load()
 	this->txt_num = (Text*)Helper::seekWidgetByName(lay_root, "txt_num");
 	this->txt_result = (Text*)Helper::seekWidgetByName(lay_root, "txt_result");
 
-
+	//属性面板
+	this->lay_attr		= (Layout*)Helper::seekWidgetByName(lay_root, "lay_attr");
+	this->txt_name		= (Text*)Helper::seekWidgetByName(lay_root, "txt_name");
+	this->txt_hp		= (Text*)Helper::seekWidgetByName(lay_root, "txt_hp");
+	this->txt_damage	= (Text*)Helper::seekWidgetByName(lay_root, "txt_damage");
+	this->txt_def		= (Text*)Helper::seekWidgetByName(lay_root, "txt_def");
+	this->txt_speed		= (Text*)Helper::seekWidgetByName(lay_root, "txt_speed");
+	this->txt_xixue		= (Text*)Helper::seekWidgetByName(lay_root, "txt_xixue");
+	this->txt_hurt_more = (Text*)Helper::seekWidgetByName(lay_root, "txt_hurt_more");
+	
 }
 
 void DlgFight::addTouch()
@@ -312,7 +323,7 @@ void DlgFight::addTouch()
 
 bool DlgFight::onTouchBegan(Touch* pTouch, Event* pEvent) 
 {
-	if (state != 1) {
+	if (_state != 1) {
 		return true;
 	}
 
@@ -351,14 +362,14 @@ bool DlgFight::onTouchBegan(Touch* pTouch, Event* pEvent)
 	_ai->setObjPos(_select_obj, posInMap);
 	
 	ValueVector& datas = this->_setting_data;
-	for (Value& it : datas) {
+	for (cocos2d::Value& it : datas) {
 		ValueMap& row = it.asValueMap();
 		int objId = row["ObjId"].asInt();
 		ValueMap* objInfo = CFG()->getObjInfoById(objId);
 		if (_select_obj->_objType == (*objInfo)["ObjType"].asInt() 
 			&& _select_obj->_id == (*objInfo)["SubType"].asInt()){
-			row["x"] = Value(posInMap.x);
-			row["y"] = Value(posInMap.y);
+			row["x"] = cocos2d::Value(posInMap.x);
+			row["y"] = cocos2d::Value(posInMap.y);
 		}
 	}
 
@@ -376,7 +387,7 @@ void DlgFight::setObjPosition()
 	ValueVector& datas = this->_setting_data;
 	{
 		int camp = 1;
-		for (Value& it : datas) {
+		for (cocos2d::Value& it : datas) {
 			ValueMap& row = it.asValueMap();
 			int x = row["x"].asInt();
 			int y = row["y"].asInt();
@@ -410,7 +421,7 @@ void DlgFight::setObjPosition()
 
 	{
 		int camp = 2;
-		for (Value& it : datas) {
+		for (cocos2d::Value& it : datas) {
 			ValueMap& row = it.asValueMap();
 			int x = row["x"].asInt();
 			int y = 1080 - row["y"].asInt();
@@ -443,10 +454,6 @@ void DlgFight::setObjPosition()
 
 }
 
-
-
-
-static int i = 0;
 void DlgFight::addHero(Vec2 pos, int camp, ValueMap* objInfo)
 {
 	int objType = (*objInfo)["ObjType"].asInt();
@@ -455,8 +462,7 @@ void DlgFight::addHero(Vec2 pos, int camp, ValueMap* objInfo)
 	int quality = (*objInfo)["Quality"].asInt();
 
 	Hero* hero = Hero::create(subType, _ai, camp);
-	hero->setObjName(name);
-	setTextColor(hero->txtName, quality);
+	setTextColor(hero->_txtName, quality);
 	this->_map->addChild(hero); 
 	_ai->setObjPos(hero, pos);
 	//++i;
@@ -477,7 +483,7 @@ void DlgFight::addSoilder(Vec2 pos, int camp, ValueMap* objInfo)
 
 	Soilder* soilder = Soilder::create(subType, _ai, camp);
 	soilder->setObjName(name);
-	setTextColor(soilder->txtName, quality);
+	setTextColor(soilder->_txtName, quality);
 	this->_map->addChild(soilder);
 	_ai->setObjPos(soilder, pos);
 	//++i;
@@ -494,6 +500,37 @@ void DlgFight::addPlayer(Vec2 pos, int camp)
 	PlayerObj* player = PlayerObj::create(1, _ai, camp);
 	this->_map->addChild(player);
 	_ai->setObjPos(player, pos);
+}
+
+void DlgFight::updateObjAttrLayer(){	
+	if (_state != 3){
+		this->lay_attr->setVisible(false);	
+		return;
+	}
+
+	BaseSprite* obj = _ai->getSelectObj();
+	if(obj != nullptr){
+		this->lay_attr->setVisible(true);	
+		this->txt_name->setString(obj->getObjName());
+		this->txt_hp->setString(cocos2d::Value(obj->getHp()).asString());
+		this->txt_damage->setString(cocos2d::Value(obj->getDamage()).asString());
+		this->txt_def->setString(cocos2d::Value(obj->getDef()).asString());	
+		this->txt_speed->setString(cocos2d::Value(obj->getSpeed()).asString());	
+		this->txt_xixue->setString(cocos2d::Value(obj->getXiXue()).asString() + "%");	
+		this->txt_hurt_more->setString(cocos2d::Value(obj->getHurtMore()).asString() + "%");
+	}
+	else{
+		this->lay_attr->setVisible(false);
+	}
+}
+
+void DlgFight::triggerSkill(SkillTriggerType tt, const Vec2& targetPos){
+	for (auto it : _ai->_objSelf){
+		it->triggerSkill(tt, targetPos);
+	}
+	for (auto it : _ai->_objEnemy){
+		it->triggerSkill(tt, targetPos);
+	}
 }
 
 DlgBase* DlgFight::showDlg(const string& dlgName)
@@ -516,7 +553,7 @@ void DlgFight::onStart(Ref* sender, Widget::TouchEventType type)
 	ReadyCD = MaxReadyCD;
 	ReadyCD2 = MaxReadyCD2;
 	_ai->showEnemy();
-	state = 2;
+	_state = 2;
 }
 
 void DlgFight::onNextRound(Ref* sender, Widget::TouchEventType type)
@@ -525,11 +562,11 @@ void DlgFight::onNextRound(Ref* sender, Widget::TouchEventType type)
 		return;
 	}
 
-	switch (state)
+	switch (_state)
 	{
 	case 5:
 		if (MYWIN < 2 && MYLOSE < 2) {
-			state = 6;
+			_state = 6;
 		}
 		break;
 	case 7:

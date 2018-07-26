@@ -188,7 +188,7 @@ void DataManager::loadBuildingInfo()
         // i == 0 为字段头
         if (i == 0) {
             map["BuildingID"] = 0;
-            _building.push_back((Value)map);
+            _building.push_back((cocos2d::Value)map);
             continue;
         }
 
@@ -215,7 +215,7 @@ void DataManager::loadBuildingInfo()
             _labID = i;
         }
         
-        _building.push_back((Value)map);
+        _building.push_back((cocos2d::Value)map);
     }
     
     bindingIndex(_building, _indexBuilding, "ID");
@@ -278,7 +278,7 @@ void DataManager::loadSoilderInfo()
         // i == 0 为字段头
         if (i == 0) {
             map["SoilderID"] = 0;
-            _soilder.push_back((Value)map);
+            _soilder.push_back((cocos2d::Value)map);
             continue;
         }
 
@@ -295,7 +295,7 @@ void DataManager::loadSoilderInfo()
             map[it->first] = it->second.asString();
         }
         
-        _soilder.push_back((Value)map);
+        _soilder.push_back((cocos2d::Value)map);
     }
 
     bindingIndex(_soilder, _indexSoilder, "ID");
@@ -357,7 +357,7 @@ void DataManager::loadHeroInfo()
         // i == 0 为字段头
         if (i == 0) {
             map["HeroID"] = 0;
-            _hero.push_back((Value)map);
+            _hero.push_back((cocos2d::Value)map);
             continue;
         }
 
@@ -374,7 +374,7 @@ void DataManager::loadHeroInfo()
             map[it->first] = it->second.asString();
         }
         
-        _hero.push_back((Value)map);
+        _hero.push_back((cocos2d::Value)map);
     }
     
     bindingIndex(_hero, _indexHero, "ID");
@@ -419,7 +419,7 @@ void DataManager::loadCsvData(std::string file, ValueVector& data)
         for (int j = 0; j < csv[i].size(); j++) {
             map[csv[0][j]] = csv[i][j];
         }
-        data.push_back((Value)map);
+        data.push_back((cocos2d::Value)map);
     }
 }
 
@@ -760,7 +760,7 @@ int DataManager::addNewBuilding(int type, Vec2 pos)
     map["LastWoodHarvest"] = lastWoodHarvest;
     //[3] 加入_building中
     _indexBuilding[map["ID"].asString()] = ID;
-    _building.push_back((Value)map);
+    _building.push_back((cocos2d::Value)map);
     
     
     // 插入新设施(sqlite)

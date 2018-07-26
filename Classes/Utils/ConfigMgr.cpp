@@ -11,6 +11,7 @@ static const char* PathSoilderInfo = "Config/SoilderInfo.csv";
 static const char* PathMissionMain = "Config/MissionMain.csv";
 static const char* PathMissionSub = "Config/MissionSub.csv";
 static const char* PathMissionObj = "Config/MissionObj.csv";
+static const char* PathSkillEffect = "Config/SkillEffect.csv";
 
 ConfigMgr* ConfigMgr::_g = nullptr;
 ConfigMgr* ConfigMgr::getInstance()
@@ -140,6 +141,15 @@ ValueMap* ConfigMgr::getMissionSumById(int id) {
 
 ValueMap* ConfigMgr::getMissionObjById(int id) {
 	map<int, ValueMap>* table = loadConfig(PathMissionObj, "ID");
+	auto it = table->find(id);
+	if (it == table->end()) {
+		return nullptr;
+	}
+	return &(it->second);
+}
+
+ValueMap* ConfigMgr::getSkillEffectById(int id) {
+	map<int, ValueMap>* table = loadConfig(PathSkillEffect, "ID");
 	auto it = table->find(id);
 	if (it == table->end()) {
 		return nullptr;

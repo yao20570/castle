@@ -223,7 +223,7 @@ void DlgMission::setObjPosition(int missionSubId, int tempKey)
 	{
 		//自己
 		int camp = 1;
-		for (Value& it : datas) {
+		for (cocos2d::Value& it : datas) {
 			ValueMap& row = it.asValueMap();
 			int x = row["x"].asInt();
 			int y = row["y"].asInt();
@@ -308,13 +308,7 @@ void DlgMission::addHero(int heroId, Vec2 pos, int camp)
 	Hero* hero = Hero::create(heroId, _ai, camp);
 	this->_map->addChild(hero);
 	_ai->setObjPos(hero, pos);
-	//++i;
-	//hero->_name = i;
 
-	//auto txtName = Text::create("名称", FONT_ARIAL, 20);
-	//txtName->setName("txtName");
-	//txtName->setString(GM()->getIntToStr(i));
-	//hero->addChild(txtName);
 }
 
 void DlgMission::addSoilder(int soilderId, Vec2 pos, int camp)
@@ -322,13 +316,6 @@ void DlgMission::addSoilder(int soilderId, Vec2 pos, int camp)
 	Soilder* soilder = Soilder::create(soilderId, _ai, camp);
 	this->_map->addChild(soilder);
 	_ai->setObjPos(soilder, pos);
-	++i;
-	soilder->_name = i;
-
-	auto txtName = Text::create("名称", FONT_ARIAL, 20);
-	txtName->setName("txtName");
-	txtName->setString(GM()->getIntToStr(i));
-	soilder->addChild(txtName);
 }
 
 void DlgMission::addPlayer(Vec2 pos, int camp)

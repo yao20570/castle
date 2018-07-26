@@ -30,6 +30,10 @@ public:
 	void addSoilder(Vec2 pos, int camp, ValueMap*objInfo);
 	void addPlayer(Vec2 pos, int camp);
 
+	void updateObjAttrLayer();
+	
+	void triggerSkill(SkillTriggerType tt, const Vec2& targetPos);
+
 private:
 	//void onLord(Ref* sender, Widget::TouchEventType type);
 	//void onSearch(Ref* sender, Widget::TouchEventType type);
@@ -42,6 +46,9 @@ private:
 public:
 	map<int, ValueMap>* _objPosCfg;
 	AIMgr* _ai;
+	int _round;
+
+	int _state;//0:等待，1:准备，2：战斗，3:等待结束，4，5，6
 
 	Layout* _map;
 	BaseSprite* _select_obj;
@@ -58,7 +65,15 @@ public:
 	ImageView*	img_win;
 	ImageView*	img_tip;
 	ImageView*	lay_line;
-	int _round;
+
+	Layout*		lay_attr;		
+	Text*		txt_name;		
+	Text*		txt_hp;
+	Text*		txt_damage;	
+	Text*		txt_def;		
+	Text*		txt_speed;		
+	Text*		txt_xixue;		
+	Text*		txt_hurt_more; 
 
 	ValueVector _setting_data;
 };

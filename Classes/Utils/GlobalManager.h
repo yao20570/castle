@@ -5,8 +5,6 @@
 
 #define GM() GlobalManager::getInstance()
 
-class NewBuilding;
-
 class GlobalManager : public cocos2d::Ref
 {
 public:
@@ -32,6 +30,7 @@ public:
     float getDistance(Vec2 p1, Vec2 p2);    // 两点距离
     int getManhadun(Vec2 p1, Vec2 p2);      // 曼哈顿距离
     int getTimeStamp();                     // 获取时间戳
+    INT64 getMTimeStamp();                  // 获取毫秒时间戳
     
     // 瓦片坐标
     Vec2 getMapPos(Vec2 pos);               // 地图坐标
@@ -54,16 +53,11 @@ public:
     string getBuildingIMG(int type);        // 获取建筑的图片名
     string getBuildingBrokenIMG(int type);  // 获取建筑被摧毁后的图片名
     
-    // 场景切换
-    void enterWorldScene();
-    void enterHomeScene();
-    void enterChapterScene(int townID, int type);
 
 public:
     int _cover[40][40]; // 占地情况
 
     bool _newBuild;
-    NewBuilding* _build;
     
     int _townID;
     

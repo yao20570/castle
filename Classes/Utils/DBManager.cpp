@@ -79,7 +79,7 @@ ValueVector DBManager::executeQuery(std::string sql)
 //                CCLOG("%s", table[i * c + j]);
                 map[table[j]] = table[i * c + j];
             }
-            v.push_back((Value)map);
+            v.push_back((cocos2d::Value)map);
         }
         
         // 记得释放查询表
@@ -259,7 +259,7 @@ void DBManager::loadCsvData(std::string file, ValueVector& data)
         for (int j = 0; j < csv[i].size(); j++) {
             map[csv[0][j]] = csv[i][j];
         }
-        data.push_back((Value)map);
+        data.push_back((cocos2d::Value)map);
     }
 }
 
@@ -313,8 +313,8 @@ ValueMap* DBManager::getMyObjById(int id) {
 
 void DBManager::updatMyObj(int type, int lv) {
 	// 更新设施位置(sqlite)
-	string sql = "update MyObj set Lv='" + Value(lv).asString()
-		+ "' where ID=" + Value(type).asString() + ";";
+	string sql = "update MyObj set Lv='" + cocos2d::Value(lv).asString()
+		+ "' where ID=" + cocos2d::Value(type).asString() + ";";
 	//    CCLOG("%s", sql.c_str());
 	DBM()->executeUpdate(sql);
 }
@@ -322,8 +322,8 @@ void DBManager::updatMyObj(int type, int lv) {
 void DBManager::insertMyObj(int type, int lv) {
 	// 更新设施位置(sqlite)
 	string sql = "insert into MyObj values("
-		+ Value(type).asString() + ", '"
-		+ Value(lv).asString() + "')";
+		+ cocos2d::Value(type).asString() + ", '"
+		+ cocos2d::Value(lv).asString() + "')";
 	//    CCLOG("%s", sql.c_str());
 	DBM()->executeUpdate(sql);
 }
@@ -343,10 +343,10 @@ void DBManager::saveMySetting(int settingIndex, Vector<Node*> nodes) {
 	for (auto it : nodes) {
 		ValueMap& values = *((ValueMap*)(it->getUserData()));
 		sql = sql + "insert into MySetting(SettingIndex, ObjId, x, y) values('" 
-			+ Value(settingIndex).asString() + "', '"
+			+ cocos2d::Value(settingIndex).asString() + "', '"
 			+ values["ID"].asString() + "', '"
-			+ Value((int)it->getPositionX()).asString() + "', '"
-			+ Value((int)it->getPositionY()).asString() + "'"
+			+ cocos2d::Value((int)it->getPositionX()).asString() + "', '"
+			+ cocos2d::Value((int)it->getPositionY()).asString() + "'"
 			+ ");";
 	}
 	executeUpdate(sql);
@@ -354,12 +354,12 @@ void DBManager::saveMySetting(int settingIndex, Vector<Node*> nodes) {
 
 void DBManager::cleanMySetting(int settingIndex) {
 
-	string sql = "delete from MySetting where SettingIndex = '" + Value(settingIndex).asString() + "'";
+	string sql = "delete from MySetting where SettingIndex = '" + cocos2d::Value(settingIndex).asString() + "'";
 	executeUpdate(sql);
 }
 
 ValueVector DBManager::getMySetting(int settingIndex) {
-	string sql = "select * from MySetting where SettingIndex = '" + Value(settingIndex).asString() + "'";
+	string sql = "select * from MySetting where SettingIndex = '" + cocos2d::Value(settingIndex).asString() + "'";
 	return executeQuery(sql);
 }
 
@@ -412,7 +412,7 @@ void DBManager::deleteMyEquip(int id)
 void DBManager::updateMyEquip(int id, bool isWear)
 {
 	char sql[512] = "\0";
-	sprintf(sql, "update MyEquip set IsWear = '%s' where ID = %d", Value(isWear).asString().c_str(), id);
+	sprintf(sql, "update MyEquip set IsWear = '%s' where ID = %d", cocos2d::Value(isWear).asString().c_str(), id);
 	executeUpdate(sql);
 }
 

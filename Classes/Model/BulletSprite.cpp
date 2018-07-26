@@ -60,10 +60,10 @@ void BulletSprite::showUI()
 void BulletSprite::atk()
 {
 	if (_target->_objType == 3) {
-		_target->hurt(_srcType, this->_atk);
+		_target->hurt(1, _srcType, this->_atk);
 	}
 	else {
-		_target->hurt(_damage, this->_atk);
+		_target->hurt(1, _damage, this->_atk);
 		if ("images/bullet/fashu.png" == _img) {
 			_target->hurtEffect(this->effectDir);
 		}

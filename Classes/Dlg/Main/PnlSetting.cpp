@@ -208,7 +208,7 @@ void PnlSetting::updateSettingPanel() {
 	
 	int unitNum = 0;
 	ValueVector datas = DBM()->getMySetting(this->select_setting_id);
-	for (Value& it : datas) {
+	for (cocos2d::Value& it : datas) {
 		ValueMap& row = it.asValueMap();
 		int x = row["x"].asInt();
 		int y = row["y"].asInt();
@@ -254,7 +254,7 @@ void PnlSetting::updateSettingPanel() {
 
 		unitNum += cfg["Unit"].asInt();
 	}
-	Value v(unitNum);
+	cocos2d::Value v(unitNum);
 	this->txt_num->setString(v.asString() + "/20");
 }
 
@@ -439,7 +439,7 @@ void PnlSetting::onTouchEnded(Touch* pTouch, Event* pEvent) {
 		//));
 		this->updateSelectList();
 	}
-	Value v(unitNum);
+	cocos2d::Value v(unitNum);
 	this->txt_num->setString(v.asString() + "/20");
 	this->selectObj(InvalidSelectId);
 }

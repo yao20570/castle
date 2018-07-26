@@ -1,8 +1,8 @@
 #include "Hero.h"
-#include "UI/BattleScene/AIManager.h"
-#include "UI/BattleScene/BattleMapLayer.h"
 #include "Dlg/Fight/AIMgr.h"
 #include "Utils/ConfigMgr.h"
+#include "Utils/UIUtils.h"
+#include "Skill/SkillMgr.h"
 
 Hero* Hero::create(int ID, AIMgr* ai, int camp)
 {
@@ -19,7 +19,7 @@ Hero* Hero::create(int ID, AIMgr* ai, int camp)
 }
 
 Hero::Hero()
-	:_ai(nullptr)
+	:BaseSprite()
 {
 
 }
@@ -35,7 +35,7 @@ bool Hero::init(int ID, AIMgr* ai, int camp)
 		return false;
 	}
 
-	this->txtName = nullptr;
+	this->_txtName = nullptr;
 	_objType = 2;
 	_prePosList = list<Vec2>();
 	_isbroken = false;
@@ -43,19 +43,20 @@ bool Hero::init(int ID, AIMgr* ai, int camp)
 	_dotX = -1;
 	_dotY = -1;
 
-	_speed = 50;
+	
 	_radius = 40;
 	_camp = camp;
 	_ai = ai;
-	_ai->addHero(this, _camp);
+	_ai->addObj(this, _camp);
 	_id = ID;
 	_target = nullptr;
 	_isSelect = true;
 	_state = STATE_IDLE;
 
+	this->_mgr_skill = new SkillMgr(this, _ai);
+
 	loadData();
 	showUI();
-	addHPBar();
 
 	addTouch();
 
@@ -73,13 +74,19 @@ void Hero::loadData()
 	_heroID = data["HeroID"].asInt();
 	_type = data["Type"].asInt();
 	_level = data["Level"].asInt();
-	_name = data["Name"].asInt();
+	_speed = data["Move"].asInt();
 	_shootType = data["Shoot"].asInt();
 	_healthPoint = data["HealthPoint"].asInt();
 	_totalHP = _healthPoint;
 	_damage = data["Damage"].asInt();
+	_def = data["Def"].asInt();
 	_attackSpeed = data["AttackSpeed"].asInt();
 	_shootRange = data["ShootRange"].asInt();
+
+	
+	//this->_mgr_skill->addSkill(6);
+	this->_mgr_skill->addSkill(data["Skill1"].asInt());
+	//this->_mgr_skill->addSkill(data["Skill3"].asInt());
 	
 	_isbroken = false;
 	_expReward = 0;
@@ -89,33 +96,29 @@ void Hero::loadData()
 void Hero::showUI()
 {
 	ValueMap& objInfo = *(CFG()->getObjInfoByType(2, _heroID));
+	
+	//动画
 	string animaName = objInfo["Anima"].asString();
-	//char str[128] = {0};
-	//sprintf(str, "animation/%s/%s.ExportJson", animaName.c_str(), animaName.c_str());
-	//ArmatureDataManager::getInstance()->addArmatureFileInfo(str);
-
 	int y = _camp == 1 ? -1 : 1;
 	_dir = GM()->getDir(Vec2(0, y));
 	_arm = Armature::create(animaName);
 	_arm->getAnimation()->play("idle" + GM()->getIntToStr(_dir));
 	_arm->setPositionY(20);
 	_arm->pause();
-	_arm->getAnimation()->setMovementEventCallFunc(this, SEL_MovementEventCallFunc(&Hero::atk));
-
+	_arm->getAnimation()->setMovementEventCallFunc(this, SEL_MovementEventCallFunc(&Soilder::atk));
 	this->addChild(_arm);
 
+	//技能效果
 	_skill1 = Armature::create("NewAnimation");
 	_skill1->getAnimation()->pause();
 	_skill1->setPositionY(60);
 	this->addChild(_skill1);
 
-
-
+	//位置
 	this->setLocalZOrder((int)_pos.x + (int)_pos.y * 10000);
+	//缩放
 	this->setScale(0.8);
 	
-
-
 	//选中框
 	auto scaleUp = ScaleTo::create(0.3f, 1.1f);
 	auto scaleDown = ScaleTo::create(0.3f, 1.0f);
@@ -124,6 +127,14 @@ void Hero::showUI()
 	_circle->setVisible(false);
 	_circle->pause();
 	this->addChild(_circle, -1);
+
+	//设置名称
+    _objname    = objInfo["Name"].asString();
+	_quality	= objInfo["Quality"].asInt();
+	this->setObjName(_objname);
+
+	//血条
+	addHPBar();
 }
 
 
@@ -142,8 +153,14 @@ void Hero::addHPBar()
 	bg->addChild(_hpBar);
 	this->addChild(bg, 9, "Bar");
 
-	bg->setScale(0.7);
 	_hpBar->setPercent(100.0 * _healthPoint / _totalHP);
+
+	char str[128] = { 0 };
+	sprintf(str, "%d", _healthPoint);
+	_txt_hp = Text::create(str, FONT_ARIAL, 18);
+	_txt_hp->setPosition(bg->getPosition());
+	_txt_hp->setLocalZOrder(100000);
+	this->addChild(_txt_hp);
 }
 
 
@@ -156,22 +173,22 @@ void Hero::idle()
 
 void Hero::atk(Armature* arm, MovementEventType eventType, const std::string& str)
 {
-	if (eventType == LOOP_COMPLETE) {
-		
-		int x = arm->getAnimation()->getCurrentMovementID().find("atk");
-		if (x >= 0) {
-			if (_target == nullptr)
-			{
-				return;
-			}
-			if (_target->_isbroken == true || _target->_healthPoint <= 0) {
-				return;
-			}
+	int x = arm->getAnimation()->getCurrentMovementID().find("atk");
+	if (x >= 0) {
+		if (_target == nullptr){
+			return;
+		}
+		if (_target->_isbroken == true || _target->_healthPoint <= 0) {
+			return;
+		}
 
+		this->_mgr_skill->triggerSkill(SkillTriggerType::Atk, _target->getPosition());
+
+		if (eventType == LOOP_COMPLETE) {
 			if (_shootType == 2) {
 				Vec2 src = getPosition() + Vec2(0, 60);
 				Vec2 des = _target->getPosition() + Vec2(0, 60);
-				auto bullet = BulletSprite::create(src, des, _damage, this, _target, IMG_BULLET_ARROW, 2);
+				auto bullet = BulletSprite::create(src, des, getDamage(), this, _target, IMG_BULLET_ARROW, 2);
 				bullet->setScale(getScale());
 				this->getParent()->addChild(bullet, 9999999);
 				SimpleAudioEngine::getInstance()->playEffect("music/far_gongjian_effect.mp3", false);
@@ -179,17 +196,17 @@ void Hero::atk(Armature* arm, MovementEventType eventType, const std::string& st
 			else if (_shootType == 3) {
 				Vec2 src = getPosition() + Vec2(0, 60);
 				Vec2 des = _target->getPosition() + Vec2(0, 60);
-				auto bullet = BulletSprite::create(src, des, _damage, this, _target, "images/bullet/fashu.png", 2);
+				auto bullet = BulletSprite::create(src, des, getDamage(), this, _target, "images/bullet/fashu.png", 2);
 				bullet->setScale(getScale());
 				this->getParent()->addChild(bullet, 9999999);
 				SimpleAudioEngine::getInstance()->playEffect("music/far_fashu_effect.mp3", false);
 			}
 			else {
 				if (_target->_objType == 3) {
-					_target->hurt(2, this);
+					_target->hurt(1, 2, this);
 				}
 				else {
-					_target->hurt(_damage, this);
+					_target->hurt(1, getDamage(), this);
 				}
 
 				SimpleAudioEngine::getInstance()->playEffect("music/near_atk_effect.mp3", false);
@@ -203,23 +220,24 @@ void Hero::atk(Armature* arm, MovementEventType eventType, const std::string& st
 				setVisible(false);
 				_isbroken = true;
 
-				
+
 			}
-			return;
 		}
-		x = arm->getAnimation()->getCurrentMovementID().find("dead");
-		if (x >= 0) {
+		return;
+	}
+	x = arm->getAnimation()->getCurrentMovementID().find("dead");
+	if (x >= 0) {
+		if (eventType == LOOP_COMPLETE) {
 			setVisible(false);
 			_arm->getAnimation()->stop();
+			this->_mgr_skill->triggerSkill(SkillTriggerType::Dead, this->getPosition());
 		}
 	}
-
-
 }
 
 
-// 受伤
-void Hero::hurt(int x, BaseSprite* atk)
+ //受伤
+void Hero::hurt(int hurtType, int x, BaseSprite* atk)
 {
 	if (_isbroken == true || _healthPoint <= 0) {
 		//_arm->getAnimation()->stop();
@@ -228,7 +246,41 @@ void Hero::hurt(int x, BaseSprite* atk)
 		return;
 	}
 
-	_healthPoint -= x;
+	int temp = 0;
+	switch (hurtType){
+		case 1:	//物理伤害
+		{
+			//伤害-防御
+			temp = x - getDef();
+			//不能破防减1血
+			temp = temp <= 0 ? 1 : temp;
+
+			atk->hurt(3, temp, nullptr);
+
+			_healthPoint -= ((1.0 + this->_hurt_more / 100) * temp);
+			break;
+		}
+		case 2://法术伤害
+		{
+			temp = x;
+			_healthPoint -= ((1.0 + this->_hurt_more / 100) * temp);			
+			_healthPoint = min(_healthPoint, _totalHP);
+			break;
+		}
+		case 3://吸血
+		{
+			if (this->_xixue <= 0) {
+				return;
+			}
+			temp =  - x * this->_xixue / 100;
+			_healthPoint -= ((1.0 + this->_hurt_more / 100) * temp);
+			_healthPoint = min(_healthPoint, _totalHP);
+			break;
+		}
+	}
+
+
+
 	if (_healthPoint <= 0) {
 		_isbroken = true;
 		//this->setVisible(false);
@@ -238,7 +290,19 @@ void Hero::hurt(int x, BaseSprite* atk)
 	}
 	else {
 		_hpBar->setPercent(100.0 * _healthPoint / _totalHP);
+		_txt_hp->setString(cocos2d::Value(_healthPoint).asString());
 	}
+
+	//飘字
+	Vec2 txtPos = Vec2(40, _arm->getContentSize().height / 2 - 20);
+	Color4B txtColor(255, 0, 0, 255);
+	if (temp < 0) {
+		txtColor = Color4B(0, 255, 0, 255);
+	}
+	Text* txtHurt = this->flyHurtNum(temp, txtPos);
+	txtHurt->setTextColor(txtColor);
+
+	this->_mgr_skill->triggerSkill(SkillTriggerType::Hurt, this->getPosition());
 }
 
 void Hero::hurtEffect(int x) {
@@ -349,110 +413,116 @@ void Hero::onTouchEnded(Touch* pTouch, Event* pEvent)
 }
 
 
-void Hero::update(float dt)
-{
-	if (_isbroken == true) {
-	    this->unscheduleAllCallbacks();
-	    return;
-	}
-
-	switch (_state)
-	{
-	case STATE_WIN:// 
-	{
-		int tempDir = GM()->getDir(getPosition(), _target->getPosition());
-
-		setState(STATE_IDLE, _dir);
-
-		break;
-	}
-	case STATE_IDLE:// 悠闲
-	{
-		setState(STATE_IDLE, _dir);
-		break;
-	}
-	case STATE_RUN:// 走路		
-	{
-		int minDis = 100000;
-		_target = nullptr;
-
-		
-		switch (_camp)
-		{
-		case 1:
-			for (auto it : _ai->_objEnemy) {
-				if (it->isDeath()) {
-					continue;
-				}
-				int dis = (int)it->getPosition().getDistance(this->getPosition());
-				if (dis < minDis) {
-					minDis = dis;
-					_target = it;
-				}
-			}
-			break;
-		case 2:
-			for (auto it : _ai->_objSelf) {
-				if (it->isDeath()) {
-					continue;
-				}
-				int dis = (int)it->getPosition().getDistance(this->getPosition());
-				if (dis < minDis) {
-					minDis = dis;
-					_target = it;
-				}
-			}
-			break;
-		}
-		
-
-		if (_target == nullptr) {
-			setState(STATE_IDLE, _dir);
-		}
-		else if (_target->_isbroken == false && _ai->isWithinShootRange(getPosition(), _target->getPosition(), _shootRange)) {
-
-			int tempDir = GM()->getDir(getPosition(), _target->getPosition());
-			setState(STATE_ATK, tempDir);
-		}
-		else {
-			int tempDir = GM()->getDir(getPosition(), _target->getPosition());
-			setState(STATE_RUN, tempDir);
-
-			Vec2 disPos = _target->getPosition() - getPosition();
-
-			Vec2 nextPos(getPositionX() + disPos.x * _speed / minDis / 60, getPositionY() + disPos.y * _speed / minDis / 60);
-
-			_ai->setObjPos(this, nextPos);
-		}
-		break;
-	}
-
-	case STATE_ATK:// 攻击
-	{
-		if (_target == nullptr || _target->isDeath()) {
-			// 失去目标，变成悠闲
-			_target = nullptr;
-
-			setState(STATE_RUN, _dir);
-		}
-
-		// 向目标移动、或攻击目标
-		else {
-			int tempDir = GM()->getDir(getPosition(), _target->getPosition());
-			// 攻击
-			if (_ai->isWithinShootRange(getPosition(), _target->getPosition(), _shootRange)) {
-				setState(STATE_ATK, tempDir);
-			}
-			// 走路
-			else {
-				setState(STATE_RUN, tempDir);
-			}
-		}
-		break;
-	}
-
-	}
-}
+//void Hero::update(float dt)
+//{
+//	if (_isbroken == true) {
+//		this->unscheduleAllCallbacks();
+//		return;
+//	}
+//
+//
+//	switch (_state)
+//	{
+//		case STATE_WIN:// 
+//		{
+//			int tempDir = GM()->getDir(getPosition(), _target->getPosition());
+//			setState(STATE_IDLE, _dir);
+//			break;
+//		}
+//		case STATE_YUN:// 眩晕
+//		{
+//			setState(STATE_YUN, _dir);
+//			break;
+//		}
+//		case STATE_IDLE:// 悠闲
+//		{
+//			setState(STATE_IDLE, _dir);
+//			break;
+//		}
+//		case STATE_RUN:// 走路		
+//		{
+//			int minDis = 100000;
+//			_target = nullptr;
+//
+//
+//			switch (_camp)
+//			{
+//				case 1:
+//					for (auto it : _ai->_objEnemy) {
+//						if (it->isDeath()) {
+//							continue;
+//						}
+//						int dis = (int)it->getPosition().getDistance(this->getPosition());
+//						if (dis < minDis) {
+//							minDis = dis;
+//							_target = it;
+//						}
+//					}
+//					break;
+//				case 2:
+//					for (auto it : _ai->_objSelf) {
+//						if (it->isDeath()) {
+//							continue;
+//						}
+//						int dis = (int)it->getPosition().getDistance(this->getPosition());
+//						if (dis < minDis) {
+//							minDis = dis;
+//							_target = it;
+//						}
+//					}
+//					break;
+//			}
+//
+//
+//			if (_target == nullptr) {
+//				setState(STATE_IDLE, _dir);
+//			}
+//			else if (_target->_isbroken == false && _ai->isWithinShootRange(getPosition(), _target->getPosition(), _shootRange)) {
+//
+//				int tempDir = GM()->getDir(getPosition(), _target->getPosition());
+//				setState(STATE_ATK, tempDir);
+//			}
+//			else {
+//				int tempDir = GM()->getDir(getPosition(), _target->getPosition());
+//				setState(STATE_RUN, tempDir);
+//
+//				Vec2 disPos = _target->getPosition() - getPosition();
+//				int speed = this->getSpeed();
+//				Vec2 nextPos(getPositionX() + disPos.x * speed / minDis / 60, getPositionY() + disPos.y * speed / minDis / 60);
+//
+//				_ai->setObjPos(this, nextPos);
+//			}
+//			break;
+//		}
+//
+//		case STATE_ATK:// 攻击
+//		{
+//			if (_target == nullptr || _target->isDeath()) {
+//				// 失去目标，变成悠闲
+//				_target = nullptr;
+//
+//				setState(STATE_RUN, _dir);
+//			}
+//
+//			// 向目标移动、或攻击目标
+//			else {
+//				int tempDir = GM()->getDir(getPosition(), _target->getPosition());
+//				// 攻击
+//				if (_ai->isWithinShootRange(getPosition(), _target->getPosition(), _shootRange)) {
+//					setState(STATE_ATK, tempDir);
+//				}
+//				// 走路
+//				else {
+//					setState(STATE_RUN, tempDir);
+//				}
+//			}
+//			break;
+//		}
+//
+//	}
+//
+//	BaseSprite::update(dt);
+//}
 
 
 void Hero::setSelect(bool b) {
@@ -468,13 +538,15 @@ void Hero::setSelect(bool b) {
 
 void Hero::setObjName(string name) {
 
-	if (this->txtName == nullptr) {
-		this->txtName = Text::create("名称", FONT_ARIAL, 20);
-		txtName->setName("txtName");
-		this->addChild(txtName);	
+	if (this->_txtName == nullptr) {
+		this->_txtName = Text::create("名称", FONT_ARIAL, 20);
+		_txtName->setName("txtName");
+		this->addChild(_txtName);	
 	}
 	_objname = name;
-	txtName->setString(name);
+	_txtName->setString(name);
+	
+	setTextColor(_txtName, _quality);
 }
 
 void Hero::setState(int state, int dir)
@@ -489,21 +561,24 @@ void Hero::setState(int state, int dir)
 	string animaCmd = "idle";
 	switch (_state)
 	{
-	case STATE_IDLE:
-		animaCmd = "idle";
-		break;
-	case STATE_RUN:
-		animaCmd = "run";
-		break;
-	case STATE_ATK:
-		animaCmd = "atk";
-		break;
-	case STATE_WIN:
-		animaCmd = "run";
-		break;
-	case STATE_DEATH:
-		animaCmd = "dead";
-		break;
+		case STATE_IDLE:
+			animaCmd = "idle";
+			break;
+		case STATE_RUN:
+			animaCmd = "run";
+			break;
+		case STATE_ATK:
+			animaCmd = "atk";
+			break;
+		case STATE_WIN:
+			animaCmd = "run";
+			break;
+		case STATE_DEATH:
+			animaCmd = "dead";
+			break;
+		case STATE_YUN:
+			animaCmd = "idle";
+			break;
 	}
 
 	_arm->getAnimation()->play(animaCmd + GM()->getIntToStr(_dir));

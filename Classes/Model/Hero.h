@@ -22,19 +22,19 @@ public:
     void loadData();    // 加载数据
     void showUI();      // 显示UI
     void addHPBar();    // 加血条
-    
+    void animaCallback(Armature *armature, MovementEventType movementType, const std::string& movementID);
     //void setSelect(bool select);
 
     virtual void idle();
     virtual void atk(Armature* arm, MovementEventType eventType, const std::string& str);   // 攻击
-	virtual void hurt(int x, BaseSprite* atk);           // 受伤
+	virtual void hurt(int hurtType, int x, BaseSprite* atk);           // 受伤
 	virtual void hurtEffect(int x);
 	virtual void death();           // 死亡
     virtual bool isDeath();             // 是否死亡
     virtual void putSkill(int type);    // 释放技能
     virtual void finishSkill(Armature* arm, int state); // 技能结束
     
-    void update(float dt);
+    //void update(float dt);
 	virtual void setSelect(bool b);
 	virtual void setObjName(string name);
 
@@ -50,15 +50,10 @@ public:
     int _heroID;
     int _type;
     int _level;
-	int _camp;
     
-    int _totalHP;
-    int _damage;
     int _attackSpeed;
-    int _shootRange;
     
     float _delta;
-    LoadingBar* _hpBar; // 血条
     
     bool _isSelect;
     Armature* _arm;
@@ -67,7 +62,6 @@ public:
     
 	
     Vec2 _targetPos;
-	AIMgr* _ai;
     float _expReward;
 
 	Sprite* _circle;

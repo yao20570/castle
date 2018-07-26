@@ -10,7 +10,9 @@
   "designHeight": 1136,
   "designWidth": 640,
   "textures": [],
-  "texturesPng": [],
+  "texturesPng": [
+    "ui/battle_bg.png"
+  ],
   "version": "1.6.0.0",
   "widgetTree": {
     "classname": "Panel",
@@ -809,7 +811,7 @@
           "__type": "PanelSurrogate:#EditorCommon.JsonModel.Component.GUI",
           "classname": "Panel",
           "name": "lay_result",
-          "ZOrder": 1,
+          "ZOrder": 3,
           "actiontag": 55041028,
           "anchorPointX": 0,
           "anchorPointY": 0,

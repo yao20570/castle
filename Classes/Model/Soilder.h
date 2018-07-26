@@ -19,13 +19,12 @@ public:
     void showUI();      // 显示UI
     void addHPBar();    // 加血条
 
-    virtual void run();         // 走路
     virtual void atk(Armature* arm, MovementEventType eventType, const std::string& str);         // 攻击
-	virtual void hurt(int x, BaseSprite* atk);   // 受伤
+	virtual void hurt(int hurtType, int x, BaseSprite* atk);   // 受伤
 	virtual void hurtEffect(int x);
     virtual bool isDeath();     // 是否死亡
     
-    void update(float dt);
+    //void update(float dt);
 	virtual void setSelect(bool b);
 	virtual void setObjName(string name);
     
@@ -36,19 +35,12 @@ public:
 	void setState(int state, int _dir);
 public:
     int _type;
-    int _level;
-    int _name;
-	int _camp;
+    int _level;    
 
-    int _totalHP;
-    int _damage;
     int _attackSpeed;
-    int _shootRange;
     
     Armature* _arm;
-    LoadingBar* _hpBar;         // 血条
     
-	AIMgr* _ai;
 
 	Armature* _skill1;
 	Sprite* _circle;

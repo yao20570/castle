@@ -1,5 +1,4 @@
 #include "PlayerObj.h"
-#include "UI/BattleScene/AIManager.h"
 #include "Dlg/Fight/AIMgr.h"
 #include "Utils/ConfigMgr.h"
 
@@ -18,7 +17,8 @@ PlayerObj* PlayerObj::create(int ID, AIMgr* ai, int camp)
 }
 
 PlayerObj::PlayerObj()
-	:_ai(nullptr)
+	:BaseSprite()
+	,_ai(nullptr)
 {
 
 }
@@ -33,7 +33,7 @@ bool PlayerObj::init(int ID, AIMgr* ai, int camp)
 	if (!BaseSprite::init()) {
 		return false;
 	}
-	txtName = nullptr;
+	_txtName = nullptr;
 	_objType = 3;
 	_prePosList = list<Vec2>();
 	_isbroken = false;
@@ -108,7 +108,7 @@ void PlayerObj::addHPBar()
 
 	char str[128] = { 0 };
 	sprintf(str, "%d", _healthPoint);
-	_txt_hp = Text::create(str, FONT_ARIAL, 16);
+	_txt_hp = Text::create(str, FONT_ARIAL, 18);
 	_txt_hp->setPosition(bg->getPosition());
 	_txt_hp->setLocalZOrder(100000);
 	this->addChild(_txt_hp);
@@ -125,7 +125,7 @@ bool PlayerObj::isDeath()
 }
 
 //  ‹…À
-void PlayerObj::hurt(int x, BaseSprite* atk)
+void PlayerObj::hurt(int hurtType, int x, BaseSprite* atk)
 {
 	if (_isbroken == true || _healthPoint <= 0) {
 		//_arm->getAnimation()->stop();
@@ -134,30 +134,19 @@ void PlayerObj::hurt(int x, BaseSprite* atk)
 		return;
 	}
 
-	Text* txtHurt = Text::create();
-	txtHurt->setFontSize(30);
-	txtHurt->setPosition(Vec2(40, _arm->getContentSize().height / 2 - 20));
-	this->addChild(txtHurt);
-
+	//∆Æ◊÷
+	Vec2 txtPos = Vec2(40, _arm->getContentSize().height / 2 - 20);
+	Color4B txtColor(255, 255, 255, 255);
 	int damage = 5;
 	if (atk->_objType == 2) {
 		damage = 10 + 5 * _heroAtkTime;
 		_heroAtkTime++;
-		txtHurt->setTextColor(Color4B(255, 0, 0, 255));
+		txtColor = Color4B(255, 0, 0, 255);
 	}
-	else{
-		txtHurt->setTextColor(Color4B(255, 255, 255, 255));
-	}
+	Text* txtHurt = this->flyHurtNum(damage, txtPos);
+	txtHurt->setTextColor(txtColor);
 
-	txtHurt->setString(Value(damage).asString());
-
-	Vec2 r = Vec2(cocos2d::random(30, 30), cocos2d::random(30, 30));
-	auto mt = MoveTo::create(0.2, Vec2(10, 10) + txtHurt->getPosition() + r);
-	auto dt = DelayTime::create(0.5);
-	auto rs = RemoveSelf::create(true);
-	auto seq = Sequence::create(mt, dt, rs, nullptr);
-	txtHurt->runAction(seq);
-
+	//—™Ãı
 	_healthPoint -= damage;
 	if (_healthPoint <= 0) {
 		_isbroken = true;
@@ -171,4 +160,16 @@ void PlayerObj::hurt(int x, BaseSprite* atk)
 		_txt_hp->setString(str);
 		_hpBar->setPercent(100.0 * _healthPoint / _totalHP);
 	}
+}
+
+void PlayerObj::addSkillEffect(int skillEffectId){
+	
+}
+
+void PlayerObj::delSkillEffect(int skillEffectId){
+	
+}
+
+void PlayerObj::triggerSkill(SkillTriggerType tt, const Vec2& targetPos){
+	
 }

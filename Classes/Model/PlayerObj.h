@@ -23,22 +23,23 @@ public:
 	void showUI();      // 显示UI
 	void addHPBar();    // 加血条
 	
-	virtual void hurt(int x, BaseSprite* atk );           // 受伤
+	virtual void hurt(int hurtType, int x, BaseSprite* atk );           // 受伤
 	virtual bool isDeath();
 	void update(float dt);
+
+	virtual void addSkillEffect(int skillEffectId);
+	virtual void delSkillEffect(int skillEffectId);
+	virtual void triggerSkill(SkillTriggerType tt, const Vec2& targetPos);
 private:
 
 public:
 	
-	int _totalHP;
 	int _camp;
 	
 	Armature* _arm;
 
 	AIMgr* _ai;
 
-	Text* _txt_hp;
-	LoadingBar* _hpBar; // 血条
 	int _heroAtkTime;
 };
 

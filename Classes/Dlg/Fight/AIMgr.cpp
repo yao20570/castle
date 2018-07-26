@@ -5,7 +5,6 @@
 #include "Model/Hero.h"
 #include "Model/Soilder.h"
 #include "Model/PlayerObj.h"
-#include "Model/Building.h"
 
 static Vec2 dir[8] = { Vec2(0, 1)
 					 , Vec2(1,1)
@@ -55,19 +54,6 @@ bool AIMgr::init()
 {
 	memset(dotMap, 0, 32 * 56 * sizeof(BaseSprite*));
 	return true;
-}
-
-
-void AIMgr::setSelect(int select)
-{
-	//if (_hero == nullptr) return;
-
-	//if (select == 0) {
-	//	_hero->setSelect(true);
-	//}
-	//else {
-	//	_hero->setSelect(false);
-	//}
 }
 
 // pos点是空地，还是建筑
@@ -130,18 +116,18 @@ bool AIMgr::isWithinShootRange(Vec2 src, Vec2 des, int range)
 Vec2 AIMgr::getNextPos(Vec2 src, Vec2 des, bool isHero)
 {
 	Vec2 pos = src;
-	int mindis = INF;
-	for (int i = 0; i < 9; i++) {
-		int x = src.x + DX[i] + EPS;
-		int y = src.y + DY[i] + EPS;
-		if (x < 0 || x > TILED_TOTAL_X || y < 0 || y > TILED_TOTAL_Y) continue;
-		if (isHero && GM()->isCovered(Vec2(x, y))) continue;
-		int dis = GM()->getManhadun(Vec2(x, y), des);
-		if (dis < mindis) {
-			mindis = dis;
-			pos = Vec2(DX[i], DY[i]);
-		}
-	}
+	//int mindis = INF;
+	//for (int i = 0; i < 9; i++) {
+	//	int x = src.x + DX[i] + EPS;
+	//	int y = src.y + DY[i] + EPS;
+	//	if (x < 0 || x > TILED_TOTAL_X || y < 0 || y > TILED_TOTAL_Y) continue;
+	//	if (isHero && GM()->isCovered(Vec2(x, y))) continue;
+	//	int dis = GM()->getManhadun(Vec2(x, y), des);
+	//	if (dis < mindis) {
+	//		mindis = dis;
+	//		pos = Vec2(DX[i], DY[i]);
+	//	}
+	//}
 	return pos;
 }
 
@@ -154,50 +140,78 @@ void AIMgr::addObj(BaseSprite* obj, int type)
 	}
 }
 
-void AIMgr::addHero(Hero* hero, int type)
+//void AIMgr::addHero(Hero* hero, int type)
+//{
+//	switch (type)
+//	{
+//	case 1: _objSelf.insert((BaseSprite*)hero);	 break;
+//	case 2: _objEnemy.insert((BaseSprite*)hero); break;
+//	}
+//}
+//
+//void AIMgr::addSoilder(Soilder* soilder, int type)
+//{
+//	switch (type)
+//	{
+//	case 1: _objSelf.insert((BaseSprite*)soilder);	break;
+//	case 2: _objEnemy.insert((BaseSprite*)soilder);	break;
+//	}
+//}
+
+void AIMgr::delObj(BaseSprite* soilder, int type)
 {
+	set<BaseSprite*>* objs = &_objSelf;
 	switch (type)
 	{
-	case 1: _objSelf.insert((BaseSprite*)hero);	 break;
-	case 2: _objEnemy.insert((BaseSprite*)hero); break;
+	case 1: objs = &_objSelf;	break;
+	case 2: objs = &_objEnemy;	break;
+	}
+	auto it = objs->find(soilder);
+	if (it != objs->end()) {
+		objs->erase(it);
 	}
 }
 
-void AIMgr::addSoilder(Soilder* soilder, int type)
-{
-	switch (type)
-	{
-	case 1: _objSelf.insert((BaseSprite*)soilder);	break;
-	case 2: _objEnemy.insert((BaseSprite*)soilder);	break;
-	}
-}
+//void AIMgr::delHero(Hero* hero, int type)
+//{
+//	set<BaseSprite*>* heros = &_objSelf;
+//	switch (type)
+//	{
+//	case 1:heros = &_objSelf;	break;
+//	case 2:heros = &_objEnemy;	break;
+//	}
+//	auto it = heros->find(hero);
+//	if (it != heros->end()) {
+//		heros->erase(it);
+//	}
+//}
 
-void AIMgr::delHero(Hero* hero, int type)
-{
-	set<BaseSprite*>* heros = &_objSelf;
-	switch (type)
-	{
-	case 1:heros = &_objSelf;	break;
-	case 2:heros = &_objEnemy;	break;
-	}
-	auto it = heros->find(hero);
-	if (it != heros->end()) {
-		heros->erase(it);
-	}
-}
+//void AIMgr::delSoilder(Soilder* soilder, int type)
+//{
+//	set<BaseSprite*>* soilders = &_objSelf;
+//	switch (type)
+//	{
+//	case 1: soilders = &_objSelf;	break;
+//	case 2: soilders = &_objEnemy;	break;
+//	}
+//	auto it = soilders->find(soilder);
+//	if (it != soilders->end()) {
+//		soilders->erase(it);
+//	}
+//}
 
-void AIMgr::delSoilder(Soilder* soilder, int type)
-{
-	set<BaseSprite*>* soilders = &_objSelf;
-	switch (type)
-	{
-	case 1: soilders = &_objSelf;	break;
-	case 2: soilders = &_objEnemy;	break;
+BaseSprite* AIMgr::getObj(BaseSprite* obj){
+	auto it = _objSelf.find(obj);
+	if (it != _objSelf.end()) {
+		return obj;
 	}
-	auto it = soilders->find(soilder);
-	if (it != soilders->end()) {
-		soilders->erase(it);
+
+	it = _objEnemy.find(obj);
+	if (it != _objEnemy.end()) {
+		return obj;
 	}
+
+	return nullptr;
 }
 
 void AIMgr::update(float dt)
@@ -284,7 +298,7 @@ void AIMgr::setObjPos(BaseSprite* obj, Vec2 pos) {
 		if (obj->_target == nullptr) {
 			return;
 		}
-		float speed = sqrt((float)obj->_speed * 0.5);
+		float speed = sqrt((float)obj->getSpeed() * 0.5);
 		
 		Vec2 minPos(1000000, 1000000);
 		for (auto& it : dir) {
@@ -368,41 +382,46 @@ void AIMgr::setObjDead(BaseSprite* obj) {
 	dotMap[obj->_dotY * 32 + obj->_dotX] = nullptr;
 	obj->_dotX = 1000000;
 	obj->_dotY = 1000000;
+	
+	if (_select_obj && _select_obj == obj){		
+		_select_obj->setSelect(false);
+		_select_obj = nullptr;
+	}
 }
 
 bool AIMgr::isOver(int type) {
 	switch (type) {
-	case 1: {
-		bool over = true;
-		for (auto it : _objSelf) {
-			if (it->_objType != 3 && !it->isDeath()) {
-				return false;
+		case 1: {
+			bool over = true;
+			for (auto it : _objSelf) {
+				if (it->_objType != 3 && !it->isDeath()) {
+					return false;
+				}
 			}
-		}
-		for (auto it : _objEnemy) {
-			if (it->_objType != 3 && !it->isDeath()) {
-				return false;
+			for (auto it : _objEnemy) {
+				if (it->_objType != 3 && !it->isDeath()) {
+					return false;
+				}
 			}
+			return true;
 		}
-		return true;
+		case 2: {
+			bool isSelfDeadAll = true;
+			for (auto it : _objSelf) {
+				if (it->_objType != 3 && !it->isDeath()) {
+					isSelfDeadAll = false;
+				}
+			}
+			bool isEnemyDeadAll = true;
+			for (auto it : _objEnemy) {
+				if (it->_objType != 3 && !it->isDeath()) {
+					isEnemyDeadAll = false;
+				}
+			}
+			return isSelfDeadAll || isEnemyDeadAll;
+		}
 	}
-	case 2: {
-		bool isSelfDeadAll = true;
-		for (auto it : _objSelf) {
-			if (it->_objType != 3 && !it->isDeath()) {
-				isSelfDeadAll = false;
-			}
-		}
-		bool isEnemyDeadAll = true;
-		for (auto it : _objEnemy) {
-			if (it->_objType != 3 && !it->isDeath()) {
-				isEnemyDeadAll = false;
-			}
-		}
-		return isSelfDeadAll || isEnemyDeadAll;
-	}
-	}
-
+	return false;
 }
 
 bool AIMgr::isWin(int type) {

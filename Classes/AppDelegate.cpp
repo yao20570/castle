@@ -141,28 +141,36 @@ void AppDelegate::applicationWillEnterForeground() {
 #endif
 }
 
+#include "Utils\JsonManager.h"
+
+
+void test(){
+	//long long x = GM()->getMTimeStamp();
+	//int i = 1;
+
+	//timeval tv;
+ //   gettimeofday(&tv, NULL);
+ //   INT64 xx = (INT64)tv.tv_sec * 1000 + (INT64)tv.tv_usec / 1000; 
+
+	
+
+}
+
+
 void AppDelegate::loadResources()
 {
+
+	test();
+
 	//// 创建数据库
 	DBM()->createTable();
 
-	//// 加载数据到缓存
-	//DM();
+
 
 	// 加载搜索路径
 	FileUtils::getInstance()->addSearchPath("images");
 
 	// 加载动画
-	//ArmatureDataManager::getInstance()->addArmatureFileInfo(ANIM_FIGHTER);
-	//ArmatureDataManager::getInstance()->addArmatureFileInfo(ANIM_BOWMAN);
-	//ArmatureDataManager::getInstance()->addArmatureFileInfo(ANIM_GUNNER);
-	//ArmatureDataManager::getInstance()->addArmatureFileInfo(ANIM_MEATSHIELD);
-	//ArmatureDataManager::getInstance()->addArmatureFileInfo(ANIM_HERO_ARAGORN);
-	//ArmatureDataManager::getInstance()->addArmatureFileInfo(ANIM_SKILL_1);
-	//ArmatureDataManager::getInstance()->addArmatureFileInfo(ANIM_SKILL_2);
-
-	//ArmatureDataManager::getInstance()->addArmatureFileInfo(ANIM_HERO_LVBU);
-
 	ArmatureDataManager::getInstance()->addArmatureFileInfo("animation/skill/effect1/NewAnimation.ExportJson");
 
 	ArmatureDataManager::getInstance()->addArmatureFileInfo("animation/soilder/Anim_Bowman.ExportJson");
@@ -187,4 +195,6 @@ void AppDelegate::loadResources()
 	ArmatureDataManager::getInstance()->addArmatureFileInfo("animation/hero/Anim_Hero_Zhenji.ExportJson");
 	ArmatureDataManager::getInstance()->addArmatureFileInfo("animation/hero/Anim_Hero_Zhouyu.ExportJson");
 	ArmatureDataManager::getInstance()->addArmatureFileInfo("animation/hero/Anim_Hero_Zhugeliang.ExportJson");
+
+	JsonMgr()->getSkillById(1);
 }

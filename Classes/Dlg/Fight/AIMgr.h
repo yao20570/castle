@@ -15,8 +15,6 @@ public:
 	~AIMgr();
 	virtual bool init();
 	
-	void setSelect(int select);
-
 	// 获取目标
 	BaseSprite* getTarget(Vec2 pos);    // pos点是空地，还是建筑
 	BaseSprite* getTargetEnemy(Vec2 pos);
@@ -25,11 +23,15 @@ public:
 
 	bool isWithinShootRange(Vec2 src, Vec2 des, int range);
 
-	void addObj(BaseSprite* hero, int type);
-	void addHero(Hero* hero, int type);
-	void addSoilder(Soilder* hero, int type);
-	void delHero(Hero* hero, int type);
-	void delSoilder(Soilder* hero, int type);
+	void addObj(BaseSprite* obj, int type);
+	//void addHero(Hero* hero, int type);
+	//void addSoilder(Soilder* soilder, int type);
+	void delObj(BaseSprite* obj, int type);
+	//void delHero(Hero* hero, int type);
+	//void delSoilder(Soilder* soilder, int type);
+
+	
+	BaseSprite* getObj(BaseSprite* obj);
 
 	void update(float dt);
 	void setSelectObj(BaseSprite* obj);

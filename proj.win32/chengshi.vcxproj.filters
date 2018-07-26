@@ -22,24 +22,6 @@
     <Filter Include="src\Model">
       <UniqueIdentifier>{a08369df-b58b-443f-9b4e-10535b5d8fbf}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\UI">
-      <UniqueIdentifier>{815bfd09-ae65-4528-9ab5-7272bfa27580}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\UI\BattleScene">
-      <UniqueIdentifier>{075ea586-cdc2-4c5b-94f6-bd469d420f2c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\UI\DialogScene">
-      <UniqueIdentifier>{5f529ddc-7661-4b34-9ec6-ec9f91dad9cd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\UI\HelloScene">
-      <UniqueIdentifier>{cd7a8ee1-62a0-412c-8306-27fe9f840639}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\UI\HomeScene">
-      <UniqueIdentifier>{0b828fdb-f3bd-41bd-bc41-9912c718be79}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\UI\WorldScene">
-      <UniqueIdentifier>{5e9bf0bf-1ba9-4957-9c10-10bdae5a4488}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\Utils">
       <UniqueIdentifier>{caee231d-5eb9-4df6-8926-071e655d9d02}</UniqueIdentifier>
     </Filter>
@@ -58,6 +40,12 @@
     <Filter Include="src\Core">
       <UniqueIdentifier>{555d64ae-1fef-47a2-8721-cb13fa867d32}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Skill">
+      <UniqueIdentifier>{03b36b13-4030-4c89-a748-4b28c37c4dc4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Skill\SkillEffect">
+      <UniqueIdentifier>{4bff6ddb-f5c5-43d7-be06-fa1e6078c69c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -75,12 +63,6 @@
     <ClCompile Include="..\Classes\Helper\Sqlite3\sqlite3.c">
       <Filter>src\Helper\Sqlite3</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Model\BuildingSprite.cpp">
-      <Filter>src\Model</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Model\BuildProcess.cpp">
-      <Filter>src\Model</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Model\BulletSprite.cpp">
       <Filter>src\Model</Filter>
     </ClCompile>
@@ -93,9 +75,6 @@
     <ClCompile Include="..\Classes\Model\MiwuSprite.cpp">
       <Filter>src\Model</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Model\NewBuilding.cpp">
-      <Filter>src\Model</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Model\Notice.cpp">
       <Filter>src\Model</Filter>
     </ClCompile>
@@ -105,83 +84,8 @@
     <ClCompile Include="..\Classes\Model\Soilder.cpp">
       <Filter>src\Model</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Model\TownSprite.cpp">
-      <Filter>src\Model</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Model\BaseSprite.cpp">
       <Filter>src\Model</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Model\Building.cpp">
-      <Filter>src\Model</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\UI\PanZoomLayer.cpp">
-      <Filter>src\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\UI\BattleScene\AIManager.cpp">
-      <Filter>src\UI\BattleScene</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\UI\BattleScene\BattleHudLayer.cpp">
-      <Filter>src\UI\BattleScene</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\UI\BattleScene\BattleMapLayer.cpp">
-      <Filter>src\UI\BattleScene</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\UI\BattleScene\BattleScene.cpp">
-      <Filter>src\UI\BattleScene</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\UI\DialogScene\BuildingInfoDialog.cpp">
-      <Filter>src\UI\DialogScene</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\UI\DialogScene\BuildingUpgradeDialog.cpp">
-      <Filter>src\UI\DialogScene</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\UI\DialogScene\CampDialog.cpp">
-      <Filter>src\UI\DialogScene</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\UI\DialogScene\GameOverDialog.cpp">
-      <Filter>src\UI\DialogScene</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\UI\DialogScene\HeroHotelDialog.cpp">
-      <Filter>src\UI\DialogScene</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\UI\DialogScene\HeroInfoDialog.cpp">
-      <Filter>src\UI\DialogScene</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\UI\DialogScene\LabDialog.cpp">
-      <Filter>src\UI\DialogScene</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\UI\DialogScene\NewBuildDialog.cpp">
-      <Filter>src\UI\DialogScene</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\UI\DialogScene\SoilderInfoDialog.cpp">
-      <Filter>src\UI\DialogScene</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\UI\DialogScene\TownDialog.cpp">
-      <Filter>src\UI\DialogScene</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\UI\HelloScene\HelloScene.cpp">
-      <Filter>src\UI\HelloScene</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\UI\HomeScene\HomeHudLayer.cpp">
-      <Filter>src\UI\HomeScene</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\UI\HomeScene\HomeMapLayer.cpp">
-      <Filter>src\UI\HomeScene</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\UI\HomeScene\HomeOptLayer.cpp">
-      <Filter>src\UI\HomeScene</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\UI\HomeScene\HomeScene.cpp">
-      <Filter>src\UI\HomeScene</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\UI\WorldScene\WorldHudLayer.cpp">
-      <Filter>src\UI\WorldScene</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\UI\WorldScene\WorldMapLayer.cpp">
-      <Filter>src\UI\WorldScene</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\UI\WorldScene\WorldScene.cpp">
-      <Filter>src\UI\WorldScene</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Utils\DBManager.cpp">
       <Filter>src\Utils</Filter>
@@ -243,6 +147,57 @@
     <ClCompile Include="..\Classes\Dlg\Main\PnlFight.cpp">
       <Filter>src\Dlg\Main</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Utils\JsonManager.cpp">
+      <Filter>src\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Skill\Skill.cpp">
+      <Filter>src\Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Skill\SkillEffect\SkillEffectHp.cpp">
+      <Filter>src\Skill\SkillEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Skill\SkillEffect\SkillEffectHpPer.cpp">
+      <Filter>src\Skill\SkillEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Skill\SkillEffect\SkillEffectSpeed.cpp">
+      <Filter>src\Skill\SkillEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Skill\SkillEffect\SkillEffectSpeedPer.cpp">
+      <Filter>src\Skill\SkillEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Skill\SkillEffect\SkillEffectDamagePer.cpp">
+      <Filter>src\Skill\SkillEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Skill\SkillEffect\SkillEffectDamage.cpp">
+      <Filter>src\Skill\SkillEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Skill\SkillEffect\SkillEffectDefPer.cpp">
+      <Filter>src\Skill\SkillEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Skill\SkillEffect\SkillEffectDef.cpp">
+      <Filter>src\Skill\SkillEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Skill\SkillEffect\SkillEffectHurtMore.cpp">
+      <Filter>src\Skill\SkillEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Skill\SkillEffect\SkillEffectYun.cpp">
+      <Filter>src\Skill\SkillEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Skill\SkillEffect\SkillEffectFanJian.cpp">
+      <Filter>src\Skill\SkillEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Skill\SkillEffect\SkillEffectXiXue.cpp">
+      <Filter>src\Skill\SkillEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Skill\SkillEffect\SkillEffect.cpp">
+      <Filter>src\Skill\SkillEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Skill\SkillMgr.cpp">
+      <Filter>src\Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Skill\SkillEffectFactory.cpp">
+      <Filter>src\Skill</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -263,15 +218,6 @@
     <ClInclude Include="..\Classes\Helper\Sqlite3\sqlite3ext.h">
       <Filter>src\Helper\Sqlite3</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Model\Building.h">
-      <Filter>src\Model</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Model\BuildingSprite.h">
-      <Filter>src\Model</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Model\BuildProcess.h">
-      <Filter>src\Model</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\Model\BulletSprite.h">
       <Filter>src\Model</Filter>
     </ClInclude>
@@ -284,9 +230,6 @@
     <ClInclude Include="..\Classes\Model\MiwuSprite.h">
       <Filter>src\Model</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Model\NewBuilding.h">
-      <Filter>src\Model</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\Model\Notice.h">
       <Filter>src\Model</Filter>
     </ClInclude>
@@ -296,80 +239,8 @@
     <ClInclude Include="..\Classes\Model\Soilder.h">
       <Filter>src\Model</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Model\TownSprite.h">
-      <Filter>src\Model</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\Model\BaseSprite.h">
       <Filter>src\Model</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\UI\PanZoomLayer.h">
-      <Filter>src\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\UI\BattleScene\AIManager.h">
-      <Filter>src\UI\BattleScene</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\UI\BattleScene\BattleHudLayer.h">
-      <Filter>src\UI\BattleScene</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\UI\BattleScene\BattleMapLayer.h">
-      <Filter>src\UI\BattleScene</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\UI\BattleScene\BattleScene.h">
-      <Filter>src\UI\BattleScene</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\UI\DialogScene\BuildingInfoDialog.h">
-      <Filter>src\UI\DialogScene</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\UI\DialogScene\BuildingUpgradeDialog.h">
-      <Filter>src\UI\DialogScene</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\UI\DialogScene\CampDialog.h">
-      <Filter>src\UI\DialogScene</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\UI\DialogScene\GameOverDialog.h">
-      <Filter>src\UI\DialogScene</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\UI\DialogScene\HeroHotelDialog.h">
-      <Filter>src\UI\DialogScene</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\UI\DialogScene\HeroInfoDialog.h">
-      <Filter>src\UI\DialogScene</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\UI\DialogScene\LabDialog.h">
-      <Filter>src\UI\DialogScene</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\UI\DialogScene\NewBuildDialog.h">
-      <Filter>src\UI\DialogScene</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\UI\DialogScene\SoilderInfoDialog.h">
-      <Filter>src\UI\DialogScene</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\UI\DialogScene\TownDialog.h">
-      <Filter>src\UI\DialogScene</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\UI\HelloScene\HelloScene.h">
-      <Filter>src\UI\HelloScene</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\UI\HomeScene\HomeHudLayer.h">
-      <Filter>src\UI\HomeScene</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\UI\HomeScene\HomeMapLayer.h">
-      <Filter>src\UI\HomeScene</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\UI\HomeScene\HomeOptLayer.h">
-      <Filter>src\UI\HomeScene</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\UI\HomeScene\HomeScene.h">
-      <Filter>src\UI\HomeScene</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\UI\WorldScene\WorldHudLayer.h">
-      <Filter>src\UI\WorldScene</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\UI\WorldScene\WorldMapLayer.h">
-      <Filter>src\UI\WorldScene</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\UI\WorldScene\WorldScene.h">
-      <Filter>src\UI\WorldScene</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Utils\DataManager.h">
       <Filter>src\Utils</Filter>
@@ -460,6 +331,60 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Utils\UIUtils.h">
       <Filter>src\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Utils\JsonManager.h">
+      <Filter>src\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Skill\Skill.h">
+      <Filter>src\Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Skill\SkillDefine.h">
+      <Filter>src\Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Skill\SkillEffect\SkillEffectHp.h">
+      <Filter>src\Skill\SkillEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Skill\SkillEffect\SkillEffectHpPer.h">
+      <Filter>src\Skill\SkillEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Skill\SkillEffect\SkillEffectSpeed.h">
+      <Filter>src\Skill\SkillEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Skill\SkillEffect\SkillEffectSpeedPer.h">
+      <Filter>src\Skill\SkillEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Skill\SkillEffect\SkillEffectDamagePer.h">
+      <Filter>src\Skill\SkillEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Skill\SkillEffect\SkillEffectDamage.h">
+      <Filter>src\Skill\SkillEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Skill\SkillEffect\SkillEffectDef.h">
+      <Filter>src\Skill\SkillEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Skill\SkillEffect\SkillEffectDefPer.h">
+      <Filter>src\Skill\SkillEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Skill\SkillEffect\SkillEffectHurtMore.h">
+      <Filter>src\Skill\SkillEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Skill\SkillEffect\SkillEffectYun.h">
+      <Filter>src\Skill\SkillEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Skill\SkillEffect\SkillEffectFanJian.h">
+      <Filter>src\Skill\SkillEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Skill\SkillEffect\SkillEffectXiXue.h">
+      <Filter>src\Skill\SkillEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Skill\SkillEffect\SkillEffect.h">
+      <Filter>src\Skill\SkillEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Skill\SkillMgr.h">
+      <Filter>src\Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Skill\SkillEffectFactory.h">
+      <Filter>src\Skill</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

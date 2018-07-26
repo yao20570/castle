@@ -72,7 +72,7 @@ void PnlFight::updateSettingPanel() {
 	this->pnl_setting->removeAllChildren();
 
 	ValueVector datas = DBM()->getMySetting(0);
-	for (Value& it : datas) {
+	for (cocos2d::Value& it : datas) {
 		ValueMap& row = it.asValueMap();
 		int x = row["x"].asInt();
 		int y = row["y"].asInt();
