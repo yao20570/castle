@@ -20,7 +20,7 @@ public:
     void addHPBar();    // 加血条
 
     virtual void atk(Armature* arm, MovementEventType eventType, const std::string& str);         // 攻击
-	virtual void hurt(int hurtType, int x, BaseSprite* atk);   // 受伤
+	//virtual void hurt(int hurtType, int x, BaseSprite* atk);   // 受伤
 	virtual void hurtEffect(int x);
     virtual bool isDeath();     // 是否死亡
     
@@ -39,7 +39,7 @@ public:
 
     int _attackSpeed;
     
-    Armature* _arm;
+    //Armature* _arm;
     
 
 	Armature* _skill1;

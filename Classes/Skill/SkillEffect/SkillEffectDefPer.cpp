@@ -3,8 +3,8 @@
 #include "Model/BaseSprite.h"
 
 
-SkillEffectDefPer::SkillEffectDefPer(BaseSprite* obj, int skillEffectId)
-	:SkillEffect(obj, skillEffectId)
+SkillEffectDefPer::SkillEffectDefPer(BaseSprite* obj, int skillEffectId, BaseSprite* caster)
+	:SkillEffect(obj, skillEffectId, caster)
 {
 	//³¢ÊÔ´¥·¢
 	this->onTrigger();
@@ -15,7 +15,7 @@ SkillEffectDefPer::~SkillEffectDefPer(){
 }
 
 void SkillEffectDefPer::trigger(){
-	this->m_obj->_def_per = this->m_obj->_def_per + this->m_value;
+	this->m_obj->_def_per = this->m_obj->_def_per + this->m_value1;
 }
 
 void SkillEffectDefPer::end(){
@@ -24,6 +24,6 @@ void SkillEffectDefPer::end(){
 	}
 	this->m_isCanRemove = true;
 
-	int valur = this->m_value * this->m_curTimes;
-	this->m_obj->_def_per = this->m_obj->_def_per - valur;
+	int value = this->m_value1 * this->m_curTimes;
+	this->m_obj->_def_per = this->m_obj->_def_per - value;
 }

@@ -3,8 +3,8 @@
 #include "Model/BaseSprite.h"
 
 
-SkillEffectDamagePer::SkillEffectDamagePer(BaseSprite* obj, int skillEffectId)
-	:SkillEffect(obj, skillEffectId)
+SkillEffectDamagePer::SkillEffectDamagePer(BaseSprite* obj, int skillEffectId, BaseSprite* caster)
+	:SkillEffect(obj, skillEffectId, caster)
 {
 	//³¢ÊÔ´¥·¢
 	this->onTrigger();
@@ -15,7 +15,7 @@ SkillEffectDamagePer::~SkillEffectDamagePer(){
 }
 
 void SkillEffectDamagePer::trigger(){
-	this->m_obj->_damage_per = this->m_obj->_damage_per + this->m_value;
+	this->m_obj->_damage_per = this->m_obj->_damage_per + this->m_value1;
 }
 
 void SkillEffectDamagePer::end(){
@@ -24,6 +24,6 @@ void SkillEffectDamagePer::end(){
 	}
 	this->m_isCanRemove = true;
 
-	int valur = this->m_value * this->m_curTimes;
+	int valur = this->m_value1 * this->m_curTimes;
 	this->m_obj->_damage_per = this->m_obj->_damage_per - valur;
 }

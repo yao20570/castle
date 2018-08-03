@@ -3,8 +3,8 @@
 #include "Model/BaseSprite.h"
 
 
-SkillEffectDef::SkillEffectDef(BaseSprite* obj, int skillEffectId)
-	:SkillEffect(obj, skillEffectId)
+SkillEffectDef::SkillEffectDef(BaseSprite* obj, int skillEffectId, BaseSprite* caster)
+	:SkillEffect(obj, skillEffectId, caster)
 {
 	//³¢ÊÔ´¥·¢
 	this->onTrigger();
@@ -15,7 +15,7 @@ SkillEffectDef::~SkillEffectDef(){
 }
 
 void SkillEffectDef::trigger(){
-	this->m_obj->_def_diff = this->m_obj->_def_diff + this->m_value;
+	this->m_obj->_def_diff = this->m_obj->_def_diff + this->m_value1;
 }
 
 void SkillEffectDef::end(){

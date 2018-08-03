@@ -5,7 +5,7 @@
 class SkillEffectFanJian : public SkillEffect{
 
 public:
-	SkillEffectFanJian(BaseSprite* obj, int skillEffectId);
+	SkillEffectFanJian(BaseSprite* obj, int skillEffectId, BaseSprite* caster);
 	~SkillEffectFanJian();
 
 protected:

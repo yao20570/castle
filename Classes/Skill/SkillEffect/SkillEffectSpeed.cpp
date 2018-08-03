@@ -3,8 +3,8 @@
 #include "Model/BaseSprite.h"
 
 
-SkillEffectSpeed::SkillEffectSpeed(BaseSprite* obj, int skillEffectId)
-	:SkillEffect(obj, skillEffectId)
+SkillEffectSpeed::SkillEffectSpeed(BaseSprite* obj, int skillEffectId, BaseSprite* caster)
+	:SkillEffect(obj, skillEffectId, caster)
 {
 	//³¢ÊÔ´¥·¢
 	this->onTrigger();
@@ -15,7 +15,7 @@ SkillEffectSpeed::~SkillEffectSpeed(){
 }
 
 void SkillEffectSpeed::trigger(){
-	this->m_obj->_speed_diff = this->m_obj->_speed_diff + this->m_value;
+	this->m_obj->_speed_diff = this->m_obj->_speed_diff + this->m_value1;
 }
 
 void SkillEffectSpeed::end(){

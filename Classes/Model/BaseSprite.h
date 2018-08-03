@@ -7,6 +7,7 @@
 class SkillMgr;
 class AIMgr;
 
+
 static const int STATE_IDLE = 0;
 static const int STATE_RUN = 1;
 static const int STATE_ATK = 2;
@@ -39,7 +40,7 @@ public:
 	virtual void showName(bool b);
 	virtual void setObjName(string name);
 
-	virtual void addSkillEffect(int skillEffectId);
+	virtual void addSkillEffect(int skillEffectId, BaseSprite* caster);
 	virtual void delSkillEffect(int skillEffectId);
 	virtual void triggerSkill(SkillTriggerType tt, const Vec2& targetPos);
 
@@ -94,10 +95,13 @@ public:
 	int _def;			//防御
 	int _def_diff;		//防御额外增减
 	int _def_per;		//防御百分比
+	int _crit;			//暴击值
+	int _crit_rate;		//暴击率
 
+	int _life_left;		//生命低于这个值，会触发技能
 
 	BaseSprite* _target;
-
+	Armature* _arm;
 	string _animaName;
 	string _objname;
 	Text* _txtName;

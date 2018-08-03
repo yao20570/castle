@@ -20,10 +20,14 @@ SkillMgr::~SkillMgr(){
 }
 
 void SkillMgr::addSkill(int skillId){
-	Skill* skill = new Skill(m_obj, m_ai, skillId);
+	
+	const rapidjson::Value* skillCfg = JsonMgr()->getSkillById(skillId);
+	if (skillCfg != nullptr) {
+		Skill* skill = new Skill(m_obj, m_ai, *skillCfg);
 		
-	vector<Skill*>& skills = this->m_skills[skill->triggerType];
-	skills.push_back(skill);
+		vector<Skill*>& skills = this->m_skills[skill->triggerType];
+		skills.push_back(skill);
+	}
 }
 
 void SkillMgr::delSkill(int skillId){

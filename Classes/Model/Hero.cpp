@@ -53,7 +53,6 @@ bool Hero::init(int ID, AIMgr* ai, int camp)
 	_isSelect = true;
 	_state = STATE_IDLE;
 
-	this->_mgr_skill = new SkillMgr(this, _ai);
 
 	loadData();
 	showUI();
@@ -86,7 +85,8 @@ void Hero::loadData()
 	
 	//this->_mgr_skill->addSkill(6);
 	this->_mgr_skill->addSkill(data["Skill1"].asInt());
-	//this->_mgr_skill->addSkill(data["Skill3"].asInt());
+	this->_mgr_skill->addSkill(data["Skill2"].asInt());
+	this->_mgr_skill->addSkill(data["Skill3"].asInt());
 	
 	_isbroken = false;
 	_expReward = 0;
@@ -236,74 +236,74 @@ void Hero::atk(Armature* arm, MovementEventType eventType, const std::string& st
 }
 
 
- // ‹…À
-void Hero::hurt(int hurtType, int x, BaseSprite* atk)
-{
-	if (_isbroken == true || _healthPoint <= 0) {
-		//_arm->getAnimation()->stop();
-		_ai->setObjDead(this);
-		_isbroken = true;
-		return;
-	}
-
-	int temp = 0;
-	switch (hurtType){
-		case 1:	//ŒÔ¿Ì…À∫¶
-		{
-			//…À∫¶-∑¿”˘
-			temp = x - getDef();
-			//≤ªƒ‹∆∆∑¿ºı1—™
-			temp = temp <= 0 ? 1 : temp;
-
-			atk->hurt(3, temp, nullptr);
-
-			_healthPoint -= ((1.0 + this->_hurt_more / 100) * temp);
-			break;
-		}
-		case 2://∑® ı…À∫¶
-		{
-			temp = x;
-			_healthPoint -= ((1.0 + this->_hurt_more / 100) * temp);			
-			_healthPoint = min(_healthPoint, _totalHP);
-			break;
-		}
-		case 3://Œ¸—™
-		{
-			if (this->_xixue <= 0) {
-				return;
-			}
-			temp =  - x * this->_xixue / 100;
-			_healthPoint -= ((1.0 + this->_hurt_more / 100) * temp);
-			_healthPoint = min(_healthPoint, _totalHP);
-			break;
-		}
-	}
-
-
-
-	if (_healthPoint <= 0) {
-		_isbroken = true;
-		//this->setVisible(false);
-		_ai->setObjDead(this);
-		setState(STATE_DEATH, _dir);
-		//_arm->getAnimation()->stop();
-	}
-	else {
-		_hpBar->setPercent(100.0 * _healthPoint / _totalHP);
-		_txt_hp->setString(cocos2d::Value(_healthPoint).asString());
-	}
-
-	//∆Æ◊÷
-	Vec2 txtPos = Vec2(40, _arm->getContentSize().height / 2 - 20);
-	Color4B txtColor(255, 0, 0, 255);
-	if (temp < 0) {
-		txtColor = Color4B(0, 255, 0, 255);
-	}
-	Text* txtHurt = this->flyHurtNum(temp, txtPos);
-	txtHurt->setTextColor(txtColor);
-
-	this->_mgr_skill->triggerSkill(SkillTriggerType::Hurt, this->getPosition());
-}
+// // ‹…À
+//void Hero::hurt(int hurtType, int x, BaseSprite* atk)
+//{
+//	if (_isbroken == true || _healthPoint <= 0) {
+//		//_arm->getAnimation()->stop();
+//		_ai->setObjDead(this);
+//		_isbroken = true;
+//		return;
+//	}
+//
+//	int temp = 0;
+//	switch (hurtType){
+//		case 1:	//ŒÔ¿Ì…À∫¶
+//		{
+//			//…À∫¶-∑¿”˘
+//			temp = x - getDef();
+//			//≤ªƒ‹∆∆∑¿ºı1—™
+//			temp = temp <= 0 ? 1 : temp;
+//
+//			atk->hurt(3, temp, nullptr);
+//
+//			_healthPoint -= ((1.0 + this->_hurt_more / 100) * temp);
+//			break;
+//		}
+//		case 2://∑® ı…À∫¶
+//		{
+//			temp = x;
+//			_healthPoint -= ((1.0 + this->_hurt_more / 100) * temp);			
+//			_healthPoint = min(_healthPoint, _totalHP);
+//			break;
+//		}
+//		case 3://Œ¸—™
+//		{
+//			if (this->_xixue <= 0) {
+//				return;
+//			}
+//			temp =  - x * this->_xixue / 100;
+//			_healthPoint -= ((1.0 + this->_hurt_more / 100) * temp);
+//			_healthPoint = min(_healthPoint, _totalHP);
+//			break;
+//		}
+//	}
+//
+//
+//
+//	if (_healthPoint <= 0) {
+//		_isbroken = true;
+//		//this->setVisible(false);
+//		_ai->setObjDead(this);
+//		setState(STATE_DEATH, _dir);
+//		//_arm->getAnimation()->stop();
+//	}
+//	else {
+//		_hpBar->setPercent(100.0 * _healthPoint / _totalHP);
+//		_txt_hp->setString(cocos2d::Value(_healthPoint).asString());
+//	}
+//
+//	//∆Æ◊÷
+//	Vec2 txtPos = Vec2(40, _arm->getContentSize().height / 2 - 20);
+//	Color4B txtColor(255, 0, 0, 255);
+//	if (temp < 0) {
+//		txtColor = Color4B(0, 255, 0, 255);
+//	}
+//	Text* txtHurt = this->flyHurtNum(temp, txtPos);
+//	txtHurt->setTextColor(txtColor);
+//
+//	this->_mgr_skill->triggerSkill(SkillTriggerType::Hurt, this->getPosition());
+//}
 
 void Hero::hurtEffect(int x) {
 	_skill1->getAnimation()->play("idle" + GM()->getIntToStr(x), -1, 0);

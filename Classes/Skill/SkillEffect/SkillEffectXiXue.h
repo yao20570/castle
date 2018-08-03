@@ -5,7 +5,7 @@
 class SkillEffectXiXue : public SkillEffect{
 
 public:
-	SkillEffectXiXue(BaseSprite* obj, int skillEffectId);
+	SkillEffectXiXue(BaseSprite* obj, int skillEffectId, BaseSprite* caster);
 	~SkillEffectXiXue();
 
 protected:

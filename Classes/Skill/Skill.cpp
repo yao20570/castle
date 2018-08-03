@@ -5,33 +5,23 @@
 #include "Model/BaseSprite.h"
 #include "Utils/JsonManager.h"
 
-Skill::Skill(BaseSprite* obj, AIMgr* ai, int skillId)
+Skill::Skill(BaseSprite* obj, AIMgr* ai, const rapidjson::Value& skillCfg)
 	:m_obj(obj)
 	, m_ai(ai)
 	, m_useMSec(0)
 	, m_CDMTimestamp(0)
 {
-	const rapidjson::Value& skillCfg = JsonMgr()->getSkillById(skillId);
 	this->Id = skillCfg["ID"].GetInt();
 	this->Name = skillCfg["Name"].GetString();
 	this->triggerType = SkillTriggerType(skillCfg["Trigger"].GetInt());
+	this->TriggerValue = skillCfg["TriggerValue"].GetInt();
 	this->targetType = SkillTargetType(skillCfg["Target"].GetInt());
 	this->scopeType = SkillScopeType(skillCfg["ScopeType"].GetInt());
 	this->shootRange = skillCfg["ShootRange"].GetInt();
 	this->cd = skillCfg["CD"].GetInt();
 	this->radius = skillCfg["Radius"].GetInt();
 
-	//const rapidjson::Value &pArray = skillCfg["Detail"]; 
-	//for (rapidjson::SizeType i = 0; i < pArray.Size(); i++)  {
-	//	const rapidjson::Value &effectCfg = pArray[i]; 
-	//	
-	//	effects.emplace_back(SkillEffectType(effectCfg["EffectType"].GetInt()));
-	//	SkillEffectInfo& info = effects.back();
-	//	info.value = effectCfg["Value"].GetInt();
-	//	info.times = effectCfg["Tiems"].GetInt();
-	//	info.cd = effectCfg["CD"].GetInt();
-	//	info.lastTime = effectCfg["LastTime"].GetInt();
-	//}
+	
 
 	const rapidjson::Value &pArray = skillCfg["Detail"]; 
 	for (rapidjson::SizeType i = 0; i < pArray.Size(); i++)  {
@@ -58,7 +48,16 @@ void Skill::reset(){
 
 void Skill::useSkill(const Vec2& targetPos){
 
-		//技能效果开始,结束时间
+	//特殊条件判断
+	switch (this->triggerType){
+		case SkillTriggerType::Life:
+			if (m_obj->_healthPoint / m_obj->_totalHP * 100 > TriggerValue){
+				return;
+			}
+			break;
+	}
+
+	//技能效果开始,结束时间
 	INT64 curMTimeStamp = GM()->getMTimeStamp();
 	if (curMTimeStamp < this->m_CDMTimestamp){
 		return;
@@ -76,7 +75,7 @@ void Skill::useSkill(const Vec2& targetPos){
 
 	for (auto obj : retTarget){
 		for (auto skillEffectId : this->m_effectIds){
-			obj->addSkillEffect(skillEffectId);
+			obj->addSkillEffect(skillEffectId, this->m_obj);
 		}
 	}
 }
@@ -111,11 +110,11 @@ const set<BaseSprite*>& Skill::getObjsByTarget(){
 void Skill::getObjsByScope(const Vec2& targetPos, const set<BaseSprite*>& inObjs, set<BaseSprite*>& outObjs){
 	switch (this->scopeType)
 	{
-		case SkillScopeType::SINGLE:this->getObjBySingle(targetPos, inObjs, outObjs);	break;
-		case SkillScopeType::ALL:	this->getObjByALL(targetPos, inObjs, outObjs);		break;
-		case SkillScopeType::ROUND:	this->getObjByRound(targetPos, inObjs, outObjs);	break;
+		case SkillScopeType::SINGLE:		this->getObjBySingle(targetPos, inObjs, outObjs);	break;
+		case SkillScopeType::ALL:			this->getObjByALL(targetPos, inObjs, outObjs);		break;
+		case SkillScopeType::ROUND:			this->getObjByRound(targetPos, inObjs, outObjs);	break;
 		case SkillScopeType::RECT_SCOPE:	this->getObjByRect(targetPos, inObjs, outObjs);		break;
-		case SkillScopeType::FAN:	this->getObjByFan(targetPos, inObjs, outObjs);		break;
+		case SkillScopeType::FAN:			this->getObjByFan(targetPos, inObjs, outObjs);		break;
 	}
 }
 

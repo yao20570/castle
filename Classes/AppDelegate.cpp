@@ -153,6 +153,7 @@ void test(){
  //   INT64 xx = (INT64)tv.tv_sec * 1000 + (INT64)tv.tv_usec / 1000; 
 
 	
+	//JsonMgr()->getSkillById(0);
 
 }
 
@@ -170,7 +171,7 @@ void AppDelegate::loadResources()
 	// 加载搜索路径
 	FileUtils::getInstance()->addSearchPath("images");
 
-	// 加载动画
+	//// 加载动画
 	ArmatureDataManager::getInstance()->addArmatureFileInfo("animation/skill/effect1/NewAnimation.ExportJson");
 
 	ArmatureDataManager::getInstance()->addArmatureFileInfo("animation/soilder/Anim_Bowman.ExportJson");
@@ -196,5 +197,4 @@ void AppDelegate::loadResources()
 	ArmatureDataManager::getInstance()->addArmatureFileInfo("animation/hero/Anim_Hero_Zhouyu.ExportJson");
 	ArmatureDataManager::getInstance()->addArmatureFileInfo("animation/hero/Anim_Hero_Zhugeliang.ExportJson");
 
-	JsonMgr()->getSkillById(1);
 }

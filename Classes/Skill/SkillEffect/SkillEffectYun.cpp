@@ -3,8 +3,8 @@
 #include "Model/BaseSprite.h"
 
 
-SkillEffectYun::SkillEffectYun(BaseSprite* obj, int skillEffectId)
-	:SkillEffect(obj, skillEffectId)
+SkillEffectYun::SkillEffectYun(BaseSprite* obj, int skillEffectId, BaseSprite* caster)
+	:SkillEffect(obj, skillEffectId, caster)
 {
 	//³¢ÊÔ´¥·¢
 	this->onTrigger();

@@ -27,7 +27,7 @@ public:
 
     virtual void idle();
     virtual void atk(Armature* arm, MovementEventType eventType, const std::string& str);   // ¹¥»÷
-	virtual void hurt(int hurtType, int x, BaseSprite* atk);           // ÊÜÉË
+	//virtual void hurt(int hurtType, int x, BaseSprite* atk);           // ÊÜÉË
 	virtual void hurtEffect(int x);
 	virtual void death();           // ËÀÍö
     virtual bool isDeath();             // ÊÇ·ñËÀÍö
@@ -56,7 +56,7 @@ public:
     float _delta;
     
     bool _isSelect;
-    Armature* _arm;
+    //Armature* _arm;
     Armature* _skill1;
     Armature* _skill2;
     

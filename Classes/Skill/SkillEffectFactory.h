@@ -14,7 +14,7 @@ public:
     virtual bool init();
     static SkillEffectFactory* getInstance();
 
-	SkillEffect* newSkillEffect(BaseSprite* obj, int effectId);
+	SkillEffect* newSkillEffect(BaseSprite* obj, int effectId, BaseSprite* caster);
 	SkillEffectType getEffectTypeById(int effectId);
 };
 

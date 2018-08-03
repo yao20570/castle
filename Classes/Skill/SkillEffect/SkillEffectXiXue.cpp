@@ -3,8 +3,8 @@
 #include "Model/BaseSprite.h"
 
 
-SkillEffectXiXue::SkillEffectXiXue(BaseSprite* obj, int skillEffectId)
-	:SkillEffect(obj, skillEffectId)
+SkillEffectXiXue::SkillEffectXiXue(BaseSprite* obj, int skillEffectId, BaseSprite* caster)
+	:SkillEffect(obj, skillEffectId, caster)
 {
 	//触发一次效果
 	this->onTrigger();
@@ -15,7 +15,7 @@ SkillEffectXiXue::~SkillEffectXiXue(){
 }
 
 void SkillEffectXiXue::trigger(){
-	this->m_obj->_xixue = this->m_obj->_xixue + this->m_value;
+	this->m_obj->_xixue = this->m_obj->_xixue + this->m_value1;
 }
 
 void SkillEffectXiXue::end(){

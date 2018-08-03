@@ -156,9 +156,6 @@
     <ClCompile Include="..\Classes\Skill\SkillEffect\SkillEffectHp.cpp">
       <Filter>src\Skill\SkillEffect</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Skill\SkillEffect\SkillEffectHpPer.cpp">
-      <Filter>src\Skill\SkillEffect</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Skill\SkillEffect\SkillEffectSpeed.cpp">
       <Filter>src\Skill\SkillEffect</Filter>
     </ClCompile>
@@ -197,6 +194,18 @@
     </ClCompile>
     <ClCompile Include="..\Classes\Skill\SkillEffectFactory.cpp">
       <Filter>src\Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Skill\SkillEffect\SkillEffectCrit.cpp">
+      <Filter>src\Skill\SkillEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Skill\SkillEffect\SkillEffectCritRate.cpp">
+      <Filter>src\Skill\SkillEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Skill\SkillEffect\SkillEffectHpMaxPer.cpp">
+      <Filter>src\Skill\SkillEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Skill\SkillEffect\SkillEffectShootRange.cpp">
+      <Filter>src\Skill\SkillEffect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -344,9 +353,6 @@
     <ClInclude Include="..\Classes\Skill\SkillEffect\SkillEffectHp.h">
       <Filter>src\Skill\SkillEffect</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Skill\SkillEffect\SkillEffectHpPer.h">
-      <Filter>src\Skill\SkillEffect</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\Skill\SkillEffect\SkillEffectSpeed.h">
       <Filter>src\Skill\SkillEffect</Filter>
     </ClInclude>
@@ -385,6 +391,18 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Skill\SkillEffectFactory.h">
       <Filter>src\Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Skill\SkillEffect\SkillEffectCrit.h">
+      <Filter>src\Skill\SkillEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Skill\SkillEffect\SkillEffectCritRate.h">
+      <Filter>src\Skill\SkillEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Skill\SkillEffect\SkillEffectHpMaxPer.h">
+      <Filter>src\Skill\SkillEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Skill\SkillEffect\SkillEffectShootRange.h">
+      <Filter>src\Skill\SkillEffect</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

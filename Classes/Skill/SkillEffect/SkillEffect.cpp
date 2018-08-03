@@ -2,8 +2,9 @@
 
 #include "Utils/ConfigMgr.h"
 
-SkillEffect::SkillEffect(BaseSprite* obj, int skillEffectId)
+SkillEffect::SkillEffect(BaseSprite* obj, int skillEffectId, BaseSprite* caster)
 	: m_obj(obj)
+	, m_caster(caster)
 	, m_isCanRemove(false)
 	, m_id(skillEffectId)
 	, m_curTimes(0)
@@ -12,10 +13,15 @@ SkillEffect::SkillEffect(BaseSprite* obj, int skillEffectId)
 
 	//this->m_type = SkillEffectType(cfg["Type"].asInt());
 	this->m_name = cfg["Name"].asString();
-	this->m_value = cfg["Value"].asInt();
+	this->m_value1 = cfg["Value1"].asInt();
+	this->m_value2 = cfg["Value2"].asInt();
+	this->m_value3 = cfg["Value3"].asInt();
 	this->m_times = cfg["Tiems"].asInt();
 	this->m_cd = cfg["CD"].asInt();
 	this->m_lastTime = cfg["LastTime"].asInt();
+	if (this->m_lastTime < 0){
+		this->m_lastTime = INT_MAX;
+	}
 
 	//技能效果开始,结束时间
 	this->m_startMTimestamp = GM()->getMTimeStamp();

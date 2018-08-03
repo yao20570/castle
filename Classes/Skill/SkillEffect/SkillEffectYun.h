@@ -5,7 +5,7 @@
 class SkillEffectYun : public SkillEffect{
 
 public:
-	SkillEffectYun(BaseSprite* obj, int skillEffectId);
+	SkillEffectYun(BaseSprite* obj, int skillEffectId, BaseSprite* caster);
 	~SkillEffectYun();
 
 protected:

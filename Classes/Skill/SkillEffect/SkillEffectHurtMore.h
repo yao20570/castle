@@ -5,7 +5,7 @@
 class SkillEffectHurtMore : public SkillEffect{
 
 public:
-	SkillEffectHurtMore(BaseSprite* obj, int skillEffectId);
+	SkillEffectHurtMore(BaseSprite* obj, int skillEffectId, BaseSprite* caster);
 	~SkillEffectHurtMore();
 
 protected:

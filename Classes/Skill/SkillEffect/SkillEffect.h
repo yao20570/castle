@@ -9,7 +9,7 @@ struct SkillEffectInfo;
 class SkillEffect{
 
 public:
-	SkillEffect(BaseSprite* obj, int skillEffectId);
+	SkillEffect(BaseSprite* obj, int skillEffectId, BaseSprite* caster);
 	~SkillEffect();
 
 	virtual void update(float dt);
@@ -31,13 +31,16 @@ protected:
 	virtual void onEnd();
 	virtual void end();			//效果结束，由子类实现
 protected:
+	BaseSprite*		m_caster;
 	BaseSprite*		m_obj;
 	bool			m_isCanRemove;
 
 	int				m_id;
 	SkillEffectType m_type;
 	string			m_name;
-	int				m_value;
+	int				m_value1;
+	int				m_value2;
+	int				m_value3;
 	int				m_times;				//触发次数
 	int				m_cd;					//效果触发冷却
 	int				m_lastTime;				//持续时间

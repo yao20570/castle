@@ -23,7 +23,7 @@ public:
 	rapidjson::Document& loadJson(std::string file);
 
 public:
-	rapidjson::Value& getSkillById(int id);
+	rapidjson::Value* getSkillById(int id);
 
 private:
 	static JsonManager* _g;

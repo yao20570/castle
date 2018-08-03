@@ -5,7 +5,7 @@
 class SkillEffectDef : public SkillEffect{
 
 public:
-	SkillEffectDef(BaseSprite* obj, int skillEffectId);
+	SkillEffectDef(BaseSprite* obj, int skillEffectId, BaseSprite* caster);
 	~SkillEffectDef();
 
 protected:

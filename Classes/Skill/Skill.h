@@ -30,7 +30,7 @@ class Skill
 {
 
 public:
-	Skill(BaseSprite* obj, AIMgr* ai, int skillId);
+	Skill(BaseSprite* obj, AIMgr* ai, const rapidjson::Value& skillCfg);
 	~Skill();
 	void update(float dt);
 
@@ -51,6 +51,7 @@ public:
 	int Id;
 	string Name;
 	SkillTriggerType triggerType;
+	int TriggerValue;
 	SkillTargetType targetType;
 	SkillScopeType scopeType;
 	int shootRange;					// ©∑®æ‡¿Î

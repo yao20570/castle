@@ -7,7 +7,7 @@
 #include "Skill/SkillEffect/SkillEffectDefPer.h"
 #include "Skill/SkillEffect/SkillEffectFanJian.h"
 #include "Skill/SkillEffect/SkillEffectHp.h"
-#include "Skill/SkillEffect/SkillEffectHpPer.h"
+#include "Skill/SkillEffect/SkillEffectHpMaxPer.h"
 #include "Skill/SkillEffect/SkillEffectHurtMore.h"
 #include "Skill/SkillEffect/SkillEffectSpeed.h"
 #include "Skill/SkillEffect/SkillEffectSpeedPer.h"
@@ -41,35 +41,35 @@ bool SkillEffectFactory::init()
     return true;
 }
 
-SkillEffect* SkillEffectFactory::newSkillEffect(BaseSprite* obj, int effectId)
+SkillEffect* SkillEffectFactory::newSkillEffect(BaseSprite* obj, int effectId, BaseSprite* caster)
 {
 	SkillEffectType tt = this->getEffectTypeById(effectId);
 	switch (tt)
 	{
 		case SkillEffectType::HP:
-			return new SkillEffectHp(obj, effectId);
+			return new SkillEffectHp(obj, effectId, caster);
 		case SkillEffectType::HPPer:
-			return new SkillEffectHpPer(obj, effectId);
+			return new SkillEffectHpMaxPer(obj, effectId, caster);
 		case SkillEffectType::Damage:
-			return new SkillEffectDamage(obj, effectId);
+			return new SkillEffectDamage(obj, effectId, caster);
 		case SkillEffectType::DamagePer:
-			return new SkillEffectDamagePer(obj, effectId);
+			return new SkillEffectDamagePer(obj, effectId, caster);
 		case SkillEffectType::Speed:
-			return new SkillEffectSpeed(obj, effectId);
+			return new SkillEffectSpeed(obj, effectId, caster);
 		case SkillEffectType::SpeedPer:
-			return new SkillEffectSpeedPer(obj, effectId);
+			return new SkillEffectSpeedPer(obj, effectId, caster);
 		case SkillEffectType::Def:
-			return new SkillEffectDef(obj, effectId);
+			return new SkillEffectDef(obj, effectId, caster);
 		case SkillEffectType::DefPer:
-			return new SkillEffectDefPer(obj, effectId);
+			return new SkillEffectDefPer(obj, effectId, caster);
 		case SkillEffectType::XiXue:
-			return new SkillEffectXiXue(obj, effectId);
+			return new SkillEffectXiXue(obj, effectId, caster);
 		case SkillEffectType::Yun:
-			return new SkillEffectYun(obj, effectId);
+			return new SkillEffectYun(obj, effectId, caster);
 		case SkillEffectType::FanJian:
-			return new SkillEffectFanJian(obj, effectId);
+			return new SkillEffectFanJian(obj, effectId, caster);
 		case SkillEffectType::HurtMore:
-			return new SkillEffectHurtMore(obj, effectId);
+			return new SkillEffectHurtMore(obj, effectId, caster);
 		default:
 			break;
 	}

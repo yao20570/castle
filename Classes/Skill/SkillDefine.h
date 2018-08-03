@@ -31,7 +31,8 @@ const enum class SkillTriggerType:int
 	Atk = 2,	//攻击时
 	Hurt = 3,		//受伤时
 	Dead = 4,		//死亡时
-	Count = 5,		//触发类型数量
+	Life = 5,		//生命剩余时触发
+	Count = 6,		//触发类型数量
 };
 
 //目标类型

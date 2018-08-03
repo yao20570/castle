@@ -1,10 +1,10 @@
 
 #include "SkillEffectHurtMore.h"
 #include "Model/BaseSprite.h"
+#include "Utils/GlobalManager.h"
 
-
-SkillEffectHurtMore::SkillEffectHurtMore(BaseSprite* obj, int skillEffectId)
-	:SkillEffect(obj, skillEffectId)
+SkillEffectHurtMore::SkillEffectHurtMore(BaseSprite* obj, int skillEffectId, BaseSprite* caster)
+	:SkillEffect(obj, skillEffectId, caster)
 {
 	//³¢ÊÔ´¥·¢
 	this->onTrigger();
@@ -15,7 +15,7 @@ SkillEffectHurtMore::~SkillEffectHurtMore(){
 }
 
 void SkillEffectHurtMore::trigger(){
-	this->m_obj->_hurt_more = this->m_obj->_hurt_more + this->m_value;
+	this->m_obj->_hurt_more = this->m_obj->_hurt_more + this->m_value1;
 }
 
 void SkillEffectHurtMore::end(){

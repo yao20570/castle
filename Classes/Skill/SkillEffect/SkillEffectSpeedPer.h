@@ -5,7 +5,7 @@
 class SkillEffectSpeedPer : public SkillEffect{
 
 public:
-	SkillEffectSpeedPer(BaseSprite* obj, int skillEffectId);
+	SkillEffectSpeedPer(BaseSprite* obj, int skillEffectId, BaseSprite* caster);
 	~SkillEffectSpeedPer();
 
 protected:

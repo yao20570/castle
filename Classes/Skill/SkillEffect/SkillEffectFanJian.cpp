@@ -4,8 +4,8 @@
 #include "Dlg/Fight/AIMgr.h"
 
 
-SkillEffectFanJian::SkillEffectFanJian(BaseSprite* obj, int skillEffectId)
-	:SkillEffect(obj, skillEffectId)
+SkillEffectFanJian::SkillEffectFanJian(BaseSprite* obj, int skillEffectId, BaseSprite* caster)
+	:SkillEffect(obj, skillEffectId, caster)
 {
 	//³¢ÊÔ´¥·¢
 	this->onTrigger();
