@@ -4,7 +4,6 @@
 #include "Skill/SkillDefine.h"
 
 class BaseSprite;
-struct SkillEffectInfo;
 
 class SkillEffect{
 

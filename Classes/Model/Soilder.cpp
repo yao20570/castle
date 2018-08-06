@@ -42,6 +42,8 @@ bool Soilder::init(int soilderID, AIMgr* ai, int camp)
 	_ai->addObj(this, _camp);
 	_radius = 25;
     
+	this->_mgr_skill = new SkillMgr(this, _ai);
+
     loadData();
     showUI();
 	addTouch();
@@ -65,7 +67,7 @@ void Soilder::loadData()
     _damage         = data["Damage"].asInt();
 	_def			= data["Def"].asInt();
     _attackSpeed    = data["AttackSpeed"].asInt();
-    _shootRange     = data["ShootRange"].asInt();
+    _shoot_range     = data["ShootRange"].asInt();
     _isbroken       = false;
 }
 
@@ -253,7 +255,7 @@ void Soilder::addHPBar()
 //				if (_target == nullptr) {
 //					setState(STATE_IDLE, _dir);
 //				}
-//				else if (_target->_isbroken == false && _ai->isWithinShootRange(getPosition(), _target->getPosition(), _shootRange)) {
+//				else if (_target->_isbroken == false && _ai->isWithinShootRange(getPosition(), _target->getPosition(), _shoot_range)) {
 //
 //					int tempDir = GM()->getDir(getPosition(), _target->getPosition());
 //					setState(STATE_ATK, tempDir);
@@ -284,7 +286,7 @@ void Soilder::addHPBar()
 //				else {
 //					int tempDir = GM()->getDir(getPosition(), _target->getPosition());
 //					// ¹¥»÷
-//					if (_ai->isWithinShootRange(getPosition(), _target->getPosition(), _shootRange)) {
+//					if (_ai->isWithinShootRange(getPosition(), _target->getPosition(), _shoot_range)) {
 //						setState(STATE_ATK, tempDir);
 //					}
 //					// ×ßÂ·

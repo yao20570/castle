@@ -17,7 +17,10 @@ BaseSprite::BaseSprite()
 		, _damage_per(0)
 		, _def(0)	
 		, _def_diff(0)
+		, _shoot_range_diff(0)
 		, _def_per(0)	
+		, _crit(0)			//暴击值
+		, _crit_rate(0)		//暴击率
 		, _mgr_skill(nullptr)
 {
 }
@@ -33,7 +36,6 @@ bool BaseSprite::init()
         return false;
     }
     	
-	this->_mgr_skill = new SkillMgr(this, _ai);
 
     return true;
 }
@@ -102,7 +104,7 @@ void BaseSprite::update(float dt)
 			if (_target == nullptr) {
 				setState(STATE_IDLE, _dir);
 			}
-			else if (_target->_isbroken == false && _ai->isWithinShootRange(getPosition(), _target->getPosition(), _shootRange)) {
+			else if (_target->_isbroken == false && _ai->isWithinShootRange(getPosition(), _target->getPosition(), this->getShootRange())) {
 
 				int tempDir = GM()->getDir(getPosition(), _target->getPosition());
 				setState(STATE_ATK, tempDir);
@@ -133,7 +135,7 @@ void BaseSprite::update(float dt)
 			else {
 				int tempDir = GM()->getDir(getPosition(), _target->getPosition());
 				// 攻击
-				if (_ai->isWithinShootRange(getPosition(), _target->getPosition(), _shootRange)) {
+				if (_ai->isWithinShootRange(getPosition(), _target->getPosition(), this->getShootRange())) {
 					setState(STATE_ATK, tempDir);
 				}
 				// 走路
@@ -172,8 +174,8 @@ void BaseSprite::hurt(int hurtType, int x, BaseSprite* atk)
 
 			//计算普攻暴击
 			if (atk){
-				int r = rand() / 100 + 1;
-				if (r <= atk->_crit_rate){
+				int r = rand() % 100;
+				if (r < atk->_crit_rate){
 					temp = temp * (100 + this->_crit) / 100;
 				}
 			}
@@ -186,13 +188,14 @@ void BaseSprite::hurt(int hurtType, int x, BaseSprite* atk)
 				atk->hurt(3, temp, nullptr);
 			}
 			
-			_healthPoint -= ((1.0 + this->_hurt_more / 100) * temp);
+			temp = ( max(0.0, (1.0 + (float)this->_hurt_more / 100)) * temp);
+			_healthPoint -= temp;
 			break;
 		}
 		case 2://法术伤害
 		{
-			temp = x;
-			_healthPoint -= ((1.0 + this->_hurt_more / 100) * temp);			
+			temp = ( max(0.0, (1.0 + (float)this->_hurt_more / 100)) * x);
+			_healthPoint -= temp;			
 			_healthPoint = min(_healthPoint, _totalHP);
 			break;
 		}
@@ -202,7 +205,7 @@ void BaseSprite::hurt(int hurtType, int x, BaseSprite* atk)
 				return;
 			}
 			temp =  - x * this->_xixue / 100;
-			_healthPoint -= ((1.0 + this->_hurt_more / 100) * temp);
+			_healthPoint -= temp;
 			_healthPoint = min(_healthPoint, _totalHP);
 			break;
 		}
@@ -233,9 +236,6 @@ void BaseSprite::hurt(int hurtType, int x, BaseSprite* atk)
 
 	//受到伤害时触发
 	this->_mgr_skill->triggerSkill(SkillTriggerType::Hurt, this->getPosition());
-
-	//生命剩余触发
-	this->_mgr_skill->triggerSkill(SkillTriggerType::Life, this->getPosition());
 }
 
 void BaseSprite::hurtEffect(int x) { CCLOG("Base hurtEffect"); }
@@ -257,15 +257,12 @@ string BaseSprite::getObjName(){
 	return this->_objname;
 }
 
-int BaseSprite::getHp(){
-	return this->_healthPoint;
+void BaseSprite::showSkillRange(){
+	DrawNode* dn = DrawNode::create();
 }
 
-int BaseSprite::getSpeed(){
-	int speed = max(0, this->_speed + this->_speed_diff);
-	int speedPer = max(-100, this->_speed_per);
-	int ret = (float)speed * (1.0 + (float)speedPer / 100);
-	return ret;
+int BaseSprite::getHp(){
+	return this->_healthPoint;
 }
 
 int BaseSprite::getDamage(){
@@ -279,6 +276,18 @@ int BaseSprite::getDef(){
 	int def = max(0, this->_def + this->_def_diff);
 	int defPer = max(-100, this->_def_per);
 	int ret = (float)def * (1.0 +(float)defPer / 100);
+	return ret;
+}
+
+int BaseSprite::getSpeed(){
+	int speed = max(0, this->_speed + this->_speed_diff);
+	int speedPer = max(-100, this->_speed_per);
+	int ret = (float)speed * (1.0 + (float)speedPer / 100);
+	return ret;
+}
+
+int BaseSprite::getShootRange(){
+	int ret = max(0, this->_shoot_range + this->_shoot_range_diff);	
 	return ret;
 }
 

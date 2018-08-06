@@ -1,0 +1,3 @@
+ID,Type,Desc
+1,HpLeft,当生命减到某个百分比触发
+2,Random,几率触发

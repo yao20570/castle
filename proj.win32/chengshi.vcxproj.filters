@@ -46,6 +46,9 @@
     <Filter Include="src\Skill\SkillEffect">
       <UniqueIdentifier>{4bff6ddb-f5c5-43d7-be06-fa1e6078c69c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Utils\Msg">
+      <UniqueIdentifier>{a8dbf617-65bd-471a-acc2-8800d4883da9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -206,6 +209,12 @@
     </ClCompile>
     <ClCompile Include="..\Classes\Skill\SkillEffect\SkillEffectShootRange.cpp">
       <Filter>src\Skill\SkillEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Utils\Msg\MsgMgr.cpp">
+      <Filter>src\Utils\Msg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Utils\Msg\MsgDef.cpp">
+      <Filter>src\Utils\Msg</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -403,6 +412,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Skill\SkillEffect\SkillEffectShootRange.h">
       <Filter>src\Skill\SkillEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Utils\Msg\MsgMgr.h">
+      <Filter>src\Utils\Msg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Utils\Msg\MsgDef.h">
+      <Filter>src\Utils\Msg</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

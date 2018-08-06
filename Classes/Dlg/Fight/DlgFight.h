@@ -30,9 +30,10 @@ public:
 	void addSoilder(Vec2 pos, int camp, ValueMap*objInfo);
 	void addPlayer(Vec2 pos, int camp);
 
+	void setAttrText(Text* txt, int diffNum);
 	void updateObjAttrLayer();
 	
-	void triggerSkill(SkillTriggerType tt, const Vec2& targetPos);
+	void triggerSkill(SkillTriggerType tt);
 
 private:
 	//void onLord(Ref* sender, Widget::TouchEventType type);
@@ -72,8 +73,15 @@ public:
 	Text*		txt_damage;	
 	Text*		txt_def;		
 	Text*		txt_speed;		
+	Text*		txt_shoot_range;		
 	Text*		txt_xixue;		
 	Text*		txt_hurt_more; 
+
+	Text*		txt_hp_diff;		
+	Text*		txt_damage_diff;
+	Text*		txt_def_diff;		
+	Text*		txt_speed_diff;
+	Text*		txt_shoot_range_diff;	
 
 	ValueVector _setting_data;
 };

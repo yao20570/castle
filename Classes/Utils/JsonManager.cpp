@@ -47,9 +47,9 @@ rapidjson::Document& JsonManager::loadJson(std::string filePath){
 rapidjson::Value* JsonManager::getSkillById(int id){
 	auto& doc = this->loadJson(SkillJsonPath);
 	rapidjson::Value& list = doc["List"];
-	//const char* key = cocos2d::Value(id).asString().c_str();
-	if (list.HasMember(cocos2d::Value(id).asString().c_str())){
-		return  &(list[cocos2d::Value(id).asString().c_str()]);
+	string key = cocos2d::Value(id).asString();
+	if (list.HasMember(key.c_str())){
+		return  &(list[key.c_str()]);
 	}		
 	return nullptr;
 }

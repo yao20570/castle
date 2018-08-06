@@ -6,23 +6,9 @@
 class  AIMgr;
 class BaseSprite;
 
-struct SkillEffectInfo{
-	
-	SkillEffectType m_type;
-	int value;
-	int times;
-	float cd;
-	float lastTime;
-
-	SkillEffectInfo(SkillEffectType type)
-		: m_type(type)
-		, value(0)
-		, times(1)
-		, cd(0)
-		, lastTime(0)
-	{}
-
-	~SkillEffectInfo(){}
+struct SkilCondition{	
+	SkillTriggerCondition type;
+	int value;	
 };
 
 
@@ -36,6 +22,8 @@ public:
 
 	void reset();
 	void useSkill(const Vec2& targetPos);
+
+	bool checkCondition();
 private:
 	const set<BaseSprite*>& getObjsByTarget();
 	void getObjsByScope(const Vec2& targetPos, const set<BaseSprite*>& inObjs, set<BaseSprite*>& outObjs);
@@ -51,7 +39,6 @@ public:
 	int Id;
 	string Name;
 	SkillTriggerType triggerType;
-	int TriggerValue;
 	SkillTargetType targetType;
 	SkillScopeType scopeType;
 	int shootRange;					// ©∑®æ‡¿Î
@@ -66,5 +53,6 @@ private:
 	AIMgr* m_ai;
 	//vector<SkillEffectInfo> effects;
 	vector<int> m_effectIds;
+	vector<SkilCondition> m_conditions;
 	INT64 m_CDMTimestamp;
 };

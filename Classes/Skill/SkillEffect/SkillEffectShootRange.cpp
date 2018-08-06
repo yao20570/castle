@@ -15,7 +15,7 @@ SkillEffectShootRange::~SkillEffectShootRange(){
 }
 
 void SkillEffectShootRange::trigger(){
-	this->m_obj->_shootRange = this->m_obj->_shootRange + this->m_value1;
+	this->m_obj->_shoot_range_diff = this->m_obj->_shoot_range_diff + this->m_value1;
 }
 
 void SkillEffectShootRange::end(){
@@ -24,5 +24,5 @@ void SkillEffectShootRange::end(){
 	}
 	this->m_isCanRemove = true;
 
-	this->m_obj->_shootRange = this->m_obj->_shootRange - this->m_value1;
+	this->m_obj->_shoot_range_diff = this->m_obj->_shoot_range_diff - this->m_value1;
 }

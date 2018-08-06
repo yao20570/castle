@@ -47,9 +47,10 @@ public:
 	virtual string getObjName();
 	
 	virtual int getHp();
-	virtual int getSpeed();
 	virtual int getDamage();
 	virtual int getDef();
+	virtual int getSpeed();
+	virtual int getShootRange();
 	virtual int getXiXue();
 	virtual int getHurtMore();
 
@@ -82,12 +83,13 @@ public:
 	int _radius;
 	int _dir;
 	int _shootType;
-    int _shootRange;	//攻击距离
 	int _healthPoint;	//当前生命值
 	int _dotX; 
 	int _dotY;
 	int _speed;			//速度
 	int _speed_diff;	//速度额外增减
+    int _shoot_range;	//攻击距离
+    int _shoot_range_diff;	//攻击距离
 	int _speed_per;		//速度百分比
 	int _damage;		//伤害
 	int _damage_diff;	//伤害额外增减

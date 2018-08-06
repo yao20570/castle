@@ -14,20 +14,34 @@ Skill::Skill(BaseSprite* obj, AIMgr* ai, const rapidjson::Value& skillCfg)
 	this->Id = skillCfg["ID"].GetInt();
 	this->Name = skillCfg["Name"].GetString();
 	this->triggerType = SkillTriggerType(skillCfg["Trigger"].GetInt());
-	this->TriggerValue = skillCfg["TriggerValue"].GetInt();
 	this->targetType = SkillTargetType(skillCfg["Target"].GetInt());
 	this->scopeType = SkillScopeType(skillCfg["ScopeType"].GetInt());
+	this->radius = skillCfg["Radius"].GetInt();
 	this->shootRange = skillCfg["ShootRange"].GetInt();
 	this->cd = skillCfg["CD"].GetInt();
-	this->radius = skillCfg["Radius"].GetInt();
 
-	
-
-	const rapidjson::Value &pArray = skillCfg["Detail"]; 
-	for (rapidjson::SizeType i = 0; i < pArray.Size(); i++)  {
-		const rapidjson::Value& effectId = pArray[i]; 
-		this->m_effectIds.push_back(effectId.GetInt());
+	//效果
+	{
+		const rapidjson::Value &pArray = skillCfg["Detail"];
+		for (rapidjson::SizeType i = 0; i < pArray.Size(); i++)  {
+			const rapidjson::Value& effectId = pArray[i];
+			this->m_effectIds.push_back(effectId.GetInt());
+		}
 	}
+
+
+	//触发条件
+	{
+		const rapidjson::Value &pArray = skillCfg["Condition"];
+		for (rapidjson::SizeType i = 0; i < pArray.Size(); i++)  {
+			const rapidjson::Value& conditionCfg = pArray[i];
+			this->m_conditions.emplace_back();
+			SkilCondition& condition = this->m_conditions.back();
+			condition.type = (SkillTriggerCondition)conditionCfg["Type"].GetInt();
+			condition.value = conditionCfg["Value"].GetInt();
+		}
+	}
+
 }
 
 Skill::~Skill(){
@@ -46,29 +60,48 @@ void Skill::reset(){
 	this->m_useMSec = time;
 }
 
+bool Skill::checkCondition(){
+	for (SkilCondition& condition : this->m_conditions){
+		switch (condition.type)
+		{
+			case SkillTriggerCondition::HpLeft:{
+				int per = (float)this->m_obj->getHp() / (float)this->m_obj->_totalHP * 100;
+				if (per > condition.value){
+					return false;
+				}
+				break;
+			}
+			case SkillTriggerCondition::Random:{
+				if (rand() % 100 < condition.value){
+					return false;
+				}
+				break;
+			}
+		}
+	}
+	return true;
+}
+
 void Skill::useSkill(const Vec2& targetPos){
 
 	//特殊条件判断
-	switch (this->triggerType){
-		case SkillTriggerType::Life:
-			if (m_obj->_healthPoint / m_obj->_totalHP * 100 > TriggerValue){
-				return;
-			}
-			break;
+	if (this->checkCondition() == false){
+		return;
 	}
 
 	//技能效果开始,结束时间
 	INT64 curMTimeStamp = GM()->getMTimeStamp();
 	if (curMTimeStamp < this->m_CDMTimestamp){
 		return;
-	}else{
+	}
+	else{
 		this->m_CDMTimestamp = curMTimeStamp + this->cd;
 	}
 
 	//通过目标类型筛选
 	const set<BaseSprite*>& targets = this->getObjsByTarget();
 
-	
+
 	//通过范围筛选
 	set<BaseSprite*> retTarget;
 	this->getObjsByScope(targetPos, targets, retTarget);
@@ -118,9 +151,9 @@ void Skill::getObjsByScope(const Vec2& targetPos, const set<BaseSprite*>& inObjs
 	}
 }
 
-void Skill::getObjBySingle(const Vec2& targetPos, const set<BaseSprite*>& inObjs, set<BaseSprite*>& outObjs){	
+void Skill::getObjBySingle(const Vec2& targetPos, const set<BaseSprite*>& inObjs, set<BaseSprite*>& outObjs){
 	for (auto it : inObjs){
-		if (it->getPosition().distance(targetPos) < 1 ){
+		if (it->getPosition().distance(targetPos) < 1){
 			outObjs.insert(it);
 			return;
 		}
@@ -130,7 +163,7 @@ void Skill::getObjBySingle(const Vec2& targetPos, const set<BaseSprite*>& inObjs
 void Skill::getObjByALL(const Vec2& targetPos, const set<BaseSprite*>& inObjs, set<BaseSprite*>& outObjs){
 	for (auto it : inObjs){
 		outObjs.insert(it);
-	}	
+	}
 }
 
 void Skill::getObjByRound(const Vec2& targetPos, const set<BaseSprite*>& inObjs, set<BaseSprite*>& outObjs){
@@ -145,7 +178,7 @@ void Skill::getObjByRound(const Vec2& targetPos, const set<BaseSprite*>& inObjs,
 		if (distance < this->radius){
 			outObjs.insert(it);
 		}
-	}	
+	}
 }
 
 void Skill::getObjByRect(const Vec2& targetPos, const set<BaseSprite*>& inObjs, set<BaseSprite*>& outObjs){
@@ -154,18 +187,18 @@ void Skill::getObjByRect(const Vec2& targetPos, const set<BaseSprite*>& inObjs, 
 		//超出了施法范围
 		return;
 	}
-	
+
 	//技能零角度范围
 	Rect rect(0, -this->radius, this->shootRange, this->radius * 2);
 
 	//技能释放角度
 	Vec2 temp1 = targetPos - this->m_obj->getPosition();
-	float angle = temp1.getAngle(); 
-		
+	float angle = temp1.getAngle();
+
 	//对象是否在范围内
 	for (auto it : inObjs){
 		Vec2 temp2 = it->getPosition() - this->m_obj->getPosition();
-		temp2.rotate(Vec2(0,0), -angle);
+		temp2.rotate(Vec2(0, 0), -angle);
 		if (rect.containsPoint(temp2)){
 			outObjs.insert(it);
 		}
@@ -181,7 +214,7 @@ void Skill::getObjByFan(const Vec2& targetPos, const set<BaseSprite*>& inObjs, s
 
 	//技能释放角度
 	Vec2 temp1 = targetPos - this->m_obj->getPosition();
-	float angle1 = temp1.getAngle(); 
+	float angle1 = temp1.getAngle();
 
 	//对象是否在范围内
 	for (auto it : inObjs){

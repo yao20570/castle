@@ -1,18 +1,21 @@
 #include "SkillEffectFactory.h"
 
 #include "Model/BaseSprite.h"
-#include "Skill/SkillEffect/SkillEffectDamage.h"
-#include "Skill/SkillEffect/SkillEffectDamagePer.h"
-#include "Skill/SkillEffect/SkillEffectDef.h"
-#include "Skill/SkillEffect/SkillEffectDefPer.h"
-#include "Skill/SkillEffect/SkillEffectFanJian.h"
 #include "Skill/SkillEffect/SkillEffectHp.h"
 #include "Skill/SkillEffect/SkillEffectHpMaxPer.h"
-#include "Skill/SkillEffect/SkillEffectHurtMore.h"
+#include "Skill/SkillEffect/SkillEffectDamage.h"
+#include "Skill/SkillEffect/SkillEffectDamagePer.h"
 #include "Skill/SkillEffect/SkillEffectSpeed.h"
 #include "Skill/SkillEffect/SkillEffectSpeedPer.h"
+#include "Skill/SkillEffect/SkillEffectDef.h"
+#include "Skill/SkillEffect/SkillEffectDefPer.h"
 #include "Skill/SkillEffect/SkillEffectXiXue.h"
+#include "Skill/SkillEffect/SkillEffectCrit.h"
+#include "Skill/SkillEffect/SkillEffectCritRate.h"
+#include "Skill/SkillEffect/SkillEffectShootRange.h"
 #include "Skill/SkillEffect/SkillEffectYun.h"
+#include "Skill/SkillEffect/SkillEffectHurtMore.h"
+#include "Skill/SkillEffect/SkillEffectFanJian.h"
 
 
 SkillEffectFactory* SkillEffectFactory::_g = nullptr;
@@ -48,22 +51,28 @@ SkillEffect* SkillEffectFactory::newSkillEffect(BaseSprite* obj, int effectId, B
 	{
 		case SkillEffectType::HP:
 			return new SkillEffectHp(obj, effectId, caster);
-		case SkillEffectType::HPPer:
+		case SkillEffectType::HpMaxPer:
 			return new SkillEffectHpMaxPer(obj, effectId, caster);
-		case SkillEffectType::Damage:
-			return new SkillEffectDamage(obj, effectId, caster);
-		case SkillEffectType::DamagePer:
-			return new SkillEffectDamagePer(obj, effectId, caster);
 		case SkillEffectType::Speed:
 			return new SkillEffectSpeed(obj, effectId, caster);
 		case SkillEffectType::SpeedPer:
 			return new SkillEffectSpeedPer(obj, effectId, caster);
+		case SkillEffectType::Damage:
+			return new SkillEffectDamage(obj, effectId, caster);
+		case SkillEffectType::DamagePer:
+			return new SkillEffectDamagePer(obj, effectId, caster);
 		case SkillEffectType::Def:
 			return new SkillEffectDef(obj, effectId, caster);
 		case SkillEffectType::DefPer:
 			return new SkillEffectDefPer(obj, effectId, caster);
 		case SkillEffectType::XiXue:
 			return new SkillEffectXiXue(obj, effectId, caster);
+		case SkillEffectType::Crit:
+			return new SkillEffectCrit(obj, effectId, caster);
+		case SkillEffectType::CritRate:
+			return new SkillEffectCritRate(obj, effectId, caster);
+		case SkillEffectType::ShootRange:
+			return new SkillEffectShootRange(obj, effectId, caster);
 		case SkillEffectType::Yun:
 			return new SkillEffectYun(obj, effectId, caster);
 		case SkillEffectType::FanJian:

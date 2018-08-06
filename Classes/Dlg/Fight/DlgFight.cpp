@@ -154,7 +154,7 @@ void DlgFight::update(float dt) {
 				_ai->start();
 				_state = 3;
 
-				this->triggerSkill(SkillTriggerType::RoundStart, Vec2(0,0));
+				this->triggerSkill(SkillTriggerType::RoundStart);
 			}
 			else {
 				ReadyCD2 -= dt;
@@ -306,8 +306,15 @@ void DlgFight::load()
 	this->txt_damage	= (Text*)Helper::seekWidgetByName(lay_root, "txt_damage");
 	this->txt_def		= (Text*)Helper::seekWidgetByName(lay_root, "txt_def");
 	this->txt_speed		= (Text*)Helper::seekWidgetByName(lay_root, "txt_speed");
+	this->txt_shoot_range		= (Text*)Helper::seekWidgetByName(lay_root, "txt_shoot_range");
 	this->txt_xixue		= (Text*)Helper::seekWidgetByName(lay_root, "txt_xixue");
 	this->txt_hurt_more = (Text*)Helper::seekWidgetByName(lay_root, "txt_hurt_more");
+
+	this->txt_hp_diff		= (Text*)Helper::seekWidgetByName(lay_root, "txt_hp_diff");
+	this->txt_damage_diff	= (Text*)Helper::seekWidgetByName(lay_root, "txt_damage_diff");
+	this->txt_def_diff		= (Text*)Helper::seekWidgetByName(lay_root, "txt_def_diff");
+	this->txt_speed_diff	= (Text*)Helper::seekWidgetByName(lay_root, "txt_speed_diff");
+	this->txt_shoot_range_diff	= (Text*)Helper::seekWidgetByName(lay_root, "txt_shoot_range_diff");
 	
 }
 
@@ -502,6 +509,18 @@ void DlgFight::addPlayer(Vec2 pos, int camp)
 	_ai->setObjPos(player, pos);
 }
 
+void DlgFight::setAttrText(Text* txt, int diffNum){
+	txt->setVisible(diffNum != 0);
+	if (diffNum > 0){
+		txt->setString("+" + cocos2d::Value(diffNum).asString() );
+		setTextColor(txt, 2);
+	}
+	else{
+		txt->setString(cocos2d::Value(diffNum).asString() );
+		setTextColor(txt, 6);
+	}
+}
+
 void DlgFight::updateObjAttrLayer(){	
 	if (_state != 3){
 		this->lay_attr->setVisible(false);	
@@ -513,23 +532,34 @@ void DlgFight::updateObjAttrLayer(){
 		this->lay_attr->setVisible(true);	
 		this->txt_name->setString(obj->getObjName());
 		this->txt_hp->setString(cocos2d::Value(obj->getHp()).asString());
-		this->txt_damage->setString(cocos2d::Value(obj->getDamage()).asString());
-		this->txt_def->setString(cocos2d::Value(obj->getDef()).asString());	
-		this->txt_speed->setString(cocos2d::Value(obj->getSpeed()).asString());	
+		this->txt_damage->setString(cocos2d::Value(obj->_damage).asString());
+		this->txt_def->setString(cocos2d::Value(obj->_def).asString());	
+		this->txt_speed->setString(cocos2d::Value(obj->_speed).asString());	
+		this->txt_shoot_range->setString(cocos2d::Value(obj->_shoot_range).asString());	
 		this->txt_xixue->setString(cocos2d::Value(obj->getXiXue()).asString() + "%");	
 		this->txt_hurt_more->setString(cocos2d::Value(obj->getHurtMore()).asString() + "%");
+				
+		this->setAttrText(this->txt_damage_diff	,		obj->getDamage()- obj->_damage);
+		this->setAttrText(this->txt_def_diff,			obj->getDef()	- obj->_def);
+		this->setAttrText(this->txt_speed_diff,			obj->getSpeed() - obj->_speed);
+		this->setAttrText(this->txt_shoot_range_diff,	obj->getShootRange() - obj->_shoot_range);
+
+		this->txt_damage_diff->setPositionX(this->txt_damage->getPositionX() + this->txt_damage->getContentSize().width + 25);
+		this->txt_def_diff->setPositionX(this->txt_def->getPositionX() + this->txt_def->getContentSize().width + 25);
+		this->txt_speed_diff->setPositionX(this->txt_speed->getPositionX() + this->txt_speed->getContentSize().width + 25);	
+		this->txt_shoot_range_diff->setPositionX(this->txt_shoot_range->getPositionX() + this->txt_shoot_range->getContentSize().width + 25);
 	}
 	else{
 		this->lay_attr->setVisible(false);
 	}
 }
 
-void DlgFight::triggerSkill(SkillTriggerType tt, const Vec2& targetPos){
+void DlgFight::triggerSkill(SkillTriggerType tt){
 	for (auto it : _ai->_objSelf){
-		it->triggerSkill(tt, targetPos);
+		it->triggerSkill(tt, it->getPosition());
 	}
 	for (auto it : _ai->_objEnemy){
-		it->triggerSkill(tt, targetPos);
+		it->triggerSkill(tt, it->getPosition());
 	}
 }
 

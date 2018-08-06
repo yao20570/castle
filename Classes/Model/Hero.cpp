@@ -52,6 +52,7 @@ bool Hero::init(int ID, AIMgr* ai, int camp)
 	_target = nullptr;
 	_isSelect = true;
 	_state = STATE_IDLE;
+	this->_mgr_skill = new SkillMgr(this, _ai);
 
 
 	loadData();
@@ -80,7 +81,7 @@ void Hero::loadData()
 	_damage = data["Damage"].asInt();
 	_def = data["Def"].asInt();
 	_attackSpeed = data["AttackSpeed"].asInt();
-	_shootRange = data["ShootRange"].asInt();
+	_shoot_range = data["ShootRange"].asInt();
 
 	
 	//this->_mgr_skill->addSkill(6);
@@ -385,31 +386,7 @@ void Hero::onTouchMoved(Touch* pTouch, Event* pEvent)
 
 void Hero::onTouchEnded(Touch* pTouch, Event* pEvent)
 {
-	//  if (_delta <= LIMIT_DELTA) {
-		  //BattleMapLayer* layer = (BattleMapLayer*)this->getParent();
-	//      
-	//      auto p = layer->convertToNodeSpace(pTouch->getLocation());
-	//      Vec2 pos = GM()->getTiledPos(p);
-	//      
-	//      // 移动
-	//      _target = _ai->getTarget(pos);
-	//      
-	//      if (_target == nullptr) {
-	//          _state = STATE_RUN;
-	//          _targetPos = pos;
-	//      }
-	//      
-	//      // 锁定目标
-	//      else {
-	//          _dir = GM()->getDir(_pos, pos);
-	//          if (_target->isDeath() == true) {
-	//              _state = STATE_IDLE;
-	//          }
-	//          else {
-	//              _state = STATE_ATK;
-	//          }
-	//      }
-	//  }
+	this->_mgr_skill->triggerSkill(SkillTriggerType::Hand, this->getPosition());
 }
 
 
@@ -477,7 +454,7 @@ void Hero::onTouchEnded(Touch* pTouch, Event* pEvent)
 //			if (_target == nullptr) {
 //				setState(STATE_IDLE, _dir);
 //			}
-//			else if (_target->_isbroken == false && _ai->isWithinShootRange(getPosition(), _target->getPosition(), _shootRange)) {
+//			else if (_target->_isbroken == false && _ai->isWithinShootRange(getPosition(), _target->getPosition(), _shoot_range)) {
 //
 //				int tempDir = GM()->getDir(getPosition(), _target->getPosition());
 //				setState(STATE_ATK, tempDir);
@@ -508,7 +485,7 @@ void Hero::onTouchEnded(Touch* pTouch, Event* pEvent)
 //			else {
 //				int tempDir = GM()->getDir(getPosition(), _target->getPosition());
 //				// 攻击
-//				if (_ai->isWithinShootRange(getPosition(), _target->getPosition(), _shootRange)) {
+//				if (_ai->isWithinShootRange(getPosition(), _target->getPosition(), _shoot_range)) {
 //					setState(STATE_ATK, tempDir);
 //				}
 //				// 走路
