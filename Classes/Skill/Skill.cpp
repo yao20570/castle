@@ -72,7 +72,9 @@ bool Skill::checkCondition(){
 				break;
 			}
 			case SkillTriggerCondition::Random:{
-				if (rand() % 100 < condition.value){
+				int n = rand() % 100;
+				CCLOG("===========>rand() : %d", n);
+				if (n > condition.value){
 					return false;
 				}
 				break;

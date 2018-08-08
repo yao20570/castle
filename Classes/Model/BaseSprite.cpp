@@ -259,6 +259,8 @@ string BaseSprite::getObjName(){
 
 void BaseSprite::showSkillRange(){
 	DrawNode* dn = DrawNode::create();
+	this->addChild(dn);
+	dn->drawCircle(this->getPosition(),100,100,100,true,Color4F(1,1,1,1));
 }
 
 int BaseSprite::getHp(){

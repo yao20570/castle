@@ -39,6 +39,7 @@ public:
 	virtual void setState(int state, int dir);
 	virtual void showName(bool b);
 	virtual void setObjName(string name);
+	void showSkillRange();
 
 	virtual void addSkillEffect(int skillEffectId, BaseSprite* caster);
 	virtual void delSkillEffect(int skillEffectId);
