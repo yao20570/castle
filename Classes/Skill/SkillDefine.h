@@ -40,8 +40,8 @@ const enum class SkillTriggerType:int
 //触发条件
 const enum class SkillTriggerCondition:int
 {
-	HpLeft = 0,		//当生命减到某个百分比触发
-	Random = 1,		//几率触发
+	HpLeft = 1,		//当生命减到某个百分比触发
+	Random = 2,		//几率触发
 };
 
 
@@ -58,6 +58,14 @@ const enum class SkillScopeType:int
 	SINGLE = 1,		//单个
 	ALL = 2,		//全部
 	ROUND = 3,		//圆形
-	RECT_SCOPE = 4,		//矩形
+	RECT_SCOPE = 4,	//矩形
 	FAN = 5,		//扇形
+};
+
+//特效添加在哪个地方
+const enum class SkillAnimLayerType:int
+{
+	Floor = 1,		//地板
+	Body = 2,		//角色身上
+	Sky = 3,		//天空
 };

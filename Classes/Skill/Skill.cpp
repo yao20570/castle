@@ -42,6 +42,18 @@ Skill::Skill(BaseSprite* obj, AIMgr* ai, const rapidjson::Value& skillCfg)
 		}
 	}
 
+	//¶¯»­
+	{
+		const rapidjson::Value &pArray = skillCfg["Amin"];
+		for (rapidjson::SizeType i = 0; i < pArray.Size(); i++)  {
+			const rapidjson::Value& animCfg = pArray[i];
+			this->m_anims.emplace_back();
+			SkilAnim& anim = this->m_anims.back();
+			anim.type = (SkillAnimLayerType)animCfg["Type"].GetInt();
+			anim.fileName = animCfg["FileName"].GetInt();
+			anim.isFly = animCfg["IsFly"].GetBool();
+		}
+	}
 }
 
 Skill::~Skill(){

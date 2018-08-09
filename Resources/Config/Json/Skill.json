@@ -9,7 +9,12 @@
 		"Radius": "效果范围半径（圆形:半径，直线型:y轴，扇形:角度一半）",
 		"ShootRange": "施法距离",
 		"CD": "技能CD,毫秒",
-		"Detail": "[10110001, 10110002], 数组,使用SkillEffect配置的技能效果"
+		"Detail": "[10110001, 10110002], 数组,使用SkillEffect配置的技能效果",
+		"Amin": [{
+			"LayerType":"0:无动画，1:地板，2:角色身上，3:天空",
+			"FileName":"动画资源",
+			"IsFly":false
+		}]
 	},
 	"List": {
 		"1": {
@@ -22,7 +27,8 @@
 			"Radius": 300,
 			"ShootRange": 0,
 			"CD": 0,
-			"Detail": [10111001, 10220001]
+			"Detail": [10111001, 10220001],
+			"Amin": []
 		},
 		"2": {
 			"ID": 2,
@@ -34,7 +40,8 @@
 			"Radius": 200,
 			"ShootRange": 1,
 			"CD": 0,
-			"Detail": [10510001]
+			"Detail": [10510001],
+			"Amin": []
 		},
 		"3": {
 			"ID": 3,
@@ -46,7 +53,8 @@
 			"Radius": 200,
 			"ShootRange": 1,
 			"CD": 3000,
-			"Detail": [10320001, 10410001]
+			"Detail": [10320001, 10410001],
+			"Amin": []
 		},
 		"4": {
 			"ID": 4,
@@ -58,7 +66,8 @@
 			"Radius": 300,
 			"ShootRange": 250,
 			"CD": 0,
-			"Detail": [10111004]
+			"Detail": [10111004],
+			"Amin": []
 		},
 		"5": {
 			"ID": 5,
@@ -70,7 +79,8 @@
 			"Radius": 300,
 			"ShootRange": 250,
 			"CD": 5000,
-			"Detail": [20010001]
+			"Detail": [20010001],
+			"Amin": []
 		},
 		"6": {
 			"ID": 6,
@@ -82,7 +92,8 @@
 			"Radius": 1,
 			"ShootRange": 250,
 			"CD": 8000,
-			"Detail": [20030001]
+			"Detail": [20030001],
+			"Amin": []
 		},
 		"7": {
 			"ID": 7,
@@ -94,7 +105,8 @@
 			"Radius": 1,
 			"ShootRange": 1,
 			"CD": 0,
-			"Detail": [10320003]
+			"Detail": [10320003],
+			"Amin": []
 		},
 		"8": {
 			"ID": 8,
@@ -106,24 +118,26 @@
 			"Radius": 1,
 			"ShootRange": 0,
 			"CD": 0,
-			"Detail": [20020002]
+			"Detail": [20020002],
+			"Amin": []
 		},
 		"9": {
 			"ID": 9,
 			"Name": "乱舞",
-			"Trigger": 3,
+			"Trigger": 0,
 			"Condition": [
 				{
-					"Type":1,
-					"Value":20
+					"Type":2,
+					"Value":100
 				}
 			],
 			"Target": 1,
 			"ScopeType": 3,
-			"Radius": 200,
-			"ShootRange": 1,
+			"Radius": 100,
+			"ShootRange": 200,
 			"CD": 0,
-			"Detail": [10111002]
+			"Detail": [10111002],
+			"Amin": []
 		},
 		"10": {
 			"ID": 10,
@@ -135,7 +149,8 @@
 			"Radius": 0,
 			"ShootRange": 1,
 			"CD": 0,
-			"Detail": [10610001, 10620001]
+			"Detail": [10610001, 10620001],
+			"Amin": []
 		},
 		"11": {
 			"ID": 11,
@@ -147,7 +162,8 @@
 			"Radius": 0,
 			"ShootRange": 0,
 			"CD": 0,
-			"Detail": [10220002]
+			"Detail": [10220002],
+			"Amin": []
 		},
 		"12": {
 			"ID": 12,
@@ -159,7 +175,8 @@
 			"Radius": 20,
 			"ShootRange": 1,
 			"CD": 0,
-			"Detail": [10111003]
+			"Detail": [10111003],
+			"Amin": []
 		},
 		"13": {
 			"ID": 13,
@@ -171,7 +188,8 @@
 			"Radius": 0,
 			"ShootRange": 0,
 			"CD": 0,
-			"Detail": [10410002]
+			"Detail": [10410002],
+			"Amin": []
 		},
 		"14": {
 			"ID": 14,
@@ -183,7 +201,8 @@
 			"Radius": 0,
 			"ShootRange": 0,
 			"CD": 0,
-			"Detail": [10410003]
+			"Detail": [10410003],
+			"Amin": []
 		},
 		"15": {
 			"ID": 15,
@@ -195,7 +214,8 @@
 			"Radius": 0,
 			"ShootRange": 0,
 			"CD": 0,
-			"Detail": [10310001,10710001]
+			"Detail": [10310001,10710001],
+			"Amin": []
 		},
 		"16": {
 			"ID": 16,
@@ -212,7 +232,8 @@
 			"Radius": 0,
 			"ShootRange": 0,
 			"CD": 10,
-			"Detail": [10112002]
+			"Detail": [10112002],
+			"Amin": []
 		}
 	}
 }

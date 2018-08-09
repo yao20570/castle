@@ -49,6 +49,9 @@
     <Filter Include="src\Utils\Msg">
       <UniqueIdentifier>{a8dbf617-65bd-471a-acc2-8800d4883da9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Dlg\Fight\FightComponent">
+      <UniqueIdentifier>{6dc44077-d31f-4976-8b04-fbbe9e211e7d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -215,6 +218,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\Utils\Msg\MsgDef.cpp">
       <Filter>src\Utils\Msg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Dlg\Fight\FightComponent\PnlFloor.cpp">
+      <Filter>src\Dlg\Fight\FightComponent</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -418,6 +424,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Utils\Msg\MsgDef.h">
       <Filter>src\Utils\Msg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Dlg\Fight\FightComponent\PnlFloor.h">
+      <Filter>src\Dlg\Fight\FightComponent</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

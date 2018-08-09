@@ -4,7 +4,20 @@
 #include "../../Core/DlgBase.h"
 #include "../../Core/DlgDefine.h"
 
+
+const enum class MapState :int{
+	Wait = 0,		//等待阶段
+	Setting = 1,	//部署阶段
+	Ready = 2,		//准备
+	Fight = 3,		//战斗
+	RoundEnd = 4,	//回合结束（但远程攻击还没到达，导致主公的血计算不正确）
+	Settlement = 5,	//统计
+	Reset = 6,		//重置阶段
+	FightEnd = 7,	//战斗结束
+};
+
 class AIMgr;
+class Skill;
 
 class DlgFight : public DlgBase
 {
@@ -30,16 +43,23 @@ public:
 	void addSoilder(Vec2 pos, int camp, ValueMap*objInfo);
 	void addPlayer(Vec2 pos, int camp);
 
+	BaseSprite* selectObj(const Vec2& pos);
+	void setObjPos(const Vec2& pos);
+	void saveObjPos();
+
 	void setAttrText(Text* txt, int diffNum);
 	void updateObjAttrLayer();
 	
 	void triggerSkill(SkillTriggerType tt);
 
+	void showSkillRange(bool isShow, BaseSprite* obj);
 private:
-	//void onLord(Ref* sender, Widget::TouchEventType type);
-	//void onSearch(Ref* sender, Widget::TouchEventType type);
-	//void onFight(Ref* sender, Widget::TouchEventType type);
-	//void onSetting(Ref* sender, Widget::TouchEventType type);
+	void onMapTouch(Ref* sender, Widget::TouchEventType type);
+	void onMapTouchBegan(Ref* sender, Widget::TouchEventType type);
+	void onMapTouchMove(Ref* sender, Widget::TouchEventType type);
+	void onMapTouchEnd(Ref* sender, Widget::TouchEventType type);
+
+	
 	void onNextRound(Ref* sender, Widget::TouchEventType type);
 	void onStart(Ref* sender, Widget::TouchEventType type);
 	void onClose(Ref* sender, Widget::TouchEventType type);
@@ -49,10 +69,12 @@ public:
 	AIMgr* _ai;
 	int _round;
 
-	int _state;//0:等待，1:准备，2：战斗，3:等待结束，4，5，6
-
-	Layout* _map;
-	BaseSprite* _select_obj;
+	MapState _state;//0:等待，1:准备，2：战斗，3:等待结束，4，5，6
+	
+	Layout* _lay_floor;
+	Layout* _lay_fight;
+	//BaseSprite* _select_obj;
+	Vec2	_obj_pos_before_move;
 
 	
 	Layout*		lay_wait;
@@ -82,6 +104,9 @@ public:
 	Text*		txt_def_diff;		
 	Text*		txt_speed_diff;
 	Text*		txt_shoot_range_diff;	
+
+	DrawNode*	_skill_shoot_range;
+	DrawNode*	_skill_radius;
 
 	ValueVector _setting_data;
 };

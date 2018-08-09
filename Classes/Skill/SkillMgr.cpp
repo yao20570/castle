@@ -63,3 +63,20 @@ bool SkillMgr::setSkillUseTime(Skill* skill){
 	}
 	return false;
 }
+
+vector<Skill*>* SkillMgr::getSkills(SkillTriggerType triggerType){
+	auto& it = m_skills.find(triggerType);
+	if (it != m_skills.end()){
+		return &(it->second);
+	}
+	return nullptr;
+}
+
+Skill* SkillMgr::getHandSkill(){
+	vector<Skill*>* skills = this->getSkills(SkillTriggerType::Hand);
+	if (skills == nullptr || skills->empty()){
+		return nullptr;
+	}
+
+	return (*skills)[0];
+}

@@ -29,6 +29,9 @@ public:
 
 	void update(float dt);
 
+	Skill* getHandSkill();
+
+	vector<Skill*>* getSkills(SkillTriggerType triggerType);
 public:
 	BaseSprite* m_obj;
 	AIMgr* m_ai;

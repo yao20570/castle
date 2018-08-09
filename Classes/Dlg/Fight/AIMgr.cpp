@@ -236,7 +236,6 @@ void AIMgr::setSelectObj(BaseSprite* obj) {
 	}
 
 	_select_obj = obj;
-	_select_obj->setSelect(true);
 }
 
 void AIMgr::start() {

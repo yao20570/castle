@@ -355,12 +355,12 @@ bool Hero::isDeath()
 
 void Hero::addTouch()
 {
-	auto dispatcher = this->getEventDispatcher();
-	auto listener = EventListenerTouchOneByOne::create();
-	listener->onTouchBegan = CC_CALLBACK_2(Hero::onTouchBegan, this);
-	listener->onTouchMoved = CC_CALLBACK_2(Hero::onTouchMoved, this);
-	listener->onTouchEnded = CC_CALLBACK_2(Hero::onTouchEnded, this);
-	dispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+	//auto dispatcher = this->getEventDispatcher();
+	//auto listener = EventListenerTouchOneByOne::create();
+	//listener->onTouchBegan = CC_CALLBACK_2(Hero::onTouchBegan, this);
+	//listener->onTouchMoved = CC_CALLBACK_2(Hero::onTouchMoved, this);
+	//listener->onTouchEnded = CC_CALLBACK_2(Hero::onTouchEnded, this);
+	//dispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 
 }
 

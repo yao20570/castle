@@ -11,6 +11,12 @@ struct SkilCondition{
 	int value;	
 };
 
+struct SkilAnim{
+	SkillAnimLayerType type;
+	string fileName;
+	bool isFly;
+};
+
 
 class Skill
 {
@@ -54,5 +60,6 @@ private:
 	//vector<SkillEffectInfo> effects;
 	vector<int> m_effectIds;
 	vector<SkilCondition> m_conditions;
+	vector<SkilAnim> m_anims;
 	INT64 m_CDMTimestamp;
 };
