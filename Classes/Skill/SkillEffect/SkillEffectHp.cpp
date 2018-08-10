@@ -21,7 +21,10 @@ void SkillEffectHp::trigger(){
 			this->m_obj->hurt(2,  -m_value2, nullptr);
 			break;
 		case 2: //施法者攻击力的伤害
-			this->m_obj->hurt(2,  -(m_caster->getDamage() * m_value2 / 100), nullptr);
+			this->m_obj->hurt(2,  -((float)m_caster->getDamage() * m_value2 / 100), nullptr);
+			break;
+		case 3: //生命百分比			
+			this->m_obj->hurt(2,  -((float)this->m_obj->_totalHP * m_value2 / 100), nullptr);
 			break;
 	}
 }

@@ -1,19 +1,19 @@
 <?xml version="1.0"?>
 <AnimationProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <ProjectDir>D:\用户目录\我的文档\Tencent Files\121442994\FileRecv\技能效果\技能效果\曹操技能\NewAnimation_fanghuzhao</ProjectDir>
+  <ProjectDir>F:\mytest\castle\ResProject\SkillProject\曹操技能\NewAnimation_fanghuzhao</ProjectDir>
   <Version>1.6.0.0</Version>
-  <Resources>D:\用户目录\我的文档\Tencent Files\121442994\FileRecv\技能效果\技能效果\曹操技能\NewAnimation_fanghuzhao\Resources</Resources>
+  <Resources>F:\mytest\castle\ResProject\SkillProject\曹操技能\NewAnimation_fanghuzhao\Resources</Resources>
   <Name>NewAnimation_fanghuzhao</Name>
   <JsonFileName>NewAnimation_fanghuzhao.json</JsonFileName>
-  <JsonFolder>D:\用户目录\我的文档\Tencent Files\121442994\FileRecv\技能效果\技能效果\曹操技能\NewAnimation_fanghuzhao\Json</JsonFolder>
+  <JsonFolder>F:\mytest\castle\ResProject\SkillProject\曹操技能\NewAnimation_fanghuzhao\Json</JsonFolder>
   <JsonList />
   <CanvasSize>
     <Width>0</Width>
     <Height>0</Height>
   </CanvasSize>
-  <filePath>D:\用户目录\我的文档\TENCEN~1\121442~1\FileRecv\技能效果\技能效果\曹操技能\NEWANI~1\NEWANI~1.ANI</filePath>
+  <filePath>F:\mytest\castle\ResProject\SkillProject\曹操技能\NewAnimation_fanghuzhao\NewAnimation_fanghuzhao.xml.animation</filePath>
   <ProjectType>AnimationProject</ProjectType>
   <ResRelativePath />
   <ResourceFileList />
-  <bBatchImage>false</bBatchImage>
+  <bBatchImage>true</bBatchImage>
 </AnimationProject>

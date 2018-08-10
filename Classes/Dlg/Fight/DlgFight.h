@@ -18,6 +18,7 @@ const enum class MapState :int{
 
 class AIMgr;
 class Skill;
+class SkillEffectAnim;
 
 class DlgFight : public DlgBase
 {
@@ -53,6 +54,9 @@ public:
 	void triggerSkill(SkillTriggerType tt);
 
 	void showSkillRange(bool isShow, BaseSprite* obj);
+
+	void addSkillAnim(void* data);
+	void delSkillAnim(void* data);
 private:
 	void onMapTouch(Ref* sender, Widget::TouchEventType type);
 	void onMapTouchBegan(Ref* sender, Widget::TouchEventType type);
@@ -73,6 +77,7 @@ public:
 	
 	Layout* _lay_floor;
 	Layout* _lay_fight;
+	Layout* _lay_sky;
 	//BaseSprite* _select_obj;
 	Vec2	_obj_pos_before_move;
 
@@ -109,5 +114,7 @@ public:
 	DrawNode*	_skill_radius;
 
 	ValueVector _setting_data;
+
+	map<int, SkillEffectAnim*> _floor_aminas;
 };
 

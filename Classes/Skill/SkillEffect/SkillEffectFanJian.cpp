@@ -27,7 +27,7 @@ void SkillEffectFanJian::trigger(){
 
 	
 	this->m_obj->_ai->addObj(this->m_obj, this->m_obj->_camp);
-	this->m_obj->_target == nullptr;
+	this->m_obj->_target = nullptr;
 	this->m_obj->setState(STATE_RUN, this->m_obj->getDir());
 }
 

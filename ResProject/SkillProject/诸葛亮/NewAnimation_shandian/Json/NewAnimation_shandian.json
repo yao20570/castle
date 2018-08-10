@@ -7,11 +7,11 @@
       "name": "NewAnimation_shandian",
       "bone_data": [
         {
-          "name": "Layer54",
+          "name": "Layer9",
           "parent": "",
-          "dI": 0,
-          "x": -4.5,
-          "y": 9.673309326171875,
+          "dI": -1000,
+          "x": -1.0,
+          "y": 218.67333984375,
           "z": 9,
           "cX": 1.0,
           "cY": 1.0,
@@ -23,7 +23,7 @@
           "bl": 0,
           "display_data": [
             {
-              "name": "8.png",
+              "name": "luolei_8.png",
               "displayType": 0,
               "skin_data": [
                 {
@@ -39,11 +39,11 @@
           ]
         },
         {
-          "name": "Layer53",
+          "name": "Layer8",
           "parent": "",
           "dI": -1000,
-          "x": -4.5,
-          "y": 9.673309326171875,
+          "x": -1.0,
+          "y": 218.67333984375,
           "z": 8,
           "cX": 1.0,
           "cY": 1.0,
@@ -55,7 +55,7 @@
           "bl": 0,
           "display_data": [
             {
-              "name": "7.png",
+              "name": "luolei_7.png",
               "displayType": 0,
               "skin_data": [
                 {
@@ -71,11 +71,11 @@
           ]
         },
         {
-          "name": "Layer52",
+          "name": "Layer7",
           "parent": "",
           "dI": -1000,
-          "x": -4.5,
-          "y": 9.673309326171875,
+          "x": -1.0,
+          "y": 218.67333984375,
           "z": 7,
           "cX": 1.0,
           "cY": 1.0,
@@ -87,7 +87,7 @@
           "bl": 0,
           "display_data": [
             {
-              "name": "6.png",
+              "name": "luolei_6.png",
               "displayType": 0,
               "skin_data": [
                 {
@@ -103,11 +103,11 @@
           ]
         },
         {
-          "name": "Layer51",
+          "name": "Layer6",
           "parent": "",
           "dI": -1000,
-          "x": -4.5,
-          "y": 9.673309326171875,
+          "x": -1.0,
+          "y": 218.67333984375,
           "z": 6,
           "cX": 1.0,
           "cY": 1.0,
@@ -119,7 +119,7 @@
           "bl": 0,
           "display_data": [
             {
-              "name": "5.png",
+              "name": "luolei_5.png",
               "displayType": 0,
               "skin_data": [
                 {
@@ -135,11 +135,11 @@
           ]
         },
         {
-          "name": "Layer50",
+          "name": "Layer5",
           "parent": "",
           "dI": -1000,
-          "x": -4.5,
-          "y": 9.673309326171875,
+          "x": -1.0,
+          "y": 218.67333984375,
           "z": 5,
           "cX": 1.0,
           "cY": 1.0,
@@ -151,7 +151,7 @@
           "bl": 0,
           "display_data": [
             {
-              "name": "4.png",
+              "name": "luolei_4.png",
               "displayType": 0,
               "skin_data": [
                 {
@@ -167,11 +167,11 @@
           ]
         },
         {
-          "name": "Layer49",
+          "name": "Layer4",
           "parent": "",
           "dI": -1000,
-          "x": -4.5,
-          "y": 9.673309326171875,
+          "x": -1.0,
+          "y": 218.67333984375,
           "z": 4,
           "cX": 1.0,
           "cY": 1.0,
@@ -183,7 +183,7 @@
           "bl": 0,
           "display_data": [
             {
-              "name": "3.png",
+              "name": "luolei_3.png",
               "displayType": 0,
               "skin_data": [
                 {
@@ -199,11 +199,11 @@
           ]
         },
         {
-          "name": "Layer48",
+          "name": "Layer3",
           "parent": "",
           "dI": -1000,
-          "x": -4.5,
-          "y": 9.673309326171875,
+          "x": -1.0,
+          "y": 218.67333984375,
           "z": 3,
           "cX": 1.0,
           "cY": 1.0,
@@ -215,7 +215,7 @@
           "bl": 0,
           "display_data": [
             {
-              "name": "2.png",
+              "name": "luolei_2.png",
               "displayType": 0,
               "skin_data": [
                 {
@@ -231,11 +231,11 @@
           ]
         },
         {
-          "name": "Layer47",
+          "name": "Layer2",
           "parent": "",
           "dI": -1000,
-          "x": -4.5,
-          "y": 9.673309326171875,
+          "x": -1.0,
+          "y": 218.67333984375,
           "z": 2,
           "cX": 1.0,
           "cY": 1.0,
@@ -247,7 +247,7 @@
           "bl": 0,
           "display_data": [
             {
-              "name": "1.png",
+              "name": "luolei_1.png",
               "displayType": 0,
               "skin_data": [
                 {
@@ -263,11 +263,11 @@
           ]
         },
         {
-          "name": "Layer46",
+          "name": "Layer1",
           "parent": "",
-          "dI": -1000,
-          "x": -4.5,
-          "y": 9.673309326171875,
+          "dI": 0,
+          "x": -1.0,
+          "y": 218.67333984375,
           "z": 1,
           "cX": 1.0,
           "cY": 1.0,
@@ -279,7 +279,7 @@
           "bl": 0,
           "display_data": [
             {
-              "name": "0.png",
+              "name": "luolei_0.png",
               "displayType": 0,
               "skin_data": [
                 {
@@ -303,7 +303,7 @@
       "mov_data": [
         {
           "name": "Animation1",
-          "dr": 91,
+          "dr": 46,
           "lp": true,
           "to": 0,
           "drTW": 0,
@@ -311,211 +311,7 @@
           "sc": 1.0,
           "mov_bone_data": [
             {
-              "name": "Layer54",
-              "dl": 0.0,
-              "frame_data": [
-                {
-                  "dI": -1000,
-                  "x": 0.0,
-                  "y": 0.0,
-                  "z": 0,
-                  "cX": 1.0,
-                  "cY": 1.0,
-                  "kX": 0.0,
-                  "kY": 0.0,
-                  "fi": 0,
-                  "twE": 0,
-                  "tweenFrame": true,
-                  "bd_src": 1,
-                  "bd_dst": 771
-                },
-                {
-                  "dI": 0,
-                  "x": 0.0,
-                  "y": 0.0,
-                  "z": 0,
-                  "cX": 1.0,
-                  "cY": 1.0,
-                  "kX": 0.0,
-                  "kY": 0.0,
-                  "fi": 80,
-                  "twE": 0,
-                  "tweenFrame": true,
-                  "bd_src": 1,
-                  "bd_dst": 771
-                },
-                {
-                  "dI": 0,
-                  "x": 0.0,
-                  "y": 0.0,
-                  "z": 0,
-                  "cX": 1.0,
-                  "cY": 1.0,
-                  "kX": 0.0,
-                  "kY": 0.0,
-                  "fi": 90,
-                  "twE": 0,
-                  "tweenFrame": true,
-                  "bd_src": 1,
-                  "bd_dst": 771
-                }
-              ]
-            },
-            {
-              "name": "Layer53",
-              "dl": 0.0,
-              "frame_data": [
-                {
-                  "dI": -1000,
-                  "x": 0.0,
-                  "y": 0.0,
-                  "z": 0,
-                  "cX": 1.0,
-                  "cY": 1.0,
-                  "kX": 0.0,
-                  "kY": 0.0,
-                  "fi": 0,
-                  "twE": 0,
-                  "tweenFrame": true,
-                  "bd_src": 1,
-                  "bd_dst": 771
-                },
-                {
-                  "dI": 0,
-                  "x": 0.0,
-                  "y": 0.0,
-                  "z": 0,
-                  "cX": 1.0,
-                  "cY": 1.0,
-                  "kX": 0.0,
-                  "kY": 0.0,
-                  "fi": 70,
-                  "twE": 0,
-                  "tweenFrame": true,
-                  "bd_src": 1,
-                  "bd_dst": 771
-                },
-                {
-                  "dI": -1000,
-                  "x": 0.0,
-                  "y": 0.0,
-                  "z": 0,
-                  "cX": 1.0,
-                  "cY": 1.0,
-                  "kX": 0.0,
-                  "kY": 0.0,
-                  "fi": 80,
-                  "twE": 0,
-                  "tweenFrame": true,
-                  "bd_src": 1,
-                  "bd_dst": 771
-                }
-              ]
-            },
-            {
-              "name": "Layer52",
-              "dl": 0.0,
-              "frame_data": [
-                {
-                  "dI": -1000,
-                  "x": 0.0,
-                  "y": 0.0,
-                  "z": 0,
-                  "cX": 1.0,
-                  "cY": 1.0,
-                  "kX": 0.0,
-                  "kY": 0.0,
-                  "fi": 0,
-                  "twE": 0,
-                  "tweenFrame": true,
-                  "bd_src": 1,
-                  "bd_dst": 771
-                },
-                {
-                  "dI": 0,
-                  "x": 0.0,
-                  "y": 0.0,
-                  "z": 0,
-                  "cX": 1.0,
-                  "cY": 1.0,
-                  "kX": 0.0,
-                  "kY": 0.0,
-                  "fi": 60,
-                  "twE": 0,
-                  "tweenFrame": true,
-                  "bd_src": 1,
-                  "bd_dst": 771
-                },
-                {
-                  "dI": -1000,
-                  "x": 0.0,
-                  "y": 0.0,
-                  "z": 0,
-                  "cX": 1.0,
-                  "cY": 1.0,
-                  "kX": 0.0,
-                  "kY": 0.0,
-                  "fi": 70,
-                  "twE": 0,
-                  "tweenFrame": true,
-                  "bd_src": 1,
-                  "bd_dst": 771
-                }
-              ]
-            },
-            {
-              "name": "Layer51",
-              "dl": 0.0,
-              "frame_data": [
-                {
-                  "dI": -1000,
-                  "x": 0.0,
-                  "y": 0.0,
-                  "z": 0,
-                  "cX": 1.0,
-                  "cY": 1.0,
-                  "kX": 0.0,
-                  "kY": 0.0,
-                  "fi": 0,
-                  "twE": 0,
-                  "tweenFrame": true,
-                  "bd_src": 1,
-                  "bd_dst": 771
-                },
-                {
-                  "dI": 0,
-                  "x": 0.0,
-                  "y": 0.0,
-                  "z": 0,
-                  "cX": 1.0,
-                  "cY": 1.0,
-                  "kX": 0.0,
-                  "kY": 0.0,
-                  "fi": 50,
-                  "twE": 0,
-                  "tweenFrame": true,
-                  "bd_src": 1,
-                  "bd_dst": 771
-                },
-                {
-                  "dI": -1000,
-                  "x": 0.0,
-                  "y": 0.0,
-                  "z": 0,
-                  "cX": 1.0,
-                  "cY": 1.0,
-                  "kX": 0.0,
-                  "kY": 0.0,
-                  "fi": 60,
-                  "twE": 0,
-                  "tweenFrame": true,
-                  "bd_src": 1,
-                  "bd_dst": 771
-                }
-              ]
-            },
-            {
-              "name": "Layer50",
+              "name": "Layer9",
               "dl": 0.0,
               "frame_data": [
                 {
@@ -557,7 +353,7 @@
                   "cY": 1.0,
                   "kX": 0.0,
                   "kY": 0.0,
-                  "fi": 50,
+                  "fi": 45,
                   "twE": 0,
                   "tweenFrame": true,
                   "bd_src": 1,
@@ -566,7 +362,7 @@
               ]
             },
             {
-              "name": "Layer49",
+              "name": "Layer8",
               "dl": 0.0,
               "frame_data": [
                 {
@@ -593,7 +389,7 @@
                   "cY": 1.0,
                   "kX": 0.0,
                   "kY": 0.0,
-                  "fi": 30,
+                  "fi": 35,
                   "twE": 0,
                   "tweenFrame": true,
                   "bd_src": 1,
@@ -617,7 +413,7 @@
               ]
             },
             {
-              "name": "Layer48",
+              "name": "Layer7",
               "dl": 0.0,
               "frame_data": [
                 {
@@ -644,7 +440,58 @@
                   "cY": 1.0,
                   "kX": 0.0,
                   "kY": 0.0,
-                  "fi": 20,
+                  "fi": 30,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": -1000,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 35,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                }
+              ]
+            },
+            {
+              "name": "Layer6",
+              "dl": 0.0,
+              "frame_data": [
+                {
+                  "dI": -1000,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 0,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 25,
                   "twE": 0,
                   "tweenFrame": true,
                   "bd_src": 1,
@@ -668,7 +515,7 @@
               ]
             },
             {
-              "name": "Layer47",
+              "name": "Layer5",
               "dl": 0.0,
               "frame_data": [
                 {
@@ -695,7 +542,58 @@
                   "cY": 1.0,
                   "kX": 0.0,
                   "kY": 0.0,
-                  "fi": 10,
+                  "fi": 20,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": -1000,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 25,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                }
+              ]
+            },
+            {
+              "name": "Layer4",
+              "dl": 0.0,
+              "frame_data": [
+                {
+                  "dI": -1000,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 0,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 15,
                   "twE": 0,
                   "tweenFrame": true,
                   "bd_src": 1,
@@ -719,7 +617,109 @@
               ]
             },
             {
-              "name": "Layer46",
+              "name": "Layer3",
+              "dl": 0.0,
+              "frame_data": [
+                {
+                  "dI": -1000,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 0,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 10,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": -1000,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 15,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                }
+              ]
+            },
+            {
+              "name": "Layer2",
+              "dl": 0.0,
+              "frame_data": [
+                {
+                  "dI": -1000,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 0,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 5,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": -1000,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 10,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                }
+              ]
+            },
+            {
+              "name": "Layer1",
               "dl": 0.0,
               "frame_data": [
                 {
@@ -746,7 +746,7 @@
                   "cY": 1.0,
                   "kX": 0.0,
                   "kY": 0.0,
-                  "fi": 10,
+                  "fi": 5,
                   "twE": 0,
                   "tweenFrame": true,
                   "bd_src": 1,
@@ -761,7 +761,7 @@
   ],
   "texture_data": [
     {
-      "name": "0",
+      "name": "luolei_0",
       "width": 149.0,
       "height": 153.0,
       "pX": 0.5,
@@ -769,7 +769,7 @@
       "plistFile": ""
     },
     {
-      "name": "1",
+      "name": "luolei_1",
       "width": 251.0,
       "height": 377.0,
       "pX": 0.5,
@@ -777,7 +777,7 @@
       "plistFile": ""
     },
     {
-      "name": "2",
+      "name": "luolei_2",
       "width": 314.0,
       "height": 529.0,
       "pX": 0.5,
@@ -785,7 +785,7 @@
       "plistFile": ""
     },
     {
-      "name": "3",
+      "name": "luolei_3",
       "width": 314.0,
       "height": 529.0,
       "pX": 0.5,
@@ -793,7 +793,7 @@
       "plistFile": ""
     },
     {
-      "name": "4",
+      "name": "luolei_4",
       "width": 314.0,
       "height": 529.0,
       "pX": 0.5,
@@ -801,7 +801,7 @@
       "plistFile": ""
     },
     {
-      "name": "5",
+      "name": "luolei_5",
       "width": 333.0,
       "height": 529.0,
       "pX": 0.5,
@@ -809,7 +809,7 @@
       "plistFile": ""
     },
     {
-      "name": "6",
+      "name": "luolei_6",
       "width": 251.0,
       "height": 544.0,
       "pX": 0.5,
@@ -817,7 +817,7 @@
       "plistFile": ""
     },
     {
-      "name": "7",
+      "name": "luolei_7",
       "width": 248.0,
       "height": 537.0,
       "pX": 0.5,
@@ -825,7 +825,7 @@
       "plistFile": ""
     },
     {
-      "name": "8",
+      "name": "luolei_8",
       "width": 25.0,
       "height": 460.0,
       "pX": 0.5,

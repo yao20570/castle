@@ -24,7 +24,7 @@ void SkillEffectHurtMore::end(){
 	}
 	this->m_isCanRemove = true;
 
-	int value = this->m_obj->_hurt_more * this->m_curTimes; 
+	int value = this->m_value1 * this->m_curTimes; 
 
 	this->m_obj->_hurt_more = this->m_obj->_hurt_more - value;
 }

@@ -3,7 +3,10 @@
 		"ID": "技能ID",
 		"Name": "技能名称",
 		"Trigger": "触发条件,0手动释放,1回合开始,2攻击触发,3受到伤害,4死亡触发,5生命剩余触发",
-		"Condition": "触发条件",
+		"Condition": [{
+			"Type":"1:低于生命触发，2:几率触发",
+			"Value":100
+		}],
 		"Target": "1敌方,2友方",
 		"ScopeType": "1单个,2全部(Radius,ShootRange无效),3圆形,4直线型,5扇形",
 		"Radius": "效果范围半径（圆形:半径，直线型:y轴，扇形:角度一半）",
@@ -11,15 +14,17 @@
 		"CD": "技能CD,毫秒",
 		"Detail": "[10110001, 10110002], 数组,使用SkillEffect配置的技能效果",
 		"Amin": [{
-			"LayerType":"0:无动画，1:地板，2:角色身上，3:天空",
-			"FileName":"动画资源",
-			"IsFly":false
+			"LayerType":"0:无动画，1:地板，2:角色身上(PosType无效)，3:角色位置，4:天空（在屏幕中间，PosType无效）",
+			"FileName":"动画资源",			
+			"PosType":"1:施法者位置上播放,2:目标点播放,3:施法者位置飞行到目的地",
+			"Loop":"-1:循环，0:不循环，>0持续时间"
 		}]
 	},
 	"List": {
 		"1": {
 			"ID": 1,
 			"Name": "暴风雪",
+			"Desc": "死亡时，对附近范围敌方造成200%点伤害，并且减速70%，持续4秒.",
 			"Trigger": 4,
 			"Condition": [],
 			"Target": 1,
@@ -27,12 +32,18 @@
 			"Radius": 300,
 			"ShootRange": 0,
 			"CD": 0,
-			"Detail": [10111001, 10220001],
-			"Amin": []
+			"Detail": [10111001, 10221001],
+			"Amin": [{
+				"LayerType": 3,
+				"FileName": "NewAnimation_huoyan",			
+				"PosType": 2,
+				"Loop": 0
+			}]
 		},
 		"2": {
 			"ID": 2,
 			"Name": "吸血",
+			"Desc": "将40%伤害转化为生命值",
 			"Trigger": 1,
 			"Condition": [],
 			"Target": 2,
@@ -53,12 +64,13 @@
 			"Radius": 200,
 			"ShootRange": 1,
 			"CD": 3000,
-			"Detail": [10320001, 10410001],
+			"Detail": [10320001, 10412001],
 			"Amin": []
 		},
 		"4": {
 			"ID": 4,
 			"Name": "燃烧",
+			"Desc": "普通攻击造成燃烧效果，每秒造成200点伤害.持续3秒.",
 			"Trigger": 2,
 			"Condition": [],
 			"Target": 1,
@@ -85,19 +97,21 @@
 		"6": {
 			"ID": 6,
 			"Name": "反间",
-			"Trigger": 2,
+			"Desc": "控制敌方最近的英雄3秒，BOSS无效.冷却时间15秒.",
+			"Trigger": 0,
 			"Condition": [],
 			"Target": 1,
 			"ScopeType": 1,
-			"Radius": 1,
+			"Radius": 20,
 			"ShootRange": 250,
-			"CD": 8000,
+			"CD": 15000,
 			"Detail": [20030001],
 			"Amin": []
 		},
 		"7": {
 			"ID": 7,
 			"Name": "鼓舞",
+			"Desc": "我方全体成员增加20%攻击力",
 			"Trigger": 1,
 			"Condition": [],
 			"Target": 2,
@@ -111,6 +125,7 @@
 		"8": {
 			"ID": 8,
 			"Name": "免伤",
+			"Desc": "受到的所有伤害减少%25",
 			"Trigger": 1,
 			"Condition": [],
 			"Target": 2,
@@ -118,30 +133,35 @@
 			"Radius": 1,
 			"ShootRange": 0,
 			"CD": 0,
-			"Detail": [20020002],
+			"Detail": [20021002],
 			"Amin": []
 		},
 		"9": {
 			"ID": 9,
 			"Name": "乱舞",
-			"Trigger": 0,
-			"Condition": [
-				{
-					"Type":2,
-					"Value":100
-				}
-			],
+			"Desc": "受到伤害时，20%概率触发乱舞，对附近范围所有敌人造成1000点伤害",
+			"Trigger": 3,
+			"Condition": [{
+				"Type":2,
+				"Value":20
+			}],
 			"Target": 1,
 			"ScopeType": 3,
 			"Radius": 100,
-			"ShootRange": 200,
+			"ShootRange": 1,
 			"CD": 0,
 			"Detail": [10111002],
-			"Amin": []
+			"Amin": [{
+				"LayerType": 2,
+				"FileName":"NewAnimation_longjuanshan",
+				"PosType": 1,
+				"Loop": 0
+			}]
 		},
 		"10": {
 			"ID": 10,
 			"Name": "暴击",
+			"Desc": "40%概率造成双倍伤害",
 			"Trigger": 1,
 			"Condition": [],
 			"Target": 2,
@@ -155,6 +175,7 @@
 		"11": {
 			"ID": 11,
 			"Name": "追击",
+			"Desc": "我方全体移动速度增加30%",
 			"Trigger": 1,
 			"Condition": [],
 			"Target": 2,
@@ -162,25 +183,35 @@
 			"Radius": 0,
 			"ShootRange": 0,
 			"CD": 0,
-			"Detail": [10220002],
+			"Detail": [10222001],
 			"Amin": []
 		},
 		"12": {
 			"ID": 12,
 			"Name": "前刺",
+			"Desc": "攻击时30%概率触发，对一条直线上的所有敌人造成80%伤害.",
 			"Trigger": 2,
-			"Condition": [],
+			"Condition": [{
+				"Type":2,
+				"Value":30
+			}],
 			"Target": 1,
 			"ScopeType": 4,
 			"Radius": 20,
-			"ShootRange": 1,
+			"ShootRange": 250,
 			"CD": 0,
 			"Detail": [10111003],
-			"Amin": []
+			"Amin": [{
+				"LayerType": 3,
+				"FileName":"NewAnimation_qiangchi",
+				"PosType":3,
+				"Loop":500
+			}]
 		},
 		"13": {
 			"ID": 13,
 			"Name": "破防",
+			"Desc": "",
 			"Trigger": 1,
 			"Condition": [],
 			"Target": 1,
@@ -188,12 +219,13 @@
 			"Radius": 0,
 			"ShootRange": 0,
 			"CD": 0,
-			"Detail": [10410002],
+			"Detail": [10411001],
 			"Amin": []
 		},
 		"14": {
 			"ID": 14,
 			"Name": "坚壁",
+			"Desc":"我方全体单位增加100点防御力",
 			"Trigger": 1,
 			"Condition": [],
 			"Target": 2,
@@ -201,12 +233,13 @@
 			"Radius": 0,
 			"ShootRange": 0,
 			"CD": 0,
-			"Detail": [10410003],
+			"Detail": [10412002],
 			"Amin": []
 		},
 		"15": {
 			"ID": 15,
 			"Name": "强弓",
+			"Desc": "增加200射程，增加200攻击力.",
 			"Trigger": 1,
 			"Condition": [],
 			"Target": 2,
@@ -220,19 +253,218 @@
 		"16": {
 			"ID": 16,
 			"Name": "恢复",
-			"Trigger": 5,
-			"Condition": [
-				{
-					"Type":0,
-					"Value":79
-				}
-			],
+			"Desc": "血量低于70%时触发，每秒持续恢复800血，持续6秒.冷却时间15秒.",
+			"Trigger": 3,
+			"Condition": [{
+				"Type":1,
+				"Value":70
+			}],
 			"Target": 2,
 			"ScopeType": 1,
 			"Radius": 0,
 			"ShootRange": 0,
-			"CD": 10,
+			"CD": 15000,
 			"Detail": [10112002],
+			"Amin": []
+		},
+		"17": {
+			"ID": 17,
+			"Name": "加血",
+			"Desc": "为我方单位恢复2000点生命，并且减少20%受到伤害，持续3秒，冷却时间8秒.",
+			"Trigger": 0,
+			"Condition": [],
+			"Target": 2,
+			"ScopeType": 1,
+			"Radius": 1,
+			"ShootRange": 250,
+			"CD": 8000,
+			"Detail": [10112003, 20021003],
+			"Amin": []
+		},
+		"18": {
+			"ID": 18,
+			"Name": "无敌",
+			"Desc": "当血量低于30%时，免疫所有伤害，持续5秒，冷却时间10秒.",
+			"Trigger": 3,
+			"Condition": [{
+				"Type":1,
+				"Value":90
+			}],
+			"Target": 2,
+			"ScopeType": 1,
+			"Radius": 1,
+			"ShootRange": 1,
+			"CD": 10000,
+			"Detail": [20021004],
+			"Amin": []
+		},
+		"19": {
+			"ID": 19,
+			"Name": "攻击破防",
+			"Desc": "近战攻击减少敌方敌人150点防御力，持续3秒",
+			"Trigger": 2,
+			"Condition": [],
+			"Target": 1,
+			"ScopeType": 1,
+			"Radius": 1,
+			"ShootRange": 999,
+			"CD": 0,
+			"Detail": [10411002],
+			"Amin": []
+		},
+		"20": {
+			"ID": 20,
+			"Name": "伤害加深",
+			"Desc": "普通攻击可以使敌人受到的伤害增加25%，持续3秒",
+			"Trigger": 2,
+			"Condition": [],
+			"Target": 1,
+			"ScopeType": 1,
+			"Radius": 1,
+			"ShootRange": 999,
+			"CD": 0,
+			"Detail": [20022001],
+			"Amin": []
+		},
+		"21": {
+			"ID": 21,
+			"Name": "疗伤",
+			"Desc": "被攻击时，可以恢复200点生命.",
+			"Trigger": 3,
+			"Condition": [],
+			"Target": 2,
+			"ScopeType": 1,
+			"Radius": 1,
+			"ShootRange": 1,
+			"CD": 0,
+			"Detail": [10112004],
+			"Amin": []
+		},
+		"22": {
+			"ID": 22,
+			"Name": "吸血光环",
+			"Desc": "我方全体成员拥有15%吸血光环",
+			"Trigger": 1,
+			"Condition": [],
+			"Target": 2,
+			"ScopeType": 2,
+			"Radius": 0,
+			"ShootRange": 0,
+			"CD": 0,
+			"Detail": [10510003],
+			"Amin": []
+		},
+		"23": {
+			"ID": 23,
+			"Name": "火烧连营",
+			"Desc": "对敌方全体敌人造成300点伤害，冷却时间5秒.",
+			"Trigger": 0,
+			"Condition": [],
+			"Target": 1,
+			"ScopeType": 2,
+			"Radius": 0,
+			"ShootRange": 0,
+			"CD": 5000,
+			"Detail": [10111005],
+			"Amin": [{
+				"LayerType": 4,
+				"FileName":"NewAnimation_quanpingsha",
+				"PosType":1,
+				"Loop":0
+			}]
+		},
+		"24": {
+			"ID": 24,
+			"Name": "保护罩",
+			"Desc": "制造一个防护罩，罩子内所有的英雄受到的伤害减少50%，持续5秒.冷却时间15秒",
+			"Trigger": 0,
+			"Condition": [],
+			"Target": 2,
+			"ScopeType": 3,
+			"Radius": 200,
+			"ShootRange": 1,
+			"CD": 15000,
+			"Detail": [20021005],
+			"Amin": [{
+				"LayerType": 3,
+				"FileName":"NewAnimation_fanghuzhao",
+				"PosType":1,
+				"Loop":0
+			}]
+		},
+		"25": {
+			"ID": 25,
+			"Name": "闪电",
+			"Desc": "对范围内所有敌人造成150%伤害，并且眩晕2秒.冷却时间12秒.",
+			"Trigger": 0,
+			"Condition": [],
+			"Target": 1,
+			"ScopeType": 3,
+			"Radius": 150,
+			"ShootRange": 250,
+			"CD": 12000,
+			"Detail": [10111006, 20010002],
+			"Amin": [{
+				"LayerType": 3,
+				"FileName":"NewAnimation_shandian",
+				"PosType":1,
+				"Loop":0
+			}]
+		},
+		"26": {
+			"ID": 26,
+			"Name": "阵法",
+			"Desc": "我方全体受到的伤害减少15%",
+			"Trigger": 1,
+			"Condition": [],
+			"Target": 2,
+			"ScopeType": 2,
+			"Radius": 1,
+			"ShootRange": 0,
+			"CD": 0,
+			"Detail": [20021006],
+			"Amin": []
+		},
+		"27": {
+			"ID": 27,
+			"Name": "修养生息",
+			"Desc": "我方全体每秒恢复2%生命值.",
+			"Trigger": 1,
+			"Condition": [],
+			"Target": 2,
+			"ScopeType": 2,
+			"Radius": 1,
+			"ShootRange": 0,
+			"CD": 0,
+			"Detail": [10112005],
+			"Amin": []
+		},
+		"28": {
+			"ID": 28,
+			"Name": "神杀",
+			"Desc": "对敌方单体造成3000点伤害，冷却时间12秒.",
+			"Trigger": 0,
+			"Condition": [],
+			"Target": 1,
+			"ScopeType": 1,
+			"Radius": 20,
+			"ShootRange": 200,
+			"CD": 12000,
+			"Detail": [10111007],
+			"Amin": []
+		},
+		"29": {
+			"ID": 29,
+			"Name": "东风",
+			"Desc": "敌方全体移速减少30%",
+			"Trigger": 1,
+			"Condition": [],
+			"Target": 1,
+			"ScopeType": 2,
+			"Radius": 1,
+			"ShootRange": 1,
+			"CD": 0,
+			"Detail": [10221002],
 			"Amin": []
 		}
 	}

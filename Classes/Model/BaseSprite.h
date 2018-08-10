@@ -41,6 +41,9 @@ public:
 	virtual void setObjName(string name);
 	void showSkillRange();
 
+	virtual void addSkillEffectAnim(SkillEffect* skillEffect);
+	virtual void delSkillEffectAnim(SkillEffect* skillEffect);
+
 	virtual void addSkillEffect(int skillEffectId, BaseSprite* caster);
 	virtual void delSkillEffect(int skillEffectId);
 	virtual void triggerSkill(SkillTriggerType tt, const Vec2& targetPos);
@@ -110,6 +113,8 @@ public:
 	Text* _txtName;
 	Text* _txt_hp;
 	LoadingBar* _hpBar; // ÑªÌõ
+
+	map<SkillEffect*, Armature*> _skill_effect_anims;
 };
 
 

@@ -1,19 +1,21 @@
 <?xml version="1.0"?>
 <AnimationProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <ProjectDir>C:\Users\Administrator\Desktop\技能效果\诸葛亮\NewAnimation_shandian</ProjectDir>
+  <ProjectDir>F:\mytest\castle\ResProject\SkillProject\诸葛亮\NewAnimation_shandian</ProjectDir>
   <Version>1.6.0.0</Version>
-  <Resources>C:\Users\Administrator\Desktop\技能效果\诸葛亮\NewAnimation_shandian\Resources</Resources>
+  <Resources>F:\mytest\castle\ResProject\SkillProject\诸葛亮\NewAnimation_shandian\Resources</Resources>
   <Name>NewAnimation_shandian</Name>
   <JsonFileName>NewAnimation_shandian.json</JsonFileName>
-  <JsonFolder>C:\Users\Administrator\Desktop\技能效果\诸葛亮\NewAnimation_shandian\Json</JsonFolder>
+  <JsonFolder>F:\mytest\castle\ResProject\SkillProject\诸葛亮\NewAnimation_shandian\Json</JsonFolder>
   <JsonList />
   <CanvasSize>
     <Width>0</Width>
     <Height>0</Height>
   </CanvasSize>
-  <filePath>C:\Users\Administrator\Desktop\技能效果\诸葛亮\NewAnimation_shandian\NewAnimation_shandian.xml.animation</filePath>
+  <filePath>F:\mytest\castle\ResProject\SkillProject\诸葛亮\NewAnimation_shandian\NewAnimation_shandian.xml.animation</filePath>
   <ProjectType>AnimationProject</ProjectType>
   <ResRelativePath />
-  <ResourceFileList />
-  <bBatchImage>false</bBatchImage>
+  <ResourceFileList>
+    <string>NewAnimation_shandian0.plist</string>
+  </ResourceFileList>
+  <bBatchImage>true</bBatchImage>
 </AnimationProject>

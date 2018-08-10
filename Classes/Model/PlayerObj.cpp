@@ -162,7 +162,7 @@ void PlayerObj::hurt(int hurtType, int x, BaseSprite* atk)
 	}
 }
 
-void PlayerObj::addSkillEffect(int skillEffectId){
+void PlayerObj::addSkillEffect(int skillEffectId, BaseSprite* caster){
 	
 }
 

@@ -1,6 +1,8 @@
 #include "SkillEffect.h"
 
 #include "Utils/ConfigMgr.h"
+#include "Core/Msg/MsgMgr.h"
+
 
 SkillEffect::SkillEffect(BaseSprite* obj, int skillEffectId, BaseSprite* caster)
 	: m_obj(obj)
@@ -9,9 +11,11 @@ SkillEffect::SkillEffect(BaseSprite* obj, int skillEffectId, BaseSprite* caster)
 	, m_id(skillEffectId)
 	, m_curTimes(0)
 {
+	m_auto_key = GM()->getAutoKey();
+
 	auto& cfg = *(CFG()->getSkillEffectById(this->m_id));
 
-	//this->m_type = SkillEffectType(cfg["Type"].asInt());
+	this->m_type = SkillEffectType(cfg["Type"].asInt());
 	this->m_name = cfg["Name"].asString();
 	this->m_value1 = cfg["Value1"].asInt();
 	this->m_value2 = cfg["Value2"].asInt();
@@ -28,10 +32,17 @@ SkillEffect::SkillEffect(BaseSprite* obj, int skillEffectId, BaseSprite* caster)
 	this->m_endMTimestamp = GM()->getMTimeStamp() + this->m_lastTime;
 
 	CCLOG("SkillEffect create===>ptr:%p, start:%lld, end:%lld,", this, this->m_startMTimestamp, this->m_endMTimestamp);
+
+	SkilAnimData& anim = this->m_anim_data;
+	anim.layerType = SkillAnimLayerType(cfg["AnimType"].asInt());
+	anim.posType = SkillAnimPosType::Src;
+	anim.loop = this->m_lastTime;
+	anim.fileName = cfg["AnimName"].asString();
+	anim.key = GM()->getAutoKey();
 }
 
 SkillEffect::~SkillEffect(){
-	
+	this->delAnim();
 }
 
 void SkillEffect::update(float dt){
@@ -47,7 +58,7 @@ void SkillEffect::update(float dt){
 }
 
 bool SkillEffect::isCanTrigger(){
-	if (this->m_curTimes < this->m_times){
+	if (this->m_times == INFINITE_TIMES || this->m_curTimes < this->m_times){
 		//当前时间
 		INT64 curMTimestamp = GM()->getMTimeStamp();
 
@@ -72,6 +83,8 @@ void SkillEffect::onTrigger(){
 	++this->m_curTimes;
 	
 	this->trigger();
+
+	this->addAnim();
 }
 
 //触发一次效果，由子类实现
@@ -80,6 +93,10 @@ void SkillEffect::trigger(){
 }
 
 bool SkillEffect::isCanEnd(){
+	if (this->m_times == INFINITE_TIMES){
+		return false;
+	}
+
 	//当前时间
 	INT64 curMTimestamp = GM()->getMTimeStamp();
 
@@ -97,6 +114,8 @@ void SkillEffect::onEnd(){
 	if (this->isCanEnd() == false){
 		return;
 	}
+
+	this->delAnim();
 
 	this->end();
 }
@@ -120,4 +139,23 @@ int SkillEffect::getEffectId(){
 
 SkillEffectType SkillEffect::getType(){
 	return m_type;
+}
+
+SkillAnimLayerType SkillEffect::getAnimType(){
+	return m_anim_type;
+}
+
+void SkillEffect::addAnim(){
+	if (this->m_anim_data.layerType == SkillAnimLayerType::None){
+		return;
+	}
+
+	ArmatureDataManager::getInstance()->addArmatureFileInfo(this->m_anim_data.getFilePath());
+	this->m_anim_data.obj = this->m_obj;
+	this->m_anim_data.targetPos = this->m_obj->getPosition();
+	MsgCenter()->dispatch(Msg_AddSkillAnim, &this->m_anim_data);
+}
+
+void SkillEffect::delAnim(){
+	MsgCenter()->dispatch(Msg_DelSkillAnim, &this->m_anim_data);
 }

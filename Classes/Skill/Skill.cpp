@@ -4,6 +4,7 @@
 #include "Dlg/Fight/AIMgr.h"
 #include "Model/BaseSprite.h"
 #include "Utils/JsonManager.h"
+#include "Core/Msg/MsgMgr.h"
 
 Skill::Skill(BaseSprite* obj, AIMgr* ai, const rapidjson::Value& skillCfg)
 	:m_obj(obj)
@@ -44,14 +45,18 @@ Skill::Skill(BaseSprite* obj, AIMgr* ai, const rapidjson::Value& skillCfg)
 
 	//动画
 	{
+		char str[256] = {0};
+
 		const rapidjson::Value &pArray = skillCfg["Amin"];
 		for (rapidjson::SizeType i = 0; i < pArray.Size(); i++)  {
 			const rapidjson::Value& animCfg = pArray[i];
 			this->m_anims.emplace_back();
-			SkilAnim& anim = this->m_anims.back();
-			anim.type = (SkillAnimLayerType)animCfg["Type"].GetInt();
-			anim.fileName = animCfg["FileName"].GetInt();
-			anim.isFly = animCfg["IsFly"].GetBool();
+			SkilAnimData& anim = this->m_anims.back();
+			anim.layerType = (SkillAnimLayerType)animCfg["LayerType"].GetInt();
+			anim.posType = (SkillAnimPosType)animCfg["PosType"].GetInt();
+			anim.loop = animCfg["Loop"].GetInt();
+			anim.fileName = animCfg["FileName"].GetString();
+			anim.key = GM()->getAutoKey();
 		}
 	}
 }
@@ -108,14 +113,10 @@ void Skill::useSkill(const Vec2& targetPos){
 	if (curMTimeStamp < this->m_CDMTimestamp){
 		return;
 	}
-	else{
-		this->m_CDMTimestamp = curMTimeStamp + this->cd;
-	}
 
 	//通过目标类型筛选
 	const set<BaseSprite*>& targets = this->getObjsByTarget();
-
-
+	
 	//通过范围筛选
 	set<BaseSprite*> retTarget;
 	this->getObjsByScope(targetPos, targets, retTarget);
@@ -124,6 +125,51 @@ void Skill::useSkill(const Vec2& targetPos){
 		for (auto skillEffectId : this->m_effectIds){
 			obj->addSkillEffect(skillEffectId, this->m_obj);
 		}
+	}
+
+	//播放动画	
+	switch (this->scopeType)
+	{
+		case SkillScopeType::SINGLE:
+			if (retTarget.empty()){
+			}
+			else{
+				this->playAnim(targetPos);
+				this->m_CDMTimestamp = curMTimeStamp + this->cd;
+			}
+			break;
+		case SkillScopeType::ALL:
+		case SkillScopeType::ROUND:
+		case SkillScopeType::RECT_SCOPE:
+		case SkillScopeType::FAN:
+			this->playAnim(targetPos);
+			this->m_CDMTimestamp = curMTimeStamp + this->cd;
+			break;
+	}
+	
+}
+
+void Skill::playAnim(const Vec2& targetPos){
+	for (auto& it : this->m_anims){
+		ArmatureDataManager::getInstance()->addArmatureFileInfo(it.getFilePath());
+		it.obj = this->m_obj;
+		if (SkillScopeType::RECT_SCOPE == this->scopeType){
+
+			//技能释放角度
+			Vec2 temp1 = targetPos - this->m_obj->getPosition();
+			float radians = temp1.getAngle();
+			it.angle = CC_RADIANS_TO_DEGREES(-radians);
+
+			int distance = this->m_obj->getPosition().distance(targetPos);
+			float rate = (float)this->shootRange / distance;
+			int x = this->m_obj->getPositionX() + (targetPos.x - this->m_obj->getPositionX()) * rate; 
+			int y = this->m_obj->getPositionY() + (targetPos.y - this->m_obj->getPositionY()) * rate; 
+			it.targetPos = Vec2(x, y);
+		}
+		else{
+			it.targetPos = targetPos;
+		}
+		MsgCenter()->dispatch(Msg_AddSkillAnim, &it);
 	}
 }
 
@@ -166,12 +212,23 @@ void Skill::getObjsByScope(const Vec2& targetPos, const set<BaseSprite*>& inObjs
 }
 
 void Skill::getObjBySingle(const Vec2& targetPos, const set<BaseSprite*>& inObjs, set<BaseSprite*>& outObjs){
+
+	BaseSprite* nearOjb = nullptr;
+	int nearDistance = 0;
 	for (auto it : inObjs){
-		if (it->getPosition().distance(targetPos) < 1){
-			outObjs.insert(it);
-			return;
+		Vec2 pos = it->getPosition() + Vec2(0, 60);
+		int distance = pos.distance(targetPos);
+		if (distance < 80){
+			if (nearOjb == nullptr || distance < nearDistance){
+				nearOjb = it;
+				nearDistance = distance;
+			}
 		}
 	}
+
+	if (nearOjb){
+		outObjs.insert(nearOjb);
+	}	
 }
 
 void Skill::getObjByALL(const Vec2& targetPos, const set<BaseSprite*>& inObjs, set<BaseSprite*>& outObjs){
@@ -182,7 +239,8 @@ void Skill::getObjByALL(const Vec2& targetPos, const set<BaseSprite*>& inObjs, s
 
 void Skill::getObjByRound(const Vec2& targetPos, const set<BaseSprite*>& inObjs, set<BaseSprite*>& outObjs){
 	int distance = this->m_obj->getPosition().distance(targetPos);
-	if (distance > this->shootRange){
+	int diff = 20; //给一个偏移值
+	if (distance > this->shootRange + diff){
 		//超出了施法范围
 		return;
 	}

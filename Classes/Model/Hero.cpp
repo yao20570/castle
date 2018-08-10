@@ -215,13 +215,7 @@ void Hero::atk(Armature* arm, MovementEventType eventType, const std::string& st
 
 			if (_target->_objType == 3) {
 				//攻击完主公后消失
-				_healthPoint = 0;
-				_arm->getAnimation()->stop();
-				_ai->setObjDead(this);
-				setVisible(false);
-				_isbroken = true;
-
-
+				this->death();
 			}
 		}
 		return;
@@ -229,8 +223,8 @@ void Hero::atk(Armature* arm, MovementEventType eventType, const std::string& st
 	x = arm->getAnimation()->getCurrentMovementID().find("dead");
 	if (x >= 0) {
 		if (eventType == LOOP_COMPLETE) {
-			setVisible(false);
-			_arm->getAnimation()->stop();
+			this->death();
+
 			this->_mgr_skill->triggerSkill(SkillTriggerType::Dead, this->getPosition());
 		}
 	}
@@ -312,8 +306,17 @@ void Hero::hurtEffect(int x) {
 
 void Hero::death()
 {
-	//this->setVisible(false);
-	//_arm->getAnimation()->stop();
+	_healthPoint = 0;
+	_arm->getAnimation()->stop();
+	_ai->setObjDead(this);
+	setVisible(false);
+	_isbroken = true;
+
+	//移除技能效果
+	for (auto& it : this->_skill_effects){
+		CC_SAFE_DELETE(it.second);
+	}
+	this->_skill_effects.clear();
 }
 
 // 技能结束
@@ -528,6 +531,9 @@ void Hero::setObjName(string name) {
 
 void Hero::setState(int state, int dir)
 {
+	if (_state == STATE_DEATH){
+		return;
+	}
 	if (_state == state && _dir == dir) {
 		return;
 	}

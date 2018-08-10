@@ -149,13 +149,16 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
+    <ClCompile Include="..\Classes\Cocos2dEx\ArmatureEx.cpp" />
+    <ClCompile Include="..\Classes\Cocos2dEx\SkillEffectAnim.cpp" />
     <ClCompile Include="..\Classes\Core\BaseComponent.cpp" />
     <ClCompile Include="..\Classes\Core\DlgBase.cpp" />
+    <ClCompile Include="..\Classes\Core\Msg\Msg.cpp" />
+    <ClCompile Include="..\Classes\Core\Msg\MsgMgr.cpp" />
     <ClCompile Include="..\Classes\Core\StateBase.cpp" />
     <ClCompile Include="..\Classes\Dlg\Fight\AIMgr.cpp" />
     <ClCompile Include="..\Classes\Dlg\Fight\DlgFight.cpp" />
     <ClCompile Include="..\Classes\Dlg\Fight\DlgMission.cpp" />
-    <ClCompile Include="..\Classes\Dlg\Fight\FightComponent\PnlFloor.cpp" />
     <ClCompile Include="..\Classes\Dlg\Main\DlgMain.cpp" />
     <ClCompile Include="..\Classes\Dlg\Main\MessageTip.cpp" />
     <ClCompile Include="..\Classes\Dlg\Main\PnlFight.cpp" />
@@ -207,17 +210,21 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
+    <ClInclude Include="..\Classes\Cocos2dEx\ArmatureEx.h" />
+    <ClInclude Include="..\Classes\Cocos2dEx\SkillEffectAnim.h" />
     <ClInclude Include="..\Classes\Core\BaseComponent.h" />
     <ClInclude Include="..\Classes\Core\BaseComponentDef.h" />
     <ClInclude Include="..\Classes\Core\DlgBase.h" />
     <ClInclude Include="..\Classes\Core\DlgDefine.h" />
     <ClInclude Include="..\Classes\Core\DlgEnum.h" />
+    <ClInclude Include="..\Classes\Core\Msg\Msg.h" />
+    <ClInclude Include="..\Classes\Core\Msg\MsgDefine.h" />
+    <ClInclude Include="..\Classes\Core\Msg\MsgMgr.h" />
     <ClInclude Include="..\Classes\Core\StateBase.h" />
     <ClInclude Include="..\Classes\Core\StateEnum.h" />
     <ClInclude Include="..\Classes\Dlg\Fight\AIMgr.h" />
     <ClInclude Include="..\Classes\Dlg\Fight\DlgFight.h" />
     <ClInclude Include="..\Classes\Dlg\Fight\DlgMission.h" />
-    <ClInclude Include="..\Classes\Dlg\Fight\FightComponent\PnlFloor.h" />
     <ClInclude Include="..\Classes\Dlg\Main\DlgMain.h" />
     <ClInclude Include="..\Classes\Dlg\Main\MessageTip.h" />
     <ClInclude Include="..\Classes\Dlg\Main\PnlFight.h" />

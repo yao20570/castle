@@ -27,7 +27,7 @@ public:
 	virtual bool isDeath();
 	void update(float dt);
 
-	virtual void addSkillEffect(int skillEffectId);
+	virtual void addSkillEffect(int skillEffectId, BaseSprite* caster);
 	virtual void delSkillEffect(int skillEffectId);
 	virtual void triggerSkill(SkillTriggerType tt, const Vec2& targetPos);
 private:

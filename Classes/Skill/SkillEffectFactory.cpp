@@ -82,6 +82,8 @@ SkillEffect* SkillEffectFactory::newSkillEffect(BaseSprite* obj, int effectId, B
 		default:
 			break;
 	}
+
+	return nullptr;
 }
 
 SkillEffectType SkillEffectFactory::getEffectTypeById(int effectId)

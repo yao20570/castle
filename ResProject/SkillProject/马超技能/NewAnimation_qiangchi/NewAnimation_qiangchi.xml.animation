@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<AnimationProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ProjectDir>F:\mytest\castle\ResProject\SkillProject\马超技能\NewAnimation_qiangchi</ProjectDir>
+  <Version>1.6.0.0</Version>
+  <Resources>F:\mytest\castle\ResProject\SkillProject\马超技能\NewAnimation_qiangchi\Resources</Resources>
+  <Name>NewAnimation_qiangchi</Name>
+  <JsonFileName>NewAnimation_qiangchi.json</JsonFileName>
+  <JsonFolder>F:\mytest\castle\ResProject\SkillProject\马超技能\NewAnimation_qiangchi\Json</JsonFolder>
+  <JsonList />
+  <CanvasSize>
+    <Width>0</Width>
+    <Height>0</Height>
+  </CanvasSize>
+  <filePath>F:\mytest\castle\ResProject\SkillProject\马超技能\NewAnimation_qiangchi\NewAnimation_qiangchi.xml.animation</filePath>
+  <ProjectType>AnimationProject</ProjectType>
+  <ResRelativePath />
+  <ResourceFileList>
+    <string>NewAnimation_qiangchi0.plist</string>
+  </ResourceFileList>
+  <bBatchImage>true</bBatchImage>
+</AnimationProject>

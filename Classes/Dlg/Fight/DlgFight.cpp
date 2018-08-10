@@ -16,6 +16,8 @@ using namespace cocos2d::ui;
 #include "Model/PlayerObj.h"
 #include "Skill/Skill.h"
 #include "Skill/SkillMgr.h"
+#include "Core/Msg/MsgMgr.h"
+#include "Cocos2dEx/SkillEffectAnim.h"
 
 USING_NS_CC;
 
@@ -49,10 +51,12 @@ DlgFight::DlgFight()
 	:_objPosCfg(nullptr)
 	, _lay_floor(nullptr)
 	, _lay_fight(nullptr)
+	, _lay_sky(nullptr)
 	, _skill_shoot_range(nullptr)
 	, _skill_radius(nullptr)
 	//, _select_obj(nullptr)
 	, _round(0)
+	, _floor_aminas()
 {
 	_dlg_type = ENUM_DLG_TYPE::Full;
 	_dlg_name = "DlgFight";
@@ -64,11 +68,16 @@ DlgFight::DlgFight()
 	ResultCD = MaxResultCD;
 	MYWIN = 0;
 	MYLOSE = 0;
+
+
 }
 
 DlgFight::~DlgFight()
 {
 	CC_SAFE_DELETE(this->_ai);
+
+	MsgCenter()->delListener(Msg_AddSkillAnim, this);
+	MsgCenter()->delListener(Msg_DelSkillAnim, this);
 }
 
 bool DlgFight::init(StateBase* gameState)
@@ -88,6 +97,11 @@ bool DlgFight::init(StateBase* gameState)
 		return false;
 	}
 	this->load();
+
+	MsgCenter()->addListener(Msg_AddSkillAnim, this, CC_CALLBACK_1(DlgFight::addSkillAnim, this));
+	MsgCenter()->addListener(Msg_DelSkillAnim, this, CC_CALLBACK_1(DlgFight::delSkillAnim, this));
+
+
 	schedule(schedule_selector(DlgFight::update));
 	return true;
 }
@@ -102,6 +116,7 @@ void DlgFight::load()
 
 
 	_lay_floor = (Layout*)Helper::seekWidgetByName(lay_root, "lay_floor");
+	_lay_sky = (Layout*)Helper::seekWidgetByName(lay_root, "lay_sky");
 	_lay_fight = (Layout*)Helper::seekWidgetByName(lay_root, "lay_fight");
 	_lay_fight->addTouchEventListener(CC_CALLBACK_2(DlgFight::onMapTouch, this));
 
@@ -307,6 +322,15 @@ void DlgFight::update(float dt) {
 	}
 
 	this->updateObjAttrLayer();
+
+	//地板技能特效跟随角色移动
+	for (auto& it : this->_floor_aminas){
+		SkillEffectAnim* anim = it.second;
+		BaseSprite* obj = anim->getObj();
+		if (obj){			
+			anim->setPosition(obj->getPosition());
+		}
+	}
 }
 
 void DlgFight::addTouch()
@@ -687,6 +711,109 @@ void DlgFight::showSkillRange(bool isShow, BaseSprite* obj){
 	}
 }
 
+void DlgFight::addSkillAnim(void* data){
+	SkilAnimData* animData = (SkilAnimData*)data;
+
+	SkillEffectAnim* arm = SkillEffectAnim::create(animData->fileName);
+	arm->getAnimation()->play("Animation1");
+	arm->setKey(animData->key);
+	arm->setObj(animData->obj);
+	arm->setRotation(animData->angle);
+	if (animData->loop == 0){
+		//不循环移除
+		arm->getAnimation()->setMovementEventCallFunc([arm](Armature* armature, MovementEventType movementType, const std::string& movementID){
+			if (movementType == cocostudio::LOOP_COMPLETE){
+				arm->runAction(RemoveSelf::create());
+			}
+		});
+	}
+	else if (animData->loop > 0){
+		//持续一段时间
+		DelayTime* dt = DelayTime::create((float)animData->loop / 1000);
+		RemoveSelf* rs = RemoveSelf::create();
+		Sequence* seq = Sequence::create(dt, rs, nullptr);
+		arm->runAction(seq);
+	}
+	else if (animData->loop < 0){
+		//循环
+	}
+
+	switch (animData->layerType)
+	{
+		case SkillAnimLayerType::None:
+			break;
+		case SkillAnimLayerType::Floor:{
+			this->_lay_floor->addChild(arm);			
+			this->_floor_aminas[animData->key] = arm;
+			break;
+		}
+		case SkillAnimLayerType::Body:
+			arm->setPosition(Vec2(0, 120));			
+			animData->obj->addChild(arm);
+			break;
+		case SkillAnimLayerType::Pos:{
+			this->_lay_fight->addChild(arm);
+			//根据位置类型播放动画
+			switch (animData->posType)
+			{
+				case SkillAnimPosType::Src:
+					arm->setPosition(animData->obj->getPosition());
+					break;
+				case SkillAnimPosType::Target:
+					arm->setPosition(animData->targetPos);
+					break;
+				case SkillAnimPosType::Src2Target:
+					arm->setPosition(animData->obj->getPosition());
+					arm->runAction(MoveTo::create(0.5, animData->targetPos));
+					break;
+				case SkillAnimPosType::Target2Src:
+					arm->setPosition(animData->targetPos);
+					arm->runAction(MoveTo::create(0.5, animData->obj->getPosition()));
+					break;
+			}
+			break;
+		}
+
+		case SkillAnimLayerType::Sky:{
+			Size s = this->_lay_fight->getContentSize();
+			Vec2 p(s.width / 2, s.height/2 - 100);
+			arm->setPosition(p);
+			this->_lay_sky->addChild(arm);
+			break;
+		}
+	}
+}
+
+void DlgFight::delSkillAnim(void* data){
+	SkilAnimData* animData = (SkilAnimData*)data;	
+
+	switch (animData->layerType)
+	{
+		case SkillAnimLayerType::None:
+			break;
+		case SkillAnimLayerType::Floor:{
+			auto it = this->_floor_aminas.find(animData->key);
+			if (it != this->_floor_aminas.end()){
+				it->second->removeFromParent();
+				this->_floor_aminas.erase(it);
+			}
+			break;
+		}
+		case SkillAnimLayerType::Body:
+			
+			break;
+		case SkillAnimLayerType::Pos:{
+			
+			break;
+		}
+
+		case SkillAnimLayerType::Sky:
+			break;
+	}
+
+	
+}
+
 DlgBase* DlgFight::showDlg(const string& dlgName)
 {
 	return DlgBase::showDlg(dlgName);
@@ -807,10 +934,37 @@ void DlgFight::onMapTouchEnd(Ref* sender, Widget::TouchEventType type){
 			break;
 		case MapState::Fight:{
 			BaseSprite* obj = _ai->getSelectObj();
-			if (obj && _skill_radius){		
-				Vec2 worldPos = _skill_radius->convertToWorldSpace(Vec2::ZERO);
-				Vec2 pos = obj->getParent()->convertToNodeSpace(worldPos);
-				obj->triggerSkill(SkillTriggerType::Hand, pos);
+			if (obj){
+
+				vector<Skill*>* skills = obj->_mgr_skill->getSkills(SkillTriggerType::Hand);
+				if (skills == nullptr || skills->empty()){
+					return;
+				}
+
+				Skill* skill = (*skills)[0];
+				if (skill){
+					switch (skill->scopeType)
+					{
+						case SkillScopeType::ALL:{
+							obj->triggerSkill(SkillTriggerType::Hand, obj->getPosition());
+							break;
+						}							
+						case SkillScopeType::SINGLE:
+						case SkillScopeType::ROUND:{
+							if (_skill_radius){
+								Vec2 worldPos = _skill_radius->convertToWorldSpace(Vec2::ZERO);
+								Vec2 pos = obj->getParent()->convertToNodeSpace(worldPos);
+								obj->triggerSkill(SkillTriggerType::Hand, pos);
+							}
+							break;
+						}
+						case SkillScopeType::RECT_SCOPE:
+							break;
+						case SkillScopeType::FAN:
+							break;
+					}
+				}
+
 			}
 			this->showSkillRange(false, nullptr);
 			break;

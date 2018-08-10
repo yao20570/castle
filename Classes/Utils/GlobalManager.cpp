@@ -26,6 +26,11 @@ bool GlobalManager::init()
     return true;
 }
 
+int GlobalManager::getAutoKey(){
+	static int key = 0;
+	++key;
+	return key;
+}
 
 // ¡Ωµ„æ‡¿Î
 float GlobalManager::getDistance(Vec2 p1, Vec2 p2)

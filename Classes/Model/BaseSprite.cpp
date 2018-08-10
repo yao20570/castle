@@ -26,8 +26,9 @@ BaseSprite::BaseSprite()
 }
 BaseSprite::~BaseSprite() {
 	
-	CC_SAFE_FREE(this->_mgr_skill);
+	CC_SAFE_DELETE(this->_mgr_skill);
 	
+
 }
 
 bool BaseSprite::init()
@@ -148,9 +149,19 @@ void BaseSprite::update(float dt)
 
 	}
 
-	for ( auto& it : this->_skill_effects){		
-		it.second->update(dt);
-	}
+	//处理特效
+	{
+		auto it = this->_skill_effects.begin();
+		while (it != this->_skill_effects.end()){
+			it->second->update(dt);
+			if (it->second->isCanRemove()){
+				it = _skill_effects.erase(it);
+			}
+			else{
+				++it;
+			}
+		}
+	} 
 }
 
 void BaseSprite::atk() { CCLOG("Base atk"); }
@@ -235,11 +246,16 @@ void BaseSprite::hurt(int hurtType, int x, BaseSprite* atk)
 	txtHurt->setTextColor(txtColor);
 
 	//受到伤害时触发
-	this->_mgr_skill->triggerSkill(SkillTriggerType::Hurt, this->getPosition());
+	if (temp > 0){
+		this->_mgr_skill->triggerSkill(SkillTriggerType::Hurt, this->getPosition());
+	}
+	
 }
 
 void BaseSprite::hurtEffect(int x) { CCLOG("Base hurtEffect"); }
-void BaseSprite::death() { CCLOG("Base death"); }
+void BaseSprite::death() { 
+	CCLOG("Base death"); 
+}
 void BaseSprite::idle() { CCLOG("Base idle"); }
 bool BaseSprite::isDeath() {  CCLOG("Base isDeath"); return false; }
 void BaseSprite::setSelect(bool b) {  CCLOG("Base setSelect"); }
@@ -299,6 +315,25 @@ int BaseSprite::getXiXue(){
 
 int BaseSprite::getHurtMore(){
 	return this->_hurt_more;
+}
+
+void BaseSprite::addSkillEffectAnim(SkillEffect* skillEffect){
+	auto it = _skill_effect_anims.find(skillEffect);
+	if (it == _skill_effect_anims.end()){
+		switch (skillEffect->getAnimType())
+		{
+			case SkillAnimLayerType::Floor:
+				break;
+			case SkillAnimLayerType::Body:
+				break;
+			case SkillAnimLayerType::Sky:
+				break;
+		}
+	}
+}
+
+void BaseSprite::delSkillEffectAnim(SkillEffect* skillEffect){
+
 }
 
 void BaseSprite::addSkillEffect(int skillEffectId, BaseSprite* caster){

@@ -24,3 +24,6 @@ using namespace std;
 #include "../Helper/Sqlite3/sqlite3.h"
 #include "../Helper/CSVParser/CSVParser.h"
 using namespace CSVParser;
+
+
+#define INFINITE_TIMES -1 //нчоч

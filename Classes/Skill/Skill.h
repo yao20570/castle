@@ -11,13 +11,6 @@ struct SkilCondition{
 	int value;	
 };
 
-struct SkilAnim{
-	SkillAnimLayerType type;
-	string fileName;
-	bool isFly;
-};
-
-
 class Skill
 {
 
@@ -30,6 +23,8 @@ public:
 	void useSkill(const Vec2& targetPos);
 
 	bool checkCondition();
+
+	void playAnim(const Vec2& targetPos);
 private:
 	const set<BaseSprite*>& getObjsByTarget();
 	void getObjsByScope(const Vec2& targetPos, const set<BaseSprite*>& inObjs, set<BaseSprite*>& outObjs);
@@ -60,6 +55,6 @@ private:
 	//vector<SkillEffectInfo> effects;
 	vector<int> m_effectIds;
 	vector<SkilCondition> m_conditions;
-	vector<SkilAnim> m_anims;
+	vector<SkilAnimData> m_anims;
 	INT64 m_CDMTimestamp;
 };

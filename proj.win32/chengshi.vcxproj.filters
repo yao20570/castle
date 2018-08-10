@@ -49,8 +49,11 @@
     <Filter Include="src\Utils\Msg">
       <UniqueIdentifier>{a8dbf617-65bd-471a-acc2-8800d4883da9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Dlg\Fight\FightComponent">
-      <UniqueIdentifier>{6dc44077-d31f-4976-8b04-fbbe9e211e7d}</UniqueIdentifier>
+    <Filter Include="src\Core\Msg">
+      <UniqueIdentifier>{393baabf-37ac-4f1d-996a-45ff4330f116}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Cocos2dEx">
+      <UniqueIdentifier>{40d181c8-4335-43fa-becd-70a02182d281}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -219,8 +222,17 @@
     <ClCompile Include="..\Classes\Utils\Msg\MsgDef.cpp">
       <Filter>src\Utils\Msg</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Dlg\Fight\FightComponent\PnlFloor.cpp">
-      <Filter>src\Dlg\Fight\FightComponent</Filter>
+    <ClCompile Include="..\Classes\Core\Msg\MsgMgr.cpp">
+      <Filter>src\Core\Msg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Core\Msg\Msg.cpp">
+      <Filter>src\Core\Msg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Cocos2dEx\ArmatureEx.cpp">
+      <Filter>src\Cocos2dEx</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Cocos2dEx\SkillEffectAnim.cpp">
+      <Filter>src\Cocos2dEx</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -425,8 +437,20 @@
     <ClInclude Include="..\Classes\Utils\Msg\MsgDef.h">
       <Filter>src\Utils\Msg</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Dlg\Fight\FightComponent\PnlFloor.h">
-      <Filter>src\Dlg\Fight\FightComponent</Filter>
+    <ClInclude Include="..\Classes\Core\Msg\MsgMgr.h">
+      <Filter>src\Core\Msg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Core\Msg\Msg.h">
+      <Filter>src\Core\Msg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Core\Msg\MsgDefine.h">
+      <Filter>src\Core\Msg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Cocos2dEx\ArmatureEx.h">
+      <Filter>src\Cocos2dEx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Cocos2dEx\SkillEffectAnim.h">
+      <Filter>src\Cocos2dEx</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

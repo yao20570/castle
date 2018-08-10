@@ -1,5 +1,8 @@
 #pragma once
 
+#include "Utils/PublicDefault.h"
+
+class BaseSprite;
 
 const enum class SkillEffectType:int
 {
@@ -65,7 +68,41 @@ const enum class SkillScopeType:int
 //特效添加在哪个地方
 const enum class SkillAnimLayerType:int
 {
+	None = 0,		//无
 	Floor = 1,		//地板
 	Body = 2,		//角色身上
-	Sky = 3,		//天空
+	Pos = 3,		//半空中，和角色同一父节点
+	Sky = 4,		//天空
+};
+
+//特效位置类型
+const enum class SkillAnimPosType :int{
+	Src = 1,				//施法者位置上播放
+	Target = 2,				//目标点播放
+	Src2Target = 3,			//施法者位置飞行到目的地
+	Target2Src = 4,			//目的地飞到施法者
+};
+
+
+struct SkilAnimData{
+
+	SkilAnimData()
+		: angle(0)
+	{
+	}
+
+	SkillAnimLayerType layerType;
+	SkillAnimPosType posType;
+	int loop; //-1:循环,0:一次,>0持续时间
+	string fileName;
+	BaseSprite* obj;
+	Vec2 targetPos;
+	float angle;
+	int key;
+
+	string getFilePath(){
+		char str[256] = {0};
+		sprintf(str, "animation/skill/%s.ExportJson", fileName.c_str());
+		return str;
+	}
 };

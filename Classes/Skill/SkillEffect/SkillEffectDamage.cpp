@@ -24,7 +24,7 @@ void SkillEffectDamage::end(){
 	}
 	this->m_isCanRemove = true;
 
-	int value = this->m_obj->_damage_diff * this->m_curTimes; 
+	int value = this->m_value1 * this->m_curTimes; 
 
 	this->m_obj->_damage_diff = this->m_obj->_damage_diff - value;
 
