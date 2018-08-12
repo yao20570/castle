@@ -29,7 +29,7 @@ bool DBManager::init()
 
 bool DBManager::open()
 {
-    //string path = FileUtils::getInstance()->getWritablePath() + "/" + DB_NAME;
+    //string path = FileUtils::getInstance()->getWritablePath() + DB_NAME;
 	string path = "db/";
 	path = path + DB_NAME;
     int ret = sqlite3_open(path.c_str(), &_pdb);
@@ -92,7 +92,7 @@ ValueVector DBManager::executeQuery(std::string sql)
 
 void DBManager::createTable()
 {
-    //string path = FileUtils::getInstance()->getWritablePath() + "/" + DB_NAME;
+    //string path = FileUtils::getInstance()->getWritablePath() + DB_NAME;
 	string path = "db/";
 	path = path + DB_NAME;
     if (!FileUtils::getInstance()->isFileExist(path)) {
@@ -274,12 +274,11 @@ void DBManager::createMyObj()
 	executeUpdate(sql);
 
 	//添加两条默认的士兵，分别是步兵和箭手
-	for (int i = 1; i < 6; ++i) {
-		DBM()->insertMyObj(i, 1);
-	}
+	//for (int i = 1; i < 6; ++i) {
+	//	DBM()->insertMyObj(i, 1);
+	//}
 
 	//添加两个英雄
-	DBM()->insertMyObj(5, 1);
 	DBM()->insertMyObj(6, 1);
 }
 
@@ -373,10 +372,10 @@ void DBManager::createMyEquip() {
 
 //创建关卡表
 void DBManager::createMyMission() {
-	string sql = "create table MyMission(ID integer primary key MissionMain, MissionSub)";
+	string sql = "create table MyMission(ID integer primary key autoincrement, MissionMain, MissionSub)";
 	executeUpdate(sql);
 
-	sql = "insert into MyMission(MissionMain, MissionSub) values( '0', '0' )";
+	sql = "insert into MyMission(MissionMain, MissionSub) values( '1', '1' )";
 	executeUpdate(sql);
 }
 

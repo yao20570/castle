@@ -46,9 +46,6 @@
     <Filter Include="src\Skill\SkillEffect">
       <UniqueIdentifier>{4bff6ddb-f5c5-43d7-be06-fa1e6078c69c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Utils\Msg">
-      <UniqueIdentifier>{a8dbf617-65bd-471a-acc2-8800d4883da9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\Core\Msg">
       <UniqueIdentifier>{393baabf-37ac-4f1d-996a-45ff4330f116}</UniqueIdentifier>
     </Filter>
@@ -210,17 +207,8 @@
     <ClCompile Include="..\Classes\Skill\SkillEffect\SkillEffectCritRate.cpp">
       <Filter>src\Skill\SkillEffect</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Skill\SkillEffect\SkillEffectHpMaxPer.cpp">
-      <Filter>src\Skill\SkillEffect</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Skill\SkillEffect\SkillEffectShootRange.cpp">
       <Filter>src\Skill\SkillEffect</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Utils\Msg\MsgMgr.cpp">
-      <Filter>src\Utils\Msg</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Utils\Msg\MsgDef.cpp">
-      <Filter>src\Utils\Msg</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Core\Msg\MsgMgr.cpp">
       <Filter>src\Core\Msg</Filter>
@@ -233,6 +221,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\Cocos2dEx\SkillEffectAnim.cpp">
       <Filter>src\Cocos2dEx</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Skill\SkillEffect\SkillEffectDisperse.cpp">
+      <Filter>src\Skill\SkillEffect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -425,17 +416,8 @@
     <ClInclude Include="..\Classes\Skill\SkillEffect\SkillEffectCritRate.h">
       <Filter>src\Skill\SkillEffect</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Skill\SkillEffect\SkillEffectHpMaxPer.h">
-      <Filter>src\Skill\SkillEffect</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\Skill\SkillEffect\SkillEffectShootRange.h">
       <Filter>src\Skill\SkillEffect</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Utils\Msg\MsgMgr.h">
-      <Filter>src\Utils\Msg</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Utils\Msg\MsgDef.h">
-      <Filter>src\Utils\Msg</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Core\Msg\MsgMgr.h">
       <Filter>src\Core\Msg</Filter>
@@ -451,6 +433,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Cocos2dEx\SkillEffectAnim.h">
       <Filter>src\Cocos2dEx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Skill\SkillEffect\SkillEffectDisperse.h">
+      <Filter>src\Skill\SkillEffect</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

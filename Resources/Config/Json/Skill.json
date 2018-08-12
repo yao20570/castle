@@ -8,7 +8,7 @@
 			"Value":100
 		}],
 		"Target": "1敌方,2友方",
-		"ScopeType": "1单个,2全部(Radius,ShootRange无效),3圆形,4直线型,5扇形",
+		"ScopeType": "1单个,2全部(Radius,ShootRange无效),3圆形,4直线型,5扇形,6随机1个",
 		"Radius": "效果范围半径（圆形:半径，直线型:y轴，扇形:角度一半）",
 		"ShootRange": "施法距离",
 		"CD": "技能CD,毫秒",
@@ -57,14 +57,18 @@
 		"3": {
 			"ID": 3,
 			"Name": "嗜血",
+			"Desc": "血量低于20%时，伤害提高100%",
 			"Trigger": 2,
-			"Condition": [],
+			"Condition": [{
+				"Type":1,
+				"Value":20
+			}],
 			"Target": 2,
 			"ScopeType": 2,
 			"Radius": 200,
 			"ShootRange": 1,
 			"CD": 3000,
-			"Detail": [10320001, 10412001],
+			"Detail": [10320001],
 			"Amin": []
 		},
 		"4": {
@@ -152,7 +156,7 @@
 			"CD": 0,
 			"Detail": [10111002],
 			"Amin": [{
-				"LayerType": 2,
+				"LayerType": 3,
 				"FileName":"NewAnimation_longjuanshan",
 				"PosType": 1,
 				"Loop": 0
@@ -198,7 +202,7 @@
 			"Target": 1,
 			"ScopeType": 4,
 			"Radius": 20,
-			"ShootRange": 250,
+			"ShootRange": 400,
 			"CD": 0,
 			"Detail": [10111003],
 			"Amin": [{
@@ -288,7 +292,7 @@
 			"Trigger": 3,
 			"Condition": [{
 				"Type":1,
-				"Value":90
+				"Value":30
 			}],
 			"Target": 2,
 			"ScopeType": 1,
@@ -407,7 +411,7 @@
 			"Amin": [{
 				"LayerType": 3,
 				"FileName":"NewAnimation_shandian",
-				"PosType":1,
+				"PosType":2,
 				"Loop":0
 			}]
 		},
@@ -465,6 +469,79 @@
 			"ShootRange": 1,
 			"CD": 0,
 			"Detail": [10221002],
+			"Amin": []
+		},
+		"30": {
+			"ID": 30,
+			"Name": "驱散",
+			"Desc": "移除我方所有英雄的所有不利魔法效果.CD10秒.",
+			"Trigger": 0,
+			"Condition": [],
+			"Target": 2,
+			"ScopeType": 2,
+			"Radius": 1,
+			"ShootRange": 1,
+			"CD": 10000,
+			"Detail": [20040001],
+			"Amin": []
+		},
+		"31": {
+			"ID": 31,
+			"Name": "血池",
+			"Desc": "敌方全体每秒减少5%最大生命值.",
+			"Trigger": 1,
+			"Condition": [],
+			"Target": 1,
+			"ScopeType": 2,
+			"Radius": 0,
+			"ShootRange": 0,
+			"CD": 0,
+			"Detail": [10111008],
+			"Amin": []
+		},
+		"32": {
+			"ID": 32,
+			"Name": "心灵腐蚀",
+			"Desc": "随机对一个敌人造成每秒15%最大生命值，持续10秒.CD10秒.",
+			"Trigger": 2,
+			"Condition": [],
+			"Target": 1,
+			"ScopeType": 6,
+			"Radius": 0,
+			"ShootRange": 0,
+			"CD": 10000,
+			"Detail": [10111009],
+			"Amin": []
+		},
+		"33": {
+			"ID": 33,
+			"Name": "boss横扫",
+			"Desc": "对前方扇形范围内的敌人造成200%伤害.CD8秒.",
+			"Trigger": 2,
+			"Condition": [],
+			"Target": 1,
+			"ScopeType": 5,
+			"Radius": 50,
+			"ShootRange": 250,
+			"CD": 8000,
+			"Detail": [10111010],
+			"Amin": []
+		},
+		"34": {
+			"ID": 34,
+			"Name": "张辽横扫",
+			"Desc": "对前方扇形范围内的敌人造成800伤害",
+			"Trigger": 2,
+			"Condition": [{
+				"Type": 2,
+				"Value":40
+			}],
+			"Target": 1,
+			"ScopeType": 5,
+			"Radius": 50,
+			"ShootRange": 250,
+			"CD": 0,
+			"Detail": [10111011],
 			"Amin": []
 		}
 	}

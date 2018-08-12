@@ -8,4 +8,32 @@
     <Project>pnl_fight</Project>
     <GuidesList />
   </GuidesProject>
+  <GuidesProject>
+    <Project>pnl_hero</Project>
+    <GuidesList />
+  </GuidesProject>
+  <GuidesProject>
+    <Project>message_tip</Project>
+    <GuidesList />
+  </GuidesProject>
+  <GuidesProject>
+    <Project>message_box</Project>
+    <GuidesList />
+  </GuidesProject>
+  <GuidesProject>
+    <Project>pnl_hero_item</Project>
+    <GuidesList />
+  </GuidesProject>
+  <GuidesProject>
+    <Project>pnl_find</Project>
+    <GuidesList />
+  </GuidesProject>
+  <GuidesProject>
+    <Project>pnl_guanka</Project>
+    <GuidesList />
+  </GuidesProject>
+  <GuidesProject>
+    <Project>pnl_guanka_item</Project>
+    <GuidesList />
+  </GuidesProject>
 </ArrayOfGuidesProject>

@@ -175,10 +175,10 @@ void AppDelegate::loadResources()
 	ArmatureDataManager::getInstance()->addArmatureFileInfo("animation/skill/effect1/NewAnimation.ExportJson");
 
 	ArmatureDataManager::getInstance()->addArmatureFileInfo("animation/soilder/Anim_Bowman.ExportJson");
-	ArmatureDataManager::getInstance()->addArmatureFileInfo("animation/soilder/Anim_Fighter.ExportJson");
+	ArmatureDataManager::getInstance()->addArmatureFileInfo("animation/hero/Anim_Fighter.ExportJson");
 	ArmatureDataManager::getInstance()->addArmatureFileInfo("animation/soilder/Anim_Qibing.ExportJson");
-	ArmatureDataManager::getInstance()->addArmatureFileInfo("animation/soilder/Anim_MeatShield.ExportJson");
-	ArmatureDataManager::getInstance()->addArmatureFileInfo("animation/soilder/Anim_Hero_Fashi.ExportJson");
+	ArmatureDataManager::getInstance()->addArmatureFileInfo("animation/hero/Anim_MeatShield.ExportJson");
+	ArmatureDataManager::getInstance()->addArmatureFileInfo("animation/hero/Anim_Hero_Fashi.ExportJson");
 
 
 	ArmatureDataManager::getInstance()->addArmatureFileInfo("animation/hero/Anim_Hero_Caocao.ExportJson");

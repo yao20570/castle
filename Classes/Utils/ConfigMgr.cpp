@@ -65,7 +65,8 @@ string ConfigMgr::getWord(int id) {
 	map<int, ValueMap>* table = loadConfig(PathWord, "ID");
 	auto it = table->find(id);
 	if (it == table->end()) {
-		return "";
+		static string space = "";
+		return space;
 	}
 	return it->second["Word"].asString();
 }

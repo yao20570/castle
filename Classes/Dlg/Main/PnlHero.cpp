@@ -130,10 +130,10 @@ void PnlHero::updateSvHero() {
 
 		img_icon->loadTexture(cfg["Icon"].asString());
 		txt_name->setString(cfg["Name"].asString());
-		setTextColor(txt_name, cfg["Quality"].asInt());
+		setTextColorByQuality(txt_name, cfg["Quality"].asInt());
 
 		txt_lv->setString(string("Lv.") + row["Lv"].asString());
-		setTextColor(txt_lv, cfg["Quality"].asInt());
+		setTextColorByQuality(txt_lv, cfg["Quality"].asInt());
 		++i;
 	}
 

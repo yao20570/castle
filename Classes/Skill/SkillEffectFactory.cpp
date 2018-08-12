@@ -16,6 +16,7 @@
 #include "Skill/SkillEffect/SkillEffectYun.h"
 #include "Skill/SkillEffect/SkillEffectHurtMore.h"
 #include "Skill/SkillEffect/SkillEffectFanJian.h"
+#include "Skill/SkillEffect/SkillEffectDisperse.h"
 
 
 SkillEffectFactory* SkillEffectFactory::_g = nullptr;
@@ -51,8 +52,6 @@ SkillEffect* SkillEffectFactory::newSkillEffect(BaseSprite* obj, int effectId, B
 	{
 		case SkillEffectType::HP:
 			return new SkillEffectHp(obj, effectId, caster);
-		case SkillEffectType::HpMaxPer:
-			return new SkillEffectHpMaxPer(obj, effectId, caster);
 		case SkillEffectType::Speed:
 			return new SkillEffectSpeed(obj, effectId, caster);
 		case SkillEffectType::SpeedPer:
@@ -79,6 +78,8 @@ SkillEffect* SkillEffectFactory::newSkillEffect(BaseSprite* obj, int effectId, B
 			return new SkillEffectFanJian(obj, effectId, caster);
 		case SkillEffectType::HurtMore:
 			return new SkillEffectHurtMore(obj, effectId, caster);
+		case SkillEffectType::Disperse:
+			return new SkillEffectDisperse(obj, effectId, caster);
 		default:
 			break;
 	}

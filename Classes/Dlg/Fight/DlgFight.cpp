@@ -571,7 +571,7 @@ void DlgFight::addHero(Vec2 pos, int camp, ValueMap* objInfo)
 	int quality = (*objInfo)["Quality"].asInt();
 
 	Hero* hero = Hero::create(subType, _ai, camp);
-	setTextColor(hero->_txtName, quality);
+	setTextColorByQuality(hero->_txtName, quality);
 	this->_lay_fight->addChild(hero);
 	_ai->setObjPos(hero, pos);
 	//++i;
@@ -592,7 +592,7 @@ void DlgFight::addSoilder(Vec2 pos, int camp, ValueMap* objInfo)
 
 	Soilder* soilder = Soilder::create(subType, _ai, camp);
 	soilder->setObjName(name);
-	setTextColor(soilder->_txtName, quality);
+	setTextColorByQuality(soilder->_txtName, quality);
 	this->_lay_fight->addChild(soilder);
 	_ai->setObjPos(soilder, pos);
 	//++i;
@@ -615,11 +615,11 @@ void DlgFight::setAttrText(Text* txt, int diffNum){
 	txt->setVisible(diffNum != 0);
 	if (diffNum > 0){
 		txt->setString("+" + cocos2d::Value(diffNum).asString());
-		setTextColor(txt, 2);
+		setTextColorByQuality(txt, 2);
 	}
 	else{
 		txt->setString(cocos2d::Value(diffNum).asString());
-		setTextColor(txt, 6);
+		setTextColorByQuality(txt, 6);
 	}
 }
 
@@ -712,6 +712,7 @@ void DlgFight::showSkillRange(bool isShow, BaseSprite* obj){
 }
 
 void DlgFight::addSkillAnim(void* data){
+
 	SkilAnimData* animData = (SkilAnimData*)data;
 
 	SkillEffectAnim* arm = SkillEffectAnim::create(animData->fileName);
@@ -749,7 +750,7 @@ void DlgFight::addSkillAnim(void* data){
 		}
 		case SkillAnimLayerType::Body:
 			arm->setPosition(Vec2(0, 120));			
-			animData->obj->addChild(arm);
+			animData->obj->addSkillEffectAnim(arm);
 			break;
 		case SkillAnimLayerType::Pos:{
 			this->_lay_fight->addChild(arm);
@@ -800,7 +801,7 @@ void DlgFight::delSkillAnim(void* data){
 			break;
 		}
 		case SkillAnimLayerType::Body:
-			
+			animData->obj->delSkillEffectAnim(animData->key);
 			break;
 		case SkillAnimLayerType::Pos:{
 			

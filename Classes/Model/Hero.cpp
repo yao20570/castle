@@ -97,7 +97,7 @@ void Hero::loadData()
 void Hero::showUI()
 {
 	ValueMap& objInfo = *(CFG()->getObjInfoByType(2, _heroID));
-	
+	_is_boos = objInfo["IsBoss"].asBool();
 	//动画
 	string animaName = objInfo["Anima"].asString();
 	int y = _camp == 1 ? -1 : 1;
@@ -134,6 +134,9 @@ void Hero::showUI()
 	_quality	= objInfo["Quality"].asInt();
 	this->setObjName(_objname);
 
+	//类别
+	_kind  = objInfo["Kind"].asInt();
+
 	//血条
 	addHPBar();
 }
@@ -162,8 +165,20 @@ void Hero::addHPBar()
 	_txt_hp->setPosition(bg->getPosition());
 	_txt_hp->setLocalZOrder(100000);
 	this->addChild(_txt_hp);
+
+	
 }
 
+void Hero::changeHpBar(){
+	if (_hpBar){		
+		if (_camp == 1){
+			_hpBar->loadTexture(IMG_BUILD_PRO);
+		}
+		else{
+			_hpBar->loadTexture(IMG_BUILD_PRO_ENEMY);
+		}
+	}
+}
 
 void Hero::idle()
 {
@@ -526,7 +541,7 @@ void Hero::setObjName(string name) {
 	_objname = name;
 	_txtName->setString(name);
 	
-	setTextColor(_txtName, _quality);
+	setTextColorByQuality(_txtName, _quality);
 }
 
 void Hero::setState(int state, int dir)

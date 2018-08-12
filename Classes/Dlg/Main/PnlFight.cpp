@@ -55,8 +55,9 @@ void PnlFight::load()
 
 void PnlFight::setVisible(bool b) {
 	Node::setVisible(b);
-
-	this->updateSettingPanel();
+	if (b){
+		this->updateSettingPanel();
+	}
 }
 
 void PnlFight::onStart(Ref* sender, Widget::TouchEventType type) {
@@ -97,7 +98,7 @@ void PnlFight::updateSettingPanel() {
 
 		Text* txt_name = (Text*)settingObj->getChildByName("txt_name");
 		txt_name->setString(cfg["Name"].asString());
-		setTextColor(txt_name, cfg["Quality"].asInt());
+		setTextColorByQuality(txt_name, cfg["Quality"].asInt());
 
 		string animaName = cfg["Anima"].asString();
 		char str[128] = { 0 };
@@ -109,7 +110,12 @@ void PnlFight::updateSettingPanel() {
 		_arm->setPosition(img_icon->getPosition());
 		settingObj->addChild(_arm);
 
-
+		int kind = cfg["Kind"].asInt();
+		const string& strKind = CFG()->getWord(1 + kind);
+		Text* txt_kind = Text::create(strKind, FONT_ARIAL, 18);
+		txt_kind->setPosition(Vec2(_arm->getPositionX(), _arm->getContentSize().height * 2 / 3 ));
+		settingObj->addChild(txt_kind);
+		setTextColorByKind(txt_kind, cfg["Kind"].asInt());
 
 		this->pnl_setting->addChild(settingObj);
 

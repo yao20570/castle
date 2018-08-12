@@ -16,6 +16,7 @@ SkillEffect::SkillEffect(BaseSprite* obj, int skillEffectId, BaseSprite* caster)
 	auto& cfg = *(CFG()->getSkillEffectById(this->m_id));
 
 	this->m_type = SkillEffectType(cfg["Type"].asInt());
+	this->m_kind = SkillEffectKind(cfg["Kind"].asInt());
 	this->m_name = cfg["Name"].asString();
 	this->m_value1 = cfg["Value1"].asInt();
 	this->m_value2 = cfg["Value2"].asInt();
@@ -139,6 +140,10 @@ int SkillEffect::getEffectId(){
 
 SkillEffectType SkillEffect::getType(){
 	return m_type;
+}
+
+SkillEffectKind SkillEffect::getKind(){
+	return m_kind;
 }
 
 SkillAnimLayerType SkillEffect::getAnimType(){

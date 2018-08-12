@@ -110,7 +110,7 @@ void PnlFind::updateGetPanel(int id) {
 	//基本信息
 	ValueMap& objBaseCfg = *(CFG()->getObjInfoById(id));
 	this->txt_name->setString(objBaseCfg["Name"].asString());
-	setTextColor(this->txt_name, objBaseCfg["Quality"].asInt());
+	setTextColorByQuality(this->txt_name, objBaseCfg["Quality"].asInt());
 
 	//this->img_half->loadTexture(objBaseCfg["Icon"].asString());
 	this->img_half->setVisible(false);
@@ -134,7 +134,7 @@ void PnlFind::updateGetPanel(int id) {
 
 	sprintf(str, "%s", objBaseCfg["Name"].asString().c_str());
 	txt_tip2->setString(str);
-	setTextColor(txt_tip2, objBaseCfg["Quality"].asInt());
+	setTextColorByQuality(txt_tip2, objBaseCfg["Quality"].asInt());
 	txt_tip2->setPositionX(txt_tip1->getPositionX() + txt_tip1->getContentSize().width);
 
 	txt_tip3->setPositionX(txt_tip2->getPositionX() + txt_tip2->getContentSize().width);
@@ -282,7 +282,8 @@ void PnlFind::onDiamondFind(Ref* sender, Widget::TouchEventType type) {
 		map<int, ValueMap>* table = CFG()->loadConfig("Config/ObjInfo.csv", "ID");
 
 
-		int num = rand() % table->size() + 1;
+		//int num = rand() % table->size() + 1;
+		int num = rand() % 15 + 1 + 5;
 
 		ValueMap* cfgPtr = CFG()->getObjInfoById(num);
 		ValueMap& cfg = *cfgPtr;
@@ -330,7 +331,7 @@ void PnlFind::setEquipItemInfo(int index, ValueMap* equipCfg) {
 
 	img_icon->loadTexture(cfg["Icon"].asString());
 	txt_name->setString(cfg["Name"].asString());
-	setTextColor(txt_name, cfg["Quality"].asInt());
+	setTextColorByQuality(txt_name, cfg["Quality"].asInt());
 }
 
 void PnlFind::setSoilderItemInfo(int index, ValueMap* equipCfg) {
@@ -342,7 +343,7 @@ void PnlFind::setSoilderItemInfo(int index, ValueMap* equipCfg) {
 
 	img_icon->loadTexture(cfg["Item"].asString());
 	txt_name->setString(cfg["Name"].asString());
-	setTextColor(txt_name, cfg["Quality"].asInt());
+	setTextColorByQuality(txt_name, cfg["Quality"].asInt());
 }
 
 void PnlFind::setHeroItemInfo(int index, ValueMap* equipCfg) {
@@ -354,7 +355,7 @@ void PnlFind::setHeroItemInfo(int index, ValueMap* equipCfg) {
 
 	img_icon->loadTexture(cfg["Item"].asString());
 	txt_name->setString(cfg["Name"].asString());
-	setTextColor(txt_name, cfg["Quality"].asInt());
+	setTextColorByQuality(txt_name, cfg["Quality"].asInt());
 }
 
 void PnlFind::setGoldItemInfo(int index, int goldNum) {

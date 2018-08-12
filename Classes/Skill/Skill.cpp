@@ -142,6 +142,7 @@ void Skill::useSkill(const Vec2& targetPos){
 		case SkillScopeType::ROUND:
 		case SkillScopeType::RECT_SCOPE:
 		case SkillScopeType::FAN:
+		case SkillScopeType::Random:
 			this->playAnim(targetPos);
 			this->m_CDMTimestamp = curMTimeStamp + this->cd;
 			break;
@@ -208,6 +209,7 @@ void Skill::getObjsByScope(const Vec2& targetPos, const set<BaseSprite*>& inObjs
 		case SkillScopeType::ROUND:			this->getObjByRound(targetPos, inObjs, outObjs);	break;
 		case SkillScopeType::RECT_SCOPE:	this->getObjByRect(targetPos, inObjs, outObjs);		break;
 		case SkillScopeType::FAN:			this->getObjByFan(targetPos, inObjs, outObjs);		break;
+		case SkillScopeType::Random:		this->getObjByRandom(targetPos, inObjs, outObjs);	break;
 	}
 }
 
@@ -286,14 +288,37 @@ void Skill::getObjByFan(const Vec2& targetPos, const set<BaseSprite*>& inObjs, s
 
 	//技能释放角度
 	Vec2 temp1 = targetPos - this->m_obj->getPosition();
-	float angle1 = temp1.getAngle();
+	float radians = temp1.getAngle();
+	int angle1 = CC_RADIANS_TO_DEGREES(radians);
 
 	//对象是否在范围内
 	for (auto it : inObjs){
-		Vec2 temp2 = targetPos - this->m_obj->getPosition();
-		float angle2 = temp2.getAngle();
+		Vec2 temp2 = it->getPosition() - this->m_obj->getPosition();
+		float radians2 = temp2.getAngle();
+		int angle2 = CC_RADIANS_TO_DEGREES(radians2);
 		if (abs(angle2 - angle1) < this->radius){
 			outObjs.insert(it);
 		}
 	}
+}
+
+void Skill::getObjByRandom(const Vec2& targetPos, const set<BaseSprite*>& inObjs, set<BaseSprite*>& outObjs){
+
+	vector<BaseSprite*> tempObjs;
+	for (auto it : inObjs){
+		if (it->isDeath() == false){
+			tempObjs.push_back(it);
+		}
+	}
+	
+	int s = tempObjs.size();
+	int i = rand() % s;
+
+	auto it = tempObjs.begin();
+	
+	advance(it, i);
+		
+	outObjs.insert(*it);
+
+	return;
 }

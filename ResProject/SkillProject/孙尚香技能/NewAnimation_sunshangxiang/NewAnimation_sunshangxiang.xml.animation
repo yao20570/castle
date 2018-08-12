@@ -14,8 +14,6 @@
   <filePath>F:\mytest\castle\ResProject\SkillProject\孙尚香技能\NewAnimation_sunshangxiang\NewAnimation_sunshangxiang.xml.animation</filePath>
   <ProjectType>AnimationProject</ProjectType>
   <ResRelativePath />
-  <ResourceFileList>
-    <string>NewAnimation_sunshangxiang0.plist</string>
-  </ResourceFileList>
+  <ResourceFileList />
   <bBatchImage>true</bBatchImage>
 </AnimationProject>

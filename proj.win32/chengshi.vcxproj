@@ -189,9 +189,9 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\Skill\SkillEffect\SkillEffectDamagePer.cpp" />
     <ClCompile Include="..\Classes\Skill\SkillEffect\SkillEffectDef.cpp" />
     <ClCompile Include="..\Classes\Skill\SkillEffect\SkillEffectDefPer.cpp" />
+    <ClCompile Include="..\Classes\Skill\SkillEffect\SkillEffectDisperse.cpp" />
     <ClCompile Include="..\Classes\Skill\SkillEffect\SkillEffectFanJian.cpp" />
     <ClCompile Include="..\Classes\Skill\SkillEffect\SkillEffectHp.cpp" />
-    <ClCompile Include="..\Classes\Skill\SkillEffect\SkillEffectHpMaxPer.cpp" />
     <ClCompile Include="..\Classes\Skill\SkillEffect\SkillEffectHurtMore.cpp" />
     <ClCompile Include="..\Classes\Skill\SkillEffect\SkillEffectShootRange.cpp" />
     <ClCompile Include="..\Classes\Skill\SkillEffect\SkillEffectSpeed.cpp" />
@@ -204,8 +204,6 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\Utils\DBManager.cpp" />
     <ClCompile Include="..\Classes\Utils\GlobalManager.cpp" />
     <ClCompile Include="..\Classes\Utils\JsonManager.cpp" />
-    <ClCompile Include="..\Classes\Utils\Msg\MsgDef.cpp" />
-    <ClCompile Include="..\Classes\Utils\Msg\MsgMgr.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -257,9 +255,9 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Skill\SkillEffect\SkillEffectDamagePer.h" />
     <ClInclude Include="..\Classes\Skill\SkillEffect\SkillEffectDef.h" />
     <ClInclude Include="..\Classes\Skill\SkillEffect\SkillEffectDefPer.h" />
+    <ClInclude Include="..\Classes\Skill\SkillEffect\SkillEffectDisperse.h" />
     <ClInclude Include="..\Classes\Skill\SkillEffect\SkillEffectFanJian.h" />
     <ClInclude Include="..\Classes\Skill\SkillEffect\SkillEffectHp.h" />
-    <ClInclude Include="..\Classes\Skill\SkillEffect\SkillEffectHpMaxPer.h" />
     <ClInclude Include="..\Classes\Skill\SkillEffect\SkillEffectHurtMore.h" />
     <ClInclude Include="..\Classes\Skill\SkillEffect\SkillEffectShootRange.h" />
     <ClInclude Include="..\Classes\Skill\SkillEffect\SkillEffectSpeed.h" />
@@ -274,8 +272,6 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Utils\DBManager.h" />
     <ClInclude Include="..\Classes\Utils\GlobalValue.h" />
     <ClInclude Include="..\Classes\Utils\JsonManager.h" />
-    <ClInclude Include="..\Classes\Utils\Msg\MsgDef.h" />
-    <ClInclude Include="..\Classes\Utils\Msg\MsgMgr.h" />
     <ClInclude Include="..\Classes\Utils\PublicDefault.h" />
     <ClInclude Include="..\Classes\Utils\GlobalManager.h" />
     <ClInclude Include="..\Classes\Utils\Public.h" />

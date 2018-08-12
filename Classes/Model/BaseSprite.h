@@ -6,6 +6,7 @@
 
 class SkillMgr;
 class AIMgr;
+class SkillEffectAnim;
 
 
 static const int STATE_IDLE = 0;
@@ -30,6 +31,7 @@ public:
     virtual void atk();
     virtual void run();
 	virtual void hurt(int hurtType, int x, BaseSprite* atk);
+	virtual void changeHpBar();
 	virtual void hurtEffect(int x);
 	virtual void death();
     virtual void idle();
@@ -40,16 +42,19 @@ public:
 	virtual void showName(bool b);
 	virtual void setObjName(string name);
 	void showSkillRange();
-
-	virtual void addSkillEffectAnim(SkillEffect* skillEffect);
-	virtual void delSkillEffectAnim(SkillEffect* skillEffect);
-
+	
+	virtual void triggerSkill(SkillTriggerType tt, const Vec2& targetPos);
 	virtual void addSkillEffect(int skillEffectId, BaseSprite* caster);
 	virtual void delSkillEffect(int skillEffectId);
-	virtual void triggerSkill(SkillTriggerType tt, const Vec2& targetPos);
+	virtual void clearBadSkillEffect();
+	virtual void addSkillEffectAnim(SkillEffectAnim* arm);
+	virtual void delSkillEffectAnim(int key);
 
 	virtual string getObjName();
 	
+	virtual int getCamp();
+	virtual void setCamp(int camp);
+
 	virtual int getHp();
 	virtual int getDamage();
 	virtual int getDef();
@@ -76,7 +81,7 @@ public:
 	set<EffectState>		_obj_states;	//对象受到的技能状态
 	map<int, SkillEffect*>	_skill_effects;
 
-	
+	bool _is_boos;		//是否boss
 	int _camp;			
 
     int _totalHP;		//生命基本值
@@ -114,7 +119,7 @@ public:
 	Text* _txt_hp;
 	LoadingBar* _hpBar; // 血条
 
-	map<SkillEffect*, Armature*> _skill_effect_anims;
+	vector<SkillEffectAnim*> _skill_effect_anims;
 };
 
 

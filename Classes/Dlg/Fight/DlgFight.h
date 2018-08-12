@@ -57,11 +57,11 @@ public:
 
 	void addSkillAnim(void* data);
 	void delSkillAnim(void* data);
-private:
-	void onMapTouch(Ref* sender, Widget::TouchEventType type);
-	void onMapTouchBegan(Ref* sender, Widget::TouchEventType type);
-	void onMapTouchMove(Ref* sender, Widget::TouchEventType type);
-	void onMapTouchEnd(Ref* sender, Widget::TouchEventType type);
+protected:
+	virtual void onMapTouch(Ref* sender, Widget::TouchEventType type);
+	virtual void onMapTouchBegan(Ref* sender, Widget::TouchEventType type);
+	virtual void onMapTouchMove(Ref* sender, Widget::TouchEventType type);
+	virtual void onMapTouchEnd(Ref* sender, Widget::TouchEventType type);
 
 	
 	void onNextRound(Ref* sender, Widget::TouchEventType type);

@@ -16,13 +16,13 @@ SkillEffectFanJian::~SkillEffectFanJian(){
 }
 
 void SkillEffectFanJian::trigger(){
-	if (this->m_obj->_camp == 1){
+	if (this->m_obj->getCamp() == 1){
 		this->m_obj->_ai->delObj(this->m_obj, 1);
-		this->m_obj->_camp = 2;
+		this->m_obj->setCamp(2);
 	}
-	else if(this->m_obj->_camp == 2){
+	else if(this->m_obj->getCamp() == 2){
 		this->m_obj->_ai->delObj(this->m_obj, 2);
-		this->m_obj->_camp = 1;
+		this->m_obj->setCamp(1);
 	}
 
 	

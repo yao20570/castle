@@ -19,6 +19,7 @@ public:
 	BaseSprite* getObj();
 	int getEffectId();
 	SkillEffectType getType();
+	SkillEffectKind getKind();
 	SkillAnimLayerType getAnimType();
 
 protected:
@@ -42,6 +43,7 @@ protected:
 
 	int						m_id;
 	SkillEffectType			m_type;
+	SkillEffectKind			m_kind;
 	string					m_name;
 	int						m_value1;
 	int						m_value2;

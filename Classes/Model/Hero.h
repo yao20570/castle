@@ -22,6 +22,7 @@ public:
     void loadData();    // 加载数据
     void showUI();      // 显示UI
     void addHPBar();    // 加血条
+	void changeHpBar();
     void animaCallback(Armature *armature, MovementEventType movementType, const std::string& movementID);
     //void setSelect(bool select);
 
@@ -50,6 +51,7 @@ public:
     int _heroID;
     int _type;
     int _level;
+	string _kind;
     
     int _attackSpeed;
     

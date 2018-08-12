@@ -3,9 +3,11 @@
 #include "Skill/SkillMgr.h"
 #include "Skill/SkillEffectFactory.h"
 #include "Dlg/Fight/AIMgr.h"
+#include "Cocos2dEx/SkillEffectAnim.h"
 
 BaseSprite::BaseSprite() 
 		: _ai(nullptr)	
+		, _is_boos(false)
 		, _prePosList()
 		, _arm(nullptr)
 		, _xixue(0)
@@ -205,7 +207,12 @@ void BaseSprite::hurt(int hurtType, int x, BaseSprite* atk)
 		}
 		case 2://·¨ÊõÉËº¦
 		{
-			temp = ( max(0.0, (1.0 + (float)this->_hurt_more / 100)) * x);
+			if (x > 0){
+				temp = ( max(0.0, (1.0 + (float)this->_hurt_more / 100)) * x);
+			}
+			else{
+				temp = x;
+			}
 			_healthPoint -= temp;			
 			_healthPoint = min(_healthPoint, _totalHP);
 			break;
@@ -251,11 +258,9 @@ void BaseSprite::hurt(int hurtType, int x, BaseSprite* atk)
 	}
 	
 }
-
+void BaseSprite::changeHpBar(){CCLOG("Base changeHpBar");}
 void BaseSprite::hurtEffect(int x) { CCLOG("Base hurtEffect"); }
-void BaseSprite::death() { 
-	CCLOG("Base death"); 
-}
+void BaseSprite::death() { CCLOG("Base death"); }
 void BaseSprite::idle() { CCLOG("Base idle"); }
 bool BaseSprite::isDeath() {  CCLOG("Base isDeath"); return false; }
 void BaseSprite::setSelect(bool b) {  CCLOG("Base setSelect"); }
@@ -277,6 +282,15 @@ void BaseSprite::showSkillRange(){
 	DrawNode* dn = DrawNode::create();
 	this->addChild(dn);
 	dn->drawCircle(this->getPosition(),100,100,100,true,Color4F(1,1,1,1));
+}
+
+int BaseSprite::getCamp(){
+	return this->_camp;
+}
+
+void BaseSprite::setCamp(int camp){
+	this->_camp = camp;
+	changeHpBar();
 }
 
 int BaseSprite::getHp(){
@@ -317,25 +331,6 @@ int BaseSprite::getHurtMore(){
 	return this->_hurt_more;
 }
 
-void BaseSprite::addSkillEffectAnim(SkillEffect* skillEffect){
-	auto it = _skill_effect_anims.find(skillEffect);
-	if (it == _skill_effect_anims.end()){
-		switch (skillEffect->getAnimType())
-		{
-			case SkillAnimLayerType::Floor:
-				break;
-			case SkillAnimLayerType::Body:
-				break;
-			case SkillAnimLayerType::Sky:
-				break;
-		}
-	}
-}
-
-void BaseSprite::delSkillEffectAnim(SkillEffect* skillEffect){
-
-}
-
 void BaseSprite::addSkillEffect(int skillEffectId, BaseSprite* caster){
 	//SkillEffect* skillEffect = new SkillEffect(this, skillEffectId);
 	SkillEffect* skillEffect = SEF()->newSkillEffect(this, skillEffectId, caster);
@@ -352,6 +347,38 @@ void BaseSprite::delSkillEffect(int skillEffectId){
 	if (it != this->_skill_effects.end()){
 		CC_SAFE_DELETE(it->second);
 		this->_skill_effects.erase(it);
+	}
+}
+
+void BaseSprite::clearBadSkillEffect(){
+	auto it = this->_skill_effects.begin();
+	auto itEnd = this->_skill_effects.end();
+	while (it != itEnd){
+		if (it->second->getKind() == SkillEffectKind::Bad){
+			CC_SAFE_DELETE(it->second);
+			it = this->_skill_effects.erase(it);
+		}
+		else{
+			++it;
+		}
+	}
+}
+
+void BaseSprite::addSkillEffectAnim(SkillEffectAnim* arm){
+	this->addChild(arm);
+	this->_skill_effect_anims.push_back(arm);
+}
+
+void BaseSprite::delSkillEffectAnim(int key){
+	auto it = this->_skill_effect_anims.begin();
+	auto itEnd = this->_skill_effect_anims.end();	
+	while (it != itEnd){
+		if ((*it)->getKey() == key){	
+			(*it)->removeFromParent();
+			this->_skill_effect_anims.erase(it);
+			break;
+		}
+		++it;
 	}
 }
 

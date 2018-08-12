@@ -76,6 +76,7 @@ void Soilder::showUI()
 {
 	ValueMap& objInfo = *(CFG()->getObjInfoByType(1, _id));
 	
+	_is_boos = objInfo["IsBoss"].asBool();
 
 	//¶¯»­
 	_animaName	= objInfo["Anima"].asString();
@@ -458,7 +459,7 @@ void Soilder::setObjName(string name) {
 	_objname = name;
 	_txtName->setString(name);
 
-	setTextColor(_txtName, _quality);
+	setTextColorByQuality(_txtName, _quality);
 }
 
 void Soilder::setState(int state, int dir)

@@ -169,7 +169,7 @@ void PnlSetting::updateSelectList() {
 		//名称
 		Text* txt_name = (Text*)Helper::seekWidgetByName(lay_root, "txt_name");
 		txt_name->setString(cfg["Name"].asString());
-		setTextColor(txt_name, cfg["Quality"].asInt());
+		setTextColorByQuality(txt_name, cfg["Quality"].asInt());
 
 		//动画
 		string animaName = cfg["Anima"].asString();
@@ -233,7 +233,11 @@ void PnlSetting::updateSettingPanel() {
 
 		Text* txt_name = (Text*)settingObj->getChildByName("txt_name");
 		txt_name->setString(cfg["Name"].asString());
-		setTextColor(txt_name, cfg["Quality"].asInt());
+		setTextColorByQuality(txt_name, cfg["Quality"].asInt());
+
+		Text* txt_kind = (Text*)settingObj->getChildByName("txt_kind");
+		txt_kind->setString(CFG()->getWord( 1 + cfg["Kind"].asInt()));
+		setTextColorByKind(txt_kind, cfg["Kind"].asInt());
 		//动画
 		string animaName = cfg["Anima"].asString();
 		auto arm = settingObj->getChildByTag(999);
@@ -255,7 +259,7 @@ void PnlSetting::updateSettingPanel() {
 		unitNum += cfg["Unit"].asInt();
 	}
 	cocos2d::Value v(unitNum);
-	this->txt_num->setString(v.asString() + "/20");
+	this->txt_num->setString(v.asString() + "/30");
 }
 
 void PnlSetting::isObjInSettingPnl(int id) {
@@ -368,7 +372,7 @@ void PnlSetting::onTouchEnded(Touch* pTouch, Event* pEvent) {
 		if (row) {
 			ValueMap& cfg = *row;
 			int temp = unitNum + cfg["Unit"].asInt();
-			if (temp <= 20) {
+			if (temp <= 30) {
 				
 				Layout* settingObj = (Layout*)GUIReader::getInstance()->widgetFromJsonFile("ui/DlgMain/item_obj2.json");
 				settingObj->setSwallowTouches(false);
@@ -393,7 +397,12 @@ void PnlSetting::onTouchEnded(Touch* pTouch, Event* pEvent) {
 
 				Text* txt_name = (Text*)settingObj->getChildByName("txt_name");
 				txt_name->setString(cfg["Name"].asString());
-				setTextColor(txt_name, cfg["Quality"].asInt());
+				setTextColorByQuality(txt_name, cfg["Quality"].asInt());
+				
+
+				Text* txt_kind = (Text*)settingObj->getChildByName("txt_kind");
+				txt_kind->setString(CFG()->getWord( 1 + cfg["Kind"].asInt()));
+				setTextColorByKind(txt_kind, cfg["Kind"].asInt());
 
 				//动画
 				string animaName = cfg["Anima"].asString();
@@ -440,7 +449,7 @@ void PnlSetting::onTouchEnded(Touch* pTouch, Event* pEvent) {
 		this->updateSelectList();
 	}
 	cocos2d::Value v(unitNum);
-	this->txt_num->setString(v.asString() + "/20");
+	this->txt_num->setString(v.asString() + "/30");
 	this->selectObj(InvalidSelectId);
 }
 
@@ -488,7 +497,11 @@ void PnlSetting::onSelectObj(Ref* sender, Widget::TouchEventType type)
 
 		Text* txt_name = (Text*)this->pnl_drag->getChildByName("txt_name");
 		txt_name->setString((*selectCfg)["Name"].asString());
-		setTextColor(txt_name, (*selectCfg)["Quality"].asInt());
+		setTextColorByQuality(txt_name, (*selectCfg)["Quality"].asInt());
+		
+		Text* txt_kind = (Text*)this->pnl_drag->getChildByName("txt_kind");
+		txt_kind->setString(CFG()->getWord( 1 + (*selectCfg)["Kind"].asInt()));
+		setTextColorByKind(txt_kind, (*selectCfg)["Kind"].asInt());
 
 		//动画
 		string animaName = (*selectCfg)["Anima"].asString();
@@ -539,8 +552,12 @@ void PnlSetting::onSelectPnlSettingObj(Ref* sender, Widget::TouchEventType type)
 
 			Text* txt_name = (Text*)this->pnl_drag->getChildByName("txt_name");
 			txt_name->setString(cfg["Name"].asString());
-			setTextColor(txt_name, cfg["Quality"].asInt());
+			setTextColorByQuality(txt_name, cfg["Quality"].asInt());
 			this->pnl_drag->setVisible(true);
+			
+			Text* txt_kind = (Text*)this->pnl_drag->getChildByName("txt_kind");
+			txt_kind->setString(CFG()->getWord( 1 + cfg["Kind"].asInt()));
+			setTextColorByKind(txt_kind, cfg["Kind"].asInt());
 
 			//动画
 			string animaName = cfg["Anima"].asString();

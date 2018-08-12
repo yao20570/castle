@@ -34,6 +34,7 @@ private:
 	void getObjByRound(const Vec2& targetPos, const set<BaseSprite*>& inObjs, set<BaseSprite*>& outObjs);
 	void getObjByRect(const Vec2& targetPos, const set<BaseSprite*>& inObjs, set<BaseSprite*>& outObjs);
 	void getObjByFan(const Vec2& targetPos, const set<BaseSprite*>& inObjs, set<BaseSprite*>& outObjs);
+	void getObjByRandom(const Vec2& targetPos, const set<BaseSprite*>& inObjs, set<BaseSprite*>& outObjs);
 
 public:
 	//基数信息

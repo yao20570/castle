@@ -7,7 +7,6 @@ class BaseSprite;
 const enum class SkillEffectType:int
 {
 	HP = 1011,
-	HpMaxPer = 1012,
 	Speed = 1021,
 	SpeedPer = 1022,
 	Damage = 1031,
@@ -21,6 +20,14 @@ const enum class SkillEffectType:int
 	Yun = 2001,
 	HurtMore = 2002,
 	FanJian = 2003,
+	Disperse = 2004,
+};
+
+const enum class SkillEffectKind:int
+{
+	None = 0,	//无属性，被动或光环
+	Bad = 1,	//可增删的有害技能效果
+	Good = 2,	//可增删的有益技能效果
 };
 
 const enum class EffectState:int
@@ -63,6 +70,7 @@ const enum class SkillScopeType:int
 	ROUND = 3,		//圆形
 	RECT_SCOPE = 4,	//矩形
 	FAN = 5,		//扇形
+	Random = 6,		//随机1个
 };
 
 //特效添加在哪个地方
