@@ -14,8 +14,9 @@ SkillEffectDefPer::~SkillEffectDefPer(){
 	end();
 }
 
-void SkillEffectDefPer::trigger(){
+bool SkillEffectDefPer::trigger(){
 	this->m_obj->_def_per = this->m_obj->_def_per + this->m_value1;
+	return true;
 }
 
 void SkillEffectDefPer::end(){

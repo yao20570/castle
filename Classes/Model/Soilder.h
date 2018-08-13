@@ -21,7 +21,7 @@ public:
 
     virtual void atk(Armature* arm, MovementEventType eventType, const std::string& str);         // ¹¥»÷
 	//virtual void hurt(int hurtType, int x, BaseSprite* atk);   // ÊÜÉË
-	virtual void hurtEffect(int x);
+	virtual void hurtEffect(int x, int bulletType);
     virtual bool isDeath();     // ÊÇ·ñËÀÍö
     
     //void update(float dt);

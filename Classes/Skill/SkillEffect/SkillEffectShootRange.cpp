@@ -14,8 +14,9 @@ SkillEffectShootRange::~SkillEffectShootRange(){
 	end();
 }
 
-void SkillEffectShootRange::trigger(){
+bool SkillEffectShootRange::trigger(){
 	this->m_obj->_shoot_range_diff = this->m_obj->_shoot_range_diff + this->m_value1;
+	return true;
 }
 
 void SkillEffectShootRange::end(){

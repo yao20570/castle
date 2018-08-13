@@ -14,8 +14,9 @@ SkillEffectSpeed::~SkillEffectSpeed(){
 	end();
 }
 
-void SkillEffectSpeed::trigger(){
+bool SkillEffectSpeed::trigger(){
 	this->m_obj->_speed_diff = this->m_obj->_speed_diff + this->m_value1;
+	return true;
 }
 
 void SkillEffectSpeed::end(){

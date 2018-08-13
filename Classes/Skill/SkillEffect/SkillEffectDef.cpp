@@ -14,8 +14,9 @@ SkillEffectDef::~SkillEffectDef(){
 	end();
 }
 
-void SkillEffectDef::trigger(){
+bool SkillEffectDef::trigger(){
 	this->m_obj->_def_diff = this->m_obj->_def_diff + this->m_value1;
+	return true;
 }
 
 void SkillEffectDef::end(){

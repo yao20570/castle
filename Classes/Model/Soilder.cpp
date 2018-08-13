@@ -335,6 +335,22 @@ void Soilder::atk(Armature* arm, MovementEventType eventType, const std::string&
 				this->getParent()->addChild(bullet, 9999999);
 				//SimpleAudioEngine::getInstance()->playEffect("music/far_fashu_effect.mp3", false);
 			}
+			else if (_shootType == 4) {
+				Vec2 src = getPosition() + Vec2(0, 60);
+				Vec2 des = _target->getPosition() + Vec2(0, 60);
+				auto bullet = BulletSprite::create(src, des, getDamage(), this, _target, "images/bullet/sima.png", 2);
+				bullet->setScale(getScale());
+				this->getParent()->addChild(bullet, 9999999);
+				//SimpleAudioEngine::getInstance()->playEffect("music/far_fashu_effect.mp3", false);
+			}
+			else if (_shootType == 5) {
+				Vec2 src = getPosition() + Vec2(0, 60);
+				Vec2 des = _target->getPosition() + Vec2(0, 60);
+				auto bullet = BulletSprite::create(src, des, getDamage(), this, _target, "images/bullet/zhouyu.png", 2);
+				bullet->setScale(getScale());
+				this->getParent()->addChild(bullet, 9999999);
+				//SimpleAudioEngine::getInstance()->playEffect("music/far_fashu_effect.mp3", false);
+			}
 			else {
 				if (_target->_objType == 3) {
 					_target->hurt(1, 1, this);
@@ -428,7 +444,7 @@ void Soilder::atk(Armature* arm, MovementEventType eventType, const std::string&
 //	txtHurt->setTextColor(txtColor);
 //}
 
-void Soilder::hurtEffect(int x) {
+void Soilder::hurtEffect(int x, int bulletType) {
 	_skill1->getAnimation()->play("idle" + GM()->getIntToStr(x), -1, 0);
 }
 

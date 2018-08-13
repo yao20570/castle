@@ -109,10 +109,10 @@ void Hero::showUI()
 	this->addChild(_arm);
 
 	//技能效果
-	_skill1 = Armature::create("NewAnimation");
-	_skill1->getAnimation()->pause();
-	_skill1->setPositionY(60);
-	this->addChild(_skill1);
+	//_skill1 = Armature::create("NewAnimation");
+	//_skill1->getAnimation()->pause();
+	//_skill1->setPositionY(60);
+	//this->addChild(_skill1);
 
 	//位置
 	this->setLocalZOrder((int)_pos.x + (int)_pos.y * 10000);
@@ -165,8 +165,26 @@ void Hero::addHPBar()
 	_txt_hp->setLocalZOrder(100000);
 	this->addChild(_txt_hp);
 
+
+	if (this->_camp == 1){
+		//技能冷却
+		vector<Skill*>* skills = this->_mgr_skill->getSkills(SkillTriggerType::Hand);
+		if (skills->empty() == false){
+
+			auto cdbg = Sprite::create(IMG_BUILD_PRO_BK);
+			cdbg->setPosition(0, _arm->getContentSize().height / 2 - 30);
+			this->addChild(cdbg);
+
+			_cdBar = LoadingBar::create("images/pro_cd.png");
+			_cdBar->setPercent(100.0);
+			_cdBar->setPosition(cdbg->getContentSize() / 2);
+			cdbg->addChild(_cdBar);
+		}
+	}
 	
 }
+
+
 
 void Hero::changeHpBar(){
 	if (_hpBar){		
@@ -212,6 +230,22 @@ void Hero::atk(Armature* arm, MovementEventType eventType, const std::string& st
 				Vec2 src = getPosition() + Vec2(0, 60);
 				Vec2 des = _target->getPosition() + Vec2(0, 60);
 				auto bullet = BulletSprite::create(src, des, getDamage(), this, _target, "images/bullet/fashu.png", 2);
+				bullet->setScale(getScale());
+				this->getParent()->addChild(bullet, 9999999);
+				//SimpleAudioEngine::getInstance()->playEffect("music/far_fashu_effect.mp3", false);
+			}
+			else if (_shootType == 4) {
+				Vec2 src = getPosition() + Vec2(0, 60);
+				Vec2 des = _target->getPosition() + Vec2(0, 60);
+				auto bullet = BulletSprite::create(src, des, getDamage(), this, _target, "images/bullet/sima.png", 2);
+				bullet->setScale(getScale());
+				this->getParent()->addChild(bullet, 9999999);
+				//SimpleAudioEngine::getInstance()->playEffect("music/far_fashu_effect.mp3", false);
+			}
+			else if (_shootType == 5) {
+				Vec2 src = getPosition() + Vec2(0, 60);
+				Vec2 des = _target->getPosition() + Vec2(0, 60);
+				auto bullet = BulletSprite::create(src, des, getDamage(), this, _target, "images/bullet/zhouyu.png", 2);
 				bullet->setScale(getScale());
 				this->getParent()->addChild(bullet, 9999999);
 				//SimpleAudioEngine::getInstance()->playEffect("music/far_fashu_effect.mp3", false);
@@ -314,8 +348,45 @@ void Hero::atk(Armature* arm, MovementEventType eventType, const std::string& st
 //	this->_mgr_skill->triggerSkill(SkillTriggerType::Hurt, this->getPosition());
 //}
 
-void Hero::hurtEffect(int x) {
-	_skill1->getAnimation()->play("idle" + GM()->getIntToStr(x), -1, 0);
+void Hero::hurtEffect(int x, int bulletType) {
+	Armature* skillAnim = nullptr;
+	switch (bulletType)
+	{
+		case 3:
+			skillAnim = Armature::create("NewAnimation");
+			break;
+		case 4:
+			skillAnim = Armature::create("NewAnimation_simayupugong");
+			break;
+		case 5:
+			skillAnim = Armature::create("NewAnimation_zhouyupugong");
+			break;
+	}
+
+	float angle = 0;
+	switch (x)
+	{
+		case 0: angle = 90;			break;
+		case 1: angle = 45;			break;
+		case 2: angle = 0;			break;
+		case 3: angle = -45;			break;
+		case 4: angle = -90;			break;
+		case 5: angle = -135;			break;
+		case 6: angle = -180;			break;
+		case 7: angle = -225;			break;
+	}
+	skillAnim->setRotation(angle);
+	skillAnim->getAnimation()->pause();
+	skillAnim->setPositionY(60);
+	skillAnim->getAnimation()->play("Animation1");
+	skillAnim->getAnimation()->setMovementEventCallFunc([this](Armature* arm, MovementEventType eventType, const std::string& str){
+		if (eventType == LOOP_COMPLETE) {
+			arm->runAction(RemoveSelf::create());
+		}
+	});
+
+	
+	this->addChild(skillAnim);
 }
 
 void Hero::death()
@@ -344,24 +415,24 @@ void Hero::finishSkill(Armature* arm, int state)
 // 释放技能
 void Hero::putSkill(int type)
 {
-	int state = _state;
-	_state = STATE_SKILL;
-	// 技能1
-	if (type == 1) {
-		_skill1->setVisible(true);
-		_skill1->getAnimation()->play("Skill");
-		auto delay = DelayTime::create(1.0f);
-		auto func = CallFunc::create(CC_CALLBACK_0(Hero::finishSkill, this, _skill1, state));
-		this->runAction(Sequence::create(delay, func, nullptr));
-	}
-	// 技能2
-	else {
-		_skill2->setVisible(true);
-		_skill2->getAnimation()->play("Skill");
-		auto delay = DelayTime::create(1.0f);
-		auto func = CallFunc::create(CC_CALLBACK_0(Hero::finishSkill, this, _skill2, state));
-		this->runAction(Sequence::create(delay, func, nullptr));
-	}
+	//int state = _state;
+	//_state = STATE_SKILL;
+	//// 技能1
+	//if (type == 1) {
+	//	_skill1->setVisible(true);
+	//	_skill1->getAnimation()->play("Skill");
+	//	auto delay = DelayTime::create(1.0f);
+	//	auto func = CallFunc::create(CC_CALLBACK_0(Hero::finishSkill, this, _skill1, state));
+	//	this->runAction(Sequence::create(delay, func, nullptr));
+	//}
+	//// 技能2
+	//else {
+	//	_skill2->setVisible(true);
+	//	_skill2->getAnimation()->play("Skill");
+	//	auto delay = DelayTime::create(1.0f);
+	//	auto func = CallFunc::create(CC_CALLBACK_0(Hero::finishSkill, this, _skill2, state));
+	//	this->runAction(Sequence::create(delay, func, nullptr));
+	//}
 }
 
 // 是否死亡
@@ -407,116 +478,43 @@ void Hero::onTouchEnded(Touch* pTouch, Event* pEvent)
 }
 
 
-//void Hero::update(float dt)
-//{
-//	if (_isbroken == true) {
-//		this->unscheduleAllCallbacks();
-//		return;
-//	}
-//
-//
-//	switch (_state)
-//	{
-//		case STATE_WIN:// 
-//		{
-//			int tempDir = GM()->getDir(getPosition(), _target->getPosition());
-//			setState(STATE_IDLE, _dir);
-//			break;
-//		}
-//		case STATE_YUN:// 眩晕
-//		{
-//			setState(STATE_YUN, _dir);
-//			break;
-//		}
-//		case STATE_IDLE:// 悠闲
-//		{
-//			setState(STATE_IDLE, _dir);
-//			break;
-//		}
-//		case STATE_RUN:// 走路		
-//		{
-//			int minDis = 100000;
-//			_target = nullptr;
-//
-//
-//			switch (_camp)
-//			{
-//				case 1:
-//					for (auto it : _ai->_objEnemy) {
-//						if (it->isDeath()) {
-//							continue;
-//						}
-//						int dis = (int)it->getPosition().getDistance(this->getPosition());
-//						if (dis < minDis) {
-//							minDis = dis;
-//							_target = it;
-//						}
-//					}
-//					break;
-//				case 2:
-//					for (auto it : _ai->_objSelf) {
-//						if (it->isDeath()) {
-//							continue;
-//						}
-//						int dis = (int)it->getPosition().getDistance(this->getPosition());
-//						if (dis < minDis) {
-//							minDis = dis;
-//							_target = it;
-//						}
-//					}
-//					break;
-//			}
-//
-//
-//			if (_target == nullptr) {
-//				setState(STATE_IDLE, _dir);
-//			}
-//			else if (_target->_isbroken == false && _ai->isWithinShootRange(getPosition(), _target->getPosition(), _shoot_range)) {
-//
-//				int tempDir = GM()->getDir(getPosition(), _target->getPosition());
-//				setState(STATE_ATK, tempDir);
-//			}
-//			else {
-//				int tempDir = GM()->getDir(getPosition(), _target->getPosition());
-//				setState(STATE_RUN, tempDir);
-//
-//				Vec2 disPos = _target->getPosition() - getPosition();
-//				int speed = this->getSpeed();
-//				Vec2 nextPos(getPositionX() + disPos.x * speed / minDis / 60, getPositionY() + disPos.y * speed / minDis / 60);
-//
-//				_ai->setObjPos(this, nextPos);
-//			}
-//			break;
-//		}
-//
-//		case STATE_ATK:// 攻击
-//		{
-//			if (_target == nullptr || _target->isDeath()) {
-//				// 失去目标，变成悠闲
-//				_target = nullptr;
-//
-//				setState(STATE_RUN, _dir);
-//			}
-//
-//			// 向目标移动、或攻击目标
-//			else {
-//				int tempDir = GM()->getDir(getPosition(), _target->getPosition());
-//				// 攻击
-//				if (_ai->isWithinShootRange(getPosition(), _target->getPosition(), _shoot_range)) {
-//					setState(STATE_ATK, tempDir);
-//				}
-//				// 走路
-//				else {
-//					setState(STATE_RUN, tempDir);
-//				}
-//			}
-//			break;
-//		}
-//
-//	}
-//
-//	BaseSprite::update(dt);
-//}
+void Hero::update(float dt)
+{
+	BaseSprite::update(dt);
+
+	if (_cdBar){
+		vector<Skill*>* skills = this->_mgr_skill->getSkills(SkillTriggerType::Hand);
+		if (skills->empty()){
+			return;
+		}
+
+		Skill* skill = (*skills)[0];
+
+		//技能效果开始,结束时间
+		INT64 curMTimeStamp = GM()->getMTimeStamp();
+		if (curMTimeStamp >= skill->m_CDMTimestamp){
+			_cdBar->setPercent(100.0);
+			if (_is_show_cd_anim == false){
+				_is_show_cd_anim = true;
+
+				Armature* skillAnim = Armature::create("NewAnimation_jineng");
+				skillAnim->setPositionY(60);
+				skillAnim->getAnimation()->play("Animation1");
+				skillAnim->getAnimation()->setMovementEventCallFunc([this](Armature* arm, MovementEventType eventType, const std::string& str){
+					if (eventType == LOOP_COMPLETE) {
+						arm->runAction(RemoveSelf::create());
+					}
+				});
+				this->addChild(skillAnim);
+			}
+		}
+		else{
+			float p = (skill->cd - (skill->m_CDMTimestamp - curMTimeStamp)) * 100 / skill->cd;
+			_cdBar->setPercent(p);
+			_is_show_cd_anim = false;
+		}
+	}
+}
 
 
 void Hero::setSelect(bool b) {

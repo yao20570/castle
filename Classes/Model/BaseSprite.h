@@ -32,7 +32,7 @@ public:
     virtual void run();
 	virtual void hurt(int hurtType, int x, BaseSprite* atk, bool isShowTxt = true);
 	virtual void changeHpBar();
-	virtual void hurtEffect(int x);
+	virtual void hurtEffect(int x, int bulletType);
 	virtual void death();
     virtual void idle();
     virtual bool isDeath();
@@ -118,6 +118,8 @@ public:
 	Text* _txtName;
 	Text* _txt_hp;
 	LoadingBar* _hpBar; // ÑªÌõ
+
+	LoadingBar* _cdBar; // ¼¼ÄÜÀäÈ´bar
 
 	vector<SkillEffectAnim*> _skill_effect_anims;
 };

@@ -65,7 +65,13 @@ void BulletSprite::atk()
 	else {
 		_target->hurt(1, _damage, this->_atk);
 		if ("images/bullet/fashu.png" == _img) {
-			_target->hurtEffect(this->effectDir);
+			_target->hurtEffect(this->effectDir, 3);
+		}
+		else if ("images/bullet/sima.png" == _img) {
+			_target->hurtEffect(this->effectDir, 4);
+		}
+		else if ("images/bullet/zhouyu.png" == _img) {
+			_target->hurtEffect(this->effectDir, 5);
 		}
 	}
     this->removeFromParent();

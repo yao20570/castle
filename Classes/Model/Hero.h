@@ -29,13 +29,13 @@ public:
     virtual void idle();
     virtual void atk(Armature* arm, MovementEventType eventType, const std::string& str);   // 攻击
 	//virtual void hurt(int hurtType, int x, BaseSprite* atk);           // 受伤
-	virtual void hurtEffect(int x);
+	virtual void hurtEffect(int x, int bulletType);
 	virtual void death();           // 死亡
     virtual bool isDeath();             // 是否死亡
     virtual void putSkill(int type);    // 释放技能
     virtual void finishSkill(Armature* arm, int state); // 技能结束
     
-    //void update(float dt);
+    void update(float dt);
 	virtual void setSelect(bool b);
 	virtual void setObjName(string name);
 
@@ -61,6 +61,7 @@ public:
     //Armature* _arm;
     Armature* _skill1;
     Armature* _skill2;
+	bool _is_show_cd_anim;
     
 	
     Vec2 _targetPos;

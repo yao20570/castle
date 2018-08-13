@@ -10,7 +10,9 @@
   "designHeight": 986,
   "designWidth": 640,
   "textures": [],
-  "texturesPng": [],
+  "texturesPng": [
+    "ui/fight_start.png"
+  ],
   "version": "1.6.0.0",
   "widgetTree": {
     "classname": "Panel",

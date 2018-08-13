@@ -14,8 +14,9 @@ SkillEffectYun::~SkillEffectYun(){
 	end();
 }
 
-void SkillEffectYun::trigger(){
+bool SkillEffectYun::trigger(){
 	this->m_obj->setState(STATE_YUN, this->m_obj->getDir());
+	return true;
 }
 
 void SkillEffectYun::end(){

@@ -14,8 +14,6 @@
   <filePath>F:\mytest\castle\ResProject\SkillProject\周瑜普通攻击\NewAnimation_zhouyupugong\NewAnimation_zhouyupugong.xml.animation</filePath>
   <ProjectType>AnimationProject</ProjectType>
   <ResRelativePath />
-  <ResourceFileList>
-    <string>NewAnimation_zhouyupugong0.plist</string>
-  </ResourceFileList>
+  <ResourceFileList />
   <bBatchImage>true</bBatchImage>
 </AnimationProject>

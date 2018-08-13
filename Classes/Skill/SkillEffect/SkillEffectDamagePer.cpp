@@ -14,8 +14,9 @@ SkillEffectDamagePer::~SkillEffectDamagePer(){
 	end();
 }
 
-void SkillEffectDamagePer::trigger(){
+bool SkillEffectDamagePer::trigger(){
 	this->m_obj->_damage_per = this->m_obj->_damage_per + this->m_value1;
+	return true;
 }
 
 void SkillEffectDamagePer::end(){

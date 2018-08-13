@@ -14,8 +14,6 @@
   <filePath>F:\mytest\castle\ResProject\SkillProject\司马懿普通攻击\NewAnimation_simayupugong\NewAnimation_simayupugong.xml.animation</filePath>
   <ProjectType>AnimationProject</ProjectType>
   <ResRelativePath />
-  <ResourceFileList>
-    <string>NewAnimation_simayupugong0.plist</string>
-  </ResourceFileList>
+  <ResourceFileList />
   <bBatchImage>true</bBatchImage>
 </AnimationProject>

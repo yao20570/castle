@@ -14,8 +14,9 @@ SkillEffectXiXue::~SkillEffectXiXue(){
 	end();
 }
 
-void SkillEffectXiXue::trigger(){
+bool SkillEffectXiXue::trigger(){
 	this->m_obj->_xixue = this->m_obj->_xixue + this->m_value1;
+	return true;
 }
 
 void SkillEffectXiXue::end(){

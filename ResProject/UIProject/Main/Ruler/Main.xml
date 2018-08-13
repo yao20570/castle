@@ -36,4 +36,20 @@
     <Project>pnl_guanka_item</Project>
     <GuidesList />
   </GuidesProject>
+  <GuidesProject>
+    <Project>item_obj</Project>
+    <GuidesList />
+  </GuidesProject>
+  <GuidesProject>
+    <Project>pnl_setting</Project>
+    <GuidesList />
+  </GuidesProject>
+  <GuidesProject>
+    <Project>pnl_player</Project>
+    <GuidesList />
+  </GuidesProject>
+  <GuidesProject>
+    <Project>pnl_find_item</Project>
+    <GuidesList />
+  </GuidesProject>
 </ArrayOfGuidesProject>

@@ -14,8 +14,9 @@ SkillEffectHurtMore::~SkillEffectHurtMore(){
 	end();
 }
 
-void SkillEffectHurtMore::trigger(){
+bool SkillEffectHurtMore::trigger(){
 	this->m_obj->_hurt_more = this->m_obj->_hurt_more + this->m_value1;
+	return true;
 }
 
 void SkillEffectHurtMore::end(){

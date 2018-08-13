@@ -9,7 +9,7 @@
         {
           "name": "Layer6",
           "parent": "",
-          "dI": 0,
+          "dI": -1000,
           "x": -1.0,
           "y": 1.67333984375,
           "z": 6,
@@ -41,7 +41,7 @@
         {
           "name": "Layer5",
           "parent": "",
-          "dI": 0,
+          "dI": -1000,
           "x": -1.0,
           "y": 1.67333984375,
           "z": 5,
@@ -73,7 +73,7 @@
         {
           "name": "Layer4",
           "parent": "",
-          "dI": 0,
+          "dI": -1000,
           "x": -1.0,
           "y": 1.67333984375,
           "z": 4,
@@ -105,7 +105,7 @@
         {
           "name": "Layer3",
           "parent": "",
-          "dI": 0,
+          "dI": -1000,
           "x": -1.0,
           "y": 1.67333984375,
           "z": 3,
@@ -137,7 +137,7 @@
         {
           "name": "Layer2",
           "parent": "",
-          "dI": 0,
+          "dI": -1000,
           "x": -1.0,
           "y": 1.67333984375,
           "z": 2,
@@ -206,7 +206,7 @@
       "name": "NewAnimation_zhouyupugong",
       "mov_data": [
         {
-          "name": "Animation1_Copy2",
+          "name": "Animation1",
           "dr": 31,
           "lp": true,
           "to": 0,
@@ -506,69 +506,6 @@
               ]
             }
           ]
-        },
-        {
-          "name": "Animation1_Copy1",
-          "dr": 0,
-          "lp": true,
-          "to": 0,
-          "drTW": 0,
-          "twE": 0,
-          "sc": 1.0
-        },
-        {
-          "name": "Animation1_Copy0",
-          "dr": 0,
-          "lp": true,
-          "to": 0,
-          "drTW": 0,
-          "twE": 0,
-          "sc": 1.0
-        },
-        {
-          "name": "Animation1_Copy7",
-          "dr": 0,
-          "lp": true,
-          "to": 0,
-          "drTW": 0,
-          "twE": 0,
-          "sc": 1.0
-        },
-        {
-          "name": "Animation1_Copy6",
-          "dr": 0,
-          "lp": true,
-          "to": 0,
-          "drTW": 0,
-          "twE": 0,
-          "sc": 1.0
-        },
-        {
-          "name": "Animation1_Copy5",
-          "dr": 0,
-          "lp": true,
-          "to": 0,
-          "drTW": 0,
-          "twE": 0,
-          "sc": 1.0
-        },
-        {
-          "name": "Animation1_Copy4",
-          "dr": 0,
-          "lp": true,
-          "to": 0,
-          "drTW": 0,
-          "twE": 0,
-          "sc": 1.0
-        },
-        {
-          "name": "Animation1_Copy3",
-          "dr": 0,
-          "lp": true,
-          "to": 0,
-          "drTW": 0,
-          "twE": 0,
-          "sc": 1.0
         }
       ]
     }

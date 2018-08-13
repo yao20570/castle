@@ -14,8 +14,9 @@ SkillEffectSpeedPer::~SkillEffectSpeedPer(){
 	end();
 }
 
-void SkillEffectSpeedPer::trigger(){
+bool SkillEffectSpeedPer::trigger(){
 	this->m_obj->_speed_per = this->m_obj->_speed_per + this->m_value1;
+	return true;
 }
 
 void SkillEffectSpeedPer::end(){

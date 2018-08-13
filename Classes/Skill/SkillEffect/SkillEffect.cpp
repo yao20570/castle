@@ -54,7 +54,7 @@ void SkillEffect::update(float dt){
 	if (this->m_isCanRemove){
 		return;
 	}
-	CCLOG("SkillEffect update===>ptr:%p", this);
+
 	//尝试触发
 	this->onTrigger();
 
@@ -87,16 +87,16 @@ void SkillEffect::onTrigger(){
 
 	++this->m_curTimes;
 	
-	this->trigger();
+	bool b = this->trigger();
 
-	if (this->m_anim_data.loop != -1){
+	if (b && this->m_anim_data.loop != -1){
 		this->addAnim();
 	}
 }
 
 //触发一次效果，由子类实现
-void SkillEffect::trigger(){
-
+bool SkillEffect::trigger(){
+	return false;
 }
 
 bool SkillEffect::isCanEnd(){

@@ -165,6 +165,13 @@ void PnlSetting::updateSelectList() {
 		Layout* pnl_select = (Layout*)Helper::seekWidgetByName(lay_root, "pnl_select");
 		pnl_select->setVisible(false);
 
+		ImageView* spr_jobBg = (ImageView*)Helper::seekWidgetByName(lay_root, "spr_jobBg");
+		spr_jobBg->setVisible(true);
+		Text* lab_job = (Text*)Helper::seekWidgetByName(lay_root, "lab_job");
+		lab_job->setString(CFG()->getWord( 1 + cfg["Kind"].asInt()));
+		setTextColorByKind(lab_job, cfg["Kind"].asInt());
+
+
 
 		//名称
 		Text* txt_name = (Text*)Helper::seekWidgetByName(lay_root, "txt_name");

@@ -15,7 +15,13 @@ SkillEffectFanJian::~SkillEffectFanJian(){
 	end();
 }
 
-void SkillEffectFanJian::trigger(){
+bool SkillEffectFanJian::trigger(){
+
+	if (this->m_obj->_is_boos){
+		this->m_isCanRemove = true;
+		return false;
+	}
+
 	if (this->m_obj->getCamp() == 1){
 		this->m_obj->_ai->delObj(this->m_obj, 1);
 		this->m_obj->setCamp(2);
@@ -29,6 +35,8 @@ void SkillEffectFanJian::trigger(){
 	this->m_obj->_ai->addObj(this->m_obj, this->m_obj->_camp);
 	this->m_obj->_target = nullptr;
 	this->m_obj->setState(STATE_RUN, this->m_obj->getDir());
+
+	return true;
 }
 
 void SkillEffectFanJian::end(){

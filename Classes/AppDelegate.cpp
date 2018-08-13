@@ -172,7 +172,11 @@ void AppDelegate::loadResources()
 	FileUtils::getInstance()->addSearchPath("images");
 
 	//// ¼ÓÔØ¶¯»­
-	ArmatureDataManager::getInstance()->addArmatureFileInfo("animation/skill/effect1/NewAnimation.ExportJson");
+	ArmatureDataManager::getInstance()->addArmatureFileInfo("animation/skill/NewAnimation.ExportJson");
+	ArmatureDataManager::getInstance()->addArmatureFileInfo("animation/skill/NewAnimation_simayupugong.ExportJson");
+	ArmatureDataManager::getInstance()->addArmatureFileInfo("animation/skill/NewAnimation_zhouyupugong.ExportJson");
+
+	ArmatureDataManager::getInstance()->addArmatureFileInfo("animation/skill/NewAnimation_jineng.ExportJson");
 
 	ArmatureDataManager::getInstance()->addArmatureFileInfo("animation/soilder/Anim_Bowman.ExportJson");
 	ArmatureDataManager::getInstance()->addArmatureFileInfo("animation/hero/Anim_Fighter.ExportJson");
@@ -197,4 +201,5 @@ void AppDelegate::loadResources()
 	ArmatureDataManager::getInstance()->addArmatureFileInfo("animation/hero/Anim_Hero_Zhouyu.ExportJson");
 	ArmatureDataManager::getInstance()->addArmatureFileInfo("animation/hero/Anim_Hero_Zhugeliang.ExportJson");
 
+	ArmatureDataManager::getInstance()->addArmatureFileInfo("animation/hero/NewAnimation_Hero_Dongzuo.ExportJson");
 }

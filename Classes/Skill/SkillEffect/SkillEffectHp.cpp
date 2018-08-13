@@ -14,7 +14,7 @@ SkillEffectHp::~SkillEffectHp(){
 	end();
 }
 
-void SkillEffectHp::trigger(){
+bool SkillEffectHp::trigger(){
 	switch (m_value1)
 	{
 		case 1:	//ÅäÖÃµÄÉËº¦
@@ -27,6 +27,7 @@ void SkillEffectHp::trigger(){
 			this->m_obj->hurt(2,  -((float)this->m_obj->_totalHP * m_value2 / 100), nullptr, m_value3 == 0);
 			break;
 	}
+	return true;
 }
 
 void SkillEffectHp::end(){

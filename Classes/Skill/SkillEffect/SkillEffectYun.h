@@ -9,7 +9,7 @@ public:
 	~SkillEffectYun();
 
 protected:
-	virtual void trigger();
+	virtual bool trigger();
 
 	virtual void end();
 

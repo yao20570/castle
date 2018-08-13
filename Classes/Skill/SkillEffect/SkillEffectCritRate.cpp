@@ -14,8 +14,10 @@ SkillEffectCritRate::~SkillEffectCritRate(){
 	end();
 }
 
-void SkillEffectCritRate::trigger(){
+bool SkillEffectCritRate::trigger(){
 	this->m_obj->_crit_rate = this->m_obj->_crit_rate + this->m_value1;
+
+	return true;
 }
 
 void SkillEffectCritRate::end(){

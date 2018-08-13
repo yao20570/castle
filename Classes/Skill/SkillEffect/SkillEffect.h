@@ -25,7 +25,7 @@ public:
 protected:
 	virtual bool isCanTrigger();
 	virtual void onTrigger();
-	virtual void trigger();		//触发一次效果，由子类实现
+	virtual bool trigger();		//触发一次效果，由子类实现
 
 
 	virtual bool isCanEnd();

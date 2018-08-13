@@ -25,6 +25,7 @@ BaseSprite::BaseSprite()
 		, _crit_rate(0)		//±©»÷ÂÊ
 		, _mgr_skill(nullptr)
 		, _radius(0)
+		, _cdBar(nullptr)
 {
 }
 BaseSprite::~BaseSprite() {
@@ -262,7 +263,7 @@ void BaseSprite::hurt(int hurtType, int x, BaseSprite* atk, bool isShowTxt)
 	
 }
 void BaseSprite::changeHpBar(){CCLOG("Base changeHpBar");}
-void BaseSprite::hurtEffect(int x) { CCLOG("Base hurtEffect"); }
+void BaseSprite::hurtEffect(int x, int bulletType) { CCLOG("Base hurtEffect"); }
 void BaseSprite::death() { CCLOG("Base death"); }
 void BaseSprite::idle() { CCLOG("Base idle"); }
 bool BaseSprite::isDeath() {  CCLOG("Base isDeath"); return false; }

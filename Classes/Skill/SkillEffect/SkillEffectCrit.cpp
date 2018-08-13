@@ -14,8 +14,10 @@ SkillEffectCrit::~SkillEffectCrit(){
 	end();
 }
 
-void SkillEffectCrit::trigger(){
+bool SkillEffectCrit::trigger(){
 	this->m_obj->_crit = this->m_obj->_crit + this->m_value1;
+
+	return true;
 }
 
 void SkillEffectCrit::end(){

@@ -15,8 +15,9 @@ SkillEffectDisperse::~SkillEffectDisperse(){
 	end();
 }
 
-void SkillEffectDisperse::trigger(){
+bool SkillEffectDisperse::trigger(){
 	this->m_obj->clearBadSkillEffect();
+	return true;
 }
 
 void SkillEffectDisperse::end(){

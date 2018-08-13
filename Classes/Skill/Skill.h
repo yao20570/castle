@@ -50,6 +50,7 @@ public:
 	//运行信息
 	long m_useMSec;//当前使用技能时间(毫秒)，cd使用
 	
+	INT64 m_CDMTimestamp;
 private:
 	BaseSprite* m_obj;
 	AIMgr* m_ai;
@@ -57,5 +58,4 @@ private:
 	vector<int> m_effectIds;
 	vector<SkilCondition> m_conditions;
 	vector<SkilAnimData> m_anims;
-	INT64 m_CDMTimestamp;
 };

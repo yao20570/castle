@@ -14,8 +14,9 @@ SkillEffectDamage::~SkillEffectDamage(){
 	end();
 }
 
-void SkillEffectDamage::trigger(){
+bool SkillEffectDamage::trigger(){
 	this->m_obj->_damage_diff = this->m_obj->_damage_diff + this->m_value1;
+	return true;
 }
 
 void SkillEffectDamage::end(){

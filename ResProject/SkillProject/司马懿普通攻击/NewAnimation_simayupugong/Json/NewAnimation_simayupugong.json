@@ -142,7 +142,7 @@
       "name": "NewAnimation_simayupugong",
       "mov_data": [
         {
-          "name": "Animation1_Copy2",
+          "name": "Animation1",
           "dr": 21,
           "lp": true,
           "to": 0,
@@ -340,69 +340,6 @@
               ]
             }
           ]
-        },
-        {
-          "name": "Animation1_Copy1",
-          "dr": 0,
-          "lp": true,
-          "to": 0,
-          "drTW": 0,
-          "twE": 0,
-          "sc": 1.0
-        },
-        {
-          "name": "Animation1_Copy0",
-          "dr": 0,
-          "lp": true,
-          "to": 0,
-          "drTW": 0,
-          "twE": 0,
-          "sc": 1.0
-        },
-        {
-          "name": "Animation1_Copy7",
-          "dr": 0,
-          "lp": true,
-          "to": 0,
-          "drTW": 0,
-          "twE": 0,
-          "sc": 1.0
-        },
-        {
-          "name": "Animation1_Copy6",
-          "dr": 0,
-          "lp": true,
-          "to": 0,
-          "drTW": 0,
-          "twE": 0,
-          "sc": 1.0
-        },
-        {
-          "name": "Animation1_Copy5",
-          "dr": 0,
-          "lp": true,
-          "to": 0,
-          "drTW": 0,
-          "twE": 0,
-          "sc": 1.0
-        },
-        {
-          "name": "Animation1_Copy4",
-          "dr": 0,
-          "lp": true,
-          "to": 0,
-          "drTW": 0,
-          "twE": 0,
-          "sc": 1.0
-        },
-        {
-          "name": "Animation1_Copy3",
-          "dr": 0,
-          "lp": true,
-          "to": 0,
-          "drTW": 0,
-          "twE": 0,
-          "sc": 1.0
         }
       ]
     }
