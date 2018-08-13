@@ -51,7 +51,7 @@ void PnlFight::load()
 	this->pnl_start = (Layout*)Helper::seekWidgetByName(lay_root, "pnl_start");
 	this->pnl_start->addTouchEventListener(CC_CALLBACK_2(PnlFight::onStart, this));
 
-	for (int i = 1; i < 4; ++i){
+	for (int i = 1; i < 2; ++i){
 		sprintf(str, "pnl_start_player%d", i);
 		Layout* btnPalyer = (Layout*)Helper::seekWidgetByName(lay_root, str);
 		btnPalyer->setTag(i);

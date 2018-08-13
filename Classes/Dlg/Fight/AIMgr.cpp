@@ -389,49 +389,62 @@ void AIMgr::setObjDead(BaseSprite* obj) {
 }
 
 bool AIMgr::isOver(int type) {
-	switch (type) {
-		case 1: {
-			bool over = true;
-			for (auto it : _objSelf) {
-				if (it->_objType != 3 && !it->isDeath()) {
-					over = false;
-				}
-				else if (it->_objType == 3 && it->isDeath()){
-					return true;
-				}
-			}
-			if (over){
-				return true;
-			}
+	//switch (type) {
+	//	case 1: {
+	//		bool over = true;
+	//		for (auto it : _objSelf) {
+	//			if (it->_objType != 3 && !it->isDeath()) {
+	//				over = false;
+	//			}
+	//			else if (it->_objType == 3 && it->isDeath()){
+	//				return true;
+	//			}
+	//		}
+	//		if (over){
+	//			return true;
+	//		}
 
-			over = true;
-			for (auto it : _objEnemy) {
-				if (it->_objType != 3 && !it->isDeath()) {
-					over = false;
-				}
-				else if (it->_objType == 3 && it->isDeath()){
-					return true;
-				}
-			}
-			return over;
-		}
-		case 2: {
-			bool isSelfDeadAll = true;
-			for (auto it : _objSelf) {
-				if (it->_objType != 3 && !it->isDeath()) {
-					isSelfDeadAll = false;
-				}	
-			}
-			bool isEnemyDeadAll = true;
-			for (auto it : _objEnemy) {
-				if (it->_objType != 3 && !it->isDeath()) {
-					isEnemyDeadAll = false;
-				}	
-			}
-			return isSelfDeadAll || isEnemyDeadAll;
+	//		over = true;
+	//		for (auto it : _objEnemy) {
+	//			if (it->_objType != 3 && !it->isDeath()) {
+	//				over = false;
+	//			}
+	//			else if (it->_objType == 3 && it->isDeath()){
+	//				return true;
+	//			}
+	//		}
+	//		return over;
+	//	}
+	//	case 2: {
+	//		bool isSelfDeadAll = true;
+	//		for (auto it : _objSelf) {
+	//			if (it->_objType != 3 && !it->isDeath()) {
+	//				isSelfDeadAll = false;
+	//			}	
+	//		}
+	//		bool isEnemyDeadAll = true;
+	//		for (auto it : _objEnemy) {
+	//			if (it->_objType != 3 && !it->isDeath()) {
+	//				isEnemyDeadAll = false;
+	//			}	
+	//		}
+	//		return isSelfDeadAll || isEnemyDeadAll;
+	//	}
+	//}
+	//return false;
+	bool isSelfDeadAll = true;
+	for (auto it : _objSelf) {
+		if (!it->isDeath()) {
+			isSelfDeadAll = false;
 		}
 	}
-	return false;
+	bool isEnemyDeadAll = true;
+	for (auto it : _objEnemy) {
+		if (!it->isDeath()) {
+			isEnemyDeadAll = false;
+		}
+	}
+	return isSelfDeadAll || isEnemyDeadAll;
 }
 
 bool AIMgr::isWin(int type) {
@@ -439,20 +452,30 @@ bool AIMgr::isWin(int type) {
 	switch (type) {
 	case 1: {
 
-		int my = 0;
-		int en = 0;
+		//int my = 0;
+		//int en = 0;
+		//for (auto it : _objSelf) {
+		//	if (it->_objType == 3) {
+		//		my = ((PlayerObj*)it)->_healthPoint;
+		//	}
+		//}
+		//for (auto it : _objEnemy) {
+		//	if (it->_objType == 3) {
+		//		en = ((PlayerObj*)it)->_healthPoint;
+		//	}
+		//}
+		//return my > en;
+
 		for (auto it : _objSelf) {
-			if (it->_objType == 3) {
-				my = ((PlayerObj*)it)->_healthPoint;
+			if (!it->isDeath()) {
+				return true;
 			}
 		}
 		for (auto it : _objEnemy) {
-			if (it->_objType == 3) {
-				en = ((PlayerObj*)it)->_healthPoint;
+			if (!it->isDeath()) {
+				return false;
 			}
 		}
-
-		return my > en;
 	}
 	case 2: {
 		return this->isOver(2);

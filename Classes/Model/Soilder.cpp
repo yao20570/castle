@@ -325,7 +325,7 @@ void Soilder::atk(Armature* arm, MovementEventType eventType, const std::string&
 				auto bullet = BulletSprite::create(src, des, getDamage(), this, _target, IMG_BULLET_ARROW, 1);
 				bullet->setScale(getScale());
 				this->getParent()->addChild(bullet, 9999999);
-				SimpleAudioEngine::getInstance()->playEffect("music/far_gongjian_effect.mp3", false);
+				//SimpleAudioEngine::getInstance()->playEffect("music/far_gongjian_effect.mp3", false);
 			}
 			else if (_shootType == 3) {
 				Vec2 src = getPosition() + Vec2(0, 60);
@@ -333,7 +333,7 @@ void Soilder::atk(Armature* arm, MovementEventType eventType, const std::string&
 				auto bullet = BulletSprite::create(src, des, getDamage(), this, _target, "images/bullet/fashu.png", 2);
 				bullet->setScale(getScale());
 				this->getParent()->addChild(bullet, 9999999);
-				SimpleAudioEngine::getInstance()->playEffect("music/far_fashu_effect.mp3", false);
+				//SimpleAudioEngine::getInstance()->playEffect("music/far_fashu_effect.mp3", false);
 			}
 			else {
 				if (_target->_objType == 3) {
@@ -342,7 +342,7 @@ void Soilder::atk(Armature* arm, MovementEventType eventType, const std::string&
 				else {
 					_target->hurt(1, getDamage(), this);
 				}
-				SimpleAudioEngine::getInstance()->playEffect("music/near_atk_effect.mp3", false);
+				//SimpleAudioEngine::getInstance()->playEffect("music/near_atk_effect.mp3", false);
 			}
 
 			if (_target->_objType == 3) {

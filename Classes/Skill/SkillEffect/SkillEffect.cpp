@@ -37,9 +37,13 @@ SkillEffect::SkillEffect(BaseSprite* obj, int skillEffectId, BaseSprite* caster)
 	SkilAnimData& anim = this->m_anim_data;
 	anim.layerType = SkillAnimLayerType(cfg["AnimType"].asInt());
 	anim.posType = SkillAnimPosType::Src;
-	anim.loop = this->m_lastTime;
+	anim.loop = cfg["LastTime"].asInt();
 	anim.fileName = cfg["AnimName"].asString();
 	anim.key = GM()->getAutoKey();
+
+	if (anim.loop == -1){
+		this->addAnim();
+	}
 }
 
 SkillEffect::~SkillEffect(){
@@ -85,7 +89,9 @@ void SkillEffect::onTrigger(){
 	
 	this->trigger();
 
-	this->addAnim();
+	if (this->m_anim_data.loop != -1){
+		this->addAnim();
+	}
 }
 
 //触发一次效果，由子类实现

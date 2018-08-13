@@ -14,6 +14,7 @@ using namespace cocos2d::ui;
 #include "Model/Soilder.h"
 #include "Model/PlayerObj.h"
 #include "Dlg/Main/DlgMain.h"
+#include "Cocos2dEx/SkillEffectAnim.h"
 
 USING_NS_CC;
 
@@ -132,6 +133,16 @@ void DlgMission::update(float dt) {
 	}
 	else {
 		DlgMission_resule_delay = 60;
+	}
+
+	
+	//地板技能特效跟随角色移动
+	for (auto& it : this->_floor_aminas){
+		SkillEffectAnim* anim = it.second;
+		BaseSprite* obj = anim->getObj();
+		if (obj){
+			anim->setPosition(obj->getPosition());
+		}
 	}
 }
 

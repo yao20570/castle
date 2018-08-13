@@ -23,3 +23,8 @@ ID,IsBoss,ObjType,SubType,Quality,MaxLv,Unit,Kind,Name,Icon,UI,Anima,Head,Item
 22,true,2,17,5,15,3,1,颜良,images/icon/hero_zhenji.png,images/ui/hero_zhenji.png,Anim_MeatShield,images/head/hero_zhenji.png,images/item/head_zhenji.png
 23,true,2,18,5,15,3,1,文丑,images/icon/hero_zhenji.png,images/ui/hero_zhenji.png,Anim_Fighter,images/head/hero_zhenji.png,images/item/head_zhenji.png
 24,true,2,19,6,4,4,1,吕布,images/icon/hero_zhenji.png,images/ui/hero_zhenji.png,Anim_Hero_LvBu,images/head/hero_zhenji.png,images/item/head_zhenji.png
+25,false,2,20,5,8,3,1,马超,images/icon/hero_machao.png,images/ui/hero_machao.png,Anim_Hero_Machao,images/head/hero_machao.png,images/item/head_machao.png
+26,false,2,21,3,15,3,2,大乔,images/icon/hero_daqiao.png,images/ui/hero_daqiao.png,Anim_Hero_Daqiao,images/head/hero_daqiao.png,images/item/head_daqiao.png
+27,false,2,22,6,4,4,4,神.周瑜,images/icon/hero_zhouyu.png,images/ui/hero_zhouyu.png,Anim_Hero_Zhouyu,images/head/hero_zhouyu.png,images/item/head_zhouyu.png
+28,false,2,23,5,8,3,3,关羽,images/icon/hero_guanyu.png,images/ui/hero_guanyu.png,Anim_Hero_Guanyu,images/head/hero_guanyu.png,images/item/head_guanyu.png
+29,false,2,24,5,8,3,1,赵云,images/icon/hero_zhaoyun.png,images/ui/hero_zhaoyun.png,Anim_Hero_LvBu,images/head/hero_zhaoyun.png,images/item/head_zhaoyun.png

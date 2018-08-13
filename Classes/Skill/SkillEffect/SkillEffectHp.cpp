@@ -18,13 +18,13 @@ void SkillEffectHp::trigger(){
 	switch (m_value1)
 	{
 		case 1:	//配置的伤害
-			this->m_obj->hurt(2,  -m_value2, nullptr);
+			this->m_obj->hurt(2,  -m_value2, nullptr, m_value3 == 0);
 			break;
 		case 2: //施法者攻击力的伤害
-			this->m_obj->hurt(2,  -((float)m_caster->getDamage() * m_value2 / 100), nullptr);
+			this->m_obj->hurt(2,  -((float)m_caster->getDamage() * m_value2 / 100), nullptr, m_value3 == 0);
 			break;
 		case 3: //生命百分比			
-			this->m_obj->hurt(2,  -((float)this->m_obj->_totalHP * m_value2 / 100), nullptr);
+			this->m_obj->hurt(2,  -((float)this->m_obj->_totalHP * m_value2 / 100), nullptr, m_value3 == 0);
 			break;
 	}
 }

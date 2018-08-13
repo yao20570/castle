@@ -140,7 +140,7 @@ void PnlGuanKa::onSelectMissionSub(Ref* sender, Widget::TouchEventType type) {
 		int missionMain = myMission["MissionMain"].asInt();
 		int missionSub = myMission["MissionSub"].asInt();
 		int temp = missionMain * 10 + missionSub;
-
+		temp = temp == 0 ? 11 : temp;
 		bool isEnabled = (pnl->getTag() <= temp);
 		if (isEnabled == true) {
 

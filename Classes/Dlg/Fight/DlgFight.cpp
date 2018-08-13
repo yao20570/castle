@@ -262,6 +262,15 @@ void DlgFight::update(float dt) {
 			if (obj && this->_skill_shoot_range){
 				this->_skill_shoot_range->setPosition(obj->getPosition());
 			}
+
+			//地板技能特效跟随角色移动
+			for (auto& it : this->_floor_aminas){
+				SkillEffectAnim* anim = it.second;
+				BaseSprite* obj = anim->getObj();
+				if (obj){
+					anim->setPosition(obj->getPosition());
+				}
+			}
 		}
 			break;
 		case MapState::RoundEnd:
@@ -310,6 +319,12 @@ void DlgFight::update(float dt) {
 			setObjPosition();
 			//_ai->start();
 			_state = MapState::Wait;
+
+			for (auto& it : this->_floor_aminas){
+				SkillEffectAnim* anim = it.second;	
+				anim->removeFromParent();
+			}
+			this->_floor_aminas.clear();
 		}
 			break;
 		case MapState::FightEnd:
@@ -324,14 +339,7 @@ void DlgFight::update(float dt) {
 
 	this->updateObjAttrLayer();
 
-	//地板技能特效跟随角色移动
-	for (auto& it : this->_floor_aminas){
-		SkillEffectAnim* anim = it.second;
-		BaseSprite* obj = anim->getObj();
-		if (obj){
-			anim->setPosition(obj->getPosition());
-		}
-	}
+
 }
 
 void DlgFight::addTouch()
@@ -526,7 +534,7 @@ void DlgFight::setObjPosition()
 			}
 		}
 
-		addPlayer(Vec2(320, 40), camp);
+		//addPlayer(Vec2(320, 40), camp);
 	}
 
 	{
@@ -593,7 +601,7 @@ void DlgFight::setObjPosition()
 			}
 
 		}
-		addPlayer(Vec2(320, 920), camp);
+		//addPlayer(Vec2(320, 920), camp);
 	}
 
 }

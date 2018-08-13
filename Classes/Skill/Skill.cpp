@@ -165,7 +165,16 @@ void Skill::playAnim(const Vec2& targetPos){
 			float rate = (float)this->shootRange / distance;
 			int x = this->m_obj->getPositionX() + (targetPos.x - this->m_obj->getPositionX()) * rate; 
 			int y = this->m_obj->getPositionY() + (targetPos.y - this->m_obj->getPositionY()) * rate; 
-			it.targetPos = Vec2(x, y);
+			it.targetPos = Vec2(x, y) + Vec2(0, 60);
+		}
+		else if (SkillScopeType::FAN == this->scopeType){
+
+			//技能释放角度
+			Vec2 temp1 = targetPos - this->m_obj->getPosition();
+			float radians = temp1.getAngle();
+			it.angle = CC_RADIANS_TO_DEGREES(-radians);
+
+			it.targetPos = this->m_obj->getPosition() + Vec2(0, 60);
 		}
 		else{
 			it.targetPos = targetPos;

@@ -520,7 +520,7 @@
 		},
 		"33": {
 			"ID": 33,
-			"Name": "boss横扫",
+			"Name": "半月斩",
 			"Desc": "对前方扇形范围内的敌人造成200%伤害.CD8秒.",
 			"Trigger": 2,
 			"Condition": [],
@@ -530,7 +530,12 @@
 			"ShootRange": 250,
 			"CD": 8000,
 			"Detail": [10111010],
-			"Amin": []
+			"Amin": [{
+				"LayerType": 3,
+				"FileName":"NewAnimation_banyuezhan",
+				"PosType":2,
+				"Loop":0
+			}]
 		},
 		"34": {
 			"ID": 34,
@@ -553,6 +558,20 @@
 				"PosType":2,
 				"Loop":0
 			}]
+		},
+		"35": {
+			"ID": 35,
+			"Name": "反间(自动)",
+			"Desc": "控制敌方最近的英雄3秒，BOSS无效.冷却时间15秒.",
+			"Trigger": 2,
+			"Condition": [],
+			"Target": 1,
+			"ScopeType": 1,
+			"Radius": 20,
+			"ShootRange": 350,
+			"CD": 15000,
+			"Detail": [20030001],
+			"Amin": []
 		}
 	}
 }

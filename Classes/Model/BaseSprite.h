@@ -30,7 +30,7 @@ public:
 
     virtual void atk();
     virtual void run();
-	virtual void hurt(int hurtType, int x, BaseSprite* atk);
+	virtual void hurt(int hurtType, int x, BaseSprite* atk, bool isShowTxt = true);
 	virtual void changeHpBar();
 	virtual void hurtEffect(int x);
 	virtual void death();

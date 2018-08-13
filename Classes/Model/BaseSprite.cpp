@@ -170,7 +170,7 @@ void BaseSprite::update(float dt)
 void BaseSprite::atk() { CCLOG("Base atk"); }
 void BaseSprite::run() { CCLOG("Base run"); }
  // ‹…À
-void BaseSprite::hurt(int hurtType, int x, BaseSprite* atk)
+void BaseSprite::hurt(int hurtType, int x, BaseSprite* atk, bool isShowTxt)
 {
 	if (_isbroken == true || _healthPoint <= 0) {
 		//_arm->getAnimation()->stop();
@@ -244,14 +244,16 @@ void BaseSprite::hurt(int hurtType, int x, BaseSprite* atk)
 		_txt_hp->setString(cocos2d::Value(_healthPoint).asString());
 	}
 
-	//∆Æ◊÷
-	Vec2 txtPos = Vec2(40, _arm->getContentSize().height / 2 - 20);
-	Color4B txtColor(255, 0, 0, 255);
-	if (temp < 0) {
-		txtColor = Color4B(0, 255, 0, 255);
+	if (isShowTxt) {
+		//∆Æ◊÷
+		Vec2 txtPos = Vec2(40, _arm->getContentSize().height / 2 - 20);
+		Color4B txtColor(255, 0, 0, 255);
+		if (temp < 0) {
+			txtColor = Color4B(0, 255, 0, 255);
+		}
+		Text* txtHurt = this->flyHurtNum(temp, txtPos);
+		txtHurt->setTextColor(txtColor);
 	}
-	Text* txtHurt = this->flyHurtNum(temp, txtPos);
-	txtHurt->setTextColor(txtColor);
 
 	// ‹µΩ…À∫¶ ±¥•∑¢
 	if (temp > 0){
