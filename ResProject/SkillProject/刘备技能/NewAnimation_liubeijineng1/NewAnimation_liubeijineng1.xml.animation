@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<AnimationProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ProjectDir>F:\mytest\castle\ResProject\SkillProject\刘备技能\NewAnimation_liubeijineng1</ProjectDir>
+  <Version>1.6.0.0</Version>
+  <Resources>F:\mytest\castle\ResProject\SkillProject\刘备技能\NewAnimation_liubeijineng1\Resources</Resources>
+  <Name>NewAnimation_liubeijineng1</Name>
+  <JsonFileName>NewAnimation_liubeijineng1.json</JsonFileName>
+  <JsonFolder>F:\mytest\castle\ResProject\SkillProject\刘备技能\NewAnimation_liubeijineng1\Json</JsonFolder>
+  <JsonList />
+  <CanvasSize>
+    <Width>0</Width>
+    <Height>0</Height>
+  </CanvasSize>
+  <filePath>F:\mytest\castle\ResProject\SkillProject\刘备技能\NewAnimation_liubeijineng1\NewAnimation_liubeijineng1.xml.animation</filePath>
+  <ProjectType>AnimationProject</ProjectType>
+  <ResRelativePath />
+  <ResourceFileList />
+  <bBatchImage>true</bBatchImage>
+</AnimationProject>

@@ -245,7 +245,7 @@ void BaseSprite::hurt(int hurtType, int x, BaseSprite* atk, bool isShowTxt)
 		_txt_hp->setString(cocos2d::Value(_healthPoint).asString());
 	}
 
-	if (isShowTxt) {
+	if (isShowTxt && hurtType == 2) {
 		//Æ®×Ö
 		Vec2 txtPos = Vec2(40, _arm->getContentSize().height / 2 - 20);
 		Color4B txtColor(255, 0, 0, 255);

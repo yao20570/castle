@@ -300,7 +300,12 @@
 			"ShootRange": 1,
 			"CD": 10000,
 			"Detail": [20021004],
-			"Amin": []
+			"Amin": [{
+				"LayerType": 2,
+				"FileName":"NewAnimation_ganningjineng",
+				"PosType":2,
+				"Loop":5000
+			}]
 		},
 		"19": {
 			"ID": 19,
@@ -393,7 +398,7 @@
 				"LayerType": 3,
 				"FileName":"NewAnimation_fanghuzhao",
 				"PosType":1,
-				"Loop":0
+				"Loop":5000
 			}]
 		},
 		"25": {
