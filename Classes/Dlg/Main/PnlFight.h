@@ -18,8 +18,9 @@ public:
 public:
 	virtual void updateUI();
 	void updateSettingPanel();
-
+	
 	void onStart(Ref* sender, Widget::TouchEventType type);
+	void onStart2(Ref* sender, Widget::TouchEventType type);
 private:
 
 private:

@@ -14,8 +14,6 @@
   <filePath>F:\mytest\castle\ResProject\SkillProject\诸葛亮\NewAnimation_shandian\NewAnimation_shandian.xml.animation</filePath>
   <ProjectType>AnimationProject</ProjectType>
   <ResRelativePath />
-  <ResourceFileList>
-    <string>NewAnimation_shandian0.plist</string>
-  </ResourceFileList>
+  <ResourceFileList />
   <bBatchImage>true</bBatchImage>
 </AnimationProject>

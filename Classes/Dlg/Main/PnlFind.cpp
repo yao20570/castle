@@ -193,8 +193,8 @@ void PnlFind::onGoldFind(Ref* sender, Widget::TouchEventType type) {
 
 		while (true)
 		{
-			int num = rand() % table->size() + 1;
-
+			//int num = rand() % table->size() + 1;
+			int num = rand() % 15 + 1 + 5;
 			ValueMap* cfgPtr = CFG()->getObjInfoById(num);
 			ValueMap& cfg = *cfgPtr;
 			if (cfg["Quality"].asInt() >5) {

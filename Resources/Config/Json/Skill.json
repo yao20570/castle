@@ -2,7 +2,7 @@
 	"Desc": {
 		"ID": "技能ID",
 		"Name": "技能名称",
-		"Trigger": "触发条件,0手动释放,1回合开始,2攻击触发,3受到伤害,4死亡触发,5生命剩余触发",
+		"Trigger": "触发条件,0手动释放,1回合开始,2攻击触发,3受到伤害,4死亡触发",
 		"Condition": [{
 			"Type":"1:低于生命触发，2:几率触发",
 			"Value":100
@@ -58,17 +58,17 @@
 			"ID": 3,
 			"Name": "嗜血",
 			"Desc": "血量低于20%时，伤害提高100%",
-			"Trigger": 2,
+			"Trigger": 3,
 			"Condition": [{
 				"Type":1,
 				"Value":20
 			}],
-			"Target": 2,
+			"Target": 1,
 			"ScopeType": 2,
-			"Radius": 200,
+			"Radius": 1,
 			"ShootRange": 1,
-			"CD": 3000,
-			"Detail": [10320001],
+			"CD": 0,
+			"Detail": [20022002],
 			"Amin": []
 		},
 		"4": {
@@ -452,10 +452,15 @@
 			"Target": 1,
 			"ScopeType": 1,
 			"Radius": 20,
-			"ShootRange": 200,
+			"ShootRange": 450,
 			"CD": 12000,
 			"Detail": [10111007],
-			"Amin": []
+			"Amin": [{
+				"LayerType": 3,
+				"FileName":"NewAnimation_guishensha",
+				"PosType":2,
+				"Loop":0
+			}]
 		},
 		"29": {
 			"ID": 29,
@@ -542,7 +547,12 @@
 			"ShootRange": 250,
 			"CD": 0,
 			"Detail": [10111011],
-			"Amin": []
+			"Amin": [{
+				"LayerType": 3,
+				"FileName":"NewAnimation_shanxing",
+				"PosType":2,
+				"Loop":0
+			}]
 		}
 	}
 }

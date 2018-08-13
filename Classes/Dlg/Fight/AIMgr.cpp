@@ -394,28 +394,39 @@ bool AIMgr::isOver(int type) {
 			bool over = true;
 			for (auto it : _objSelf) {
 				if (it->_objType != 3 && !it->isDeath()) {
-					return false;
+					over = false;
+				}
+				else if (it->_objType == 3 && it->isDeath()){
+					return true;
 				}
 			}
+			if (over){
+				return true;
+			}
+
+			over = true;
 			for (auto it : _objEnemy) {
 				if (it->_objType != 3 && !it->isDeath()) {
-					return false;
+					over = false;
+				}
+				else if (it->_objType == 3 && it->isDeath()){
+					return true;
 				}
 			}
-			return true;
+			return over;
 		}
 		case 2: {
 			bool isSelfDeadAll = true;
 			for (auto it : _objSelf) {
 				if (it->_objType != 3 && !it->isDeath()) {
 					isSelfDeadAll = false;
-				}
+				}	
 			}
 			bool isEnemyDeadAll = true;
 			for (auto it : _objEnemy) {
 				if (it->_objType != 3 && !it->isDeath()) {
 					isEnemyDeadAll = false;
-				}
+				}	
 			}
 			return isSelfDeadAll || isEnemyDeadAll;
 		}

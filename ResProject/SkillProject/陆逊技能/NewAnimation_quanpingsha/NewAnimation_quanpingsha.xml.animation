@@ -18,6 +18,7 @@
     <string>NewAnimation_quanpingsha0.plist</string>
     <string>NewAnimation_quanpingsha1.plist</string>
     <string>NewAnimation_quanpingsha2.plist</string>
+    <string>NewAnimation_quanpingsha3.plist</string>
   </ResourceFileList>
   <bBatchImage>true</bBatchImage>
 </AnimationProject>

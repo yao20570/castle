@@ -16,6 +16,8 @@
   <ResRelativePath />
   <ResourceFileList>
     <string>NewAnimation_longjuanshan0.plist</string>
+    <string>NewAnimation_longjuanshan1.plist</string>
+    <string>NewAnimation_longjuanshan2.plist</string>
   </ResourceFileList>
   <bBatchImage>true</bBatchImage>
 </AnimationProject>

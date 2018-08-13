@@ -6,6 +6,7 @@
 #include "Utils/ConfigMgr.h"
 #include "Utils/UIUtils.h"
 #include "Dlg/Main/DlgMain.h"
+#include "Dlg/Fight/DlgFight.h"
 
 USING_NS_CC;
 
@@ -50,6 +51,12 @@ void PnlFight::load()
 	this->pnl_start = (Layout*)Helper::seekWidgetByName(lay_root, "pnl_start");
 	this->pnl_start->addTouchEventListener(CC_CALLBACK_2(PnlFight::onStart, this));
 
+	for (int i = 1; i < 4; ++i){
+		sprintf(str, "pnl_start_player%d", i);
+		Layout* btnPalyer = (Layout*)Helper::seekWidgetByName(lay_root, str);
+		btnPalyer->setTag(i);
+		btnPalyer->addTouchEventListener(CC_CALLBACK_2(PnlFight::onStart2, this));
+	}
 	
 }
 
@@ -60,8 +67,14 @@ void PnlFight::setVisible(bool b) {
 	}
 }
 
+void PnlFight::onStart2(Ref* sender, Widget::TouchEventType type) {
+	DlgFight* dlgFight = (DlgFight*)showDlg("DlgFight");
+	dlgFight->setFightType(((Node*)sender)->getTag());
+}
+
 void PnlFight::onStart(Ref* sender, Widget::TouchEventType type) {
-	showDlg("DlgFight");
+	DlgFight* dlgFight = (DlgFight*)showDlg("DlgFight");
+	dlgFight->setFightType(0);
 }
 
 void PnlFight::updateUI()

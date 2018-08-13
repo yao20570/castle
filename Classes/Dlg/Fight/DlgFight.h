@@ -57,6 +57,8 @@ public:
 
 	void addSkillAnim(void* data);
 	void delSkillAnim(void* data);
+
+	void setFightType(int type);
 protected:
 	virtual void onMapTouch(Ref* sender, Widget::TouchEventType type);
 	virtual void onMapTouchBegan(Ref* sender, Widget::TouchEventType type);
@@ -69,6 +71,7 @@ protected:
 	void onClose(Ref* sender, Widget::TouchEventType type);
 	void onResetObjPos(Ref* sender, Widget::TouchEventType type);
 public:
+	int _player_id;
 	map<int, ValueMap>* _objPosCfg;
 	AIMgr* _ai;
 	int _round;

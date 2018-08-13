@@ -7,13 +7,13 @@
 			<key>longjuanshan_9.png</key>
 			<dict>
 				<key>width</key>
-				<integer>200</integer>
+				<integer>350</integer>
 				<key>height</key>
-				<integer>151</integer>
+				<integer>265</integer>
 				<key>originalWidth</key>
-				<integer>200</integer>
+				<integer>350</integer>
 				<key>originalHeight</key>
-				<integer>151</integer>
+				<integer>265</integer>
 				<key>x</key>
 				<integer>0</integer>
 				<key>y</key>
@@ -26,15 +26,15 @@
 			<key>longjuanshan_8.png</key>
 			<dict>
 				<key>width</key>
-				<integer>200</integer>
+				<integer>350</integer>
 				<key>height</key>
-				<integer>193</integer>
+				<integer>339</integer>
 				<key>originalWidth</key>
-				<integer>200</integer>
+				<integer>350</integer>
 				<key>originalHeight</key>
-				<integer>193</integer>
+				<integer>339</integer>
 				<key>x</key>
-				<integer>202</integer>
+				<integer>352</integer>
 				<key>y</key>
 				<integer>0</integer>
 				<key>offsetX</key>
@@ -45,17 +45,17 @@
 			<key>longjuanshan_7.png</key>
 			<dict>
 				<key>width</key>
-				<integer>200</integer>
+				<integer>350</integer>
 				<key>height</key>
-				<integer>189</integer>
+				<integer>332</integer>
 				<key>originalWidth</key>
-				<integer>200</integer>
+				<integer>350</integer>
 				<key>originalHeight</key>
-				<integer>189</integer>
+				<integer>332</integer>
 				<key>x</key>
-				<integer>404</integer>
-				<key>y</key>
 				<integer>0</integer>
+				<key>y</key>
+				<integer>341</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -64,17 +64,17 @@
 			<key>longjuanshan_6.png</key>
 			<dict>
 				<key>width</key>
-				<integer>200</integer>
+				<integer>350</integer>
 				<key>height</key>
-				<integer>187</integer>
+				<integer>328</integer>
 				<key>originalWidth</key>
-				<integer>200</integer>
+				<integer>350</integer>
 				<key>originalHeight</key>
-				<integer>187</integer>
+				<integer>328</integer>
 				<key>x</key>
-				<integer>606</integer>
+				<integer>352</integer>
 				<key>y</key>
-				<integer>0</integer>
+				<integer>341</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -83,112 +83,17 @@
 			<key>longjuanshan_5.png</key>
 			<dict>
 				<key>width</key>
-				<integer>200</integer>
+				<integer>350</integer>
 				<key>height</key>
-				<integer>197</integer>
+				<integer>346</integer>
 				<key>originalWidth</key>
-				<integer>200</integer>
+				<integer>350</integer>
 				<key>originalHeight</key>
-				<integer>197</integer>
-				<key>x</key>
-				<integer>808</integer>
-				<key>y</key>
-				<integer>0</integer>
-				<key>offsetX</key>
-				<real>0</real>
-				<key>offsetY</key>
-				<real>0</real>
-			</dict>
-			<key>longjuanshan_4.png</key>
-			<dict>
-				<key>width</key>
-				<integer>200</integer>
-				<key>height</key>
-				<integer>206</integer>
-				<key>originalWidth</key>
-				<integer>200</integer>
-				<key>originalHeight</key>
-				<integer>206</integer>
+				<integer>346</integer>
 				<key>x</key>
 				<integer>0</integer>
 				<key>y</key>
-				<integer>199</integer>
-				<key>offsetX</key>
-				<real>0</real>
-				<key>offsetY</key>
-				<real>0</real>
-			</dict>
-			<key>longjuanshan_3.png</key>
-			<dict>
-				<key>width</key>
-				<integer>200</integer>
-				<key>height</key>
-				<integer>238</integer>
-				<key>originalWidth</key>
-				<integer>200</integer>
-				<key>originalHeight</key>
-				<integer>238</integer>
-				<key>x</key>
-				<integer>202</integer>
-				<key>y</key>
-				<integer>199</integer>
-				<key>offsetX</key>
-				<real>0</real>
-				<key>offsetY</key>
-				<real>0</real>
-			</dict>
-			<key>longjuanshan_2.png</key>
-			<dict>
-				<key>width</key>
-				<integer>200</integer>
-				<key>height</key>
-				<integer>244</integer>
-				<key>originalWidth</key>
-				<integer>200</integer>
-				<key>originalHeight</key>
-				<integer>244</integer>
-				<key>x</key>
-				<integer>404</integer>
-				<key>y</key>
-				<integer>199</integer>
-				<key>offsetX</key>
-				<real>0</real>
-				<key>offsetY</key>
-				<real>0</real>
-			</dict>
-			<key>longjuanshan_1.png</key>
-			<dict>
-				<key>width</key>
-				<integer>200</integer>
-				<key>height</key>
-				<integer>268</integer>
-				<key>originalWidth</key>
-				<integer>200</integer>
-				<key>originalHeight</key>
-				<integer>268</integer>
-				<key>x</key>
-				<integer>606</integer>
-				<key>y</key>
-				<integer>199</integer>
-				<key>offsetX</key>
-				<real>0</real>
-				<key>offsetY</key>
-				<real>0</real>
-			</dict>
-			<key>longjuanshan_0.png</key>
-			<dict>
-				<key>width</key>
-				<integer>200</integer>
-				<key>height</key>
-				<integer>277</integer>
-				<key>originalWidth</key>
-				<integer>200</integer>
-				<key>originalHeight</key>
-				<integer>277</integer>
-				<key>x</key>
-				<integer>808</integer>
-				<key>y</key>
-				<integer>199</integer>
+				<integer>675</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>

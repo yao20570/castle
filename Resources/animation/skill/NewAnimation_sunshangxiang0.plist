@@ -7,13 +7,13 @@
 			<key>qushan_3.png</key>
 			<dict>
 				<key>width</key>
-				<integer>120</integer>
+				<integer>100</integer>
 				<key>height</key>
-				<integer>127</integer>
+				<integer>106</integer>
 				<key>originalWidth</key>
-				<integer>120</integer>
+				<integer>100</integer>
 				<key>originalHeight</key>
-				<integer>127</integer>
+				<integer>106</integer>
 				<key>x</key>
 				<integer>0</integer>
 				<key>y</key>
@@ -26,15 +26,15 @@
 			<key>qushan_2.png</key>
 			<dict>
 				<key>width</key>
-				<integer>120</integer>
+				<integer>100</integer>
 				<key>height</key>
-				<integer>127</integer>
+				<integer>106</integer>
 				<key>originalWidth</key>
-				<integer>120</integer>
+				<integer>100</integer>
 				<key>originalHeight</key>
-				<integer>127</integer>
+				<integer>106</integer>
 				<key>x</key>
-				<integer>122</integer>
+				<integer>102</integer>
 				<key>y</key>
 				<integer>0</integer>
 				<key>offsetX</key>
@@ -45,15 +45,15 @@
 			<key>qushan_1.png</key>
 			<dict>
 				<key>width</key>
-				<integer>120</integer>
+				<integer>100</integer>
 				<key>height</key>
-				<integer>130</integer>
+				<integer>108</integer>
 				<key>originalWidth</key>
-				<integer>120</integer>
+				<integer>100</integer>
 				<key>originalHeight</key>
-				<integer>130</integer>
+				<integer>108</integer>
 				<key>x</key>
-				<integer>244</integer>
+				<integer>204</integer>
 				<key>y</key>
 				<integer>0</integer>
 				<key>offsetX</key>
@@ -64,15 +64,15 @@
 			<key>qushan_0.png</key>
 			<dict>
 				<key>width</key>
-				<integer>120</integer>
+				<integer>100</integer>
 				<key>height</key>
-				<integer>135</integer>
+				<integer>112</integer>
 				<key>originalWidth</key>
-				<integer>120</integer>
+				<integer>100</integer>
 				<key>originalHeight</key>
-				<integer>135</integer>
+				<integer>112</integer>
 				<key>x</key>
-				<integer>366</integer>
+				<integer>306</integer>
 				<key>y</key>
 				<integer>0</integer>
 				<key>offsetX</key>

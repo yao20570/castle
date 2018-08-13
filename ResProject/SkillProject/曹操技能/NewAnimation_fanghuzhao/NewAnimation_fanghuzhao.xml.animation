@@ -14,6 +14,9 @@
   <filePath>F:\mytest\castle\ResProject\SkillProject\曹操技能\NewAnimation_fanghuzhao\NewAnimation_fanghuzhao.xml.animation</filePath>
   <ProjectType>AnimationProject</ProjectType>
   <ResRelativePath />
-  <ResourceFileList />
+  <ResourceFileList>
+    <string>NewAnimation_fanghuzhao0.plist</string>
+    <string>NewAnimation_fanghuzhao1.plist</string>
+  </ResourceFileList>
   <bBatchImage>true</bBatchImage>
 </AnimationProject>

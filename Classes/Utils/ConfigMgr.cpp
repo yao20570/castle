@@ -13,6 +13,9 @@ static const char* PathMissionSub = "Config/MissionSub.csv";
 static const char* PathMissionObj = "Config/MissionObj.csv";
 static const char* PathSkillEffect = "Config/SkillEffect.csv";
 
+
+static const char* PathPlayer = "Config/Player/Player%d.csv";
+
 ConfigMgr* ConfigMgr::_g = nullptr;
 ConfigMgr* ConfigMgr::getInstance()
 {
@@ -156,4 +159,15 @@ ValueMap* ConfigMgr::getSkillEffectById(int id) {
 		return nullptr;
 	}
 	return &(it->second);
+}
+
+map<int, ValueMap>* ConfigMgr::getPlayerById(int id) {
+	char path[128] = {0};
+	sprintf(path, PathPlayer, id);
+	map<int, ValueMap>* table = loadConfig(path, "ObjId");
+	//auto it = table->find(id);
+	//if (it == table->end()) {
+	//	return nullptr;
+	//}
+	return table;
 }

@@ -7,13 +7,13 @@
 			<key>fanghuzhao_5.png</key>
 			<dict>
 				<key>width</key>
-				<integer>400</integer>
+				<integer>500</integer>
 				<key>height</key>
-				<integer>288</integer>
+				<integer>360</integer>
 				<key>originalWidth</key>
-				<integer>400</integer>
+				<integer>500</integer>
 				<key>originalHeight</key>
-				<integer>288</integer>
+				<integer>360</integer>
 				<key>x</key>
 				<integer>0</integer>
 				<key>y</key>
@@ -26,15 +26,15 @@
 			<key>fanghuzhao_4.png</key>
 			<dict>
 				<key>width</key>
-				<integer>400</integer>
+				<integer>500</integer>
 				<key>height</key>
-				<integer>288</integer>
+				<integer>360</integer>
 				<key>originalWidth</key>
-				<integer>400</integer>
+				<integer>500</integer>
 				<key>originalHeight</key>
-				<integer>288</integer>
+				<integer>360</integer>
 				<key>x</key>
-				<integer>402</integer>
+				<integer>502</integer>
 				<key>y</key>
 				<integer>0</integer>
 				<key>offsetX</key>
@@ -45,17 +45,17 @@
 			<key>fanghuzhao_3.png</key>
 			<dict>
 				<key>width</key>
-				<integer>400</integer>
+				<integer>500</integer>
 				<key>height</key>
-				<integer>288</integer>
+				<integer>360</integer>
 				<key>originalWidth</key>
-				<integer>400</integer>
+				<integer>500</integer>
 				<key>originalHeight</key>
-				<integer>288</integer>
+				<integer>360</integer>
 				<key>x</key>
 				<integer>0</integer>
 				<key>y</key>
-				<integer>290</integer>
+				<integer>362</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -64,55 +64,17 @@
 			<key>fanghuzhao_2.png</key>
 			<dict>
 				<key>width</key>
-				<integer>400</integer>
+				<integer>500</integer>
 				<key>height</key>
-				<integer>288</integer>
+				<integer>360</integer>
 				<key>originalWidth</key>
-				<integer>400</integer>
+				<integer>500</integer>
 				<key>originalHeight</key>
-				<integer>288</integer>
+				<integer>360</integer>
 				<key>x</key>
-				<integer>402</integer>
+				<integer>502</integer>
 				<key>y</key>
-				<integer>290</integer>
-				<key>offsetX</key>
-				<real>0</real>
-				<key>offsetY</key>
-				<real>0</real>
-			</dict>
-			<key>fanghuzhao_1.png</key>
-			<dict>
-				<key>width</key>
-				<integer>400</integer>
-				<key>height</key>
-				<integer>288</integer>
-				<key>originalWidth</key>
-				<integer>400</integer>
-				<key>originalHeight</key>
-				<integer>288</integer>
-				<key>x</key>
-				<integer>0</integer>
-				<key>y</key>
-				<integer>580</integer>
-				<key>offsetX</key>
-				<real>0</real>
-				<key>offsetY</key>
-				<real>0</real>
-			</dict>
-			<key>fanghuzhao_0.png</key>
-			<dict>
-				<key>width</key>
-				<integer>400</integer>
-				<key>height</key>
-				<integer>288</integer>
-				<key>originalWidth</key>
-				<integer>400</integer>
-				<key>originalHeight</key>
-				<integer>288</integer>
-				<key>x</key>
-				<integer>402</integer>
-				<key>y</key>
-				<integer>580</integer>
+				<integer>362</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>

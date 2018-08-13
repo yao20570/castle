@@ -24,6 +24,7 @@ BaseSprite::BaseSprite()
 		, _crit(0)			//±©»÷Öµ
 		, _crit_rate(0)		//±©»÷ÂÊ
 		, _mgr_skill(nullptr)
+		, _radius(0)
 {
 }
 BaseSprite::~BaseSprite() {
@@ -370,15 +371,20 @@ void BaseSprite::addSkillEffectAnim(SkillEffectAnim* arm){
 }
 
 void BaseSprite::delSkillEffectAnim(int key){
+	SkillEffectAnim* temp = nullptr;
 	auto it = this->_skill_effect_anims.begin();
 	auto itEnd = this->_skill_effect_anims.end();	
 	while (it != itEnd){
 		if ((*it)->getKey() == key){	
-			(*it)->removeFromParent();
+			//(*it)->removeFromParent();
+			temp = (*it);
 			this->_skill_effect_anims.erase(it);
 			break;
 		}
 		++it;
+	}
+	if (temp){
+		temp->removeFromParent();
 	}
 }
 

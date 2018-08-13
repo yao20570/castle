@@ -30,6 +30,8 @@ public:
 	ValueMap* getMissionObjById(int id);
 
 	ValueMap* getSkillEffectById(int id);
+
+	map<int, ValueMap>* getPlayerById(int id);
 private:
 	static ConfigMgr* _g;
 	sqlite3* _pdb;

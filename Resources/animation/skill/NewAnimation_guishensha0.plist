@@ -7,13 +7,13 @@
 			<key>guishensha_720.png</key>
 			<dict>
 				<key>width</key>
-				<integer>168</integer>
+				<integer>160</integer>
 				<key>height</key>
-				<integer>153</integer>
+				<integer>146</integer>
 				<key>originalWidth</key>
-				<integer>168</integer>
+				<integer>160</integer>
 				<key>originalHeight</key>
-				<integer>153</integer>
+				<integer>146</integer>
 				<key>x</key>
 				<integer>0</integer>
 				<key>y</key>
@@ -26,15 +26,15 @@
 			<key>guishensha_719.png</key>
 			<dict>
 				<key>width</key>
-				<integer>172</integer>
+				<integer>160</integer>
 				<key>height</key>
-				<integer>184</integer>
+				<integer>171</integer>
 				<key>originalWidth</key>
-				<integer>172</integer>
+				<integer>160</integer>
 				<key>originalHeight</key>
-				<integer>184</integer>
+				<integer>171</integer>
 				<key>x</key>
-				<integer>170</integer>
+				<integer>162</integer>
 				<key>y</key>
 				<integer>0</integer>
 				<key>offsetX</key>
@@ -45,15 +45,15 @@
 			<key>guishensha_718.png</key>
 			<dict>
 				<key>width</key>
-				<integer>211</integer>
+				<integer>160</integer>
 				<key>height</key>
-				<integer>215</integer>
+				<integer>163</integer>
 				<key>originalWidth</key>
-				<integer>211</integer>
+				<integer>160</integer>
 				<key>originalHeight</key>
-				<integer>215</integer>
+				<integer>163</integer>
 				<key>x</key>
-				<integer>344</integer>
+				<integer>324</integer>
 				<key>y</key>
 				<integer>0</integer>
 				<key>offsetX</key>
@@ -64,15 +64,15 @@
 			<key>guishensha_717.png</key>
 			<dict>
 				<key>width</key>
-				<integer>214</integer>
+				<integer>160</integer>
 				<key>height</key>
-				<integer>231</integer>
+				<integer>172</integer>
 				<key>originalWidth</key>
-				<integer>214</integer>
+				<integer>160</integer>
 				<key>originalHeight</key>
-				<integer>231</integer>
+				<integer>172</integer>
 				<key>x</key>
-				<integer>557</integer>
+				<integer>486</integer>
 				<key>y</key>
 				<integer>0</integer>
 				<key>offsetX</key>
@@ -83,15 +83,15 @@
 			<key>guishensha_715.png</key>
 			<dict>
 				<key>width</key>
-				<integer>223</integer>
+				<integer>160</integer>
 				<key>height</key>
-				<integer>132</integer>
+				<integer>94</integer>
 				<key>originalWidth</key>
-				<integer>223</integer>
+				<integer>160</integer>
 				<key>originalHeight</key>
-				<integer>132</integer>
+				<integer>94</integer>
 				<key>x</key>
-				<integer>773</integer>
+				<integer>648</integer>
 				<key>y</key>
 				<integer>0</integer>
 				<key>offsetX</key>
@@ -102,17 +102,17 @@
 			<key>guishensha_714.png</key>
 			<dict>
 				<key>width</key>
-				<integer>180</integer>
+				<integer>160</integer>
 				<key>height</key>
-				<integer>132</integer>
+				<integer>118</integer>
 				<key>originalWidth</key>
-				<integer>180</integer>
+				<integer>160</integer>
 				<key>originalHeight</key>
-				<integer>132</integer>
+				<integer>118</integer>
 				<key>x</key>
-				<integer>0</integer>
+				<integer>810</integer>
 				<key>y</key>
-				<integer>233</integer>
+				<integer>0</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -121,17 +121,17 @@
 			<key>guishensha_713.png</key>
 			<dict>
 				<key>width</key>
-				<integer>180</integer>
+				<integer>160</integer>
 				<key>height</key>
-				<integer>157</integer>
+				<integer>139</integer>
 				<key>originalWidth</key>
-				<integer>180</integer>
+				<integer>160</integer>
 				<key>originalHeight</key>
-				<integer>157</integer>
+				<integer>139</integer>
 				<key>x</key>
-				<integer>182</integer>
+				<integer>0</integer>
 				<key>y</key>
-				<integer>233</integer>
+				<integer>174</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -140,17 +140,17 @@
 			<key>guishensha_712.png</key>
 			<dict>
 				<key>width</key>
-				<integer>177</integer>
+				<integer>160</integer>
 				<key>height</key>
-				<integer>151</integer>
+				<integer>136</integer>
 				<key>originalWidth</key>
-				<integer>177</integer>
+				<integer>160</integer>
 				<key>originalHeight</key>
-				<integer>151</integer>
+				<integer>136</integer>
 				<key>x</key>
-				<integer>364</integer>
+				<integer>162</integer>
 				<key>y</key>
-				<integer>233</integer>
+				<integer>174</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -159,17 +159,17 @@
 			<key>guishensha_711.png</key>
 			<dict>
 				<key>width</key>
-				<integer>174</integer>
+				<integer>160</integer>
 				<key>height</key>
-				<integer>140</integer>
+				<integer>129</integer>
 				<key>originalWidth</key>
-				<integer>174</integer>
+				<integer>160</integer>
 				<key>originalHeight</key>
-				<integer>140</integer>
+				<integer>129</integer>
 				<key>x</key>
-				<integer>543</integer>
+				<integer>324</integer>
 				<key>y</key>
-				<integer>233</integer>
+				<integer>174</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -178,17 +178,17 @@
 			<key>guishensha_710.png</key>
 			<dict>
 				<key>width</key>
-				<integer>184</integer>
+				<integer>160</integer>
 				<key>height</key>
-				<integer>145</integer>
+				<integer>126</integer>
 				<key>originalWidth</key>
-				<integer>184</integer>
+				<integer>160</integer>
 				<key>originalHeight</key>
-				<integer>145</integer>
+				<integer>126</integer>
 				<key>x</key>
-				<integer>719</integer>
+				<integer>486</integer>
 				<key>y</key>
-				<integer>233</integer>
+				<integer>174</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -197,17 +197,17 @@
 			<key>guishensha_79.png</key>
 			<dict>
 				<key>width</key>
-				<integer>173</integer>
+				<integer>160</integer>
 				<key>height</key>
-				<integer>151</integer>
+				<integer>139</integer>
 				<key>originalWidth</key>
-				<integer>173</integer>
+				<integer>160</integer>
 				<key>originalHeight</key>
-				<integer>151</integer>
+				<integer>139</integer>
 				<key>x</key>
-				<integer>0</integer>
+				<integer>648</integer>
 				<key>y</key>
-				<integer>392</integer>
+				<integer>174</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -216,17 +216,17 @@
 			<key>guishensha_78.png</key>
 			<dict>
 				<key>width</key>
-				<integer>152</integer>
+				<integer>160</integer>
 				<key>height</key>
-				<integer>165</integer>
+				<integer>173</integer>
 				<key>originalWidth</key>
-				<integer>152</integer>
+				<integer>160</integer>
 				<key>originalHeight</key>
-				<integer>165</integer>
+				<integer>173</integer>
 				<key>x</key>
-				<integer>175</integer>
+				<integer>810</integer>
 				<key>y</key>
-				<integer>392</integer>
+				<integer>174</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -235,17 +235,17 @@
 			<key>guishensha_7.png</key>
 			<dict>
 				<key>width</key>
-				<integer>180</integer>
+				<integer>160</integer>
 				<key>height</key>
-				<integer>157</integer>
+				<integer>139</integer>
 				<key>originalWidth</key>
-				<integer>180</integer>
+				<integer>160</integer>
 				<key>originalHeight</key>
-				<integer>157</integer>
+				<integer>139</integer>
 				<key>x</key>
-				<integer>329</integer>
+				<integer>0</integer>
 				<key>y</key>
-				<integer>392</integer>
+				<integer>349</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>

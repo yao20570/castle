@@ -29,7 +29,7 @@ static const char* PathHeroInfo = "Config/HeroInfo.csv";
 static const char* PathSoilderInfo = "Config/SoilderInfo.csv";
 
 #define MaxWaitCD 2
-#define MaxReadyCD 3000 
+#define MaxReadyCD 30
 #define MaxReadyCD2 3 
 #define MaxTotalTime 3 
 #define MaxResultCD 2
@@ -48,7 +48,8 @@ static int MYLOSE = 0;
 
 
 DlgFight::DlgFight()
-	:_objPosCfg(nullptr)
+	: _objPosCfg(nullptr)
+	, _player_id(0)
 	, _lay_floor(nullptr)
 	, _lay_fight(nullptr)
 	, _lay_sky(nullptr)
@@ -120,8 +121,8 @@ void DlgFight::load()
 	_lay_fight = (Layout*)Helper::seekWidgetByName(lay_root, "lay_fight");
 	_lay_fight->addTouchEventListener(CC_CALLBACK_2(DlgFight::onMapTouch, this));
 
-	this->_setting_data = DBM()->getMySetting(0);
-	setObjPosition();
+	//this->_setting_data = DBM()->getMySetting(0);
+	//setObjPosition();
 
 	this->img_lose = (ImageView*)Helper::seekWidgetByName(lay_root, "img_lose");
 	this->img_win = (ImageView*)Helper::seekWidgetByName(lay_root, "img_win");
@@ -327,7 +328,7 @@ void DlgFight::update(float dt) {
 	for (auto& it : this->_floor_aminas){
 		SkillEffectAnim* anim = it.second;
 		BaseSprite* obj = anim->getObj();
-		if (obj){			
+		if (obj){
 			anim->setPosition(obj->getPosition());
 		}
 	}
@@ -530,33 +531,67 @@ void DlgFight::setObjPosition()
 
 	{
 		int camp = 2;
-		for (cocos2d::Value& it : datas) {
-			ValueMap& row = it.asValueMap();
-			int x = row["x"].asInt();
-			int y = 1080 - row["y"].asInt();
+		if (this->_player_id > 0){
+			map<int, ValueMap>& enemyDatas = *CFG()->getPlayerById(this->_player_id);
+			for (auto& it : enemyDatas) {
+				ValueMap& row = it.second;
+				int x = row["x"].asInt();
+				int y = row["y"].asInt();
 
-			Vec2 pos(x, y);
-			int objId = row["ObjId"].asInt();
+				Vec2 pos(x, y);
+				int objId = row["ObjId"].asInt();
 
-			ValueMap* objInfo = CFG()->getObjInfoById(objId);
-			int objType = (*objInfo)["ObjType"].asInt();
-			//int subType = (*objInfo)["SubType"].asInt();
-			//string name = (*objInfo)["Name"].asString();
+				ValueMap* objInfo = CFG()->getObjInfoById(objId);
+				int objType = (*objInfo)["ObjType"].asInt();
+				//int subType = (*objInfo)["SubType"].asInt();
+				//string name = (*objInfo)["Name"].asString();
 
-			string name = (*objInfo)["Name"].asString();
-			switch (objType)
-			{
-				case 2:
-					//武将			
-					addHero(pos, camp, objInfo);
-					break;
-				case 1:
-					//士兵
-					addSoilder(pos, camp, objInfo);
-					break;
-				case 3:
-					break;
+				string name = (*objInfo)["Name"].asString();
+				switch (objType)
+				{
+					case 2:
+						//武将			
+						addHero(pos, camp, objInfo);
+						break;
+					case 1:
+						//士兵
+						addSoilder(pos, camp, objInfo);
+						break;
+					case 3:
+						break;
+				}
 			}
+		}
+		else{
+			for (cocos2d::Value& it : datas) {
+				ValueMap& row = it.asValueMap();
+				int x = row["x"].asInt();
+				int y = 1080 - row["y"].asInt();
+
+				Vec2 pos(x, y);
+				int objId = row["ObjId"].asInt();
+
+				ValueMap* objInfo = CFG()->getObjInfoById(objId);
+				int objType = (*objInfo)["ObjType"].asInt();
+				//int subType = (*objInfo)["SubType"].asInt();
+				//string name = (*objInfo)["Name"].asString();
+
+				string name = (*objInfo)["Name"].asString();
+				switch (objType)
+				{
+					case 2:
+						//武将			
+						addHero(pos, camp, objInfo);
+						break;
+					case 1:
+						//士兵
+						addSoilder(pos, camp, objInfo);
+						break;
+					case 3:
+						break;
+				}
+			}
+
 		}
 		addPlayer(Vec2(320, 920), camp);
 	}
@@ -669,13 +704,13 @@ void DlgFight::showSkillRange(bool isShow, BaseSprite* obj){
 	if (_skill_shoot_range){
 		_skill_shoot_range->removeFromParent();
 		_skill_shoot_range = nullptr;
-		
+
 		if (_skill_radius){
 			_skill_radius = nullptr;
 		}
 	}
 
-	if (isShow && obj){
+	if (isShow && obj && obj->_mgr_skill){
 
 		vector<Skill*>* skills = obj->_mgr_skill->getSkills(SkillTriggerType::Hand);
 		if (skills == nullptr || skills->empty()){
@@ -722,18 +757,49 @@ void DlgFight::addSkillAnim(void* data){
 	arm->setRotation(animData->angle);
 	if (animData->loop == 0){
 		//不循环移除
-		arm->getAnimation()->setMovementEventCallFunc([arm](Armature* armature, MovementEventType movementType, const std::string& movementID){
-			if (movementType == cocostudio::LOOP_COMPLETE){
-				arm->runAction(RemoveSelf::create());
+		arm->getAnimation()->setMovementEventCallFunc([arm, animData](Armature* armature, MovementEventType movementType, const std::string& movementID){
+			if (movementType == cocostudio::LOOP_COMPLETE){				
+				switch (animData->layerType)
+				{			
+					case SkillAnimLayerType::Body:{
+						auto cb = CallFunc::create([animData](){
+							animData->obj->delSkillEffectAnim(animData->key);
+						});
+						arm->runAction(cb);
+						break;			
+					}	
+					default:{
+						RemoveSelf* rs = RemoveSelf::create();
+						arm->runAction(rs);
+						break;
+					}
+						
+				}
 			}
 		});
 	}
 	else if (animData->loop > 0){
 		//持续一段时间
 		DelayTime* dt = DelayTime::create((float)animData->loop / 1000);
-		RemoveSelf* rs = RemoveSelf::create();
-		Sequence* seq = Sequence::create(dt, rs, nullptr);
-		arm->runAction(seq);
+		switch (animData->layerType)
+		{			
+			case SkillAnimLayerType::Body:{
+				auto cb = CallFunc::create([animData](){
+					animData->obj->delSkillEffectAnim(animData->key);
+				});
+				Sequence* seq = Sequence::create(dt, cb, nullptr);
+				arm->runAction(seq);
+				break;			
+			}	
+			default:{
+				RemoveSelf* rs = RemoveSelf::create();
+				Sequence* seq = Sequence::create(dt, rs, nullptr);
+				arm->runAction(seq);
+				break;
+			}
+				
+		}
+		
 	}
 	else if (animData->loop < 0){
 		//循环
@@ -744,13 +810,13 @@ void DlgFight::addSkillAnim(void* data){
 		case SkillAnimLayerType::None:
 			break;
 		case SkillAnimLayerType::Floor:{
-			this->_lay_floor->addChild(arm);			
+			this->_lay_floor->addChild(arm);
 			this->_floor_aminas[animData->key] = arm;
 			break;
 		}
 		case SkillAnimLayerType::Body:
-			arm->setPosition(Vec2(0, 120));			
-			animData->obj->addSkillEffectAnim(arm);
+			arm->setPosition(Vec2(0, 120));
+			animData->obj->addSkillEffectAnim(arm);			
 			break;
 		case SkillAnimLayerType::Pos:{
 			this->_lay_fight->addChild(arm);
@@ -777,7 +843,7 @@ void DlgFight::addSkillAnim(void* data){
 
 		case SkillAnimLayerType::Sky:{
 			Size s = this->_lay_fight->getContentSize();
-			Vec2 p(s.width / 2, s.height/2 - 100);
+			Vec2 p(s.width / 2, s.height / 2 + 100);
 			arm->setPosition(p);
 			this->_lay_sky->addChild(arm);
 			break;
@@ -786,7 +852,7 @@ void DlgFight::addSkillAnim(void* data){
 }
 
 void DlgFight::delSkillAnim(void* data){
-	SkilAnimData* animData = (SkilAnimData*)data;	
+	SkilAnimData* animData = (SkilAnimData*)data;
 
 	switch (animData->layerType)
 	{
@@ -804,7 +870,7 @@ void DlgFight::delSkillAnim(void* data){
 			animData->obj->delSkillEffectAnim(animData->key);
 			break;
 		case SkillAnimLayerType::Pos:{
-			
+
 			break;
 		}
 
@@ -812,7 +878,14 @@ void DlgFight::delSkillAnim(void* data){
 			break;
 	}
 
-	
+
+}
+
+void DlgFight::setFightType(int i){
+	this->_player_id = i;
+
+	this->_setting_data = DBM()->getMySetting(0);
+	setObjPosition();
 }
 
 DlgBase* DlgFight::showDlg(const string& dlgName)
@@ -900,7 +973,7 @@ void DlgFight::onMapTouchMove(Ref* sender, Widget::TouchEventType type){
 			if (_skill_radius && obj){
 
 				Skill* skill = obj->_mgr_skill->getHandSkill();
-				if (skill){					
+				if (skill){
 					const Vec2& movePos = this->_lay_fight->getTouchMovePosition();
 					Vec2 pos = this->_skill_radius->getParent()->convertToNodeSpace(movePos);
 					int distance = pos.getDistance(Vec2::ZERO);
@@ -949,7 +1022,7 @@ void DlgFight::onMapTouchEnd(Ref* sender, Widget::TouchEventType type){
 						case SkillScopeType::ALL:{
 							obj->triggerSkill(SkillTriggerType::Hand, obj->getPosition());
 							break;
-						}							
+						}
 						case SkillScopeType::SINGLE:
 						case SkillScopeType::ROUND:{
 							if (_skill_radius){
