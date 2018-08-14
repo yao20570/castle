@@ -248,10 +248,12 @@ void BaseSprite::hurt(int hurtType, int x, BaseSprite* atk, bool isShowTxt)
 	if (isShowTxt && hurtType == 2) {
 		//Æ®×Ö
 		Vec2 txtPos = Vec2(40, _arm->getContentSize().height / 2 - 20);
+		char str[128] = {0};
 		Color4B txtColor(255, 0, 0, 255);
 		if (temp < 0) {
 			txtColor = Color4B(0, 255, 0, 255);
 		}
+		
 		Text* txtHurt = this->flyHurtNum(temp, txtPos);
 		txtHurt->setTextColor(txtColor);
 	}
@@ -403,7 +405,13 @@ Text* BaseSprite::flyHurtNum(int value, Vec2 textPos){
 	txtHurt->setPosition(textPos);
 	this->addChild(txtHurt);
 
-	txtHurt->setString(cocos2d::Value(value).asString());
+	if (value > 0){
+		txtHurt->setString("-" + cocos2d::Value(value).asString());
+	}
+	else{
+		txtHurt->setString("+" + cocos2d::Value(abs(value)).asString());
+	}
+	
 
 	Vec2 r = Vec2(cocos2d::random(1, 30), cocos2d::random(1, 30));
 	auto mt = MoveTo::create(0.2, Vec2(10, 10) + txtHurt->getPosition() + r);
