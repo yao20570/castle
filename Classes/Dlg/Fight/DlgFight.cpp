@@ -740,7 +740,7 @@ void DlgFight::showSkillRange(bool isShow, BaseSprite* obj){
 					this->_lay_floor->addChild(_skill_shoot_range);
 
 					_skill_radius = DrawNode::create();
-					_skill_radius->drawCircle(this->getPosition(), skill->radius, 0, 100, false, Color4F(1, 1, 1, 1));
+					_skill_radius->drawCircle(this->getPosition(), skill->radius, 0, 100, false, Color4F(132.0/255, 208.0/255, 233.0/255, 1));
 					_skill_shoot_range->addChild(_skill_radius);
 
 					break;

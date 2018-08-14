@@ -449,8 +449,7 @@ bool AIMgr::isOver(int type) {
 
 bool AIMgr::isWin(int type) {
 
-	switch (type) {
-	case 1: {
+
 
 		//int my = 0;
 		//int en = 0;
@@ -476,11 +475,7 @@ bool AIMgr::isWin(int type) {
 				return false;
 			}
 		}
-	}
-	case 2: {
-		return this->isOver(2);
-	}
-	}
+	
 
 	return true;
 }

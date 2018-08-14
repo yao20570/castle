@@ -200,6 +200,8 @@ void AppDelegate::loadResources()
 	ArmatureDataManager::getInstance()->addArmatureFileInfo("animation/hero/Anim_Hero_Zhenji.ExportJson");
 	ArmatureDataManager::getInstance()->addArmatureFileInfo("animation/hero/Anim_Hero_Zhouyu.ExportJson");
 	ArmatureDataManager::getInstance()->addArmatureFileInfo("animation/hero/Anim_Hero_Zhugeliang.ExportJson");
+	ArmatureDataManager::getInstance()->addArmatureFileInfo("animation/hero/NewAnimation_Hero_wenchou.ExportJson");
+	ArmatureDataManager::getInstance()->addArmatureFileInfo("animation/hero/NewAnimation_hero_yanliang.ExportJson");
 
 	ArmatureDataManager::getInstance()->addArmatureFileInfo("animation/hero/NewAnimation_Hero_Dongzuo.ExportJson");
 }

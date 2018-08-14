@@ -4,16 +4,16 @@
 	<dict>
 		<key>frames</key>
 		<dict>
-			<key>jineng6.png</key>
+			<key>taqing_bow_8.png</key>
 			<dict>
 				<key>width</key>
-				<integer>205</integer>
+				<integer>130</integer>
 				<key>height</key>
-				<integer>190</integer>
+				<integer>130</integer>
 				<key>originalWidth</key>
-				<integer>205</integer>
+				<integer>130</integer>
 				<key>originalHeight</key>
-				<integer>190</integer>
+				<integer>130</integer>
 				<key>x</key>
 				<integer>0</integer>
 				<key>y</key>
@@ -23,18 +23,18 @@
 				<key>offsetY</key>
 				<real>0</real>
 			</dict>
-			<key>jineng5.png</key>
+			<key>taqing_bow_7.png</key>
 			<dict>
 				<key>width</key>
-				<integer>205</integer>
+				<integer>130</integer>
 				<key>height</key>
-				<integer>194</integer>
+				<integer>130</integer>
 				<key>originalWidth</key>
-				<integer>205</integer>
+				<integer>130</integer>
 				<key>originalHeight</key>
-				<integer>194</integer>
+				<integer>130</integer>
 				<key>x</key>
-				<integer>207</integer>
+				<integer>132</integer>
 				<key>y</key>
 				<integer>0</integer>
 				<key>offsetX</key>
@@ -42,18 +42,18 @@
 				<key>offsetY</key>
 				<real>0</real>
 			</dict>
-			<key>jineng4.png</key>
+			<key>taqing_bow_6.png</key>
 			<dict>
 				<key>width</key>
-				<integer>205</integer>
+				<integer>130</integer>
 				<key>height</key>
-				<integer>192</integer>
+				<integer>130</integer>
 				<key>originalWidth</key>
-				<integer>205</integer>
+				<integer>130</integer>
 				<key>originalHeight</key>
-				<integer>192</integer>
+				<integer>130</integer>
 				<key>x</key>
-				<integer>414</integer>
+				<integer>264</integer>
 				<key>y</key>
 				<integer>0</integer>
 				<key>offsetX</key>
@@ -61,18 +61,18 @@
 				<key>offsetY</key>
 				<real>0</real>
 			</dict>
-			<key>jineng3.png</key>
+			<key>taqing_bow_5.png</key>
 			<dict>
 				<key>width</key>
-				<integer>205</integer>
+				<integer>130</integer>
 				<key>height</key>
-				<integer>190</integer>
+				<integer>130</integer>
 				<key>originalWidth</key>
-				<integer>205</integer>
+				<integer>130</integer>
 				<key>originalHeight</key>
-				<integer>190</integer>
+				<integer>130</integer>
 				<key>x</key>
-				<integer>621</integer>
+				<integer>396</integer>
 				<key>y</key>
 				<integer>0</integer>
 				<key>offsetX</key>
@@ -80,39 +80,77 @@
 				<key>offsetY</key>
 				<real>0</real>
 			</dict>
-			<key>jineng2.png</key>
+			<key>taqing_bow_4.png</key>
 			<dict>
 				<key>width</key>
-				<integer>205</integer>
+				<integer>130</integer>
 				<key>height</key>
-				<integer>192</integer>
+				<integer>130</integer>
 				<key>originalWidth</key>
-				<integer>205</integer>
+				<integer>130</integer>
 				<key>originalHeight</key>
-				<integer>192</integer>
+				<integer>130</integer>
 				<key>x</key>
-				<integer>0</integer>
+				<integer>528</integer>
 				<key>y</key>
-				<integer>196</integer>
+				<integer>0</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
 				<real>0</real>
 			</dict>
-			<key>jineng1.png</key>
+			<key>taqing_bow_3.png</key>
 			<dict>
 				<key>width</key>
-				<integer>205</integer>
+				<integer>130</integer>
 				<key>height</key>
-				<integer>194</integer>
+				<integer>130</integer>
 				<key>originalWidth</key>
-				<integer>205</integer>
+				<integer>130</integer>
 				<key>originalHeight</key>
-				<integer>194</integer>
+				<integer>130</integer>
 				<key>x</key>
-				<integer>207</integer>
+				<integer>660</integer>
 				<key>y</key>
-				<integer>196</integer>
+				<integer>0</integer>
+				<key>offsetX</key>
+				<real>0</real>
+				<key>offsetY</key>
+				<real>0</real>
+			</dict>
+			<key>taqing_bow_2.png</key>
+			<dict>
+				<key>width</key>
+				<integer>130</integer>
+				<key>height</key>
+				<integer>130</integer>
+				<key>originalWidth</key>
+				<integer>130</integer>
+				<key>originalHeight</key>
+				<integer>130</integer>
+				<key>x</key>
+				<integer>792</integer>
+				<key>y</key>
+				<integer>0</integer>
+				<key>offsetX</key>
+				<real>0</real>
+				<key>offsetY</key>
+				<real>0</real>
+			</dict>
+			<key>taqing_bow_1.png</key>
+			<dict>
+				<key>width</key>
+				<integer>130</integer>
+				<key>height</key>
+				<integer>130</integer>
+				<key>originalWidth</key>
+				<integer>130</integer>
+				<key>originalHeight</key>
+				<integer>130</integer>
+				<key>x</key>
+				<integer>0</integer>
+				<key>y</key>
+				<integer>132</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>

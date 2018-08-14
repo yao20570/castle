@@ -76,11 +76,17 @@ void PnlGuanKa::load()
 		for (auto& subIt : mapSub) {
 			auto subData = subIt.second;
 			if (subData["mianId"].asInt() == mainId) {
+
+				bool open = subData["open"].asBool();
+				
+
 				int index = subData["sort"].asInt();
 				char str[128] = "\0";
 				sprintf(str, "pnl_mission_sub%d", index);
 				Layout* pnl_mission_sub = (Layout*)Helper::seekWidgetByName(item_root, str);
-				pnl_mission_sub->addTouchEventListener(CC_CALLBACK_2(PnlGuanKa::onSelectMissionSub, this));
+				if (open){
+					pnl_mission_sub->addTouchEventListener(CC_CALLBACK_2(PnlGuanKa::onSelectMissionSub, this));
+				}
 
 				Text* lab_mission_sub = (Text*)Helper::seekWidgetByName(pnl_mission_sub, "lab_mission_sub");
 				lab_mission_sub->setString(subData["title"].asString());
@@ -89,7 +95,7 @@ void PnlGuanKa::load()
 				pnl_mission_sub->setTag(tag);
 				pnl_mission_sub->setUserData((void*)subData["ID"].asInt());
 
-				if (tag == temp) {
+				if (tag == 11) {
 					//pnl_mission_sub->setScale(1.2);
 					lab_mission_sub->setTextColor(Color4B(255, 0, 0, 255));
 					this->lay_select = pnl_mission_sub;

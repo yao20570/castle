@@ -111,25 +111,20 @@ void DlgMission::update(float dt) {
 
 					}
 				}
-				--DlgMission_resule_delay;
 				
-				if (DlgMission_resule_delay == 0) {
-					DlgBase* dlgMain = showDlg("DlgMain");
-					((DlgMain*)dlgMain)->showPanel(PanelType::Chater);
-				}
 				
 				
 			}
 			else {
 				this->txt_result->setString("lose");
 			}
-		//}
-		//else {
-		//	++_round;
-		//	_ai->reset();
-		//	setObjPosition(this->_missionSubId);
-		//	_ai->start();
-		//}
+
+			--DlgMission_resule_delay;			
+			if (DlgMission_resule_delay == 0) {
+				DlgBase* dlgMain = showDlg("DlgMain");
+				((DlgMain*)dlgMain)->showPanel(PanelType::Chater);
+			}
+
 	}
 	else {
 		DlgMission_resule_delay = 60;

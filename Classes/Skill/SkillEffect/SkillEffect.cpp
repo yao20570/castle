@@ -41,9 +41,9 @@ SkillEffect::SkillEffect(BaseSprite* obj, int skillEffectId, BaseSprite* caster)
 	anim.fileName = cfg["AnimName"].asString();
 	anim.key = GM()->getAutoKey();
 
-	if (anim.loop == -1){
+	//if (anim.loop == -1){
 		this->addAnim();
-	}
+	//}
 }
 
 SkillEffect::~SkillEffect(){
@@ -89,9 +89,9 @@ void SkillEffect::onTrigger(){
 	
 	bool b = this->trigger();
 
-	if (b && this->m_anim_data.loop != -1){
-		this->addAnim();
-	}
+	//if (b && this->m_anim_data.loop != -1){
+	//	this->addAnim();
+	//}
 }
 
 //触发一次效果，由子类实现

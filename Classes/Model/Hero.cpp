@@ -20,6 +20,7 @@ Hero* Hero::create(int ID, AIMgr* ai, int camp)
 
 Hero::Hero()
 	:BaseSprite()
+	, m_skillAnim(nullptr)
 {
 
 }
@@ -179,6 +180,17 @@ void Hero::addHPBar()
 			_cdBar->setPercent(100.0);
 			_cdBar->setPosition(cdbg->getContentSize() / 2);
 			cdbg->addChild(_cdBar);
+
+			_is_show_cd_anim = true;
+			m_skillAnim = Armature::create("NewAnimation_jineng");
+			m_skillAnim->setPositionY(60);
+			m_skillAnim->getAnimation()->play("Animation1");
+			//skillAnim->getAnimation()->setMovementEventCallFunc([this](Armature* arm, MovementEventType eventType, const std::string& str){
+			//	if (eventType == LOOP_COMPLETE) {
+			//		arm->runAction(RemoveSelf::create());
+			//	}
+			//});
+			this->addChild(m_skillAnim);
 		}
 	}
 	
@@ -497,21 +509,25 @@ void Hero::update(float dt)
 			if (_is_show_cd_anim == false){
 				_is_show_cd_anim = true;
 
-				Armature* skillAnim = Armature::create("NewAnimation_jineng");
-				skillAnim->setPositionY(60);
-				skillAnim->getAnimation()->play("Animation1");
-				skillAnim->getAnimation()->setMovementEventCallFunc([this](Armature* arm, MovementEventType eventType, const std::string& str){
-					if (eventType == LOOP_COMPLETE) {
-						arm->runAction(RemoveSelf::create());
-					}
-				});
-				this->addChild(skillAnim);
+				m_skillAnim = Armature::create("NewAnimation_jineng");
+				m_skillAnim->setPositionY(60);
+				m_skillAnim->getAnimation()->play("Animation1");
+				//skillAnim->getAnimation()->setMovementEventCallFunc([this](Armature* arm, MovementEventType eventType, const std::string& str){
+				//	if (eventType == LOOP_COMPLETE) {
+				//		arm->runAction(RemoveSelf::create());
+				//	}
+				//});
+				this->addChild(m_skillAnim);
 			}
 		}
 		else{
 			float p = (skill->cd - (skill->m_CDMTimestamp - curMTimeStamp)) * 100 / skill->cd;
 			_cdBar->setPercent(p);
 			_is_show_cd_anim = false;
+			if (m_skillAnim){
+				m_skillAnim->removeFromParent();
+				m_skillAnim = nullptr;
+			}
 		}
 	}
 }

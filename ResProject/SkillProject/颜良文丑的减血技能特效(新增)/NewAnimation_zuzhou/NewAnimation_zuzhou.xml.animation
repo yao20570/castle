@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<AnimationProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ProjectDir>F:\mytest\castle\ResProject\SkillProject\颜良文丑的减血技能特效(新增)\NewAnimation_zuzhou</ProjectDir>
+  <Version>1.6.0.0</Version>
+  <Resources>F:\mytest\castle\ResProject\SkillProject\颜良文丑的减血技能特效(新增)\NewAnimation_zuzhou\Resources</Resources>
+  <Name>NewAnimation_zuzhou</Name>
+  <JsonFileName>NewAnimation_zuzhou.json</JsonFileName>
+  <JsonFolder>F:\mytest\castle\ResProject\SkillProject\颜良文丑的减血技能特效(新增)\NewAnimation_zuzhou\Json</JsonFolder>
+  <JsonList />
+  <CanvasSize>
+    <Width>0</Width>
+    <Height>0</Height>
+  </CanvasSize>
+  <filePath>F:\mytest\castle\ResProject\SkillProject\颜良文丑的减血技能特效(新增)\NewAnimation_zuzhou\NewAnimation_zuzhou.xml.animation</filePath>
+  <ProjectType>AnimationProject</ProjectType>
+  <ResRelativePath />
+  <ResourceFileList>
+    <string>NewAnimation_zuzhou0.plist</string>
+  </ResourceFileList>
+  <bBatchImage>true</bBatchImage>
+</AnimationProject>

@@ -7,11 +7,75 @@
       "name": "NewAnimation_jineng",
       "bone_data": [
         {
+          "name": "Layer8",
+          "parent": "",
+          "dI": -1000,
+          "x": -2.5,
+          "y": 4.67333984375,
+          "z": 8,
+          "cX": 1.0,
+          "cY": 1.0,
+          "kX": 0.0,
+          "kY": 0.0,
+          "arrow_x": 0.0,
+          "arrow_y": 0.0,
+          "effectbyskeleton": false,
+          "bl": 0,
+          "display_data": [
+            {
+              "name": "taqing_bow_8.png",
+              "displayType": 0,
+              "skin_data": [
+                {
+                  "x": 0.0,
+                  "y": 0.0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Layer7",
+          "parent": "",
+          "dI": -1000,
+          "x": -2.5,
+          "y": 4.67333984375,
+          "z": 7,
+          "cX": 1.0,
+          "cY": 1.0,
+          "kX": 0.0,
+          "kY": 0.0,
+          "arrow_x": 0.0,
+          "arrow_y": 0.0,
+          "effectbyskeleton": false,
+          "bl": 0,
+          "display_data": [
+            {
+              "name": "taqing_bow_7.png",
+              "displayType": 0,
+              "skin_data": [
+                {
+                  "x": 0.0,
+                  "y": 0.0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0
+                }
+              ]
+            }
+          ]
+        },
+        {
           "name": "Layer6",
           "parent": "",
-          "dI": 0,
-          "x": -0.5,
-          "y": 2.67333984375,
+          "dI": -1000,
+          "x": -2.5,
+          "y": 4.67333984375,
           "z": 6,
           "cX": 1.0,
           "cY": 1.0,
@@ -23,7 +87,7 @@
           "bl": 0,
           "display_data": [
             {
-              "name": "jineng6.png",
+              "name": "taqing_bow_6.png",
               "displayType": 0,
               "skin_data": [
                 {
@@ -41,9 +105,9 @@
         {
           "name": "Layer5",
           "parent": "",
-          "dI": 0,
-          "x": -0.5,
-          "y": 2.67333984375,
+          "dI": -1000,
+          "x": -2.5,
+          "y": 4.67333984375,
           "z": 5,
           "cX": 1.0,
           "cY": 1.0,
@@ -55,7 +119,7 @@
           "bl": 0,
           "display_data": [
             {
-              "name": "jineng5.png",
+              "name": "taqing_bow_5.png",
               "displayType": 0,
               "skin_data": [
                 {
@@ -74,8 +138,8 @@
           "name": "Layer4",
           "parent": "",
           "dI": 0,
-          "x": -0.5,
-          "y": 2.67333984375,
+          "x": -2.5,
+          "y": 4.67333984375,
           "z": 4,
           "cX": 1.0,
           "cY": 1.0,
@@ -87,7 +151,7 @@
           "bl": 0,
           "display_data": [
             {
-              "name": "jineng4.png",
+              "name": "taqing_bow_4.png",
               "displayType": 0,
               "skin_data": [
                 {
@@ -105,9 +169,9 @@
         {
           "name": "Layer3",
           "parent": "",
-          "dI": 0,
-          "x": -0.5,
-          "y": 2.67333984375,
+          "dI": -1000,
+          "x": -2.5,
+          "y": 4.67333984375,
           "z": 3,
           "cX": 1.0,
           "cY": 1.0,
@@ -119,7 +183,7 @@
           "bl": 0,
           "display_data": [
             {
-              "name": "jineng3.png",
+              "name": "taqing_bow_3.png",
               "displayType": 0,
               "skin_data": [
                 {
@@ -137,9 +201,9 @@
         {
           "name": "Layer2",
           "parent": "",
-          "dI": 0,
-          "x": -0.5,
-          "y": 2.67333984375,
+          "dI": -1000,
+          "x": -2.5,
+          "y": 4.67333984375,
           "z": 2,
           "cX": 1.0,
           "cY": 1.0,
@@ -151,7 +215,7 @@
           "bl": 0,
           "display_data": [
             {
-              "name": "jineng2.png",
+              "name": "taqing_bow_2.png",
               "displayType": 0,
               "skin_data": [
                 {
@@ -169,9 +233,9 @@
         {
           "name": "Layer1",
           "parent": "",
-          "dI": 0,
-          "x": -0.5,
-          "y": 2.67333984375,
+          "dI": -1000,
+          "x": -2.5,
+          "y": 4.67333984375,
           "z": 1,
           "cX": 1.0,
           "cY": 1.0,
@@ -183,7 +247,7 @@
           "bl": 0,
           "display_data": [
             {
-              "name": "jineng1.png",
+              "name": "taqing_bow_1.png",
               "displayType": 0,
               "skin_data": [
                 {
@@ -207,13 +271,115 @@
       "mov_data": [
         {
           "name": "Animation1",
-          "dr": 121,
+          "dr": 81,
           "lp": true,
           "to": 0,
           "drTW": 0,
           "twE": 0,
           "sc": 1.0,
           "mov_bone_data": [
+            {
+              "name": "Layer8",
+              "dl": 0.0,
+              "frame_data": [
+                {
+                  "dI": -1000,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 0,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 70,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 80,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                }
+              ]
+            },
+            {
+              "name": "Layer7",
+              "dl": 0.0,
+              "frame_data": [
+                {
+                  "dI": -1000,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 0,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 60,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": -1000,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 70,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                }
+              ]
+            },
             {
               "name": "Layer6",
               "dl": 0.0,
@@ -242,14 +408,14 @@
                   "cY": 1.0,
                   "kX": 0.0,
                   "kY": 0.0,
-                  "fi": 100,
+                  "fi": 50,
                   "twE": 0,
                   "tweenFrame": true,
                   "bd_src": 1,
                   "bd_dst": 771
                 },
                 {
-                  "dI": 0,
+                  "dI": -1000,
                   "x": 0.0,
                   "y": 0.0,
                   "z": 0,
@@ -257,7 +423,7 @@
                   "cY": 1.0,
                   "kX": 0.0,
                   "kY": 0.0,
-                  "fi": 120,
+                  "fi": 60,
                   "twE": 0,
                   "tweenFrame": true,
                   "bd_src": 1,
@@ -293,7 +459,7 @@
                   "cY": 1.0,
                   "kX": 0.0,
                   "kY": 0.0,
-                  "fi": 80,
+                  "fi": 40,
                   "twE": 0,
                   "tweenFrame": true,
                   "bd_src": 1,
@@ -308,7 +474,7 @@
                   "cY": 1.0,
                   "kX": 0.0,
                   "kY": 0.0,
-                  "fi": 100,
+                  "fi": 50,
                   "twE": 0,
                   "tweenFrame": true,
                   "bd_src": 1,
@@ -344,7 +510,7 @@
                   "cY": 1.0,
                   "kX": 0.0,
                   "kY": 0.0,
-                  "fi": 60,
+                  "fi": 30,
                   "twE": 0,
                   "tweenFrame": true,
                   "bd_src": 1,
@@ -359,7 +525,7 @@
                   "cY": 1.0,
                   "kX": 0.0,
                   "kY": 0.0,
-                  "fi": 80,
+                  "fi": 40,
                   "twE": 0,
                   "tweenFrame": true,
                   "bd_src": 1,
@@ -395,7 +561,7 @@
                   "cY": 1.0,
                   "kX": 0.0,
                   "kY": 0.0,
-                  "fi": 40,
+                  "fi": 20,
                   "twE": 0,
                   "tweenFrame": true,
                   "bd_src": 1,
@@ -410,7 +576,7 @@
                   "cY": 1.0,
                   "kX": 0.0,
                   "kY": 0.0,
-                  "fi": 60,
+                  "fi": 30,
                   "twE": 0,
                   "tweenFrame": true,
                   "bd_src": 1,
@@ -446,7 +612,7 @@
                   "cY": 1.0,
                   "kX": 0.0,
                   "kY": 0.0,
-                  "fi": 20,
+                  "fi": 10,
                   "twE": 0,
                   "tweenFrame": true,
                   "bd_src": 1,
@@ -461,7 +627,7 @@
                   "cY": 1.0,
                   "kX": 0.0,
                   "kY": 0.0,
-                  "fi": 40,
+                  "fi": 20,
                   "twE": 0,
                   "tweenFrame": true,
                   "bd_src": 1,
@@ -497,7 +663,7 @@
                   "cY": 1.0,
                   "kX": 0.0,
                   "kY": 0.0,
-                  "fi": 20,
+                  "fi": 10,
                   "twE": 0,
                   "tweenFrame": true,
                   "bd_src": 1,
@@ -512,49 +678,65 @@
   ],
   "texture_data": [
     {
-      "name": "jineng1",
-      "width": 205.0,
-      "height": 194.0,
+      "name": "taqing_bow_1",
+      "width": 130.0,
+      "height": 130.0,
       "pX": 0.5,
       "pY": 0.5,
       "plistFile": ""
     },
     {
-      "name": "jineng2",
-      "width": 205.0,
-      "height": 192.0,
+      "name": "taqing_bow_2",
+      "width": 130.0,
+      "height": 130.0,
       "pX": 0.5,
       "pY": 0.5,
       "plistFile": ""
     },
     {
-      "name": "jineng3",
-      "width": 205.0,
-      "height": 190.0,
+      "name": "taqing_bow_3",
+      "width": 0.0,
+      "height": 0.0,
       "pX": 0.5,
       "pY": 0.5,
       "plistFile": ""
     },
     {
-      "name": "jineng4",
-      "width": 205.0,
-      "height": 192.0,
+      "name": "taqing_bow_4",
+      "width": 0.0,
+      "height": 0.0,
       "pX": 0.5,
       "pY": 0.5,
       "plistFile": ""
     },
     {
-      "name": "jineng5",
-      "width": 205.0,
-      "height": 194.0,
+      "name": "taqing_bow_5",
+      "width": 0.0,
+      "height": 0.0,
       "pX": 0.5,
       "pY": 0.5,
       "plistFile": ""
     },
     {
-      "name": "jineng6",
-      "width": 205.0,
-      "height": 190.0,
+      "name": "taqing_bow_6",
+      "width": 0.0,
+      "height": 0.0,
+      "pX": 0.5,
+      "pY": 0.5,
+      "plistFile": ""
+    },
+    {
+      "name": "taqing_bow_7",
+      "width": 0.0,
+      "height": 0.0,
+      "pX": 0.5,
+      "pY": 0.5,
+      "plistFile": ""
+    },
+    {
+      "name": "taqing_bow_8",
+      "width": 130.0,
+      "height": 130.0,
       "pX": 0.5,
       "pY": 0.5,
       "plistFile": ""

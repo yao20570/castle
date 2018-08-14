@@ -62,6 +62,7 @@ public:
     Armature* _skill1;
     Armature* _skill2;
 	bool _is_show_cd_anim;
+	Armature* m_skillAnim;
     
 	
     Vec2 _targetPos;

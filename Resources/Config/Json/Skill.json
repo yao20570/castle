@@ -69,7 +69,12 @@
 			"ShootRange": 1,
 			"CD": 0,
 			"Detail": [20022002],
-			"Amin": []
+			"Amin": [{
+				"LayerType": 2,
+				"FileName": "kuangbao",			
+				"PosType": 1,
+				"Loop": -1
+			}]
 		},
 		"4": {
 			"ID": 4,
